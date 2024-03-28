@@ -480,13 +480,14 @@ To generate or update this documentation, follow these commands:
 
 ## 🐳 Docker Application Execution Instructions
 
-1. Clone the Repository:
+1. Install [Docker](https://docs.docker.com/engine/install/)
+
+2. Run Docker
+   
+3. Clone the Repository:
    ```
    git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
    ```
-2. Install [Docker](https://docs.docker.com/engine/install/)
-
-3. Run Docker
    
 4. Navigating to the Directory Containing docker-compose.yml:
    ```
@@ -500,14 +501,40 @@ To generate or update this documentation, follow these commands:
 
 6. The application will be accesible in the following URL: [https://localhost:8443/](https://localhost:8443/#)
 
-6. To stop the deployment, run the following command:
+7. To stop the deployment, run the following command:
    ```
    docker compose down
    ```
 
 ## 🛠️ Docker Image Construction Documentation
 
-(TODO: Insert content here)
+To build and publish the Docker image for the application, follow these instructions:
+1. Create an account on [Dockerhub](https://hub.docker.com/)
+
+2. Install [Docker](https://docs.docker.com/engine/install/)
+
+3. Run Docker
+   
+4. Clone the Repository:
+   ```
+   git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
+   ```
+   
+5. Navigating to the Directory Containing create_image.sh:
+   ```
+   cd webapp11/Phase2/EventCrafters/
+   ```
+
+6. Before building and pushing your image, you need to log in to Docker Hub. This will ensure that you have the permission to push images to your repository. From the command line, execute:
+   ```
+   docker login
+   ```
+   You will be prompted to enter your Docker Hub username and password.
+
+7. Execute the Build Script:
+   ```
+   ./create_image.sh accountName/imageName:version
+   ```
 
 ## 🖥️ Deployment on Virtual Machine
 
