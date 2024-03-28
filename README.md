@@ -87,7 +87,6 @@ It is important to note that through this link, access will be granted to the wo
 | Requierement | Anonymus| Registered | Admin |
 | ------------- | ------------- | ----------- | --------- |
 |   View events  | <p align="center"> ☑️ </p> | <p align="center"> ☑️ </p> | <p align="center"> ☑️ </p>  |
-|   View reviews  | <p align="center"> ☑️ </p> | <p align="center"> ☑️ </p>  | <p align="center"> ☑️ </p>  |
 |   Create reviews  | | <p align="center"> ☑️ </p>  | |
 |   Sign up to an event  | | <p align="center"> ☑️ </p>  | |
 |   View event record  | | <p align="center"> ☑️ </p>  | |
@@ -101,7 +100,6 @@ It is important to note that through this link, access will be granted to the wo
 
 ## 🖱️ Additional Technologies
 - **Send emails**: users will receive emails when signing up for a new event, and in some other cases.
-- **Google Maps**: events will have a Google Maps embed showing the event location and its surroundings
   
 ## 📊Charts
 - **Attendance chart**: users will be able to visualize an attendance chart for events they have published.
@@ -111,11 +109,8 @@ It is important to note that through this link, access will be granted to the wo
 - **Recommend by category**: This algorithm will choose the events to be featured in a registered user's home page based on the most common tags among events the user has attended.
 
 ## 🎯Optional features
--  **Sign-ups over time**: A chart displaying how many people have signed up for an event over time.
--  **Views chart**: A chart displaying the views an event has received over time.
--  **Filter by User Rating algorithm**: An algorithm that would promote events published by users whose previous events have been rated positively.
 -  **PDF integration**: allow users to download a PDF holding event information upon sign-up.
--  **Chat**: give users the possibility of speaking to each other through the app, and/or create a chatroom for each event where users can discuss it.
+
 ***
 ### ♨️Phase 1
 ***
