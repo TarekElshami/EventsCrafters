@@ -480,7 +480,30 @@ To generate or update this documentation, follow these commands:
 
 ## 🐳 Docker Application Execution Instructions
 
-(TODO: Insert content here)
+1. Clone the Repository:
+   ```
+   git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
+   ```
+2. Install [Docker](https://docs.docker.com/engine/install/)
+
+3. Run Docker
+   
+4. Navigating to the Directory Containing docker-compose.yml:
+   ```
+   cd webapp11/Phase2/EventCrafters/
+   ```
+
+5. Deploying the Application with Docker Compose:
+   ```
+   docker compose up
+   ``` 
+
+6. The application will be accesible in the following URL: [https://localhost:8443/](https://localhost:8443/#)
+
+6. To stop the deployment, run the following command:
+   ```
+   docker compose down
+   ```
 
 ## 🛠️ Docker Image Construction Documentation
 
