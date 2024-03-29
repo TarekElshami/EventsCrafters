@@ -607,40 +607,54 @@ public class EventRestController {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content)
+            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+
     })
-    public ResponseEntity<List<EventDTO>> userEvents(@RequestParam("page") int page, Principal principal, @RequestParam(value = "time", required = false) String time, @RequestParam(value = "type", required = false) String type) {
+    public ResponseEntity<List<EventDTO>> userEvents(@RequestParam("page") int page, Principal principal,
+                                                     @RequestParam(value = "time", required = false) String time,
+                                                     @RequestParam(value = "type", required = false) String type) {
         int pageSize = 3;
         List<EventDTO> eventDTOS = new ArrayList<>();
         List<Event> events = new ArrayList<>();
+
         if (principal == null || principal.getName().equals("anonymousUser")) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
         Optional<User> userOp = userService.findByUserName(principal.getName());
-        if (userOp.isPresent()) {
-            if (userOp.get().hasRole("ADMIN")) {
-                events = eventService.findAll(page, pageSize);
-            } else { // if role user
-                switch (type) {
-                    case "created":
-                        if (time.equals("present")) {
-                            events = eventService.findByCreatorIdCurrentCreatedEvents(userOp.get().getId(), page, pageSize);
-                        } else if (time.equals("past")) {
-                            events = eventService.findByCreatorIdPastCreatedEvents(userOp.get().getId(), page, pageSize);
-                        } else {
-                            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                        }
-                        break;
-                    case "registered":
-                        if (time.equals("present")) {
-                            events = eventService.findByRegisteredUserIdCurrentEvents(userOp.get().getId(), page, pageSize);
-                        } else if (time.equals("past")) {
-                            events = eventService.findByRegisteredUserIdPastEvents(userOp.get().getId(), page, pageSize);
-                        } else {
-                            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                        }
-                }
+        if (!userOp.isPresent()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        User currentUser = userOp.get();
+
+        if (currentUser.hasRole("ADMIN")) {
+            events = eventService.findAll(page, pageSize);
+        } else if (type != null && time != null) {
+            switch (type) {
+                case "created":
+                    if ("present".equals(time)) {
+                        events = eventService.findByCreatorIdCurrentCreatedEvents(currentUser.getId(), page, pageSize);
+                    } else if ("past".equals(time)) {
+                        events = eventService.findByCreatorIdPastCreatedEvents(currentUser.getId(), page, pageSize);
+                    } else {
+                        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                    }
+                    break;
+                case "registered":
+                    if ("present".equals(time)) {
+                        events = eventService.findByRegisteredUserIdCurrentEvents(currentUser.getId(), page, pageSize);
+                    } else if ("past".equals(time)) {
+                        events = eventService.findByRegisteredUserIdPastEvents(currentUser.getId(), page, pageSize);
+                    } else {
+                        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                    }
+                    break;
+                default:
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         for (Event e : events) {
@@ -649,8 +663,7 @@ public class EventRestController {
 
         return ResponseEntity.ok(eventDTOS);
     }
-
-
+    
     private EventDTO transformDTO(Event event) {
         if (event.getEndDate().before(new Date())) {
             return new EventFinishedDTO(event.getId(), event.getName(), event.getDescription(), event.getMaxCapacity(), event.getPrice(), event.getLocation(), event.getMap(), event.getStartDate(), event.getEndDate(), event.getAdditionalInfo(), event.getCreator().getId(), event.getNumRegisteredUsers(), event.getCategory().getId(), event.getAttendeesCount(), reviewService.calculateAverageRatingForEvent(event.getId()), reviewService.countReviewsForEvent(event.getId()));
