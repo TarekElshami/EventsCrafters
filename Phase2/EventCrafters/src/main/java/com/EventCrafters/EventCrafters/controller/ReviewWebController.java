@@ -8,7 +8,6 @@ import com.EventCrafters.EventCrafters.model.Event;
 import com.EventCrafters.EventCrafters.model.Review;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.service.EventService;
-import com.EventCrafters.EventCrafters.service.MailService;
 import com.EventCrafters.EventCrafters.service.ReviewService;
 import com.EventCrafters.EventCrafters.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,12 @@ public class ReviewWebController {
         if (eventOptional.isPresent() && currentUser.isPresent()) {
             Event event = eventOptional.get();
             User user = currentUser.get();
+
+            // Check if the user has already reviewed this event
+            if (service.hasUserReviewedEvent(eventId, user.getId())) {
+                // Redirect to an error page if the user has already reviewed the event
+                return "redirect:/error";
+            }
 
             Review review = new Review();
             review.setEvent(event);
