@@ -175,9 +175,6 @@ public class EventRestController {
 
         eventService.assignEventProperties(existingEvent, eventManipulationDTO.getName(), eventManipulationDTO.getDescription(), eventManipulationDTO.getMaxCapacity(), eventManipulationDTO.getPrice(), eventManipulationDTO.getLocation(), eventManipulationDTO.getMap(), eventManipulationDTO.getStartDate(), eventManipulationDTO.getEndDate(), eventManipulationDTO.getAdditionalInfo());
 
-        //Set event creator
-        existingEvent.setCreator(userOpt.get());
-
         // Set the category
         existingEvent.setCategory(categoryOpt.get());
 
