@@ -94,8 +94,7 @@ public class ReviewRestController {
     }
 
      */
-    // no se devuelve la url de la review creada, porque se supone que la web no tiene la opción de ver las reviews
-    @PostMapping("/reviews")
+    // the URL of the created review is not returned, because it is assumed that the website does not have the option to view the reviews@PostMapping("/reviews")
     @Operation(summary = "Create a review for an event that has ended and for which the user had signed up.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Review created",

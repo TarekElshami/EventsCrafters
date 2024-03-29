@@ -45,8 +45,8 @@ public class CategoryRestController {
 
         newCategory.setName(category.getName());
         newCategory.setColor(category.getColor());
-
-        // solo se cambian las categorias de los eventos sin categoría
+        
+        // only the categories of events without a category are changed
         for (Long e : category.getEventIdInCategories()){
             if (eventService.findById(e).isPresent()) {
                 Event event = eventService.findById(e).get();
