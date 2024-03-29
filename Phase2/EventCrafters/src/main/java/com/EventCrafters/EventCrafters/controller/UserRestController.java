@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;
@@ -106,7 +105,7 @@ public class UserRestController {
 					description = "Bad Request. Body must not have a photo attribute.", content = @Content)
 	})
 	@PostMapping
-	public ResponseEntity<FullUserDTO> newUser(@RequestBody User user){ //especificar en la documentación que no se debe poner un campo photo
+	public ResponseEntity<FullUserDTO> newUser(@RequestBody User user){
 		if (userService.findByUserName(user.getUsername()).isPresent()) {
 			return ResponseEntity.status(409).build(); //409 conflict
 		}

@@ -3,7 +3,6 @@ package com.EventCrafters.EventCrafters.controller;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,11 +12,9 @@ import java.util.regex.Pattern;
 
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
-import com.EventCrafters.EventCrafters.model.Review;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.service.*;
 import io.swagger.v3.oas.annotations.Hidden;
-import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -28,16 +25,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class EventWebController {
 
     @Autowired
     private EventService eventService;
-
-    @Autowired
-    private MailService mailService;
 
     @Autowired
     private UserService userService;
