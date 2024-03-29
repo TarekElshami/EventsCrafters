@@ -121,13 +121,11 @@ public class EventWebController {
                               @RequestParam("category") Long categoryId,
                               @RequestParam(value = "additionalInfo", required = false) String additionalInfo) {
         try {
-            String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
-            Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(map);
 
-            if (!matcher.find()) {
+            if (eventService.map(map)) {
                 return "redirect:/error";
             }
+
             Category category = categoryService.findById(categoryId)
                     .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
 
@@ -469,11 +467,7 @@ public class EventWebController {
             return "redirect:/error";
         }
 
-        String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
-        Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(map);
-
-        if (!matcher.find()) {
+        if (eventService.map(map)) {
             return "redirect:/error";
         }
 
@@ -488,15 +482,8 @@ public class EventWebController {
             event.setPhoto(photoBlob);
         }
 
-        event.setName(name);
-        event.setDescription(description);
-        event.setMaxCapacity(maxCapacity);
-        event.setPrice(price);
-        event.setLocation(location);
-        event.setMap(map);
-        event.setStartDate(Date.from(startDate.atZone(ZoneId.systemDefault()).toInstant()));
-        event.setEndDate(Date.from(endDate.atZone(ZoneId.systemDefault()).toInstant()));
-        event.setAdditionalInfo(additionalInfo);
+        eventService.assignEventProperties(event, name, description, maxCapacity, price, location, map, Date.from(startDate.atZone(ZoneId.systemDefault()).toInstant()), Date.from(endDate.atZone(ZoneId.systemDefault()).toInstant()), additionalInfo);
+
         event.setCategory(category);
 
         eventService.update(event);

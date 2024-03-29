@@ -1,13 +1,13 @@
 package com.EventCrafters.EventCrafters.service;
 
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.EventCrafters.EventCrafters.DTO.EventManipulationDTO;
-import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
 import com.EventCrafters.EventCrafters.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -217,15 +217,35 @@ public class EventService {
 			return true;
 		}
 
+		if (map(event.getMap())) return true;
+
+		return false;
+	}
+
+	public static boolean map(String map) {
 		String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
 		Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(event.getMap());
+		Matcher matcher = pattern.matcher(map);
 
 		if (!matcher.find()) {
 			return true;
 		}
-
 		return false;
+	}
+
+	public static void assignEventProperties(Event event, String name, String description,
+									  int maxCapacity, double price, String location,
+									  String map, Date startDate, Date endDate,
+									  String additionalInfo) {
+		event.setName(name);
+		event.setDescription(description);
+		event.setMaxCapacity(maxCapacity);
+		event.setPrice(price);
+		event.setLocation(location);
+		event.setMap(map);
+		event.setStartDate(startDate);
+		event.setEndDate(endDate);
+		event.setAdditionalInfo(additionalInfo);
 	}
 
 }

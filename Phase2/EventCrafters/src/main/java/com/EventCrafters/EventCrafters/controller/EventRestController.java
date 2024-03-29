@@ -173,15 +173,7 @@ public class EventRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        existingEvent.setName(eventManipulationDTO.getName());
-        existingEvent.setDescription(eventManipulationDTO.getDescription());
-        existingEvent.setMaxCapacity(eventManipulationDTO.getMaxCapacity());
-        existingEvent.setPrice(eventManipulationDTO.getPrice());
-        existingEvent.setLocation(eventManipulationDTO.getLocation());
-        existingEvent.setMap(eventManipulationDTO.getMap());
-        existingEvent.setStartDate(eventManipulationDTO.getStartDate());
-        existingEvent.setEndDate(eventManipulationDTO.getEndDate());
-        existingEvent.setAdditionalInfo(eventManipulationDTO.getAdditionalInfo());
+        eventService.assignEventProperties(existingEvent, eventManipulationDTO.getName(), eventManipulationDTO.getDescription(), eventManipulationDTO.getMaxCapacity(), eventManipulationDTO.getPrice(), eventManipulationDTO.getLocation(), eventManipulationDTO.getMap(), eventManipulationDTO.getStartDate(), eventManipulationDTO.getEndDate(), eventManipulationDTO.getAdditionalInfo());
 
         //Set event creator
         existingEvent.setCreator(userOpt.get());
