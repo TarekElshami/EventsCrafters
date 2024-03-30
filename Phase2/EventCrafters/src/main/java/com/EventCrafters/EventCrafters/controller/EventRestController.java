@@ -6,7 +6,6 @@ import com.EventCrafters.EventCrafters.DTO.EventManipulationDTO;
 import com.EventCrafters.EventCrafters.DTO.TicketDTO;
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
-import com.EventCrafters.EventCrafters.model.Review;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.service.CategoryService;
 import com.EventCrafters.EventCrafters.service.EventService;
@@ -29,15 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.net.http.HttpResponse;
 import java.security.Principal;
 import java.sql.Blob;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/api/events")
@@ -88,7 +84,7 @@ public class EventRestController {
     })
     public ResponseEntity<EventDTO> createEvent(@RequestBody EventManipulationDTO eventManipulationDTO) {
         // Check for empty fields in the event
-        if (eventService.eventHasEmptyFields(eventManipulationDTO)) {
+        if (eventService.eventHasValidFields(eventManipulationDTO)) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -142,7 +138,7 @@ public class EventRestController {
     })
     public ResponseEntity<EventDTO> editEvent(@PathVariable Long eventId, @RequestBody EventManipulationDTO eventManipulationDTO) {
         // Check for empty fields in the event
-        if (eventService.eventHasEmptyFields(eventManipulationDTO)) {
+        if (eventService.eventHasValidFields(eventManipulationDTO)) {
             return ResponseEntity.badRequest().build();
         }
 

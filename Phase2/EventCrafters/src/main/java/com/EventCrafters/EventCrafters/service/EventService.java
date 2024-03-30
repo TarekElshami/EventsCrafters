@@ -1,8 +1,6 @@
 package com.EventCrafters.EventCrafters.service;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -192,7 +190,7 @@ public class EventService {
 		return sdf.format(date);
 	}
 
-	public static boolean eventHasEmptyFields(EventManipulationDTO event) {
+	public static boolean eventHasValidFields(EventManipulationDTO event) {
 		if (
 				event.getName() == null || event.getName().trim().isEmpty() ||
 						event.getDescription() == null || event.getDescription().trim().isEmpty() ||
@@ -203,7 +201,7 @@ public class EventService {
 			return true;
 		}
 
-		if (event.getMaxCapacity() <= 0 || event.getPrice() < 0) {
+		if (event.getMaxCapacity() <= 0 || event.getPrice() < 0 || !isPriceValid(event.getPrice())) {
 			return true;
 		}
 
@@ -217,12 +215,12 @@ public class EventService {
 			return true;
 		}
 
-		if (map(event.getMap())) return true;
+		if (isMapIframeInvalid(event.getMap())) return true;
 
 		return false;
 	}
 
-	public static boolean map(String map) {
+	public static boolean isMapIframeInvalid(String map) {
 		String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
 		Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(map);
@@ -232,6 +230,26 @@ public class EventService {
 		}
 		return false;
 	}
+
+	public static boolean isPriceValid(double price) {
+		// Convert the price to a string
+		String priceText = String.valueOf(price);
+
+		// Find the position of the decimal point
+		int decimalPointIndex = priceText.indexOf(".");
+
+		// If there's no decimal point, the number is an integer and valid
+		if (decimalPointIndex == -1) {
+			return true;
+		}
+
+		// Calculate the number of digits after the decimal point
+		int decimalDigits = priceText.length() - decimalPointIndex - 1;
+
+		// Check that there are no more than two digits after the decimal point
+		return decimalDigits <= 2;
+	}
+
 
 	public static void assignEventProperties(Event event, String name, String description,
 									  int maxCapacity, double price, String location,

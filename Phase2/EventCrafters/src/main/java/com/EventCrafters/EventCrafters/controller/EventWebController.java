@@ -7,8 +7,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
@@ -122,7 +120,7 @@ public class EventWebController {
                               @RequestParam(value = "additionalInfo", required = false) String additionalInfo) {
         try {
 
-            if (eventService.map(map)) {
+            if (eventService.isMapIframeInvalid(map)) {
                 return "redirect:/error";
             }
 
@@ -467,7 +465,7 @@ public class EventWebController {
             return "redirect:/error";
         }
 
-        if (eventService.map(map)) {
+        if (eventService.isMapIframeInvalid(map)) {
             return "redirect:/error";
         }
 
