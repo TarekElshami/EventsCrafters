@@ -33,10 +33,6 @@ public class UserService {
 	@Autowired
 	private EventService eventService;
 
-	@Autowired
-	private CategoryService categoryService;
-
-
 	public Optional<User> findById(long id) {
 		return repository.findById(id);
 	}

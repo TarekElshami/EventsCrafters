@@ -32,14 +32,9 @@ public class UserRestController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	@Autowired
-	private CategoryService categoryService;
+
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private EventService eventService;
-	@Autowired
-	private AjaxService ajaxService;
 
 	@Operation(summary = "Gets the currently authenticated user",
 			description = "Returns all information associated to the authenticated user. If no user is authenticated, returns 404 not found")

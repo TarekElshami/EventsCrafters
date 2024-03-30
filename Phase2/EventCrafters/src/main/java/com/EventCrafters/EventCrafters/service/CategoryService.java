@@ -18,9 +18,6 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repository;
 
-	@Autowired
-	private EventRepository eventRepository;
-
 	private int pageSize = 1;
 	private int maxPageNum;
 
