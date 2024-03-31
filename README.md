@@ -596,19 +596,19 @@ Below are the credentials for example users, including an administrator user, to
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/b1bb2d3e92899765903e732e0c80e20a3d5c7a93) |  Recover Password added to REST |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/15fe9dc4f0bb6aeab5ddef2fe8a9484ae54b6d3e) | Edit profile picture REST |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/84eacc151379dfc095d4fbd044961c8188e6be98) | Change dockerfile to make docker function in VM |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/89554f095aaed6e49b6bf2eb145db2f2cc618b6e) | Database initialiced in docker |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/f8db9427d5a8221b1e88126486265a55abacd356) | Properly dockerized app (this commits makes references to all the commits make in relation to docker to function)|
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/UserRestController.java) | User Rest Controller|
+| [2º](Phase2/EventCrafters/docker-compose.yml) | Docker-compose.yml |
+| [3º](Phase2/EventCrafters/Dockerfile) | DockerFile |
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/FullUserDTO.java) | Full User DTO|
+| [5º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/CensoredUserDTO.java) | Censores User DTO|
 
 ### 👨‍🔧 Ángel Marqués García
 
