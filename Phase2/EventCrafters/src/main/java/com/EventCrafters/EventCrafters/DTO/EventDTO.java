@@ -1,5 +1,6 @@
 package com.EventCrafters.EventCrafters.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,7 +18,9 @@ public class EventDTO {
     private double price;
     private String location;
     private String map;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Europe/Madrid")
     private Date startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Europe/Madrid")
     private Date endDate;
     private String duration;
     private String additionalInfo;
