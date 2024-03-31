@@ -471,7 +471,7 @@ To generate or update this documentation, follow these commands:
 
 ## 📊 Updated Class and Templates Diagram
 
-![Latest EventsCrafters Class Diagram](Phase2/diagrams/EventsCrafters%20Class%20Diagram.svg)
+![Latest EventsCrafters Class Diagram](Phase2/diagrams/EventsCrafters%20Class%20Diagram.svg?v=2)
 *Latest EventsCrafters Class Diagram*
 
 ## 🐳 Docker Application Execution Instructions
