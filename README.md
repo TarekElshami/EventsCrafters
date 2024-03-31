@@ -653,19 +653,19 @@ Below are the credentials for example users, including an administrator user, to
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/a9fbaf45ef800401a9c900dfff75d00d80ab3bfd) | This commit introduces the filtering options to the EventRestController. |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/6892f226a3253feb1f740f924c81b28c41820d7f) | This commit introduces a series of enhancements to the EventRestController, incorporating personalized requests as specified by the type of user. |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/2229c771f2aee89d13ed86ae212eb1f8bb9b4de8) | This commit adds the request for the graph that appears in the profile screen for the users with the ADMIN role. |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/191537982e7d3ea4dc0a015dab4249b5afa97fd0) | This commit adds the ReviewRestController |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/747a01ba43f93e03c8584e5239edc6fce2776c21) | This commit adds the CategoryRestController |
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/EventRestController.java) | EventRestController |
+| [2º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/ReviewRestController.java) | ReviewRestController |
+| [3º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/CategoryRestController.java) | CategoryRestController |
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/security/RestSecurityConfig.java) | RestSecurityConfig |
+| [5º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/ReviewDTO.java) | ReviewDTO |
 
 ### 👨‍🔧 Marcos Jiménez Pulido
 
