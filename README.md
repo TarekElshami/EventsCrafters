@@ -532,6 +532,9 @@ To build and publish the Docker image for the application, follow these instruct
    ./create_image.sh accountName/imageName:version
    ```
 
+## 📌 Docker Image
+To access the Docker image for Events Crafters, visit the following URL: [https://hub.docker.com/r/luciadominguezrodrigo/eventcrafters](https://hub.docker.com/r/luciadominguezrodrigo/eventcrafters). This image contains the latest stable version of the Events Crafters application, ready for deployment in a Docker environment.
+
 ## 🖥️ Deployment on Virtual Machine
 
 To deploy the application on the virtual machine provided by the university, follow these steps:
