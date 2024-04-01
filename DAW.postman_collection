@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ac8c8209-23fa-4e9b-97f7-754219e38e5a",
+		"_postman_id": "6b30863c-9610-442f-8d31-299f43311642",
 		"name": "Práctica DAW",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33136046"
+		"_exporter_id": "33135994"
 	},
 	"item": [
 		{
@@ -12,6 +12,313 @@
 				{
 					"name": "Events",
 					"item": [
+						{
+							"name": "User",
+							"item": [
+								{
+									"name": "User Created Past",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/user?page=0&type=created&time=past",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "created"
+												},
+												{
+													"key": "time",
+													"value": "past"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "User Created Present",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/user?page=0&type=created&time=past",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "created"
+												},
+												{
+													"key": "time",
+													"value": "past"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "User Registered Past",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/user?page=0&type=registered&time=past",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "registered"
+												},
+												{
+													"key": "time",
+													"value": "past"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "User Resistered Present",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/user?page=0&type=registered&time=present",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "registered"
+												},
+												{
+													"key": "time",
+													"value": "present"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "For Admin Role",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/user?page=0",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "filter",
+							"item": [
+								{
+									"name": "Filter by Category",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/filter?page=0&type=category&id=2",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"filter"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "category"
+												},
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter By SearchBar",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/filter?page=1&type=searchBar&input=e",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"filter"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "type",
+													"value": "searchBar"
+												},
+												{
+													"key": "input",
+													"value": "e"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter By recommendation",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://10.100.139.249:8443/api/events/filter?page=0&type=recommended",
+											"protocol": "https",
+											"host": [
+												"10",
+												"100",
+												"139",
+												"249"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"filter"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "recommended"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
 						{
 							"name": "Get an event",
 							"request": {
@@ -186,6 +493,31 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Admin profile  Graph",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/AdminProfile/graph",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"AdminProfile",
+										"graph"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -250,6 +582,191 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Reviews",
+					"item": [
+						{
+							"name": "New Review",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 4,\r\n    \"eventId\": 6,\r\n    \"rating\": 5,\r\n    \"text\": \"gendsafsdfsdfsdfial\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/reviews/new",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"reviews",
+										"new"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get categories by page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/Categories?page=2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"Categories"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Categories by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"hola\",\r\n    \"color\": \"#28a745\",\r\n    \"eventIdInCategories\": [\r\n        2\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"hola\",\r\n    \"color\": \"#28a745\",\r\n    \"eventIdInCategories\": [3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories/5",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -259,6 +776,289 @@
 				{
 					"name": "Events",
 					"item": [
+						{
+							"name": "filter",
+							"item": [
+								{
+									"name": "Filter by Category",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/filter?page=0&type=category&id=2",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"filter"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "category"
+												},
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter By SearchBar",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/filter?page=1&type=searchBar&input=e",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"filter"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "type",
+													"value": "searchBar"
+												},
+												{
+													"key": "input",
+													"value": "e"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Filter By recommendation",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/filter?page=0&type=recommended",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"filter"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "recommended"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "User",
+							"item": [
+								{
+									"name": "User Created Past",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/user?page=0&type=created&time=past",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "created"
+												},
+												{
+													"key": "time",
+													"value": "past"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "User Created Present",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/user?page=0&type=created&time=past",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "created"
+												},
+												{
+													"key": "time",
+													"value": "past"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "User Registered Past",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/user?page=0&type=registered&time=past",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "registered"
+												},
+												{
+													"key": "time",
+													"value": "past"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "User Resistered Present",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/user?page=0&type=registered&time=present",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "type",
+													"value": "registered"
+												},
+												{
+													"key": "time",
+													"value": "present"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "For Admin Role",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/api/events/user?page=0",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"api",
+												"events",
+												"user"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
 						{
 							"name": "Get an event",
 							"request": {
@@ -415,6 +1215,28 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Admin profile  Graph",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/events/AdminProfile/graph",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"AdminProfile",
+										"graph"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -467,6 +1289,172 @@
 										"api",
 										"auth",
 										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reviews",
+					"item": [
+						{
+							"name": "New Review",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 4,\r\n    \"eventId\": 6,\r\n    \"rating\": 5,\r\n    \"text\": \"gendsafsdfsdfsdfial\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/reviews",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get categories by page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/Categories?page=2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"Categories"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Categories by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"hola\",\r\n    \"color\": \"#28a745\",\r\n    \"eventIdInCategories\": [\r\n        2\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/categories",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modify Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"hola\",\r\n    \"color\": \"#28a745\",\r\n    \"eventIdInCategories\": [3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/categories/5",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
 									]
 								}
 							},
