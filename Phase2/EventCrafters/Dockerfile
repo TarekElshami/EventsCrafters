@@ -5,12 +5,12 @@ FROM maven:3.9.6-eclipse-temurin-17 as builder
 WORKDIR /project
 
 # Copies the project's dependencies
-COPY EventCrafters/pom.xml /project/
+COPY pom.xml /project/
 
 RUN mvn clean verify --fail-never
 
 # Copy project source from local project to compilation container directory
-COPY EventCrafters/src /project/src
+COPY src /project/src
 
 # Compiles the project
 RUN mvn package -DskipTests
@@ -24,10 +24,10 @@ FROM openjdk:17.0.2
 WORKDIR /usr/app
 
 # Copies the JAR from the build container
-COPY --from=builder /project/target/*.jar /usr/app/eventcrafters.jar
+COPY --from=builder /project/target/*.jar /usr/app/ec.jar
 
 # Indicates the port that the container exposes
 EXPOSE 8443
 
 # Command to run on docker run
-CMD [ "java", "-jar", "eventcrafters.jar" ]
+CMD [ "java", "-jar", "ec.jar" ]
