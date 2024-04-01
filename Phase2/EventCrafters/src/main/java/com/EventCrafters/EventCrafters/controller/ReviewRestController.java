@@ -45,7 +45,6 @@ public class ReviewRestController {
     }
 
     private Review transformFromDTO(ReviewDTO review) {
-        Long id = review.getId();
         User user;
         if (userService.findById(review.getUserId()).isPresent())
             user = userService.findById(review.getUserId()).get();
@@ -58,7 +57,7 @@ public class ReviewRestController {
             event = null;
         int rating = review.getRating();
         String text = review.getText();
-        return new Review(id, user, event, rating, text);
+        return new Review(user, event, rating, text);
 
     }
 
@@ -94,7 +93,8 @@ public class ReviewRestController {
     }
 
      */
-    // the URL of the created review is not returned, because it is assumed that the website does not have the option to view the reviews@PostMapping("/reviews")
+    // the URL of the created review is not returned, because it is assumed that the website does not have the option to view the reviews
+    @PostMapping("/reviews")
     @Operation(summary = "Create a review for an event that has ended and for which the user had signed up.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Review created",
@@ -121,7 +121,7 @@ public class ReviewRestController {
                         event.get().getRegisteredUsers().contains(user.get()) &&
                         event.get().getEndDate().before(new Date())){
                     reviewService.save(newReview);
-                    return ResponseEntity.status(201).body("");
+                    return ResponseEntity.status(201).body("The review has been created correctly");
                 }
             }
         }else if (!isAuthenticated(authentication)){

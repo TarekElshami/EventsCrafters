@@ -36,8 +36,7 @@ public class Review {
         this.text = textValoration;
     }
 
-    public Review(Long id, User user, Event event, int rating, String text) {
-        this.id = id;
+    public Review(User user, Event event, int rating, String text) {
         this.user = user;
         this.event = event;
         this.rating = rating;

@@ -66,9 +66,12 @@ public class CategoryRestController {
                     content = { @Content(mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public List<CategoryDTO> showCategories(@RequestParam("page") int page){
+    public ResponseEntity<List<CategoryDTO>> showCategories(@RequestParam(value = "page", required = false) Integer page){
         List<Category> all;
-        if (page != -1){
+        if (page == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (page > -1){
             all = categoryService.findAll(page);
         } else {
             all = categoryService.findAll();
@@ -79,7 +82,7 @@ public class CategoryRestController {
             CategoryDTO categoryDTO = transformToDTO(c);
             answer.add(categoryDTO);
         }
-        return answer;
+        return ResponseEntity.ok(answer);
     }
     @GetMapping("/categories/{id}")
     @Operation(summary = "Retrieves the category, with the ID specified in the url")
