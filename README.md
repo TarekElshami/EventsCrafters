@@ -618,11 +618,11 @@ Below are the credentials for example users, including an administrator user, to
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/UserRestController.java) | User Rest Controller |
+| [2º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/model/User.java) | User |
+| [3º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/FullUserDTO.java) | FullUserDTO |
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/UserWebController.java) | UserWebController |
+| [5º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/security/RestSecurityConfig.java) | RestSecurityConfig |
 
 ### 👨‍🔧 Tarek Elshami Ahmed
 
