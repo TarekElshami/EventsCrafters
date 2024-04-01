@@ -119,7 +119,7 @@ public class UserRestController {
 
 		userService.save(user);
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Location", "/api/users/"+user.getUsername());
+		headers.add("Location", "/api/users/"+user.getId());
 
 		FullUserDTO fullUserDTO = new FullUserDTO(user);
 		return new ResponseEntity<>(fullUserDTO, headers, HttpStatus.CREATED);
