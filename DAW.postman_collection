@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6b30863c-9610-442f-8d31-299f43311642",
+		"_postman_id": "7ad2b00d-7d5f-4e6d-ae11-aee17e3829c7",
 		"name": "Práctica DAW",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33135994"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32974096"
 	},
 	"item": [
 		{
@@ -324,22 +324,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/1",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"1"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events/1"
 							},
 							"response": []
 						},
@@ -348,23 +333,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/image/5",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"image",
-										"5"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events/image/5"
 							},
 							"response": []
 						},
@@ -373,23 +342,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/graph/6",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"graph",
-										"6"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events/graph/6"
 							},
 							"response": []
 						},
@@ -407,21 +360,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events"
 							},
 							"response": []
 						},
@@ -440,23 +379,7 @@
 										}
 									]
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/7/photo",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"7",
-										"photo"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events/7/photo"
 							},
 							"response": []
 						},
@@ -474,23 +397,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/6/attendees",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"6",
-										"attendees"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events/6/attendees"
 							},
 							"response": []
 						},
@@ -499,23 +406,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/AdminProfile/graph",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"AdminProfile",
-										"graph"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/events/AdminProfile/graph"
 							},
 							"response": []
 						}
@@ -538,22 +429,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/auth/login",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"auth",
-										"login"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/auth/login"
 							},
 							"response": []
 						},
@@ -562,22 +438,25 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/auth/logout",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"auth",
-										"logout"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/auth/logout"
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"adminpass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://10.100.139.249:8443/api/auth/login"
 							},
 							"response": []
 						}
@@ -600,22 +479,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/reviews/new",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"reviews",
-										"new"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/reviews/new"
 							},
 							"response": []
 						}
@@ -658,22 +522,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/categories/2",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories",
-										"2"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/categories/2"
 							},
 							"response": []
 						},
@@ -691,21 +540,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/categories",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/categories"
 							},
 							"response": []
 						},
@@ -723,22 +558,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/categories/5",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories",
-										"5"
-									]
-								}
+								"url": "https://10.100.139.249:8443/api/categories/5"
 							},
 							"response": []
 						},
@@ -747,22 +567,112 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": {
-									"raw": "https://10.100.139.249:8443/api/categories/2",
-									"protocol": "https",
-									"host": [
-										"10",
-										"100",
-										"139",
-										"249"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories",
-										"2"
+								"url": "https://10.100.139.249:8443/api/categories/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get Current Authenticated User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://10.100.139.249:8443/api/users/me"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://10.100.139.249:8443/api/users/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Create a User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"pepe\",\r\n    \"username\":\"Xx_PepeElMasGuapo_xX\",\r\n    \"email\":\"pepe@pepeiscool.com\",\r\n    \"password\":\"Nunca_La_Adivinaras\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://10.100.139.249:8443/api/users"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User's Profile Picture",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://10.100.139.249:8443/api/users/img/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Juan Pepito Pérez\",\r\n    \"username\": \"user5\",\r\n    \"email\": \"marques@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://10.100.139.249:8443/api/users/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "https://10.100.139.249:8443/api/users/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Change User Profile Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/burak/OneDrive - Universidad Rey Juan Carlos/Curso 3/Semestre 2/DAW/Proyecto/webapp11/pfp1.jpg"
+										}
 									]
-								}
+								},
+								"url": "https://10.100.139.249:8443/api/users/img/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Recover Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://10.100.139.249:8443/api/users/1/recoverPassword"
 							},
 							"response": []
 						}
@@ -1064,19 +974,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/events/1",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"1"
-									]
-								}
+								"url": "https://localhost:8443/api/events/1"
 							},
 							"response": []
 						},
@@ -1085,20 +983,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/events/image/5",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"image",
-										"5"
-									]
-								}
+								"url": "https://localhost:8443/api/events/image/5"
 							},
 							"response": []
 						},
@@ -1107,20 +992,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/events/graph/6",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"graph",
-										"6"
-									]
-								}
+								"url": "https://localhost:8443/api/events/graph/6"
 							},
 							"response": []
 						},
@@ -1138,18 +1010,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/events",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events"
-									]
-								}
+								"url": "https://localhost:8443/api/events"
 							},
 							"response": []
 						},
@@ -1168,20 +1029,7 @@
 										}
 									]
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/events/7/photo",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"7",
-										"photo"
-									]
-								}
+								"url": "https://localhost:8443/api/events/7/photo"
 							},
 							"response": []
 						},
@@ -1199,20 +1047,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/events/6/attendees",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"6",
-										"attendees"
-									]
-								}
+								"url": "https://localhost:8443/api/events/6/attendees"
 							},
 							"response": []
 						},
@@ -1221,20 +1056,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/events/AdminProfile/graph",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"events",
-										"AdminProfile",
-										"graph"
-									]
-								}
+								"url": "https://localhost:8443/api/events/AdminProfile/graph"
 							},
 							"response": []
 						}
@@ -1257,19 +1079,25 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/auth/login",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"auth",
-										"login"
-									]
-								}
+								"url": "https://localhost:8443/api/auth/login"
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"adminpass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:8443/api/auth/login"
 							},
 							"response": []
 						},
@@ -1278,19 +1106,7 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/auth/logout",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"auth",
-										"logout"
-									]
-								}
+								"url": "https://localhost:8443/api/auth/logout"
 							},
 							"response": []
 						}
@@ -1313,18 +1129,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/reviews",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"reviews"
-									]
-								}
+								"url": "https://localhost:8443/api/reviews"
 							},
 							"response": []
 						}
@@ -1364,19 +1169,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/categories/2",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories",
-										"2"
-									]
-								}
+								"url": "https://localhost:8443/api/categories/2"
 							},
 							"response": []
 						},
@@ -1394,18 +1187,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/categories",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories"
-									]
-								}
+								"url": "https://localhost:8443/api/categories"
 							},
 							"response": []
 						},
@@ -1423,19 +1205,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "https://localhost:8443/api/categories/5",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories",
-										"5"
-									]
-								}
+								"url": "https://localhost:8443/api/categories/5"
 							},
 							"response": []
 						},
@@ -1444,19 +1214,112 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": {
-									"raw": "https://localhost:8443/api/categories/2",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8443",
-									"path": [
-										"api",
-										"categories",
-										"2"
+								"url": "https://localhost:8443/api/categories/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get Current Authenticated User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:8443/api/users/me"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:8443/api/users/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Create a User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"pepe\",\r\n    \"username\":\"Xx_PepeElMasGuapo_xX\",\r\n    \"email\":\"pepe@pepeiscool.com\",\r\n    \"password\":\"Nunca_La_Adivinaras\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:8443/api/users"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User's Profile Picture",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://localhost:8443/api/users/img/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Modify a User",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Juan Pepito Pérez\",\r\n    \"username\": \"user5\",\r\n    \"email\": \"marques@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://localhost:8443/api/users/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "https://localhost:8443/api/users/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Change User Profile Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/burak/OneDrive - Universidad Rey Juan Carlos/Curso 3/Semestre 2/DAW/Proyecto/webapp11/pfp1.jpg"
+										}
 									]
-								}
+								},
+								"url": "https://localhost:8443/api/users/img/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Recover Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://localhost:8443/api/users/1/recoverPassword"
 							},
 							"response": []
 						}
