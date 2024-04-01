@@ -26,10 +26,10 @@ FROM openjdk:17.0.2
 WORKDIR /usr/src/app
 
 # Copies the JAR from the build container
-COPY --from=builder /project/target/*.jar /usr/src/app/ec.jar
+COPY --from=builder /project/target/*.jar /usr/src/app/eventcrafters.jar
 
 # Indicates the port that the container exposes
 EXPOSE 8443
 
 # Command to run on docker run
-CMD [ "java", "-jar", "ec.jar" ]
+CMD [ "java", "-jar", "eventcrafters.jar" ]
