@@ -5,17 +5,15 @@ FROM maven:3.9.6-eclipse-temurin-17 as builder
 WORKDIR /project
 
 # Copies the project's dependencies
-ARG PROJECT_DIR
-COPY ${PROJECT_DIR}/pom.xml /project/
+COPY EventCrafters/pom.xml /project/
 
-# Downloads the project's dependencies
-#RUN mvn clean verify
+RUN mvn clean verify --fail-never
 
-# Copies the project's code
-COPY ${PROJECT_DIR}/src /project/src
+# Copy project source from local project to compilation container directory
+COPY EventCrafters/src /project/src
 
 # Compiles the project
-RUN mvn clean package -DskipTests=true
+RUN mvn package -DskipTests
 
 #################################################
 # Base image for the application container
@@ -23,10 +21,10 @@ RUN mvn clean package -DskipTests=true
 FROM openjdk:17.0.2
 
 # Sets the working directory where the JAR is located
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
 # Copies the JAR from the build container
-COPY --from=builder /project/target/*.jar /usr/src/app/eventcrafters.jar
+COPY --from=builder /project/target/*.jar /usr/app/eventcrafters.jar
 
 # Indicates the port that the container exposes
 EXPOSE 8443
