@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.EventCrafters.EventCrafters.model.User;
+import com.EventCrafters.EventCrafters.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,12 +23,16 @@ import com.EventCrafters.EventCrafters.security.jwt.LoginRequest;
 import com.EventCrafters.EventCrafters.security.jwt.UserLoginService;
 import com.EventCrafters.EventCrafters.security.jwt.AuthResponse.Status;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/auth")
 public class LoginController {
 
 	@Autowired
-	private UserLoginService userService;
+	private UserLoginService userLoginService;
+	@Autowired
+	private UserService userService;
 
 	@PostMapping("/login")
 	@Operation(summary = "User login", description = "Authenticates a user with username and password.")
@@ -36,8 +42,11 @@ public class LoginController {
 			@CookieValue(name = "accessToken", required = false) String accessToken,
 			@CookieValue(name = "refreshToken", required = false) String refreshToken,
 			@RequestBody LoginRequest loginRequest) {
-		
-		return userService.login(loginRequest, accessToken, refreshToken);
+		Optional<User> user = userService.findByUserName(loginRequest.getUsername());
+		if (user.isPresent() && user.get().isBanned()){
+			return ResponseEntity.status(403).build();
+		}
+		return userLoginService.login(loginRequest, accessToken, refreshToken);
 	}
 
 	@PostMapping("/refresh")
@@ -47,7 +56,7 @@ public class LoginController {
 	public ResponseEntity<AuthResponse> refreshToken(
 			@CookieValue(name = "refreshToken", required = false) String refreshToken) {
 
-		return userService.refresh(refreshToken);
+		return userLoginService.refresh(refreshToken);
 	}
 
 	@PostMapping("/logout")
@@ -56,6 +65,6 @@ public class LoginController {
 			content = @Content(schema = @Schema(implementation = AuthResponse.class)))
 	public ResponseEntity<AuthResponse> logOut(HttpServletRequest request, HttpServletResponse response) {
 
-		return ResponseEntity.ok(new AuthResponse(Status.SUCCESS, userService.logout(request, response)));
+		return ResponseEntity.ok(new AuthResponse(Status.SUCCESS, userLoginService.logout(request, response)));
 	}
 }
