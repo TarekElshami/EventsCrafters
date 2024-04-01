@@ -610,11 +610,11 @@ Below are the credentials for example users, including an administrator user, to
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/bb068e7160a6bc44649169a7f273700d85b43194) | Added Rest Controllers foruser management |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/3ea7648c4336955e11bcbbac52f8ff17f607cf95) | Developed UserRestController further |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/f613e3fe19426a08c3358c2c876ace527dbe34ad) | Updated Code and Collection to allow for banning and unbanning through REST |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/6e28697375bcf9ee1f237bb672c2926c0dd81cb1) | Fixed getting and creating users in API |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/f13984dcc017bd47e8cbb8e86b9b77dc7814e693) | Added OpenAPI documentation for UserRestController |
 
 | File | Description |
 | :----: | :---------: |
