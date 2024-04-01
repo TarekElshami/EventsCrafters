@@ -520,7 +520,12 @@ To build and publish the Docker image for the application, follow these instruct
    cd webapp11/Phase2/EventCrafters/docker/
    ```
 
-5. Execute the Build Script:
+5. Give execution permission to create_image.sh command file:
+   ```
+   chmod +x create_image.sh
+   ```
+   
+6. Execute the Build Script:
    ```
    ./create_image.sh
    ```
