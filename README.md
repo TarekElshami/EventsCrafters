@@ -488,7 +488,7 @@ To generate or update this documentation, follow these commands:
    
 4. Navigating to the Directory Containing docker-compose.yml:
    ```
-   cd webapp11/Phase2/EventCrafters/
+   cd webapp11/Phase2/EventCrafters/docker/
    ```
 
 5. Deploying the Application with Docker Compose:
@@ -517,7 +517,7 @@ To build and publish the Docker image for the application, follow these instruct
    
 4. Navigating to the Directory Containing create_image.sh:
    ```
-   cd webapp11/Phase2/EventCrafters/
+   cd webapp11/Phase2/EventCrafters/docker/
    ```
 
 5. Execute the Build Script:
@@ -550,7 +550,7 @@ To deploy the application on the virtual machine provided by the university, fol
 
 3. Navigating to the Directory Containing docker-compose.yml:
    ```
-   cd webapp11/Phase2/EventCrafters/
+   cd webapp11/Phase2/EventCrafters/docker/
    ```
 
 4. Deploying the Application with Docker Compose:
