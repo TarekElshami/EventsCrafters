@@ -38,6 +38,7 @@
    - [Updated Class and Templates Diagram](#updated-class-and-templates-diagram)
    - [Docker Application Execution Instructions](#docker-application-execution-instructions)
    - [Docker Image Construction Documentation](#docker-image-construction-documentation)
+   - [Docker Image](#docker-image)
    - [Deployment on Virtual Machine](#deployment-on-virtual-machine)
    - [Virtual Machine Application URL and Example Users](#virtual-machine-application-url-and-example-users)
    - [Members Participation Phase 3](#members-participation-phase-3)
@@ -487,7 +488,7 @@ To generate or update this documentation, follow these commands:
    
 4. Navigating to the Directory Containing docker-compose.yml:
    ```
-   cd webapp11/Phase2/EventCrafters/
+   cd webapp11/Phase2/EventCrafters/docker/
    ```
 
 5. Deploying the Application with Docker Compose:
@@ -505,31 +506,23 @@ To generate or update this documentation, follow these commands:
 ## 🛠️ Docker Image Construction Documentation
 
 To build and publish the Docker image for the application, follow these instructions:
-1. Create an account on [Dockerhub](https://hub.docker.com/)
+1. Install [Docker](https://docs.docker.com/engine/install/)
 
-2. Install [Docker](https://docs.docker.com/engine/install/)
-
-3. Run Docker
+2. Run Docker
    
-4. Clone the Repository:
+3. Clone the Repository:
    ```
    git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
    ```
    
-5. Navigating to the Directory Containing create_image.sh:
+4. Navigating to the Directory Containing build_and_push.sh:
    ```
-   cd webapp11/Phase2/EventCrafters/
+   cd webapp11/Phase2/EventCrafters/docker/
    ```
 
-6. Before building and pushing your image, you need to log in to Docker Hub. This will ensure that you have the permission to push images to your repository. From the command line, execute:
+5. Execute the Build Script:
    ```
-   docker login
-   ```
-   You will be prompted to enter your Docker Hub username and password.
-
-7. Execute the Build Script:
-   ```
-   ./create_image.sh accountName/imageName:version
+   ./build_and_push.sh
    ```
 
 ## 📌 Docker Image
@@ -557,7 +550,7 @@ To deploy the application on the virtual machine provided by the university, fol
 
 3. Navigating to the Directory Containing docker-compose.yml:
    ```
-   cd webapp11/Phase2/EventCrafters/
+   cd webapp11/Phase2/EventCrafters/docker/
    ```
 
 4. Deploying the Application with Docker Compose:

@@ -1322,6 +1322,24 @@
 								"url": "https://localhost:8443/api/users/1/recoverPassword"
 							},
 							"response": []
+						},
+						{
+							"name": "Ban User by ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://localhost:8443/api/users/1/ban"
+							},
+							"response": []
+						},
+						{
+							"name": "Unban User by ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "https://localhost:8443/api/users/1/unban"
+							},
+							"response": []
 						}
 					]
 				}

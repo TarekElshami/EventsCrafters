@@ -191,11 +191,11 @@ public class UserRestController {
 
 			user.setId(optUser.get().getId());
 			user.setEncodedPassword(optUser.get().getEncodedPassword());
-			String encodedPassword = passwordEncoder.encode(user.getPassword());
-			user.setPassword(encodedPassword);
+			//String encodedPassword = passwordEncoder.encode(user.getPassword());
+			//user.setPassword(encodedPassword);
 			user.clearRoles();
 			user.setRole("USER");
-			user.setId(optUser.get().getId());
+			user.setBanned(false);
 
 			if (user.getPhoto() == null) {
 				user.setDefaultPhoto();
@@ -284,6 +284,57 @@ public class UserRestController {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
+	}
+
+	@Operation(summary = "Bans specified user",
+			description = "Bans user with specified id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User banned"),
+			@ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content)
+	})
+	@PostMapping("/{id}/ban")
+	public ResponseEntity<String> banUser(@PathVariable Long id, Principal principal) {
+		if (principal==null) return ResponseEntity.status(403).build();
+		Optional<User> principalUser = userService.findByUserName(principal.getName());
+		if (principalUser.isPresent()){
+			if (!principalUser.get().hasRole("ADMIN")){
+				return ResponseEntity.status(403).build();
+			}
+			Optional<User> userOp = userService.findById(id);
+			if (userOp.isEmpty()){ return ResponseEntity.notFound().build();}
+			if (userOp.get().hasRole("ADMIN")) { return ResponseEntity.status(403).build();}
+			userOp.get().setBanned(true);
+			userService.save(userOp.get());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(500).build();
+	}
+
+	@Operation(summary = "Unbans specified user",
+			description = "Unbans user with specified id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User unbanned"),
+			@ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content)
+	})
+	@PostMapping("/{id}/unban")
+	public ResponseEntity<String> unbanUser(@PathVariable Long id, Principal principal) {
+		if (principal==null) return ResponseEntity.status(403).build();
+		Optional<User> principalUser = userService.findByUserName(principal.getName());
+		if (principalUser.isPresent()){
+			if (!principalUser.get().hasRole("ADMIN")){
+				return ResponseEntity.status(403).build();
+			}
+			Optional<User> userOp = userService.findById(id);
+			if (userOp.isEmpty()){ return ResponseEntity.notFound().build();}
+			userOp.get().setBanned(false);
+			userService.save(userOp.get());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(500).build();
 	}
 
 	private boolean checkUserPrivileges(Principal principal, Optional<User> optUser) {
