@@ -1265,6 +1265,9 @@ ul.nav-tabs {
                       <a href="#api-ReviewRestController-newReview">newReview</a>
                     </li>
                   <li class="nav-header" data-group="UserRestController"><a href="#api-UserRestController">API Methods - UserRestController</a></li>
+                    <li data-group="UserRestController" data-name="banUser" class="">
+                      <a href="#api-UserRestController-banUser">banUser</a>
+                    </li>
                     <li data-group="UserRestController" data-name="changeProfilePicture" class="">
                       <a href="#api-UserRestController-changeProfilePicture">changeProfilePicture</a>
                     </li>
@@ -1288,6 +1291,9 @@ ul.nav-tabs {
                     </li>
                     <li data-group="UserRestController" data-name="showUserImage" class="">
                       <a href="#api-UserRestController-showUserImage">showUserImage</a>
+                    </li>
+                    <li data-group="UserRestController" data-name="unbanUser" class="">
+                      <a href="#api-UserRestController-unbanUser">unbanUser</a>
                     </li>
           </ul>
         </nav>
@@ -1575,6 +1581,28 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-CategoryRestController-deleteCategory-title-201"></h3>
+                            <p id="examples-CategoryRestController-deleteCategory-description-201" class="marked"></p>
+                            <script>
+                              var responseCategoryRestController201_description = `Category created`;
+                              var responseCategoryRestController201_description_break = responseCategoryRestController201_description.indexOf('\n');
+                              if (responseCategoryRestController201_description_break == -1) {
+                                $("#examples-CategoryRestController-deleteCategory-title-201").text("Status: 201 - " + responseCategoryRestController201_description);
+                              } else {
+                                $("#examples-CategoryRestController-deleteCategory-title-201").text("Status: 201 - " + responseCategoryRestController201_description.substring(0, responseCategoryRestController201_description_break));
+                                $("#examples-CategoryRestController-deleteCategory-description-201").html(responseCategoryRestController201_description.substring(responseCategoryRestController201_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-CategoryRestController-deleteCategory-201" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-CategoryRestController-deleteCategory-201-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-CategoryRestController-deleteCategory-title-404"></h3>
                             <p id="examples-CategoryRestController-deleteCategory-description-404" class="marked"></p>
                             <script>
@@ -1618,28 +1646,6 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-CategoryRestController-deleteCategory-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-CategoryRestController-deleteCategory-title-201"></h3>
-                            <p id="examples-CategoryRestController-deleteCategory-description-201" class="marked"></p>
-                            <script>
-                              var responseCategoryRestController201_description = `Category created`;
-                              var responseCategoryRestController201_description_break = responseCategoryRestController201_description.indexOf('\n');
-                              if (responseCategoryRestController201_description_break == -1) {
-                                $("#examples-CategoryRestController-deleteCategory-title-201").text("Status: 201 - " + responseCategoryRestController201_description);
-                              } else {
-                                $("#examples-CategoryRestController-deleteCategory-title-201").text("Status: 201 - " + responseCategoryRestController201_description.substring(0, responseCategoryRestController201_description_break));
-                                $("#examples-CategoryRestController-deleteCategory-description-201").html(responseCategoryRestController201_description.substring(responseCategoryRestController201_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-CategoryRestController-deleteCategory-201" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-CategoryRestController-deleteCategory-201-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -2549,28 +2555,6 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-CategoryRestController-showCategory-title-404"></h3>
-                            <p id="examples-CategoryRestController-showCategory-description-404" class="marked"></p>
-                            <script>
-                              var responseCategoryRestController404_description = `Not found`;
-                              var responseCategoryRestController404_description_break = responseCategoryRestController404_description.indexOf('\n');
-                              if (responseCategoryRestController404_description_break == -1) {
-                                $("#examples-CategoryRestController-showCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description);
-                              } else {
-                                $("#examples-CategoryRestController-showCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description.substring(0, responseCategoryRestController404_description_break));
-                                $("#examples-CategoryRestController-showCategory-description-404").html(responseCategoryRestController404_description.substring(responseCategoryRestController404_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-CategoryRestController-showCategory-404" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-CategoryRestController-showCategory-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-CategoryRestController-showCategory-title-200"></h3>
                             <p id="examples-CategoryRestController-showCategory-description-200" class="marked"></p>
                             <script>
@@ -2592,6 +2576,28 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-CategoryRestController-showCategory-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-CategoryRestController-showCategory-title-404"></h3>
+                            <p id="examples-CategoryRestController-showCategory-description-404" class="marked"></p>
+                            <script>
+                              var responseCategoryRestController404_description = `Not found`;
+                              var responseCategoryRestController404_description_break = responseCategoryRestController404_description.indexOf('\n');
+                              if (responseCategoryRestController404_description_break == -1) {
+                                $("#examples-CategoryRestController-showCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description);
+                              } else {
+                                $("#examples-CategoryRestController-showCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description.substring(0, responseCategoryRestController404_description_break));
+                                $("#examples-CategoryRestController-showCategory-description-404").html(responseCategoryRestController404_description.substring(responseCategoryRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-CategoryRestController-showCategory-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-CategoryRestController-showCategory-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -2922,28 +2928,6 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-CategoryRestController-substituteCategory-title-404"></h3>
-                            <p id="examples-CategoryRestController-substituteCategory-description-404" class="marked"></p>
-                            <script>
-                              var responseCategoryRestController404_description = `Not found`;
-                              var responseCategoryRestController404_description_break = responseCategoryRestController404_description.indexOf('\n');
-                              if (responseCategoryRestController404_description_break == -1) {
-                                $("#examples-CategoryRestController-substituteCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description);
-                              } else {
-                                $("#examples-CategoryRestController-substituteCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description.substring(0, responseCategoryRestController404_description_break));
-                                $("#examples-CategoryRestController-substituteCategory-description-404").html(responseCategoryRestController404_description.substring(responseCategoryRestController404_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-CategoryRestController-substituteCategory-404" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-CategoryRestController-substituteCategory-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-CategoryRestController-substituteCategory-title-201"></h3>
                             <p id="examples-CategoryRestController-substituteCategory-description-201" class="marked"></p>
                             <script>
@@ -2965,6 +2949,28 @@ $(document).ready(function() {
 
 
                             <div class="tab-content" id="responses-CategoryRestController-substituteCategory-201-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-CategoryRestController-substituteCategory-title-404"></h3>
+                            <p id="examples-CategoryRestController-substituteCategory-description-404" class="marked"></p>
+                            <script>
+                              var responseCategoryRestController404_description = `Not found`;
+                              var responseCategoryRestController404_description_break = responseCategoryRestController404_description.indexOf('\n');
+                              if (responseCategoryRestController404_description_break == -1) {
+                                $("#examples-CategoryRestController-substituteCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description);
+                              } else {
+                                $("#examples-CategoryRestController-substituteCategory-title-404").text("Status: 404 - " + responseCategoryRestController404_description.substring(0, responseCategoryRestController404_description_break));
+                                $("#examples-CategoryRestController-substituteCategory-description-404").html(responseCategoryRestController404_description.substring(responseCategoryRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-CategoryRestController-substituteCategory-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-CategoryRestController-substituteCategory-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -3273,6 +3279,28 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-EventRestController-createEvent-title-403"></h3>
+                            <p id="examples-EventRestController-createEvent-description-403" class="marked"></p>
+                            <script>
+                              var responseEventRestController403_description = `The operation is not allowed without registration`;
+                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
+                              if (responseEventRestController403_description_break == -1) {
+                                $("#examples-EventRestController-createEvent-title-403").text("Status: 403 - " + responseEventRestController403_description);
+                              } else {
+                                $("#examples-EventRestController-createEvent-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
+                                $("#examples-EventRestController-createEvent-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-createEvent-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-createEvent-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-createEvent-title-201"></h3>
                             <p id="examples-EventRestController-createEvent-description-201" class="marked"></p>
                             <script>
@@ -3339,28 +3367,6 @@ $(document).ready(function() {
                                   <input id='responses-EventRestController-createEvent-201-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-EventRestController-createEvent-title-400"></h3>
-                            <p id="examples-EventRestController-createEvent-description-400" class="marked"></p>
-                            <script>
-                              var responseEventRestController400_description = `Invalid event data`;
-                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
-                              if (responseEventRestController400_description_break == -1) {
-                                $("#examples-EventRestController-createEvent-title-400").text("Status: 400 - " + responseEventRestController400_description);
-                              } else {
-                                $("#examples-EventRestController-createEvent-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
-                                $("#examples-EventRestController-createEvent-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-createEvent-400" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-createEvent-400-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-EventRestController-createEvent-title-404"></h3>
                             <p id="examples-EventRestController-createEvent-description-404" class="marked"></p>
                             <script>
@@ -3383,27 +3389,27 @@ $(document).ready(function() {
 
                             <div class="tab-content" id="responses-EventRestController-createEvent-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-EventRestController-createEvent-title-403"></h3>
-                            <p id="examples-EventRestController-createEvent-description-403" class="marked"></p>
+                            <h3 id="examples-EventRestController-createEvent-title-400"></h3>
+                            <p id="examples-EventRestController-createEvent-description-400" class="marked"></p>
                             <script>
-                              var responseEventRestController403_description = `The operation is not allowed without registration`;
-                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
-                              if (responseEventRestController403_description_break == -1) {
-                                $("#examples-EventRestController-createEvent-title-403").text("Status: 403 - " + responseEventRestController403_description);
+                              var responseEventRestController400_description = `Invalid event data`;
+                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
+                              if (responseEventRestController400_description_break == -1) {
+                                $("#examples-EventRestController-createEvent-title-400").text("Status: 400 - " + responseEventRestController400_description);
                               } else {
-                                $("#examples-EventRestController-createEvent-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
-                                $("#examples-EventRestController-createEvent-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
+                                $("#examples-EventRestController-createEvent-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
+                                $("#examples-EventRestController-createEvent-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-EventRestController-createEvent-403" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-EventRestController-createEvent-400" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-EventRestController-createEvent-403-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-EventRestController-createEvent-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-createEvent-title-500"></h3>
                             <p id="examples-EventRestController-createEvent-description-500" class="marked"></p>
@@ -3702,28 +3708,6 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-EventRestController-deleteEvent-title-404"></h3>
-                            <p id="examples-EventRestController-deleteEvent-description-404" class="marked"></p>
-                            <script>
-                              var responseEventRestController404_description = `Event not found`;
-                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
-                              if (responseEventRestController404_description_break == -1) {
-                                $("#examples-EventRestController-deleteEvent-title-404").text("Status: 404 - " + responseEventRestController404_description);
-                              } else {
-                                $("#examples-EventRestController-deleteEvent-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
-                                $("#examples-EventRestController-deleteEvent-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-deleteEvent-404" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-deleteEvent-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-EventRestController-deleteEvent-title-405"></h3>
                             <p id="examples-EventRestController-deleteEvent-description-405" class="marked"></p>
                             <script>
@@ -3811,6 +3795,28 @@ pub fn main() {
                                   </div>
                                   <input id='responses-EventRestController-deleteEvent-200-schema-data' type='hidden' value=''></input>
                                 </div>
+                            </div>
+                            <h3 id="examples-EventRestController-deleteEvent-title-404"></h3>
+                            <p id="examples-EventRestController-deleteEvent-description-404" class="marked"></p>
+                            <script>
+                              var responseEventRestController404_description = `Event not found`;
+                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
+                              if (responseEventRestController404_description_break == -1) {
+                                $("#examples-EventRestController-deleteEvent-title-404").text("Status: 404 - " + responseEventRestController404_description);
+                              } else {
+                                $("#examples-EventRestController-deleteEvent-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
+                                $("#examples-EventRestController-deleteEvent-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-deleteEvent-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-deleteEvent-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-deleteEvent-title-403"></h3>
                             <p id="examples-EventRestController-deleteEvent-description-403" class="marked"></p>
@@ -4178,50 +4184,6 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-EventRestController-editEvent-title-400"></h3>
-                            <p id="examples-EventRestController-editEvent-description-400" class="marked"></p>
-                            <script>
-                              var responseEventRestController400_description = `Invalid event data`;
-                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
-                              if (responseEventRestController400_description_break == -1) {
-                                $("#examples-EventRestController-editEvent-title-400").text("Status: 400 - " + responseEventRestController400_description);
-                              } else {
-                                $("#examples-EventRestController-editEvent-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
-                                $("#examples-EventRestController-editEvent-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-editEvent-400" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-editEvent-400-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-editEvent-title-405"></h3>
-                            <p id="examples-EventRestController-editEvent-description-405" class="marked"></p>
-                            <script>
-                              var responseEventRestController405_description = `The operation is not allowed when event has finished`;
-                              var responseEventRestController405_description_break = responseEventRestController405_description.indexOf('\n');
-                              if (responseEventRestController405_description_break == -1) {
-                                $("#examples-EventRestController-editEvent-title-405").text("Status: 405 - " + responseEventRestController405_description);
-                              } else {
-                                $("#examples-EventRestController-editEvent-title-405").text("Status: 405 - " + responseEventRestController405_description.substring(0, responseEventRestController405_description_break));
-                                $("#examples-EventRestController-editEvent-description-405").html(responseEventRestController405_description.substring(responseEventRestController405_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-editEvent-405" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-editEvent-405-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-EventRestController-editEvent-title-403"></h3>
                             <p id="examples-EventRestController-editEvent-description-403" class="marked"></p>
                             <script>
@@ -4243,28 +4205,6 @@ $(document).ready(function() {
 
 
                             <div class="tab-content" id="responses-EventRestController-editEvent-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-editEvent-title-404"></h3>
-                            <p id="examples-EventRestController-editEvent-description-404" class="marked"></p>
-                            <script>
-                              var responseEventRestController404_description = `Event or category not found`;
-                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
-                              if (responseEventRestController404_description_break == -1) {
-                                $("#examples-EventRestController-editEvent-title-404").text("Status: 404 - " + responseEventRestController404_description);
-                              } else {
-                                $("#examples-EventRestController-editEvent-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
-                                $("#examples-EventRestController-editEvent-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-editEvent-404" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-editEvent-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-editEvent-title-202"></h3>
                             <p id="examples-EventRestController-editEvent-description-202" class="marked"></p>
@@ -4331,6 +4271,72 @@ $(document).ready(function() {
                                   </div>
                                   <input id='responses-EventRestController-editEvent-202-schema-data' type='hidden' value=''></input>
                                 </div>
+                            </div>
+                            <h3 id="examples-EventRestController-editEvent-title-400"></h3>
+                            <p id="examples-EventRestController-editEvent-description-400" class="marked"></p>
+                            <script>
+                              var responseEventRestController400_description = `Invalid event data`;
+                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
+                              if (responseEventRestController400_description_break == -1) {
+                                $("#examples-EventRestController-editEvent-title-400").text("Status: 400 - " + responseEventRestController400_description);
+                              } else {
+                                $("#examples-EventRestController-editEvent-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
+                                $("#examples-EventRestController-editEvent-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-editEvent-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-editEvent-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-EventRestController-editEvent-title-405"></h3>
+                            <p id="examples-EventRestController-editEvent-description-405" class="marked"></p>
+                            <script>
+                              var responseEventRestController405_description = `The operation is not allowed when event has finished`;
+                              var responseEventRestController405_description_break = responseEventRestController405_description.indexOf('\n');
+                              if (responseEventRestController405_description_break == -1) {
+                                $("#examples-EventRestController-editEvent-title-405").text("Status: 405 - " + responseEventRestController405_description);
+                              } else {
+                                $("#examples-EventRestController-editEvent-title-405").text("Status: 405 - " + responseEventRestController405_description.substring(0, responseEventRestController405_description_break));
+                                $("#examples-EventRestController-editEvent-description-405").html(responseEventRestController405_description.substring(responseEventRestController405_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-editEvent-405" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-editEvent-405-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-EventRestController-editEvent-title-404"></h3>
+                            <p id="examples-EventRestController-editEvent-description-404" class="marked"></p>
+                            <script>
+                              var responseEventRestController404_description = `Event or category not found`;
+                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
+                              if (responseEventRestController404_description_break == -1) {
+                                $("#examples-EventRestController-editEvent-title-404").text("Status: 404 - " + responseEventRestController404_description);
+                              } else {
+                                $("#examples-EventRestController-editEvent-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
+                                $("#examples-EventRestController-editEvent-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-editEvent-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-editEvent-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -4957,28 +4963,6 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-EventRestController-getAdminProfileGraphData-title-403"></h3>
-                            <p id="examples-EventRestController-getAdminProfileGraphData-description-403" class="marked"></p>
-                            <script>
-                              var responseEventRestController403_description = `Operation not permitted`;
-                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
-                              if (responseEventRestController403_description_break == -1) {
-                                $("#examples-EventRestController-getAdminProfileGraphData-title-403").text("Status: 403 - " + responseEventRestController403_description);
-                              } else {
-                                $("#examples-EventRestController-getAdminProfileGraphData-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
-                                $("#examples-EventRestController-getAdminProfileGraphData-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-getAdminProfileGraphData-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-getAdminProfileGraphData-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-EventRestController-getAdminProfileGraphData-title-200"></h3>
                             <p id="examples-EventRestController-getAdminProfileGraphData-description-200" class="marked"></p>
                             <script>
@@ -5000,6 +4984,28 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-getAdminProfileGraphData-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-EventRestController-getAdminProfileGraphData-title-403"></h3>
+                            <p id="examples-EventRestController-getAdminProfileGraphData-description-403" class="marked"></p>
+                            <script>
+                              var responseEventRestController403_description = `Operation not permitted`;
+                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
+                              if (responseEventRestController403_description_break == -1) {
+                                $("#examples-EventRestController-getAdminProfileGraphData-title-403").text("Status: 403 - " + responseEventRestController403_description);
+                              } else {
+                                $("#examples-EventRestController-getAdminProfileGraphData-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
+                                $("#examples-EventRestController-getAdminProfileGraphData-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-getAdminProfileGraphData-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-getAdminProfileGraphData-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -5267,6 +5273,28 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-EventRestController-getEventGraphData-title-200"></h3>
+                            <p id="examples-EventRestController-getEventGraphData-description-200" class="marked"></p>
+                            <script>
+                              var responseEventRestController200_description = `Graph data obtained`;
+                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
+                              if (responseEventRestController200_description_break == -1) {
+                                $("#examples-EventRestController-getEventGraphData-title-200").text("Status: 200 - " + responseEventRestController200_description);
+                              } else {
+                                $("#examples-EventRestController-getEventGraphData-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
+                                $("#examples-EventRestController-getEventGraphData-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-getEventGraphData-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-getEventGraphData-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-getEventGraphData-title-404"></h3>
                             <p id="examples-EventRestController-getEventGraphData-description-404" class="marked"></p>
                             <script>
@@ -5310,28 +5338,6 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-getEventGraphData-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-getEventGraphData-title-200"></h3>
-                            <p id="examples-EventRestController-getEventGraphData-description-200" class="marked"></p>
-                            <script>
-                              var responseEventRestController200_description = `Graph data obtained`;
-                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
-                              if (responseEventRestController200_description_break == -1) {
-                                $("#examples-EventRestController-getEventGraphData-title-200").text("Status: 200 - " + responseEventRestController200_description);
-                              } else {
-                                $("#examples-EventRestController-getEventGraphData-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
-                                $("#examples-EventRestController-getEventGraphData-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-getEventGraphData-200" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-getEventGraphData-200-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -5598,27 +5604,27 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-EventRestController-getEventTicket-title-200"></h3>
-                            <p id="examples-EventRestController-getEventTicket-description-200" class="marked"></p>
+                            <h3 id="examples-EventRestController-getEventTicket-title-403"></h3>
+                            <p id="examples-EventRestController-getEventTicket-description-403" class="marked"></p>
                             <script>
-                              var responseEventRestController200_description = `Ticket successfully generated`;
-                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
-                              if (responseEventRestController200_description_break == -1) {
-                                $("#examples-EventRestController-getEventTicket-title-200").text("Status: 200 - " + responseEventRestController200_description);
+                              var responseEventRestController403_description = `User is not registered in the event yet`;
+                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
+                              if (responseEventRestController403_description_break == -1) {
+                                $("#examples-EventRestController-getEventTicket-title-403").text("Status: 403 - " + responseEventRestController403_description);
                               } else {
-                                $("#examples-EventRestController-getEventTicket-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
-                                $("#examples-EventRestController-getEventTicket-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
+                                $("#examples-EventRestController-getEventTicket-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
+                                $("#examples-EventRestController-getEventTicket-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-EventRestController-getEventTicket-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-EventRestController-getEventTicket-403" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-EventRestController-getEventTicket-200-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-EventRestController-getEventTicket-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-getEventTicket-title-405"></h3>
                             <p id="examples-EventRestController-getEventTicket-description-405" class="marked"></p>
@@ -5642,6 +5648,28 @@ pub fn main() {
 
                             <div class="tab-content" id="responses-EventRestController-getEventTicket-405-wrapper" style='margin-bottom: 10px;'>
                             </div>
+                            <h3 id="examples-EventRestController-getEventTicket-title-200"></h3>
+                            <p id="examples-EventRestController-getEventTicket-description-200" class="marked"></p>
+                            <script>
+                              var responseEventRestController200_description = `Ticket successfully generated`;
+                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
+                              if (responseEventRestController200_description_break == -1) {
+                                $("#examples-EventRestController-getEventTicket-title-200").text("Status: 200 - " + responseEventRestController200_description);
+                              } else {
+                                $("#examples-EventRestController-getEventTicket-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
+                                $("#examples-EventRestController-getEventTicket-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-getEventTicket-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-getEventTicket-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-getEventTicket-title-404"></h3>
                             <p id="examples-EventRestController-getEventTicket-description-404" class="marked"></p>
                             <script>
@@ -5663,28 +5691,6 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-getEventTicket-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-getEventTicket-title-403"></h3>
-                            <p id="examples-EventRestController-getEventTicket-description-403" class="marked"></p>
-                            <script>
-                              var responseEventRestController403_description = `User is not registered in the event yet`;
-                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
-                              if (responseEventRestController403_description_break == -1) {
-                                $("#examples-EventRestController-getEventTicket-title-403").text("Status: 403 - " + responseEventRestController403_description);
-                              } else {
-                                $("#examples-EventRestController-getEventTicket-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
-                                $("#examples-EventRestController-getEventTicket-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-getEventTicket-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-getEventTicket-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-getEventTicket-title-500"></h3>
                             <p id="examples-EventRestController-getEventTicket-description-500" class="marked"></p>
@@ -5973,6 +5979,28 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-EventRestController-leaveAnEvent-title-403"></h3>
+                            <p id="examples-EventRestController-leaveAnEvent-description-403" class="marked"></p>
+                            <script>
+                              var responseEventRestController403_description = `User is not registered in the event yet`;
+                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
+                              if (responseEventRestController403_description_break == -1) {
+                                $("#examples-EventRestController-leaveAnEvent-title-403").text("Status: 403 - " + responseEventRestController403_description);
+                              } else {
+                                $("#examples-EventRestController-leaveAnEvent-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
+                                $("#examples-EventRestController-leaveAnEvent-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-leaveAnEvent-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-leaveAnEvent-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-leaveAnEvent-title-405"></h3>
                             <p id="examples-EventRestController-leaveAnEvent-description-405" class="marked"></p>
                             <script>
@@ -6016,28 +6044,6 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-leaveAnEvent-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-leaveAnEvent-title-403"></h3>
-                            <p id="examples-EventRestController-leaveAnEvent-description-403" class="marked"></p>
-                            <script>
-                              var responseEventRestController403_description = `User is not registered in the event yet`;
-                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
-                              if (responseEventRestController403_description_break == -1) {
-                                $("#examples-EventRestController-leaveAnEvent-title-403").text("Status: 403 - " + responseEventRestController403_description);
-                              } else {
-                                $("#examples-EventRestController-leaveAnEvent-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
-                                $("#examples-EventRestController-leaveAnEvent-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-leaveAnEvent-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-leaveAnEvent-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-leaveAnEvent-title-500"></h3>
                             <p id="examples-EventRestController-leaveAnEvent-description-500" class="marked"></p>
@@ -6348,6 +6354,50 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-EventRestController-registerToEvent-title-403"></h3>
+                            <p id="examples-EventRestController-registerToEvent-description-403" class="marked"></p>
+                            <script>
+                              var responseEventRestController403_description = `User is already registered in the event, or is the event creator or event is full`;
+                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
+                              if (responseEventRestController403_description_break == -1) {
+                                $("#examples-EventRestController-registerToEvent-title-403").text("Status: 403 - " + responseEventRestController403_description);
+                              } else {
+                                $("#examples-EventRestController-registerToEvent-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
+                                $("#examples-EventRestController-registerToEvent-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-registerToEvent-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-registerToEvent-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-EventRestController-registerToEvent-title-200"></h3>
+                            <p id="examples-EventRestController-registerToEvent-description-200" class="marked"></p>
+                            <script>
+                              var responseEventRestController200_description = `User successfully registered in the event`;
+                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
+                              if (responseEventRestController200_description_break == -1) {
+                                $("#examples-EventRestController-registerToEvent-title-200").text("Status: 200 - " + responseEventRestController200_description);
+                              } else {
+                                $("#examples-EventRestController-registerToEvent-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
+                                $("#examples-EventRestController-registerToEvent-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-registerToEvent-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-registerToEvent-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-registerToEvent-title-405"></h3>
                             <p id="examples-EventRestController-registerToEvent-description-405" class="marked"></p>
                             <script>
@@ -6391,50 +6441,6 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-registerToEvent-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-registerToEvent-title-200"></h3>
-                            <p id="examples-EventRestController-registerToEvent-description-200" class="marked"></p>
-                            <script>
-                              var responseEventRestController200_description = `User successfully registered in the event`;
-                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
-                              if (responseEventRestController200_description_break == -1) {
-                                $("#examples-EventRestController-registerToEvent-title-200").text("Status: 200 - " + responseEventRestController200_description);
-                              } else {
-                                $("#examples-EventRestController-registerToEvent-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
-                                $("#examples-EventRestController-registerToEvent-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-registerToEvent-200" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-registerToEvent-200-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-registerToEvent-title-403"></h3>
-                            <p id="examples-EventRestController-registerToEvent-description-403" class="marked"></p>
-                            <script>
-                              var responseEventRestController403_description = `User is already registered in the event, or is the event creator or event is full`;
-                              var responseEventRestController403_description_break = responseEventRestController403_description.indexOf('\n');
-                              if (responseEventRestController403_description_break == -1) {
-                                $("#examples-EventRestController-registerToEvent-title-403").text("Status: 403 - " + responseEventRestController403_description);
-                              } else {
-                                $("#examples-EventRestController-registerToEvent-title-403").text("Status: 403 - " + responseEventRestController403_description.substring(0, responseEventRestController403_description_break));
-                                $("#examples-EventRestController-registerToEvent-description-403").html(responseEventRestController403_description.substring(responseEventRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-registerToEvent-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-registerToEvent-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-registerToEvent-title-500"></h3>
                             <p id="examples-EventRestController-registerToEvent-description-500" class="marked"></p>
@@ -7091,27 +7097,27 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-EventRestController-showEventImage-title-500"></h3>
-                            <p id="examples-EventRestController-showEventImage-description-500" class="marked"></p>
+                            <h3 id="examples-EventRestController-showEventImage-title-404"></h3>
+                            <p id="examples-EventRestController-showEventImage-description-404" class="marked"></p>
                             <script>
-                              var responseEventRestController500_description = `Error retrieving the image`;
-                              var responseEventRestController500_description_break = responseEventRestController500_description.indexOf('\n');
-                              if (responseEventRestController500_description_break == -1) {
-                                $("#examples-EventRestController-showEventImage-title-500").text("Status: 500 - " + responseEventRestController500_description);
+                              var responseEventRestController404_description = `Event or image not found`;
+                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
+                              if (responseEventRestController404_description_break == -1) {
+                                $("#examples-EventRestController-showEventImage-title-404").text("Status: 404 - " + responseEventRestController404_description);
                               } else {
-                                $("#examples-EventRestController-showEventImage-title-500").text("Status: 500 - " + responseEventRestController500_description.substring(0, responseEventRestController500_description_break));
-                                $("#examples-EventRestController-showEventImage-description-500").html(responseEventRestController500_description.substring(responseEventRestController500_description_break));
+                                $("#examples-EventRestController-showEventImage-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
+                                $("#examples-EventRestController-showEventImage-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-EventRestController-showEventImage-500" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-EventRestController-showEventImage-404" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-EventRestController-showEventImage-500-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-EventRestController-showEventImage-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-showEventImage-title-200"></h3>
                             <p id="examples-EventRestController-showEventImage-description-200" class="marked"></p>
@@ -7135,27 +7141,27 @@ pub fn main() {
 
                             <div class="tab-content" id="responses-EventRestController-showEventImage-200-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-EventRestController-showEventImage-title-404"></h3>
-                            <p id="examples-EventRestController-showEventImage-description-404" class="marked"></p>
+                            <h3 id="examples-EventRestController-showEventImage-title-500"></h3>
+                            <p id="examples-EventRestController-showEventImage-description-500" class="marked"></p>
                             <script>
-                              var responseEventRestController404_description = `Event or image not found`;
-                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
-                              if (responseEventRestController404_description_break == -1) {
-                                $("#examples-EventRestController-showEventImage-title-404").text("Status: 404 - " + responseEventRestController404_description);
+                              var responseEventRestController500_description = `Error retrieving the image`;
+                              var responseEventRestController500_description_break = responseEventRestController500_description.indexOf('\n');
+                              if (responseEventRestController500_description_break == -1) {
+                                $("#examples-EventRestController-showEventImage-title-500").text("Status: 500 - " + responseEventRestController500_description);
                               } else {
-                                $("#examples-EventRestController-showEventImage-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
-                                $("#examples-EventRestController-showEventImage-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
+                                $("#examples-EventRestController-showEventImage-title-500").text("Status: 500 - " + responseEventRestController500_description.substring(0, responseEventRestController500_description_break));
+                                $("#examples-EventRestController-showEventImage-description-500").html(responseEventRestController500_description.substring(responseEventRestController500_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-EventRestController-showEventImage-404" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-EventRestController-showEventImage-500" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-EventRestController-showEventImage-404-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-EventRestController-showEventImage-500-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -7491,6 +7497,28 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-EventRestController-updateEventAttendees-title-400"></h3>
+                            <p id="examples-EventRestController-updateEventAttendees-description-400" class="marked"></p>
+                            <script>
+                              var responseEventRestController400_description = `Provided information not valid`;
+                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
+                              if (responseEventRestController400_description_break == -1) {
+                                $("#examples-EventRestController-updateEventAttendees-title-400").text("Status: 400 - " + responseEventRestController400_description);
+                              } else {
+                                $("#examples-EventRestController-updateEventAttendees-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
+                                $("#examples-EventRestController-updateEventAttendees-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-updateEventAttendees-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-updateEventAttendees-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-updateEventAttendees-title-200"></h3>
                             <p id="examples-EventRestController-updateEventAttendees-description-200" class="marked"></p>
                             <script>
@@ -7579,28 +7607,6 @@ $(document).ready(function() {
 
                             <div class="tab-content" id="responses-EventRestController-updateEventAttendees-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-EventRestController-updateEventAttendees-title-400"></h3>
-                            <p id="examples-EventRestController-updateEventAttendees-description-400" class="marked"></p>
-                            <script>
-                              var responseEventRestController400_description = `Provided information not valid`;
-                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
-                              if (responseEventRestController400_description_break == -1) {
-                                $("#examples-EventRestController-updateEventAttendees-title-400").text("Status: 400 - " + responseEventRestController400_description);
-                              } else {
-                                $("#examples-EventRestController-updateEventAttendees-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
-                                $("#examples-EventRestController-updateEventAttendees-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-updateEventAttendees-400" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-updateEventAttendees-400-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-EventRestController-updateEventAttendees-title-403"></h3>
                             <p id="examples-EventRestController-updateEventAttendees-description-403" class="marked"></p>
                             <script>
@@ -7660,7 +7666,7 @@ $(document).ready(function() {
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-EventRestController-uploadEventPhoto-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
- -H "Accept: image/jpeg,*/*" \
+ -H "Accept: */*,image/jpeg" \
  -H "Content-Type: application/json" \
  "http://localhost:8443/api/events/{eventId}/photo" \
  -d ''
@@ -7948,50 +7954,6 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-EventRestController-uploadEventPhoto-title-200"></h3>
-                            <p id="examples-EventRestController-uploadEventPhoto-description-200" class="marked"></p>
-                            <script>
-                              var responseEventRestController200_description = `Image uploaded`;
-                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
-                              if (responseEventRestController200_description_break == -1) {
-                                $("#examples-EventRestController-uploadEventPhoto-title-200").text("Status: 200 - " + responseEventRestController200_description);
-                              } else {
-                                $("#examples-EventRestController-uploadEventPhoto-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
-                                $("#examples-EventRestController-uploadEventPhoto-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-uploadEventPhoto-200" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-uploadEventPhoto-200-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-uploadEventPhoto-title-404"></h3>
-                            <p id="examples-EventRestController-uploadEventPhoto-description-404" class="marked"></p>
-                            <script>
-                              var responseEventRestController404_description = `Event not found`;
-                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
-                              if (responseEventRestController404_description_break == -1) {
-                                $("#examples-EventRestController-uploadEventPhoto-title-404").text("Status: 404 - " + responseEventRestController404_description);
-                              } else {
-                                $("#examples-EventRestController-uploadEventPhoto-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
-                                $("#examples-EventRestController-uploadEventPhoto-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-uploadEventPhoto-404" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-uploadEventPhoto-404-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-EventRestController-uploadEventPhoto-title-500"></h3>
                             <p id="examples-EventRestController-uploadEventPhoto-description-500" class="marked"></p>
                             <script>
@@ -8079,6 +8041,50 @@ $(document).ready(function() {
                                   </div>
                                   <input id='responses-EventRestController-uploadEventPhoto-403-schema-data' type='hidden' value=''></input>
                                 </div>
+                            </div>
+                            <h3 id="examples-EventRestController-uploadEventPhoto-title-200"></h3>
+                            <p id="examples-EventRestController-uploadEventPhoto-description-200" class="marked"></p>
+                            <script>
+                              var responseEventRestController200_description = `Image uploaded`;
+                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
+                              if (responseEventRestController200_description_break == -1) {
+                                $("#examples-EventRestController-uploadEventPhoto-title-200").text("Status: 200 - " + responseEventRestController200_description);
+                              } else {
+                                $("#examples-EventRestController-uploadEventPhoto-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
+                                $("#examples-EventRestController-uploadEventPhoto-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-uploadEventPhoto-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-uploadEventPhoto-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-EventRestController-uploadEventPhoto-title-404"></h3>
+                            <p id="examples-EventRestController-uploadEventPhoto-description-404" class="marked"></p>
+                            <script>
+                              var responseEventRestController404_description = `Event not found`;
+                              var responseEventRestController404_description_break = responseEventRestController404_description.indexOf('\n');
+                              if (responseEventRestController404_description_break == -1) {
+                                $("#examples-EventRestController-uploadEventPhoto-title-404").text("Status: 404 - " + responseEventRestController404_description);
+                              } else {
+                                $("#examples-EventRestController-uploadEventPhoto-title-404").text("Status: 404 - " + responseEventRestController404_description.substring(0, responseEventRestController404_description_break));
+                                $("#examples-EventRestController-uploadEventPhoto-description-404").html(responseEventRestController404_description.substring(responseEventRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-uploadEventPhoto-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-uploadEventPhoto-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -8402,6 +8408,28 @@ pub fn main() {
                             </table>
 
                           <h2>Responses</h2>
+                            <h3 id="examples-EventRestController-userEvents-title-200"></h3>
+                            <p id="examples-EventRestController-userEvents-description-200" class="marked"></p>
+                            <script>
+                              var responseEventRestController200_description = `Events obtained`;
+                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
+                              if (responseEventRestController200_description_break == -1) {
+                                $("#examples-EventRestController-userEvents-title-200").text("Status: 200 - " + responseEventRestController200_description);
+                              } else {
+                                $("#examples-EventRestController-userEvents-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
+                                $("#examples-EventRestController-userEvents-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-userEvents-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-userEvents-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-EventRestController-userEvents-title-401"></h3>
                             <p id="examples-EventRestController-userEvents-description-401" class="marked"></p>
                             <script>
@@ -8423,6 +8451,28 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-userEvents-401-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-EventRestController-userEvents-title-400"></h3>
+                            <p id="examples-EventRestController-userEvents-description-400" class="marked"></p>
+                            <script>
+                              var responseEventRestController400_description = `Bad request`;
+                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
+                              if (responseEventRestController400_description_break == -1) {
+                                $("#examples-EventRestController-userEvents-title-400").text("Status: 400 - " + responseEventRestController400_description);
+                              } else {
+                                $("#examples-EventRestController-userEvents-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
+                                $("#examples-EventRestController-userEvents-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-EventRestController-userEvents-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-EventRestController-userEvents-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-EventRestController-userEvents-title-403"></h3>
                             <p id="examples-EventRestController-userEvents-description-403" class="marked"></p>
@@ -8467,50 +8517,6 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-EventRestController-userEvents-500-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-userEvents-title-200"></h3>
-                            <p id="examples-EventRestController-userEvents-description-200" class="marked"></p>
-                            <script>
-                              var responseEventRestController200_description = `Events obtained`;
-                              var responseEventRestController200_description_break = responseEventRestController200_description.indexOf('\n');
-                              if (responseEventRestController200_description_break == -1) {
-                                $("#examples-EventRestController-userEvents-title-200").text("Status: 200 - " + responseEventRestController200_description);
-                              } else {
-                                $("#examples-EventRestController-userEvents-title-200").text("Status: 200 - " + responseEventRestController200_description.substring(0, responseEventRestController200_description_break));
-                                $("#examples-EventRestController-userEvents-description-200").html(responseEventRestController200_description.substring(responseEventRestController200_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-userEvents-200" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-userEvents-200-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-EventRestController-userEvents-title-400"></h3>
-                            <p id="examples-EventRestController-userEvents-description-400" class="marked"></p>
-                            <script>
-                              var responseEventRestController400_description = `Bad request`;
-                              var responseEventRestController400_description_break = responseEventRestController400_description.indexOf('\n');
-                              if (responseEventRestController400_description_break == -1) {
-                                $("#examples-EventRestController-userEvents-title-400").text("Status: 400 - " + responseEventRestController400_description);
-                              } else {
-                                $("#examples-EventRestController-userEvents-title-400").text("Status: 400 - " + responseEventRestController400_description.substring(0, responseEventRestController400_description_break));
-                                $("#examples-EventRestController-userEvents-description-400").html(responseEventRestController400_description.substring(responseEventRestController400_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-EventRestController-userEvents-400" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-EventRestController-userEvents-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -9806,28 +9812,6 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-ReviewRestController-newReview-title-401"></h3>
-                            <p id="examples-ReviewRestController-newReview-description-401" class="marked"></p>
-                            <script>
-                              var responseReviewRestController401_description = `Unauthorized`;
-                              var responseReviewRestController401_description_break = responseReviewRestController401_description.indexOf('\n');
-                              if (responseReviewRestController401_description_break == -1) {
-                                $("#examples-ReviewRestController-newReview-title-401").text("Status: 401 - " + responseReviewRestController401_description);
-                              } else {
-                                $("#examples-ReviewRestController-newReview-title-401").text("Status: 401 - " + responseReviewRestController401_description.substring(0, responseReviewRestController401_description_break));
-                                $("#examples-ReviewRestController-newReview-description-401").html(responseReviewRestController401_description.substring(responseReviewRestController401_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-ReviewRestController-newReview-401" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-ReviewRestController-newReview-401-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-ReviewRestController-newReview-title-201"></h3>
                             <p id="examples-ReviewRestController-newReview-description-201" class="marked"></p>
                             <script>
@@ -9850,27 +9834,27 @@ $(document).ready(function() {
 
                             <div class="tab-content" id="responses-ReviewRestController-newReview-201-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-ReviewRestController-newReview-title-403"></h3>
-                            <p id="examples-ReviewRestController-newReview-description-403" class="marked"></p>
+                            <h3 id="examples-ReviewRestController-newReview-title-401"></h3>
+                            <p id="examples-ReviewRestController-newReview-description-401" class="marked"></p>
                             <script>
-                              var responseReviewRestController403_description = `Operation not permitted`;
-                              var responseReviewRestController403_description_break = responseReviewRestController403_description.indexOf('\n');
-                              if (responseReviewRestController403_description_break == -1) {
-                                $("#examples-ReviewRestController-newReview-title-403").text("Status: 403 - " + responseReviewRestController403_description);
+                              var responseReviewRestController401_description = `Unauthorized`;
+                              var responseReviewRestController401_description_break = responseReviewRestController401_description.indexOf('\n');
+                              if (responseReviewRestController401_description_break == -1) {
+                                $("#examples-ReviewRestController-newReview-title-401").text("Status: 401 - " + responseReviewRestController401_description);
                               } else {
-                                $("#examples-ReviewRestController-newReview-title-403").text("Status: 403 - " + responseReviewRestController403_description.substring(0, responseReviewRestController403_description_break));
-                                $("#examples-ReviewRestController-newReview-description-403").html(responseReviewRestController403_description.substring(responseReviewRestController403_description_break));
+                                $("#examples-ReviewRestController-newReview-title-401").text("Status: 401 - " + responseReviewRestController401_description.substring(0, responseReviewRestController401_description_break));
+                                $("#examples-ReviewRestController-newReview-description-401").html(responseReviewRestController401_description.substring(responseReviewRestController401_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-ReviewRestController-newReview-403" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-ReviewRestController-newReview-401" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-ReviewRestController-newReview-403-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-ReviewRestController-newReview-401-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-ReviewRestController-newReview-title-400"></h3>
                             <p id="examples-ReviewRestController-newReview-description-400" class="marked"></p>
@@ -9894,12 +9878,441 @@ $(document).ready(function() {
 
                             <div class="tab-content" id="responses-ReviewRestController-newReview-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
+                            <h3 id="examples-ReviewRestController-newReview-title-403"></h3>
+                            <p id="examples-ReviewRestController-newReview-description-403" class="marked"></p>
+                            <script>
+                              var responseReviewRestController403_description = `Operation not permitted`;
+                              var responseReviewRestController403_description_break = responseReviewRestController403_description.indexOf('\n');
+                              if (responseReviewRestController403_description_break == -1) {
+                                $("#examples-ReviewRestController-newReview-title-403").text("Status: 403 - " + responseReviewRestController403_description);
+                              } else {
+                                $("#examples-ReviewRestController-newReview-title-403").text("Status: 403 - " + responseReviewRestController403_description.substring(0, responseReviewRestController403_description_break));
+                                $("#examples-ReviewRestController-newReview-description-403").html(responseReviewRestController403_description.substring(responseReviewRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-ReviewRestController-newReview-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-ReviewRestController-newReview-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                         </article>
                       </div>
                       <hr>
                   </section>
                 <section id="api-UserRestController">
                   <h1>UserRestController</h1>
+                    <div id="api-UserRestController-banUser">
+                      <article id="api-UserRestController-banUser-0" data-group="User" data-name="banUser" data-version="0">
+                        <div class="pull-left">
+                          <h1>banUser</h1>
+                          <p>Bans specified user</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Bans user with specified id</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/users/{id}/ban</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserRestController-banUser-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserRestController-banUser-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserRestController-banUser-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserRestController-banUser-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserRestController-banUser-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-python">Python</a></li>
+                          <li class=""><a href="#examples-UserRestController-banUser-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserRestController-banUser-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ -H "Accept: */*" \
+ "http://localhost:8443/api/users/{id}/ban"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserRestController-banUser-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.UserRestControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserRestControllerApiExample {
+    public static void main(String[] args) {
+
+        // Create an instance of the API class
+        UserRestControllerApi apiInstance = new UserRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            'String' result = apiInstance.banUser(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserRestControllerApi#banUser");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserRestController-banUser-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.UserRestControllerApi;
+
+public class UserRestControllerApiExample {
+    public static void main(String[] args) {
+        UserRestControllerApi apiInstance = new UserRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            'String' result = apiInstance.banUser(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserRestControllerApi#banUser");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserRestController-banUser-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+UserRestControllerApi *apiInstance = [[UserRestControllerApi alloc] init];
+Long *id = 789; //  (default to null)
+
+// Bans specified user
+[apiInstance banUserWith:id
+              completionHandler: ^('String' output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+// Create an instance of the API class
+var api = new OpenApiDefinition.UserRestControllerApi()
+var id = 789; // {Long} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.banUser(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserRestController-banUser-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class banUserExample
+    {
+        public void main()
+        {
+
+            // Create an instance of the API class
+            var apiInstance = new UserRestControllerApi();
+            var id = 789;  // Long |  (default to null)
+
+            try {
+                // Bans specified user
+                'String' result = apiInstance.banUser(id);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling UserRestControllerApi.banUser: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\UserRestControllerApi();
+$id = 789; // Long | 
+
+try {
+    $result = $api_instance->banUser($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserRestControllerApi->banUser: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::UserRestControllerApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::UserRestControllerApi->new();
+my $id = 789; # Long | 
+
+eval {
+    my $result = $api_instance->banUser(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserRestControllerApi->banUser: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.UserRestControllerApi()
+id = 789 # Long |  (default to null)
+
+try:
+    # Bans specified user
+    api_response = api_instance.ban_user(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserRestControllerApi->banUser: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-banUser-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate UserRestControllerApi;
+
+pub fn main() {
+    let id = 789; // Long
+
+    let mut context = UserRestControllerApi::Context::default();
+    let result = client.banUser(id, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_banUser_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-UserRestController-banUser-title-200"></h3>
+                            <p id="examples-UserRestController-banUser-description-200" class="marked"></p>
+                            <script>
+                              var responseUserRestController200_description = `User banned`;
+                              var responseUserRestController200_description_break = responseUserRestController200_description.indexOf('\n');
+                              if (responseUserRestController200_description_break == -1) {
+                                $("#examples-UserRestController-banUser-title-200").text("Status: 200 - " + responseUserRestController200_description);
+                              } else {
+                                $("#examples-UserRestController-banUser-title-200").text("Status: 200 - " + responseUserRestController200_description.substring(0, responseUserRestController200_description_break));
+                                $("#examples-UserRestController-banUser-description-200").html(responseUserRestController200_description.substring(responseUserRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-banUser-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-UserRestController-banUser-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-banUser-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-UserRestController-banUser-200-schema">
+                                  <div id="responses-UserRestController-banUser-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "User banned",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-UserRestController-banUser-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-UserRestController-banUser-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-UserRestController-banUser-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-UserRestController-banUser-title-500"></h3>
+                            <p id="examples-UserRestController-banUser-description-500" class="marked"></p>
+                            <script>
+                              var responseUserRestController500_description = `Internal Server Error`;
+                              var responseUserRestController500_description_break = responseUserRestController500_description.indexOf('\n');
+                              if (responseUserRestController500_description_break == -1) {
+                                $("#examples-UserRestController-banUser-title-500").text("Status: 500 - " + responseUserRestController500_description);
+                              } else {
+                                $("#examples-UserRestController-banUser-title-500").text("Status: 500 - " + responseUserRestController500_description.substring(0, responseUserRestController500_description_break));
+                                $("#examples-UserRestController-banUser-description-500").html(responseUserRestController500_description.substring(responseUserRestController500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-banUser-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-banUser-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-banUser-title-403"></h3>
+                            <p id="examples-UserRestController-banUser-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `Forbidden`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-banUser-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-banUser-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-banUser-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-banUser-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-banUser-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-banUser-title-404"></h3>
+                            <p id="examples-UserRestController-banUser-description-404" class="marked"></p>
+                            <script>
+                              var responseUserRestController404_description = `Not Found`;
+                              var responseUserRestController404_description_break = responseUserRestController404_description.indexOf('\n');
+                              if (responseUserRestController404_description_break == -1) {
+                                $("#examples-UserRestController-banUser-title-404").text("Status: 404 - " + responseUserRestController404_description);
+                              } else {
+                                $("#examples-UserRestController-banUser-title-404").text("Status: 404 - " + responseUserRestController404_description.substring(0, responseUserRestController404_description_break));
+                                $("#examples-UserRestController-banUser-description-404").html(responseUserRestController404_description.substring(responseUserRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-banUser-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-banUser-404-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-UserRestController-changeProfilePicture">
                       <article id="api-UserRestController-changeProfilePicture-0" data-group="User" data-name="changeProfilePicture" data-version="0">
                         <div class="pull-left">
@@ -10231,28 +10644,6 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-UserRestController-changeProfilePicture-title-403"></h3>
-                            <p id="examples-UserRestController-changeProfilePicture-description-403" class="marked"></p>
-                            <script>
-                              var responseUserRestController403_description = `Forbidden. Authenticated user lacks permission to edit this resource`;
-                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
-                              if (responseUserRestController403_description_break == -1) {
-                                $("#examples-UserRestController-changeProfilePicture-title-403").text("Status: 403 - " + responseUserRestController403_description);
-                              } else {
-                                $("#examples-UserRestController-changeProfilePicture-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
-                                $("#examples-UserRestController-changeProfilePicture-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-changeProfilePicture-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-changeProfilePicture-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-UserRestController-changeProfilePicture-title-200"></h3>
                             <p id="examples-UserRestController-changeProfilePicture-description-200" class="marked"></p>
                             <script>
@@ -10362,6 +10753,28 @@ $(document).ready(function() {
 
 
                             <div class="tab-content" id="responses-UserRestController-changeProfilePicture-404-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-changeProfilePicture-title-403"></h3>
+                            <p id="examples-UserRestController-changeProfilePicture-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `Forbidden. Authenticated user lacks permission to edit this resource`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-changeProfilePicture-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-changeProfilePicture-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-changeProfilePicture-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-changeProfilePicture-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-changeProfilePicture-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                             <h3 id="examples-UserRestController-changeProfilePicture-title-500"></h3>
                             <p id="examples-UserRestController-changeProfilePicture-description-500" class="marked"></p>
@@ -11049,28 +11462,6 @@ pub fn main() {
                                   <input id='responses-UserRestController-deleteUser-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-UserRestController-deleteUser-title-403"></h3>
-                            <p id="examples-UserRestController-deleteUser-description-403" class="marked"></p>
-                            <script>
-                              var responseUserRestController403_description = `Forbidden. Current user lacks authority to delete specified user`;
-                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
-                              if (responseUserRestController403_description_break == -1) {
-                                $("#examples-UserRestController-deleteUser-title-403").text("Status: 403 - " + responseUserRestController403_description);
-                              } else {
-                                $("#examples-UserRestController-deleteUser-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
-                                $("#examples-UserRestController-deleteUser-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-deleteUser-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-deleteUser-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-UserRestController-deleteUser-title-404"></h3>
                             <p id="examples-UserRestController-deleteUser-description-404" class="marked"></p>
                             <script>
@@ -11092,6 +11483,28 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-UserRestController-deleteUser-404-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-deleteUser-title-403"></h3>
+                            <p id="examples-UserRestController-deleteUser-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `Forbidden. Current user lacks authority to delete specified user`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-deleteUser-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-deleteUser-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-deleteUser-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-deleteUser-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-deleteUser-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -11801,6 +12214,94 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
+                            <h3 id="examples-UserRestController-modifyUser-title-409"></h3>
+                            <p id="examples-UserRestController-modifyUser-description-409" class="marked"></p>
+                            <script>
+                              var responseUserRestController409_description = `Conflict. Invalid Username.`;
+                              var responseUserRestController409_description_break = responseUserRestController409_description.indexOf('\n');
+                              if (responseUserRestController409_description_break == -1) {
+                                $("#examples-UserRestController-modifyUser-title-409").text("Status: 409 - " + responseUserRestController409_description);
+                              } else {
+                                $("#examples-UserRestController-modifyUser-title-409").text("Status: 409 - " + responseUserRestController409_description.substring(0, responseUserRestController409_description_break));
+                                $("#examples-UserRestController-modifyUser-description-409").html(responseUserRestController409_description.substring(responseUserRestController409_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-modifyUser-409" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-modifyUser-409-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-modifyUser-title-400"></h3>
+                            <p id="examples-UserRestController-modifyUser-description-400" class="marked"></p>
+                            <script>
+                              var responseUserRestController400_description = `Bad Request. Provided user must not have a id attribute.`;
+                              var responseUserRestController400_description_break = responseUserRestController400_description.indexOf('\n');
+                              if (responseUserRestController400_description_break == -1) {
+                                $("#examples-UserRestController-modifyUser-title-400").text("Status: 400 - " + responseUserRestController400_description);
+                              } else {
+                                $("#examples-UserRestController-modifyUser-title-400").text("Status: 400 - " + responseUserRestController400_description.substring(0, responseUserRestController400_description_break));
+                                $("#examples-UserRestController-modifyUser-description-400").html(responseUserRestController400_description.substring(responseUserRestController400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-modifyUser-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-modifyUser-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-modifyUser-title-404"></h3>
+                            <p id="examples-UserRestController-modifyUser-description-404" class="marked"></p>
+                            <script>
+                              var responseUserRestController404_description = `Not Found. No user found with provided id`;
+                              var responseUserRestController404_description_break = responseUserRestController404_description.indexOf('\n');
+                              if (responseUserRestController404_description_break == -1) {
+                                $("#examples-UserRestController-modifyUser-title-404").text("Status: 404 - " + responseUserRestController404_description);
+                              } else {
+                                $("#examples-UserRestController-modifyUser-title-404").text("Status: 404 - " + responseUserRestController404_description.substring(0, responseUserRestController404_description_break));
+                                $("#examples-UserRestController-modifyUser-description-404").html(responseUserRestController404_description.substring(responseUserRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-modifyUser-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-modifyUser-404-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-modifyUser-title-403"></h3>
+                            <p id="examples-UserRestController-modifyUser-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `Forbidden. Current user lacks authority to modify specified user`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-modifyUser-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-modifyUser-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-modifyUser-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-modifyUser-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-modifyUser-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-UserRestController-modifyUser-title-200"></h3>
                             <p id="examples-UserRestController-modifyUser-description-200" class="marked"></p>
                             <script>
@@ -11866,94 +12367,6 @@ $(document).ready(function() {
                                   </div>
                                   <input id='responses-UserRestController-modifyUser-200-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-                            <h3 id="examples-UserRestController-modifyUser-title-403"></h3>
-                            <p id="examples-UserRestController-modifyUser-description-403" class="marked"></p>
-                            <script>
-                              var responseUserRestController403_description = `Forbidden. Current user lacks authority to modify specified user`;
-                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
-                              if (responseUserRestController403_description_break == -1) {
-                                $("#examples-UserRestController-modifyUser-title-403").text("Status: 403 - " + responseUserRestController403_description);
-                              } else {
-                                $("#examples-UserRestController-modifyUser-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
-                                $("#examples-UserRestController-modifyUser-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-modifyUser-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-modifyUser-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-UserRestController-modifyUser-title-400"></h3>
-                            <p id="examples-UserRestController-modifyUser-description-400" class="marked"></p>
-                            <script>
-                              var responseUserRestController400_description = `Bad Request. Provided user must not have a id attribute.`;
-                              var responseUserRestController400_description_break = responseUserRestController400_description.indexOf('\n');
-                              if (responseUserRestController400_description_break == -1) {
-                                $("#examples-UserRestController-modifyUser-title-400").text("Status: 400 - " + responseUserRestController400_description);
-                              } else {
-                                $("#examples-UserRestController-modifyUser-title-400").text("Status: 400 - " + responseUserRestController400_description.substring(0, responseUserRestController400_description_break));
-                                $("#examples-UserRestController-modifyUser-description-400").html(responseUserRestController400_description.substring(responseUserRestController400_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-modifyUser-400" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-modifyUser-400-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-UserRestController-modifyUser-title-409"></h3>
-                            <p id="examples-UserRestController-modifyUser-description-409" class="marked"></p>
-                            <script>
-                              var responseUserRestController409_description = `Conflict. Invalid Username.`;
-                              var responseUserRestController409_description_break = responseUserRestController409_description.indexOf('\n');
-                              if (responseUserRestController409_description_break == -1) {
-                                $("#examples-UserRestController-modifyUser-title-409").text("Status: 409 - " + responseUserRestController409_description);
-                              } else {
-                                $("#examples-UserRestController-modifyUser-title-409").text("Status: 409 - " + responseUserRestController409_description.substring(0, responseUserRestController409_description_break));
-                                $("#examples-UserRestController-modifyUser-description-409").html(responseUserRestController409_description.substring(responseUserRestController409_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-modifyUser-409" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-modifyUser-409-wrapper" style='margin-bottom: 10px;'>
-                            </div>
-                            <h3 id="examples-UserRestController-modifyUser-title-404"></h3>
-                            <p id="examples-UserRestController-modifyUser-description-404" class="marked"></p>
-                            <script>
-                              var responseUserRestController404_description = `Not Found. No user found with provided id`;
-                              var responseUserRestController404_description_break = responseUserRestController404_description.indexOf('\n');
-                              if (responseUserRestController404_description_break == -1) {
-                                $("#examples-UserRestController-modifyUser-title-404").text("Status: 404 - " + responseUserRestController404_description);
-                              } else {
-                                $("#examples-UserRestController-modifyUser-title-404").text("Status: 404 - " + responseUserRestController404_description.substring(0, responseUserRestController404_description_break));
-                                $("#examples-UserRestController-modifyUser-description-404").html(responseUserRestController404_description.substring(responseUserRestController404_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-modifyUser-404" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-modifyUser-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -12992,28 +13405,6 @@ pub fn main() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-UserRestController-showUserImage-title-500"></h3>
-                            <p id="examples-UserRestController-showUserImage-description-500" class="marked"></p>
-                            <script>
-                              var responseUserRestController500_description = `Internal Server Error`;
-                              var responseUserRestController500_description_break = responseUserRestController500_description.indexOf('\n');
-                              if (responseUserRestController500_description_break == -1) {
-                                $("#examples-UserRestController-showUserImage-title-500").text("Status: 500 - " + responseUserRestController500_description);
-                              } else {
-                                $("#examples-UserRestController-showUserImage-title-500").text("Status: 500 - " + responseUserRestController500_description.substring(0, responseUserRestController500_description_break));
-                                $("#examples-UserRestController-showUserImage-description-500").html(responseUserRestController500_description.substring(responseUserRestController500_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-showUserImage-500" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-showUserImage-500-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-UserRestController-showUserImage-title-200"></h3>
                             <p id="examples-UserRestController-showUserImage-description-200" class="marked"></p>
                             <script>
@@ -13036,6 +13427,28 @@ pub fn main() {
 
                             <div class="tab-content" id="responses-UserRestController-showUserImage-200-wrapper" style='margin-bottom: 10px;'>
                             </div>
+                            <h3 id="examples-UserRestController-showUserImage-title-500"></h3>
+                            <p id="examples-UserRestController-showUserImage-description-500" class="marked"></p>
+                            <script>
+                              var responseUserRestController500_description = `Internal Server Error`;
+                              var responseUserRestController500_description_break = responseUserRestController500_description.indexOf('\n');
+                              if (responseUserRestController500_description_break == -1) {
+                                $("#examples-UserRestController-showUserImage-title-500").text("Status: 500 - " + responseUserRestController500_description);
+                              } else {
+                                $("#examples-UserRestController-showUserImage-title-500").text("Status: 500 - " + responseUserRestController500_description.substring(0, responseUserRestController500_description_break));
+                                $("#examples-UserRestController-showUserImage-description-500").html(responseUserRestController500_description.substring(responseUserRestController500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-showUserImage-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-showUserImage-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-UserRestController-showUserImage-title-404"></h3>
                             <p id="examples-UserRestController-showUserImage-description-404" class="marked"></p>
                             <script>
@@ -13057,6 +13470,413 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-UserRestController-showUserImage-404-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-UserRestController-unbanUser">
+                      <article id="api-UserRestController-unbanUser-0" data-group="User" data-name="unbanUser" data-version="0">
+                        <div class="pull-left">
+                          <h1>unbanUser</h1>
+                          <p>Unbans specified user</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Unbans user with specified id</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/users/{id}/unban</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserRestController-unbanUser-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserRestController-unbanUser-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserRestController-unbanUser-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-python">Python</a></li>
+                          <li class=""><a href="#examples-UserRestController-unbanUser-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserRestController-unbanUser-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ -H "Accept: */*" \
+ "http://localhost:8443/api/users/{id}/unban"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserRestController-unbanUser-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.UserRestControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserRestControllerApiExample {
+    public static void main(String[] args) {
+
+        // Create an instance of the API class
+        UserRestControllerApi apiInstance = new UserRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            'String' result = apiInstance.unbanUser(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserRestControllerApi#unbanUser");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserRestController-unbanUser-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.UserRestControllerApi;
+
+public class UserRestControllerApiExample {
+    public static void main(String[] args) {
+        UserRestControllerApi apiInstance = new UserRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            'String' result = apiInstance.unbanUser(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserRestControllerApi#unbanUser");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserRestController-unbanUser-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+UserRestControllerApi *apiInstance = [[UserRestControllerApi alloc] init];
+Long *id = 789; //  (default to null)
+
+// Unbans specified user
+[apiInstance unbanUserWith:id
+              completionHandler: ^('String' output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+// Create an instance of the API class
+var api = new OpenApiDefinition.UserRestControllerApi()
+var id = 789; // {Long} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.unbanUser(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserRestController-unbanUser-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class unbanUserExample
+    {
+        public void main()
+        {
+
+            // Create an instance of the API class
+            var apiInstance = new UserRestControllerApi();
+            var id = 789;  // Long |  (default to null)
+
+            try {
+                // Unbans specified user
+                'String' result = apiInstance.unbanUser(id);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling UserRestControllerApi.unbanUser: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\UserRestControllerApi();
+$id = 789; // Long | 
+
+try {
+    $result = $api_instance->unbanUser($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserRestControllerApi->unbanUser: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::UserRestControllerApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::UserRestControllerApi->new();
+my $id = 789; # Long | 
+
+eval {
+    my $result = $api_instance->unbanUser(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserRestControllerApi->unbanUser: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.UserRestControllerApi()
+id = 789 # Long |  (default to null)
+
+try:
+    # Unbans specified user
+    api_response = api_instance.unban_user(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserRestControllerApi->unbanUser: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-unbanUser-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate UserRestControllerApi;
+
+pub fn main() {
+    let id = 789; // Long
+
+    let mut context = UserRestControllerApi::Context::default();
+    let result = client.unbanUser(id, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_unbanUser_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-UserRestController-unbanUser-title-500"></h3>
+                            <p id="examples-UserRestController-unbanUser-description-500" class="marked"></p>
+                            <script>
+                              var responseUserRestController500_description = `Internal Server Error`;
+                              var responseUserRestController500_description_break = responseUserRestController500_description.indexOf('\n');
+                              if (responseUserRestController500_description_break == -1) {
+                                $("#examples-UserRestController-unbanUser-title-500").text("Status: 500 - " + responseUserRestController500_description);
+                              } else {
+                                $("#examples-UserRestController-unbanUser-title-500").text("Status: 500 - " + responseUserRestController500_description.substring(0, responseUserRestController500_description_break));
+                                $("#examples-UserRestController-unbanUser-description-500").html(responseUserRestController500_description.substring(responseUserRestController500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-unbanUser-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-unbanUser-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-unbanUser-title-403"></h3>
+                            <p id="examples-UserRestController-unbanUser-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `Forbidden`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-unbanUser-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-unbanUser-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-unbanUser-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-unbanUser-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-unbanUser-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-UserRestController-unbanUser-title-200"></h3>
+                            <p id="examples-UserRestController-unbanUser-description-200" class="marked"></p>
+                            <script>
+                              var responseUserRestController200_description = `User unbanned`;
+                              var responseUserRestController200_description_break = responseUserRestController200_description.indexOf('\n');
+                              if (responseUserRestController200_description_break == -1) {
+                                $("#examples-UserRestController-unbanUser-title-200").text("Status: 200 - " + responseUserRestController200_description);
+                              } else {
+                                $("#examples-UserRestController-unbanUser-title-200").text("Status: 200 - " + responseUserRestController200_description.substring(0, responseUserRestController200_description_break));
+                                $("#examples-UserRestController-unbanUser-description-200").html(responseUserRestController200_description.substring(responseUserRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-unbanUser-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-UserRestController-unbanUser-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-unbanUser-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-UserRestController-unbanUser-200-schema">
+                                  <div id="responses-UserRestController-unbanUser-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "User unbanned",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-UserRestController-unbanUser-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-UserRestController-unbanUser-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-UserRestController-unbanUser-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-UserRestController-unbanUser-title-404"></h3>
+                            <p id="examples-UserRestController-unbanUser-description-404" class="marked"></p>
+                            <script>
+                              var responseUserRestController404_description = `Not Found`;
+                              var responseUserRestController404_description_break = responseUserRestController404_description.indexOf('\n');
+                              if (responseUserRestController404_description_break == -1) {
+                                $("#examples-UserRestController-unbanUser-title-404").text("Status: 404 - " + responseUserRestController404_description);
+                              } else {
+                                $("#examples-UserRestController-unbanUser-title-404").text("Status: 404 - " + responseUserRestController404_description.substring(0, responseUserRestController404_description_break));
+                                $("#examples-UserRestController-unbanUser-description-404").html(responseUserRestController404_description.substring(responseUserRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-unbanUser-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-unbanUser-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

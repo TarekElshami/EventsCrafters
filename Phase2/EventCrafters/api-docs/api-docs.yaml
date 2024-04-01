@@ -56,21 +56,21 @@ paths:
               $ref: '#/components/schemas/FullUserDTO'
         required: true
       responses:
+        "409":
+          description: Conflict. Invalid Username.
+        "400":
+          description: Bad Request. Provided user must not have a id attribute.
+        "404":
+          description: Not Found. No user found with provided id
+        "403":
+          description: Forbidden. Current user lacks authority to modify specified
+            user
         "200":
           description: User modified
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FullUserDTO'
-        "403":
-          description: Forbidden. Current user lacks authority to modify specified
-            user
-        "400":
-          description: Bad Request. Provided user must not have a id attribute.
-        "409":
-          description: Conflict. Invalid Username.
-        "404":
-          description: Not Found. No user found with provided id
     delete:
       tags:
       - user-rest-controller
@@ -93,11 +93,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FullUserDTO'
+        "404":
+          description: Not Found. No user found with provided id
         "403":
           description: Forbidden. Current user lacks authority to delete specified
             user
-        "404":
-          description: Not Found. No user found with provided id
   /api/events/{eventId}:
     put:
       tags:
@@ -118,20 +118,20 @@ paths:
               $ref: '#/components/schemas/EventManipulationDTO'
         required: true
       responses:
-        "400":
-          description: Invalid event data
-        "405":
-          description: The operation is not allowed when event has finished
         "403":
           description: The operation is not allowed without registration
-        "404":
-          description: Event or category not found
         "202":
           description: Event successfully modified
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventManipulationDTO'
+        "400":
+          description: Invalid event data
+        "405":
+          description: The operation is not allowed when event has finished
+        "404":
+          description: Event or category not found
     delete:
       tags:
       - event-rest-controller
@@ -146,8 +146,6 @@ paths:
           type: integer
           format: int64
       responses:
-        "404":
-          description: Event not found
         "405":
           description: The operation is not allowed when event has finished
         "200":
@@ -156,6 +154,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/EventDTO'
+        "404":
+          description: Event not found
         "403":
           description: Operation not permitted
   /api/events/{eventId}/attendees:
@@ -179,6 +179,8 @@ paths:
               format: int32
         required: true
       responses:
+        "400":
+          description: Provided information not valid
         "200":
           description: Number of attendees updated
           content:
@@ -187,8 +189,6 @@ paths:
                 $ref: '#/components/schemas/EventFinishedDTO'
         "404":
           description: Event not found
-        "400":
-          description: Provided information not valid
         "403":
           description: Operation not permitted
   /api/categories/{id}:
@@ -205,12 +205,12 @@ paths:
           type: integer
           format: int64
       responses:
-        "404":
-          description: Not found
         "200":
           description: Category obtained
           content:
             application/json: {}
+        "404":
+          description: Not found
     put:
       tags:
       - category-rest-controller
@@ -230,12 +230,12 @@ paths:
               $ref: '#/components/schemas/CategoryDTO'
         required: true
       responses:
-        "404":
-          description: Not found
         "201":
           description: Category created
           content:
             application/json: {}
+        "404":
+          description: Not found
     delete:
       tags:
       - category-rest-controller
@@ -249,14 +249,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "404":
-          description: Not found
-        "403":
-          description: Operation not permitted
         "201":
           description: Category created
           content:
             application/json: {}
+        "404":
+          description: Not found
+        "403":
+          description: Operation not permitted
   /api/users:
     post:
       tags:
@@ -281,6 +281,33 @@ paths:
           description: Conflict. Username is taken.
         "400":
           description: Bad Request. Body must not have a photo attribute.
+  /api/users/{id}/unban:
+    post:
+      tags:
+      - user-rest-controller
+      summary: Unbans specified user
+      description: Unbans user with specified id
+      operationId: unbanUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "500":
+          description: Internal Server Error
+        "403":
+          description: Forbidden
+        "200":
+          description: User unbanned
+          content:
+            '*/*':
+              schema:
+                type: string
+        "404":
+          description: Not Found
   /api/users/{id}/recoverPassword:
     post:
       tags:
@@ -305,6 +332,33 @@ paths:
             '*/*':
               schema:
                 type: string
+  /api/users/{id}/ban:
+    post:
+      tags:
+      - user-rest-controller
+      summary: Bans specified user
+      description: Bans user with specified id
+      operationId: banUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: User banned
+          content:
+            '*/*':
+              schema:
+                type: string
+        "500":
+          description: Internal Server Error
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
   /api/users/img/{id}:
     get:
       tags:
@@ -320,12 +374,12 @@ paths:
           type: integer
           format: int64
       responses:
-        "500":
-          description: Internal Server Error
         "200":
           description: Image found
           content:
             image/jpeg: {}
+        "500":
+          description: Internal Server Error
         "404":
           description: Image not found
     post:
@@ -352,9 +406,6 @@ paths:
                   type: string
                   format: binary
       responses:
-        "403":
-          description: Forbidden. Authenticated user lacks permission to edit this
-            resource
         "200":
           description: Ok. Profile picture changed
           content:
@@ -365,6 +416,9 @@ paths:
           description: "Bad Request. No data provided, or data provided was empty"
         "404":
           description: Not Found. No user found with provided id
+        "403":
+          description: Forbidden. Authenticated user lacks permission to edit this
+            resource
         "500":
           description: Internal Server Error. Couldn't create a Blob from provided
             data.
@@ -382,16 +436,16 @@ paths:
               $ref: '#/components/schemas/ReviewDTO'
         required: true
       responses:
-        "401":
-          description: Unauthorized
         "201":
           description: Review created
           content:
             application/json: {}
-        "403":
-          description: Operation not permitted
+        "401":
+          description: Unauthorized
         "400":
           description: Bad request
+        "403":
+          description: Operation not permitted
   /api/events:
     post:
       tags:
@@ -405,18 +459,18 @@ paths:
               $ref: '#/components/schemas/EventManipulationDTO'
         required: true
       responses:
+        "403":
+          description: The operation is not allowed without registration
         "201":
           description: Event successfully created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventManipulationDTO'
-        "400":
-          description: Invalid event data
         "404":
           description: Category not found
-        "403":
-          description: The operation is not allowed without registration
+        "400":
+          description: Invalid event data
         "500":
           description: Internal server error
   /api/events/{eventId}/photo:
@@ -444,12 +498,6 @@ paths:
                   type: string
                   format: binary
       responses:
-        "200":
-          description: Image uploaded
-          content:
-            image/jpeg: {}
-        "404":
-          description: Event not found
         "500":
           description: Error retrieving the image
         "403":
@@ -458,6 +506,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/EventDTO'
+        "200":
+          description: Image uploaded
+          content:
+            image/jpeg: {}
+        "404":
+          description: Event not found
   /api/events/unregistration/{eventId}:
     post:
       tags:
@@ -472,12 +526,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "403":
+          description: User is not registered in the event yet
         "405":
           description: Event has already finished
         "404":
           description: Event not found
-        "403":
-          description: User is not registered in the event yet
         "500":
           description: User is not registered
         "200":
@@ -496,15 +550,15 @@ paths:
           type: integer
           format: int64
       responses:
+        "403":
+          description: "User is already registered in the event, or is the event creator\
+            \ or event is full"
+        "200":
+          description: User successfully registered in the event
         "405":
           description: Event has already finished
         "404":
           description: Event not found
-        "200":
-          description: User successfully registered in the event
-        "403":
-          description: "User is already registered in the event, or is the event creator\
-            \ or event is full"
         "500":
           description: User is not registered
   /api/categories:
@@ -677,18 +731,18 @@ paths:
         schema:
           type: string
       responses:
-        "401":
-          description: Unauthorized
-        "403":
-          description: Operation not permitted
-        "500":
-          description: Internal server error
         "200":
           description: Events obtained
           content:
             application/json: {}
+        "401":
+          description: Unauthorized
         "400":
           description: Bad request
+        "403":
+          description: Operation not permitted
+        "500":
+          description: Internal server error
   /api/events/ticket/{eventId}:
     get:
       tags:
@@ -703,14 +757,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: Ticket successfully generated
-        "405":
-          description: Event has already finished
-        "404":
-          description: Event not found
         "403":
           description: User is not registered in the event yet
+        "405":
+          description: Event has already finished
+        "200":
+          description: Ticket successfully generated
+        "404":
+          description: Event not found
         "500":
           description: User is not registered
   /api/events/image/{id}:
@@ -727,14 +781,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "500":
-          description: Error retrieving the image
+        "404":
+          description: Event or image not found
         "200":
           description: Image found
           content:
             image/jpeg: {}
-        "404":
-          description: Event or image not found
+        "500":
+          description: Error retrieving the image
   /api/events/graph/{eventId}:
     get:
       tags:
@@ -749,14 +803,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "404":
-          description: Event not found
-        "403":
-          description: Operation not permitted
         "200":
           description: Graph data obtained
           content:
             application/json: {}
+        "404":
+          description: Event not found
+        "403":
+          description: Operation not permitted
   /api/events/filter:
     get:
       tags:
@@ -802,12 +856,12 @@ paths:
       summary: Gets graph data of categories in relation to events
       operationId: getAdminProfileGraphData
       responses:
-        "403":
-          description: Operation not permitted
         "200":
           description: Graph data obtained
           content:
             application/json: {}
+        "403":
+          description: Operation not permitted
 components:
   schemas:
     FullUserDTO:
