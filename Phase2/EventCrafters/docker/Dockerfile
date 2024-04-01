@@ -1,20 +1,18 @@
-#################################################
 # Base image for the build container
-#################################################
-FROM --platform=linux/amd64 ubuntu:jammy
 FROM maven:3.9.6-eclipse-temurin-17 as builder
 
 # Sets the working directory for commands to run
 WORKDIR /project
 
 # Copies the project's dependencies
-COPY EventCrafters/pom.xml /project/
+ARG PROJECT_DIR
+COPY ${PROJECT_DIR}/pom.xml /project/
 
 # Downloads the project's dependencies
 #RUN mvn clean verify
 
 # Copies the project's code
-COPY EventCrafters/src /project/src
+COPY ${PROJECT_DIR}/src /project/src
 
 # Compiles the project
 RUN mvn clean package -DskipTests=true
