@@ -126,16 +126,14 @@ public class CategoryRestController {
                     content = { @Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "404", description = "Not found", content=@Content),
     })
-    public ResponseEntity<String> substituteCategory(@PathVariable Long id, @RequestBody CategoryDTO category){
+    public ResponseEntity<CategoryDTO> substituteCategory(@PathVariable Long id, @RequestBody CategoryDTO category){
         if  (id != 1){  // the first category is the default one, it can´t be modified
             Optional<Category> oldCategory = categoryService.findById(id);
             if (oldCategory.isPresent()){
                 category.setId(id);
                 Category category1 = transformFromDTO(category);
                 categoryService.save(category1);
-                URI location = ServletUriComponentsBuilder.fromHttpUrl("https://localhost:8443").path("/api/categories/{id}")
-                        .buildAndExpand(id).toUri();
-                return ResponseEntity.accepted().body(location.toString());
+                return ResponseEntity.accepted().body(transformToDTO(categoryService.findById(id).get()));
             }
             return ResponseEntity.notFound().build();
         }
