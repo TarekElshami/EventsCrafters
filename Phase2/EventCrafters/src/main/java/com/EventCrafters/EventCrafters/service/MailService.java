@@ -52,7 +52,7 @@ public class MailService {
             }
 
             Transport.send(message);
-            System.out.println(content);
+            //System.out.println(content);
 
             return "emailSent";
         } catch (SendFailedException e) {
@@ -84,7 +84,7 @@ public class MailService {
             }
 
             Transport.send(message);
-            System.out.println(content);
+            //System.out.println(content);
 
             return "emailSent";
         } catch (MessagingException e) {
