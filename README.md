@@ -515,14 +515,14 @@ To build and publish the Docker image for the application, follow these instruct
    git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
    ```
    
-4. Navigating to the Directory Containing build_and_push.sh:
+4. Navigating to the Directory Containing create_image.sh:
    ```
    cd webapp11/Phase2/EventCrafters/
    ```
 
 5. Execute the Build Script:
    ```
-   ./build_and_push.sh
+   ./create_image.sh
    ```
 
 ## 📌 Docker Image
