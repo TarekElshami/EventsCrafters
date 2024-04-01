@@ -546,7 +546,7 @@ public class EventRestController {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public ResponseEntity<List<EventDTO>> filterByCategory(@RequestParam("page") int page, @RequestParam(value = "Id", required = false) Long id, @RequestParam("type") String type, @RequestParam(value = "input", required = false) String input, Principal principal) {
+    public ResponseEntity<List<EventDTO>> filterByCategory(@RequestParam("page") int page, @RequestParam(value = "id", required = false) Long id, @RequestParam("type") String type, @RequestParam(value = "input", required = false) String input, Principal principal) {
         int pageSize = 3;
         List<Event> events = new ArrayList<>();
         List<EventDTO> eventDTOS = new ArrayList<>();
@@ -586,6 +586,8 @@ public class EventRestController {
                     events = eventService.eventsOrderedByPopularity(page, pageSize);
                 }
                 break;
+            default:
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         for (Event e : events) {
             eventDTOS.add(transformDTO(e));
