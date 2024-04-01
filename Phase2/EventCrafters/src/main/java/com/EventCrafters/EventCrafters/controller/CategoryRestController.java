@@ -33,29 +33,29 @@ public class CategoryRestController {
         String name = category.getName();
         String color = category.getColor();
         Long id = category.getId();
-        for (Event e : category.getEventsInCategories()){
-            eventsIdInCategories.add(e.getId());
-        }
         return new CategoryDTO(id, name, color, eventsIdInCategories);
 
     }
 
     private Category transformFromDTO(CategoryDTO category){
         Category newCategory = new Category();
-
+        newCategory.setId(category.getId());
         newCategory.setName(category.getName());
         newCategory.setColor(category.getColor());
         
         // only the categories of events without a category are changed
-        for (Long e : category.getEventIdInCategories()){
-            if (eventService.findById(e).isPresent()) {
-                Event event = eventService.findById(e).get();
-                if (event.getCategory().getId() == 1){
-                    event.setCategory(newCategory);
+        if (!category.getEventIdInCategories().isEmpty()){
+            for (Long e : category.getEventIdInCategories()){
+                if (eventService.findById(e).isPresent()) {
+                    Event event = eventService.findById(e).get();
+                    if (event.getCategory().getId() == 1){
+                        event.setCategory(newCategory);
+                    }
                 }
-            }
 
+            }
         }
+
         return newCategory;
 
     }
@@ -114,7 +114,7 @@ public class CategoryRestController {
         Category newCategory = transformFromDTO(category);
         categoryService.save(newCategory);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newCategory.getId()).toUri();
+                .buildAndExpand(categoryService.findAll().size()).toUri();
         return ResponseEntity.created(location).body(location.toString());
     }
 
@@ -130,16 +130,12 @@ public class CategoryRestController {
         if  (id != 1){  // the first category is the default one, it can´t be modified
             Optional<Category> oldCategory = categoryService.findById(id);
             if (oldCategory.isPresent()){
-                Set<Event> events = oldCategory.get().getEventsInCategories();
-                for (Event e : events ){
-                    e.setCategory(categoryService.findById(1).get());
-                }
                 category.setId(id);
                 Category category1 = transformFromDTO(category);
                 categoryService.save(category1);
                 URI location = ServletUriComponentsBuilder.fromHttpUrl("https://localhost:8443").path("/api/categories/{id}")
                         .buildAndExpand(id).toUri();
-                return ResponseEntity.created(location).body(location.toString());
+                return ResponseEntity.accepted().body(location.toString());
             }
             return ResponseEntity.notFound().build();
         }
