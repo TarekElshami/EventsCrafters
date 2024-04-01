@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7ad2b00d-7d5f-4e6d-ae11-aee17e3829c7",
-		"name": "Práctica DAW",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "32974096"
+		"_postman_id": "fa5ca45f-39bf-4ef0-bf13-77b301846107",
+		"name": "EventsCrafters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33136046"
 	},
 	"item": [
 		{
@@ -324,7 +324,22 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/events/1"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/1",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -333,7 +348,23 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/events/image/5"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/image/5",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"image",
+										"5"
+									]
+								}
 							},
 							"response": []
 						},
@@ -342,7 +373,23 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/events/graph/6"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/graph/6",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"graph",
+										"6"
+									]
+								}
 							},
 							"response": []
 						},
@@ -360,7 +407,21 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/events"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events"
+									]
+								}
 							},
 							"response": []
 						},
@@ -379,7 +440,23 @@
 										}
 									]
 								},
-								"url": "https://10.100.139.249:8443/api/events/7/photo"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/7/photo",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"7",
+										"photo"
+									]
+								}
 							},
 							"response": []
 						},
@@ -397,7 +474,23 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/events/6/attendees"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/6/attendees",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"6",
+										"attendees"
+									]
+								}
 							},
 							"response": []
 						},
@@ -406,7 +499,155 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/events/AdminProfile/graph"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/AdminProfile/graph",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"AdminProfile",
+										"graph"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Event",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tech Conference 2024\",\r\n    \"description\": \"A comprehensive tech conference covering all aspects of software development.\",\r\n    \"maxCapacity\": 500,\r\n    \"price\": 299.99,\r\n    \"location\": \"Tech Arena, Silicon Valley\",\r\n      \"map\": \"<iframe src=\\\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12166.31030718179!2d-3.8806475!3d40.3295317!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418fc5ceff7897%3A0x811e3f75ccc3b6fb!2sUniversidad%20Rey%20Juan%20Carlos%2C%20campus%20de%20M%C3%B3stoles!5e0!3m2!1ses!2ses!4v1710094939356!5m2!1ses!2ses\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"no-referrer-when-downgrade\\\"></iframe>\",\r\n    \"startDate\": \"2025-05-15T10:00:00+02:00\",\r\n    \"endDate\": \"2025-05-17T17:00:00+02:00\",\r\n    \"additionalInfo\": \"Bring your tech enthusiasm!\",\r\n    \"categoryId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/3",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Event",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/3",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ticket",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/ticket/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"ticket",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/registration/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"registration",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unregistration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/events/unregistration/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"unregistration",
+										"2"
+									]
+								}
 							},
 							"response": []
 						}
@@ -429,7 +670,22 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/auth/login"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
 							},
 							"response": []
 						},
@@ -438,7 +694,22 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/auth/logout"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/auth/logout",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
 							},
 							"response": []
 						},
@@ -456,7 +727,22 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/auth/login"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
 							},
 							"response": []
 						}
@@ -479,7 +765,22 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/reviews/new"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/reviews/new",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"reviews",
+										"new"
+									]
+								}
 							},
 							"response": []
 						}
@@ -522,7 +823,22 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/categories/2"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -540,7 +856,21 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/categories"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
 							},
 							"response": []
 						},
@@ -558,7 +888,22 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/categories/5"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories/5",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"5"
+									]
+								}
 							},
 							"response": []
 						},
@@ -567,7 +912,22 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/categories/2"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
 							},
 							"response": []
 						}
@@ -581,7 +941,22 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/users/me"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/me",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
 							},
 							"response": []
 						},
@@ -590,7 +965,22 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/users/2"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/2",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -608,7 +998,21 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/users"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users"
+									]
+								}
 							},
 							"response": []
 						},
@@ -617,7 +1021,23 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/users/img/1"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/img/1",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"img",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -635,7 +1055,22 @@
 										}
 									}
 								},
-								"url": "https://10.100.139.249:8443/api/users/1"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/1",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -644,7 +1079,22 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/users/1"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/1",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -663,7 +1113,23 @@
 										}
 									]
 								},
-								"url": "https://10.100.139.249:8443/api/users/img/1"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/img/1",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"img",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -672,7 +1138,23 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": "https://10.100.139.249:8443/api/users/1/recoverPassword"
+								"url": {
+									"raw": "https://10.100.139.249:8443/api/users/1/recoverPassword",
+									"protocol": "https",
+									"host": [
+										"10",
+										"100",
+										"139",
+										"249"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1",
+										"recoverPassword"
+									]
+								}
 							},
 							"response": []
 						}
@@ -974,7 +1456,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/events/1"
+								"url": {
+									"raw": "https://localhost:8443/api/events/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -983,7 +1477,20 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/events/image/5"
+								"url": {
+									"raw": "https://localhost:8443/api/events/image/5",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"image",
+										"5"
+									]
+								}
 							},
 							"response": []
 						},
@@ -992,7 +1499,20 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/events/graph/6"
+								"url": {
+									"raw": "https://localhost:8443/api/events/graph/6",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"graph",
+										"6"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1010,7 +1530,18 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/events"
+								"url": {
+									"raw": "https://localhost:8443/api/events",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1029,7 +1560,20 @@
 										}
 									]
 								},
-								"url": "https://localhost:8443/api/events/7/photo"
+								"url": {
+									"raw": "https://localhost:8443/api/events/7/photo",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"7",
+										"photo"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1047,7 +1591,20 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/events/6/attendees"
+								"url": {
+									"raw": "https://localhost:8443/api/events/6/attendees",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"6",
+										"attendees"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1056,7 +1613,137 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/events/AdminProfile/graph"
+								"url": {
+									"raw": "https://localhost:8443/api/events/AdminProfile/graph",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"AdminProfile",
+										"graph"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Event",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tech Conference 2024\",\r\n    \"description\": \"A comprehensive tech conference covering all aspects of software development.\",\r\n    \"maxCapacity\": 500,\r\n    \"price\": 299.99,\r\n    \"location\": \"Tech Arena, Silicon Valley\",\r\n      \"map\": \"<iframe src=\\\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12166.31030718179!2d-3.8806475!3d40.3295317!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418fc5ceff7897%3A0x811e3f75ccc3b6fb!2sUniversidad%20Rey%20Juan%20Carlos%2C%20campus%20de%20M%C3%B3stoles!5e0!3m2!1ses!2ses!4v1710094939356!5m2!1ses!2ses\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"no-referrer-when-downgrade\\\"></iframe>\",\r\n    \"startDate\": \"2025-05-15T10:00:00+02:00\",\r\n    \"endDate\": \"2025-05-17T17:00:00+02:00\",\r\n    \"additionalInfo\": \"Bring your tech enthusiasm!\",\r\n    \"categoryId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/events/3",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Event",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/events/3",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ticket",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/events/ticket/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"ticket",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unregistration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/events/unregistration/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"unregistration",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/events/registration/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"events",
+										"registration",
+										"2"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1079,7 +1766,19 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/auth/login"
+								"url": {
+									"raw": "https://localhost:8443/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1097,7 +1796,19 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/auth/login"
+								"url": {
+									"raw": "https://localhost:8443/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1106,7 +1817,19 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": "https://localhost:8443/api/auth/logout"
+								"url": {
+									"raw": "https://localhost:8443/api/auth/logout",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1129,7 +1852,18 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/reviews"
+								"url": {
+									"raw": "https://localhost:8443/api/reviews",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"reviews"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1169,7 +1903,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/categories/2"
+								"url": {
+									"raw": "https://localhost:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1187,7 +1933,18 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/categories"
+								"url": {
+									"raw": "https://localhost:8443/api/categories",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1205,7 +1962,19 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/categories/5"
+								"url": {
+									"raw": "https://localhost:8443/api/categories/5",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"5"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1214,7 +1983,19 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "https://localhost:8443/api/categories/2"
+								"url": {
+									"raw": "https://localhost:8443/api/categories/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"categories",
+										"2"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1228,7 +2009,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/users/me"
+								"url": {
+									"raw": "https://localhost:8443/api/users/me",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1237,7 +2030,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/users/2"
+								"url": {
+									"raw": "https://localhost:8443/api/users/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1255,7 +2060,18 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/users"
+								"url": {
+									"raw": "https://localhost:8443/api/users",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1264,7 +2080,20 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "https://localhost:8443/api/users/img/1"
+								"url": {
+									"raw": "https://localhost:8443/api/users/img/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"img",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1282,7 +2111,19 @@
 										}
 									}
 								},
-								"url": "https://localhost:8443/api/users/1"
+								"url": {
+									"raw": "https://localhost:8443/api/users/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1291,7 +2132,19 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "https://localhost:8443/api/users/1"
+								"url": {
+									"raw": "https://localhost:8443/api/users/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1310,7 +2163,20 @@
 										}
 									]
 								},
-								"url": "https://localhost:8443/api/users/img/1"
+								"url": {
+									"raw": "https://localhost:8443/api/users/img/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"img",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1319,7 +2185,20 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": "https://localhost:8443/api/users/1/recoverPassword"
+								"url": {
+									"raw": "https://localhost:8443/api/users/1/recoverPassword",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1",
+										"recoverPassword"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1328,7 +2207,20 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": "https://localhost:8443/api/users/1/ban"
+								"url": {
+									"raw": "https://localhost:8443/api/users/1/ban",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1",
+										"ban"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1337,7 +2229,20 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": "https://localhost:8443/api/users/1/unban"
+								"url": {
+									"raw": "https://localhost:8443/api/users/1/unban",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"users",
+										"1",
+										"unban"
+									]
+								}
 							},
 							"response": []
 						}
