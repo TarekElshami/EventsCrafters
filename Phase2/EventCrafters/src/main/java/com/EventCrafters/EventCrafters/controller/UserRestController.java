@@ -2,6 +2,7 @@ package com.EventCrafters.EventCrafters.controller;
 
 import com.EventCrafters.EventCrafters.DTO.CensoredUserDTO;
 import com.EventCrafters.EventCrafters.DTO.FullUserDTO;
+import com.EventCrafters.EventCrafters.DTO.NewUserDTO;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.service.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -100,7 +101,8 @@ public class UserRestController {
 					description = "Bad Request. Body must not have a photo attribute.", content = @Content)
 	})
 	@PostMapping
-	public ResponseEntity<FullUserDTO> newUser(@RequestBody User user){
+	public ResponseEntity<FullUserDTO> newUser(@RequestBody NewUserDTO userDTO){
+		User user = new User(userDTO);
 		if (userService.findByUserName(user.getUsername()).isPresent()) {
 			return ResponseEntity.status(409).build(); //409 conflict
 		}
