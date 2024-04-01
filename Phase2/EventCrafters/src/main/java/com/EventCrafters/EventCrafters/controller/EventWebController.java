@@ -3,21 +3,16 @@ package com.EventCrafters.EventCrafters.controller;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
-import com.EventCrafters.EventCrafters.model.Review;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.service.*;
 import io.swagger.v3.oas.annotations.Hidden;
-import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -28,16 +23,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class EventWebController {
 
     @Autowired
     private EventService eventService;
-
-    @Autowired
-    private MailService mailService;
 
     @Autowired
     private UserService userService;
@@ -128,13 +119,11 @@ public class EventWebController {
                               @RequestParam("category") Long categoryId,
                               @RequestParam(value = "additionalInfo", required = false) String additionalInfo) {
         try {
-            String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
-            Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(map);
 
-            if (!matcher.find()) {
+            if (eventService.isMapIframeInvalid(map)) {
                 return "redirect:/error";
             }
+
             Category category = categoryService.findById(categoryId)
                     .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
 
@@ -476,11 +465,7 @@ public class EventWebController {
             return "redirect:/error";
         }
 
-        String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
-        Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(map);
-
-        if (!matcher.find()) {
+        if (eventService.isMapIframeInvalid(map)) {
             return "redirect:/error";
         }
 
@@ -495,15 +480,8 @@ public class EventWebController {
             event.setPhoto(photoBlob);
         }
 
-        event.setName(name);
-        event.setDescription(description);
-        event.setMaxCapacity(maxCapacity);
-        event.setPrice(price);
-        event.setLocation(location);
-        event.setMap(map);
-        event.setStartDate(Date.from(startDate.atZone(ZoneId.systemDefault()).toInstant()));
-        event.setEndDate(Date.from(endDate.atZone(ZoneId.systemDefault()).toInstant()));
-        event.setAdditionalInfo(additionalInfo);
+        eventService.assignEventProperties(event, name, description, maxCapacity, price, location, map, Date.from(startDate.atZone(ZoneId.systemDefault()).toInstant()), Date.from(endDate.atZone(ZoneId.systemDefault()).toInstant()), additionalInfo);
+
         event.setCategory(category);
 
         eventService.update(event);

@@ -3,15 +3,13 @@ package com.EventCrafters.EventCrafters.model;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 import javax.sql.rowset.serial.SerialBlob;
 
 import com.EventCrafters.EventCrafters.DTO.FullUserDTO;
+import com.EventCrafters.EventCrafters.DTO.NewUserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
@@ -83,6 +81,16 @@ public class User {
 		this.email = userDTO.getEmail();
 		this.roles = userDTO.getRoles();
 		this.banned = userDTO.isBanned();
+		this.setDefaultPhoto();
+	}
+
+	public User(NewUserDTO userDTO) {
+		this.name = userDTO.getName();
+		this.username = userDTO.getUsername();
+		this.email = userDTO.getEmail();
+		this.roles = new ArrayList<>(List.of("USER"));
+		this.banned = false;
+		this.encodedPassword = userDTO.getPassword();
 		this.setDefaultPhoto();
 	}
 

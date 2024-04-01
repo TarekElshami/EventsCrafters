@@ -1,10 +1,11 @@
 package com.EventCrafters.EventCrafters.service;
 
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import com.EventCrafters.EventCrafters.model.Category;
+import com.EventCrafters.EventCrafters.DTO.EventManipulationDTO;
 import com.EventCrafters.EventCrafters.model.Event;
 import com.EventCrafters.EventCrafters.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -188,4 +189,81 @@ public class EventService {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return sdf.format(date);
 	}
+
+	public static boolean eventHasValidFields(EventManipulationDTO event) {
+		if (
+				event.getName() == null || event.getName().trim().isEmpty() ||
+						event.getDescription() == null || event.getDescription().trim().isEmpty() ||
+						event.getLocation() == null || event.getLocation().trim().isEmpty() ||
+						event.getMap() == null || event.getMap().trim().isEmpty() ||
+						event.getCategoryId() == null ||
+						event.getAdditionalInfo() == null || event.getAdditionalInfo().trim().isEmpty()) {
+			return true;
+		}
+
+		if (event.getMaxCapacity() <= 0 || event.getPrice() < 0 || !isPriceValid(event.getPrice())) {
+			return true;
+		}
+
+		Date now = new Date();
+
+		if (event.getStartDate() == null || event.getStartDate().before(now)) {
+			return true;
+		}
+
+		if (event.getEndDate() == null || event.getEndDate().before(event.getStartDate())) {
+			return true;
+		}
+
+		if (isMapIframeInvalid(event.getMap())) return true;
+
+		return false;
+	}
+
+	public static boolean isMapIframeInvalid(String map) {
+		String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
+		Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(map);
+
+		if (!matcher.find()) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isPriceValid(double price) {
+		// Convert the price to a string
+		String priceText = String.valueOf(price);
+
+		// Find the position of the decimal point
+		int decimalPointIndex = priceText.indexOf(".");
+
+		// If there's no decimal point, the number is an integer and valid
+		if (decimalPointIndex == -1) {
+			return true;
+		}
+
+		// Calculate the number of digits after the decimal point
+		int decimalDigits = priceText.length() - decimalPointIndex - 1;
+
+		// Check that there are no more than two digits after the decimal point
+		return decimalDigits <= 2;
+	}
+
+
+	public static void assignEventProperties(Event event, String name, String description,
+									  int maxCapacity, double price, String location,
+									  String map, Date startDate, Date endDate,
+									  String additionalInfo) {
+		event.setName(name);
+		event.setDescription(description);
+		event.setMaxCapacity(maxCapacity);
+		event.setPrice(price);
+		event.setLocation(location);
+		event.setMap(map);
+		event.setStartDate(startDate);
+		event.setEndDate(endDate);
+		event.setAdditionalInfo(additionalInfo);
+	}
+
 }

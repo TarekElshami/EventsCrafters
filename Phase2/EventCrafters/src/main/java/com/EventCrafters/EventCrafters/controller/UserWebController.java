@@ -43,8 +43,6 @@ public class UserWebController {
 	@Autowired
 	private UserLoginService userLoginService;
 	@Autowired
-	private EventService eventService;
-	@Autowired
 	private AjaxService ajaxService;
 
 	private ObjectMapper objectMapper;

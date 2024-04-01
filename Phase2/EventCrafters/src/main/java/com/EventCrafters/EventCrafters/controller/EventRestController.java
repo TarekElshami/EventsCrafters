@@ -3,9 +3,9 @@ package com.EventCrafters.EventCrafters.controller;
 import com.EventCrafters.EventCrafters.DTO.EventDTO;
 import com.EventCrafters.EventCrafters.DTO.EventFinishedDTO;
 import com.EventCrafters.EventCrafters.DTO.EventManipulationDTO;
+import com.EventCrafters.EventCrafters.DTO.TicketDTO;
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
-import com.EventCrafters.EventCrafters.model.Review;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.service.CategoryService;
 import com.EventCrafters.EventCrafters.service.EventService;
@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,14 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.net.http.HttpResponse;
 import java.security.Principal;
 import java.sql.Blob;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/api/events")
@@ -85,7 +84,7 @@ public class EventRestController {
     })
     public ResponseEntity<EventDTO> createEvent(@RequestBody EventManipulationDTO eventManipulationDTO) {
         // Check for empty fields in the event
-        if (eventHasEmptyFields(eventManipulationDTO)) {
+        if (eventService.eventHasValidFields(eventManipulationDTO)) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -139,7 +138,7 @@ public class EventRestController {
     })
     public ResponseEntity<EventDTO> editEvent(@PathVariable Long eventId, @RequestBody EventManipulationDTO eventManipulationDTO) {
         // Check for empty fields in the event
-        if (eventHasEmptyFields(eventManipulationDTO)) {
+        if (eventService.eventHasValidFields(eventManipulationDTO)) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -170,18 +169,7 @@ public class EventRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        existingEvent.setName(eventManipulationDTO.getName());
-        existingEvent.setDescription(eventManipulationDTO.getDescription());
-        existingEvent.setMaxCapacity(eventManipulationDTO.getMaxCapacity());
-        existingEvent.setPrice(eventManipulationDTO.getPrice());
-        existingEvent.setLocation(eventManipulationDTO.getLocation());
-        existingEvent.setMap(eventManipulationDTO.getMap());
-        existingEvent.setStartDate(eventManipulationDTO.getStartDate());
-        existingEvent.setEndDate(eventManipulationDTO.getEndDate());
-        existingEvent.setAdditionalInfo(eventManipulationDTO.getAdditionalInfo());
-
-        //Set event creator
-        existingEvent.setCreator(userOpt.get());
+        eventService.assignEventProperties(existingEvent, eventManipulationDTO.getName(), eventManipulationDTO.getDescription(), eventManipulationDTO.getMaxCapacity(), eventManipulationDTO.getPrice(), eventManipulationDTO.getLocation(), eventManipulationDTO.getMap(), eventManipulationDTO.getStartDate(), eventManipulationDTO.getEndDate(), eventManipulationDTO.getAdditionalInfo());
 
         // Set the category
         existingEvent.setCategory(categoryOpt.get());
@@ -282,8 +270,60 @@ public class EventRestController {
         return ResponseEntity.ok("");
     }
 
+    @GetMapping("/ticket/{eventId}")
+    @Operation(summary = "Generates an event ticket")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ticket successfully generated", content = @Content),
+            @ApiResponse(responseCode = "403", description = "User is not registered in the event yet", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Event not found", content = @Content),
+            @ApiResponse(responseCode = "405", description = "Event has already finished", content = @Content),
+            @ApiResponse(responseCode = "500", description = "User is not registered", content = @Content)
+    })
+    public ResponseEntity<TicketDTO> getEventTicket(@PathVariable Long eventId){
+        //Check if event exists
+        Optional<Event> eventOptional = eventService.findById(eventId);
+        if (!eventOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Event existingEvent = eventOptional.get();
 
-    @PutMapping("/{eventId}/photo")
+        //Check if event has not finished yet
+        boolean eventFinished = LocalDateTime.now().isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        if(eventFinished){
+            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+        }
+
+        //Check if user is registered
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = authentication.getName();
+        Optional<User> userOpt = userService.findByUserName(currentUsername);
+        if (!userOpt.isPresent()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        User currentUser = userOpt.get();
+
+        //Check if user is registered in the event
+        if (!existingEvent.getRegisteredUsers().contains(currentUser)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        User eventCreator = existingEvent.getCreator();
+
+        String priceDisplay = existingEvent.getPrice() == 0.0 ? "Gratis" : String.format("%.2f €", existingEvent.getPrice());
+        String startDateFormatted = eventService.formatDate(existingEvent.getStartDate());
+        String endDateFormatted = eventService.formatDate(existingEvent.getEndDate());
+        Duration duration = Duration.between(existingEvent.getStartDate().toInstant(), existingEvent.getEndDate().toInstant());
+        long hours = duration.toHours();
+        long minutes = duration.minusHours(hours).toMinutes();
+        String durationFormatted = String.format("%d horas y %d minutos", hours, minutes);
+
+        TicketDTO ticketDTO = new TicketDTO(existingEvent.getName(), currentUser.getName(), currentUser.getUsername(), currentUser.getEmail(), eventCreator.getName(), eventCreator.getUsername(), eventCreator.getEmail(), existingEvent.getMaxCapacity(), existingEvent.getLocation(), startDateFormatted, endDateFormatted, durationFormatted, existingEvent.getAdditionalInfo(), priceDisplay);
+
+        return ResponseEntity.accepted().body(ticketDTO);
+    }
+
+
+    @PostMapping("/{eventId}/photo")
     @Operation(summary = "Uploads a photo for an existing event", description = "Allows uploading a photo for an existing event. Only the event creator or an admin can perform this action.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Image uploaded",
@@ -318,7 +358,10 @@ public class EventRestController {
                     .buildAndExpand(event.getId())
                     .toUri();
 
-            return ResponseEntity.created(location).body(eventDTO);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(location);
+
+            return new ResponseEntity<>(eventDTO, headers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -503,7 +546,7 @@ public class EventRestController {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public ResponseEntity<List<EventDTO>> filterByCategory(@RequestParam("page") int page, @RequestParam(value = "Id", required = false) Long id, @RequestParam("type") String type, @RequestParam(value = "input", required = false) String input, Principal principal) {
+    public ResponseEntity<List<EventDTO>> filterByCategory(@RequestParam("page") int page, @RequestParam(value = "id", required = false) Long id, @RequestParam("type") String type, @RequestParam(value = "input", required = false) String input, Principal principal) {
         int pageSize = 3;
         List<Event> events = new ArrayList<>();
         List<EventDTO> eventDTOS = new ArrayList<>();
@@ -543,6 +586,8 @@ public class EventRestController {
                     events = eventService.eventsOrderedByPopularity(page, pageSize);
                 }
                 break;
+            default:
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         for (Event e : events) {
             eventDTOS.add(transformDTO(e));
@@ -551,46 +596,60 @@ public class EventRestController {
     }
 
     @GetMapping("/user")
-    @Operation(summary = "Retrieves the events that the registered user has created and have not ended yet")
+    @Operation(summary = "Returns the events in which the user is a participant or creator")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Events obtained",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content)
+            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+
     })
-    public ResponseEntity<List<EventDTO>> userEvents(@RequestParam("page") int page, Principal principal, @RequestParam(value = "time", required = false) String time, @RequestParam(value = "type", required = false) String type) {
+    public ResponseEntity<List<EventDTO>> userEvents(@RequestParam("page") int page, Principal principal,
+                                                     @RequestParam(value = "time", required = false) String time,
+                                                     @RequestParam(value = "type", required = false) String type) {
         int pageSize = 3;
         List<EventDTO> eventDTOS = new ArrayList<>();
         List<Event> events = new ArrayList<>();
+
         if (principal == null || principal.getName().equals("anonymousUser")) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
         Optional<User> userOp = userService.findByUserName(principal.getName());
-        if (userOp.isPresent()) {
-            if (userOp.get().hasRole("ADMIN")) {
-                events = eventService.findAll(page, pageSize);
-            } else { // if role user
-                switch (type) {
-                    case "created":
-                        if (time.equals("present")) {
-                            events = eventService.findByCreatorIdCurrentCreatedEvents(userOp.get().getId(), page, pageSize);
-                        } else if (time.equals("past")) {
-                            events = eventService.findByCreatorIdPastCreatedEvents(userOp.get().getId(), page, pageSize);
-                        } else {
-                            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                        }
-                        break;
-                    case "registered":
-                        if (time.equals("present")) {
-                            events = eventService.findByRegisteredUserIdCurrentEvents(userOp.get().getId(), page, pageSize);
-                        } else if (time.equals("past")) {
-                            events = eventService.findByRegisteredUserIdPastEvents(userOp.get().getId(), page, pageSize);
-                        } else {
-                            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                        }
-                }
+        if (!userOp.isPresent()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        User currentUser = userOp.get();
+
+        if (currentUser.hasRole("ADMIN")) {
+            events = eventService.findAll(page, pageSize);
+        } else if (type != null && time != null) {
+            switch (type) {
+                case "created":
+                    if ("present".equals(time)) {
+                        events = eventService.findByCreatorIdCurrentCreatedEvents(currentUser.getId(), page, pageSize);
+                    } else if ("past".equals(time)) {
+                        events = eventService.findByCreatorIdPastCreatedEvents(currentUser.getId(), page, pageSize);
+                    } else {
+                        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                    }
+                    break;
+                case "registered":
+                    if ("present".equals(time)) {
+                        events = eventService.findByRegisteredUserIdCurrentEvents(currentUser.getId(), page, pageSize);
+                    } else if ("past".equals(time)) {
+                        events = eventService.findByRegisteredUserIdPastEvents(currentUser.getId(), page, pageSize);
+                    } else {
+                        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                    }
+                    break;
+                default:
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         for (Event e : events) {
@@ -599,49 +658,12 @@ public class EventRestController {
 
         return ResponseEntity.ok(eventDTOS);
     }
-
-
+    
     private EventDTO transformDTO(Event event) {
         if (event.getEndDate().before(new Date())) {
             return new EventFinishedDTO(event.getId(), event.getName(), event.getDescription(), event.getMaxCapacity(), event.getPrice(), event.getLocation(), event.getMap(), event.getStartDate(), event.getEndDate(), event.getAdditionalInfo(), event.getCreator().getId(), event.getNumRegisteredUsers(), event.getCategory().getId(), event.getAttendeesCount(), reviewService.calculateAverageRatingForEvent(event.getId()), reviewService.countReviewsForEvent(event.getId()));
         }
         return new EventDTO(event.getId(), event.getName(), event.getDescription(), event.getMaxCapacity(), event.getPrice(), event.getLocation(), event.getMap(), event.getStartDate(), event.getEndDate(), event.getAdditionalInfo(), event.getCreator().getId(), event.getNumRegisteredUsers(), event.getCategory().getId());
-    }
-
-    private boolean eventHasEmptyFields(EventManipulationDTO event) {
-        if (
-                event.getName() == null || event.getName().trim().isEmpty() ||
-                        event.getDescription() == null || event.getDescription().trim().isEmpty() ||
-                        event.getLocation() == null || event.getLocation().trim().isEmpty() ||
-                        event.getMap() == null || event.getMap().trim().isEmpty() ||
-                        event.getCategoryId() == null ||
-                        event.getAdditionalInfo() == null || event.getAdditionalInfo().trim().isEmpty()) {
-            return true;
-        }
-
-        if (event.getMaxCapacity() <= 0 || event.getPrice() < 0) {
-            return true;
-        }
-
-        Date now = new Date();
-
-        if (event.getStartDate() == null || event.getStartDate().before(now)) {
-            return true;
-        }
-
-        if (event.getEndDate() == null || event.getEndDate().before(event.getStartDate())) {
-            return true;
-        }
-
-        String mapIframeRegex = "<iframe.*src=\"https?.*\".*></iframe>";
-        Pattern pattern = Pattern.compile(mapIframeRegex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(event.getMap());
-
-        if (!matcher.find()) {
-            return true;
-        }
-
-        return false;
     }
 
     private boolean isUserAdminOrCreator(String username, Event event) {

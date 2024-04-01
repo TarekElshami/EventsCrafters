@@ -45,8 +45,8 @@ public class CategoryRestController {
 
         newCategory.setName(category.getName());
         newCategory.setColor(category.getColor());
-
-        // solo se cambian las categorias de los eventos sin categoría
+        
+        // only the categories of events without a category are changed
         for (Long e : category.getEventIdInCategories()){
             if (eventService.findById(e).isPresent()) {
                 Event event = eventService.findById(e).get();
@@ -66,9 +66,12 @@ public class CategoryRestController {
                     content = { @Content(mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public List<CategoryDTO> showCategories(@RequestParam("page") int page){
+    public ResponseEntity<List<CategoryDTO>> showCategories(@RequestParam(value = "page", required = false) Integer page){
         List<Category> all;
-        if (page != -1){
+        if (page == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (page > -1){
             all = categoryService.findAll(page);
         } else {
             all = categoryService.findAll();
@@ -79,7 +82,7 @@ public class CategoryRestController {
             CategoryDTO categoryDTO = transformToDTO(c);
             answer.add(categoryDTO);
         }
-        return answer;
+        return ResponseEntity.ok(answer);
     }
     @GetMapping("/categories/{id}")
     @Operation(summary = "Retrieves the category, with the ID specified in the url")
@@ -117,7 +120,7 @@ public class CategoryRestController {
 
 
     @PutMapping("/categories/{id}")
-    @Operation(summary = "Shows the information of a specific category.")
+    @Operation(summary = "Modifies an existing category.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Category created",
                     content = { @Content(mediaType = "application/json")}),

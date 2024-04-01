@@ -1,37 +1,37 @@
 #################################################
-# Imagen base para el contenedor de compilación
+# Base image for the build container
 #################################################
 FROM --platform=linux/amd64 ubuntu:jammy
 FROM maven:3.9.6-eclipse-temurin-17 as builder
 
-# Define el directorio de trabajo donde ejecutar comandos
+# Sets the working directory for commands to run
 WORKDIR /project
 
-# Copia las dependencias del proyecto
+# Copies the project's dependencies
 COPY pom.xml /project/
 
-# Descarga las dependencias del proyecto
+# Downloads the project's dependencies
 #RUN mvn clean verify
 
-# Copia el código del proyecto
+# Copies the project's code
 COPY /src /project/src
 
-# Compila proyecto
+# Compiles the project
 RUN mvn clean package -DskipTests=true
 
 #################################################
-# Imagen base para el contenedor de la aplicación
+# Base image for the application container
 #################################################
 FROM openjdk:17.0.2
 
-# Define el directorio de trabajo donde se encuentra el JAR
+# Sets the working directory where the JAR is located
 WORKDIR /usr/src/app
 
-# Copia el JAR del contenedor de compilación
+# Copies the JAR from the build container
 COPY --from=builder /project/target/*.jar /usr/src/app/ec.jar
 
-# Indica el puerto que expone el contenedor
-EXPOSE 5000
+# Indicates the port that the container exposes
+EXPOSE 8443
 
-# Comando que se ejecuta al hacer docker run
+# Command to run on docker run
 CMD [ "java", "-jar", "ec.jar" ]

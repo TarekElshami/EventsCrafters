@@ -41,8 +41,7 @@ public class Category {
         this.color = color;
     }
 
-    public Category(Long id, String name, String color, Set<Event> eventsInCategories) {
-        this.id = id;
+    public Category(String name, String color, Set<Event> eventsInCategories) {
         this.name = name;
         this.color = color;
         this.eventsInCategories = eventsInCategories;

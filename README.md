@@ -2,7 +2,7 @@
 
 # <p align="center"> Events Crafters </p>
 ## 📑Index
-- [Phase 0](phase-0)
+- [Phase 0](#phase-0)
    - [Team members](#team-members)
    - [Team organization](#team-organization)
    - [Entities](#entities)
@@ -32,6 +32,16 @@
    - [Recommendation algorithm](#recommendation-algorithm)
    - [Members Participation](#members-participation)
    - [Sample users](#sample-users)
+     
+- [Phase 3](#phase-3---add-a-rest-api-to-the-web-application-and-package-with-docker)
+   - [API REST documentation](#api-rest-documentation)
+   - [Updated Class and Templates Diagram](#updated-class-and-templates-diagram)
+   - [Docker Application Execution Instructions](#docker-application-execution-instructions)
+   - [Docker Image Construction Documentation](#docker-image-construction-documentation)
+   - [Deployment on Virtual Machine](#deployment-on-virtual-machine)
+   - [Virtual Machine Application URL and Example Users](#virtual-machine-application-url-and-example-users)
+   - [Members Participation Phase 3](#members-participation-phase-3)
+     
 ***   
 ### ♨️Phase 0
 ***
@@ -77,7 +87,6 @@ It is important to note that through this link, access will be granted to the wo
 | Requierement | Anonymus| Registered | Admin |
 | ------------- | ------------- | ----------- | --------- |
 |   View events  | <p align="center"> ☑️ </p> | <p align="center"> ☑️ </p> | <p align="center"> ☑️ </p>  |
-|   View reviews  | <p align="center"> ☑️ </p> | <p align="center"> ☑️ </p>  | <p align="center"> ☑️ </p>  |
 |   Create reviews  | | <p align="center"> ☑️ </p>  | |
 |   Sign up to an event  | | <p align="center"> ☑️ </p>  | |
 |   View event record  | | <p align="center"> ☑️ </p>  | |
@@ -91,7 +100,6 @@ It is important to note that through this link, access will be granted to the wo
 
 ## 🖱️ Additional Technologies
 - **Send emails**: users will receive emails when signing up for a new event, and in some other cases.
-- **Google Maps**: events will have a Google Maps embed showing the event location and its surroundings
   
 ## 📊Charts
 - **Attendance chart**: users will be able to visualize an attendance chart for events they have published.
@@ -101,11 +109,8 @@ It is important to note that through this link, access will be granted to the wo
 - **Recommend by category**: This algorithm will choose the events to be featured in a registered user's home page based on the most common tags among events the user has attended.
 
 ## 🎯Optional features
--  **Sign-ups over time**: A chart displaying how many people have signed up for an event over time.
--  **Views chart**: A chart displaying the views an event has received over time.
--  **Filter by User Rating algorithm**: An algorithm that would promote events published by users whose previous events have been rated positively.
 -  **PDF integration**: allow users to download a PDF holding event information upon sign-up.
--  **Chat**: give users the possibility of speaking to each other through the app, and/or create a chatroom for each event where users can discuss it.
+
 ***
 ### ♨️Phase 1
 ***
@@ -442,4 +447,244 @@ An event recommendation algorithm has been implemented. It consists of two main 
 ### 🛡️ @user
 - username: user3
 - password: pass
+
+***   
+### :whale2: Phase 3 - Add a REST API to the web application and package with Docker
+***   
+
+## 🌐 API REST documentation
+The REST API documentation is automatically generated and can be accessed in the following formats:
+
+
+- **OpenAPI Specification (YAML):** [api-docs.yaml](Phase2/EventCrafters/api-docs/api-docs.yaml)
+- **HTML Documentation (Viewable in browser):** [api-docs.html](https://raw.githack.com/CodeURJC-DAW-2023-24/webapp11/main/Phase2/EventCrafters/api-docs/api-docs.html)
+
+To generate or update this documentation, follow these commands:
+
+1. Change to the directory containing the `pom.xml` file:
+   ```shell
+   cd Phase2/EventCrafters
+
+2. Then, use the command to generate or update the documentation:
+   ```shell
+   mvn verify
+
+## 📊 Updated Class and Templates Diagram
+
+![Latest EventsCrafters Class Diagram](Phase2/diagrams/EventsCrafters%20Class%20Diagram.svg?v=2)
+*Latest EventsCrafters Class Diagram*
+
+## 🐳 Docker Application Execution Instructions
+
+1. Install [Docker](https://docs.docker.com/engine/install/)
+
+2. Run Docker
+   
+3. Clone the Repository:
+   ```
+   git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
+   ```
+   
+4. Navigating to the Directory Containing docker-compose.yml:
+   ```
+   cd webapp11/Phase2/EventCrafters/
+   ```
+
+5. Deploying the Application with Docker Compose:
+   ```
+   docker compose up
+   ``` 
+
+6. The application will be accesible in the following URL: [https://localhost:8443/](https://localhost:8443/#)
+
+7. To stop the deployment, run the following command:
+   ```
+   docker compose down
+   ```
+
+## 🛠️ Docker Image Construction Documentation
+
+To build and publish the Docker image for the application, follow these instructions:
+1. Create an account on [Dockerhub](https://hub.docker.com/)
+
+2. Install [Docker](https://docs.docker.com/engine/install/)
+
+3. Run Docker
+   
+4. Clone the Repository:
+   ```
+   git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
+   ```
+   
+5. Navigating to the Directory Containing create_image.sh:
+   ```
+   cd webapp11/Phase2/EventCrafters/
+   ```
+
+6. Before building and pushing your image, you need to log in to Docker Hub. This will ensure that you have the permission to push images to your repository. From the command line, execute:
+   ```
+   docker login
+   ```
+   You will be prompted to enter your Docker Hub username and password.
+
+7. Execute the Build Script:
+   ```
+   ./create_image.sh accountName/imageName:version
+   ```
+
+## 📌 Docker Image
+To access the Docker image for Events Crafters, visit the following URL: [https://hub.docker.com/r/luciadominguezrodrigo/eventcrafters](https://hub.docker.com/r/luciadominguezrodrigo/eventcrafters). This image contains the latest stable version of the Events Crafters application, ready for deployment in a Docker environment.
+
+## 🖥️ Deployment on Virtual Machine
+
+To deploy the application on the virtual machine provided by the university, follow these steps:
+
+### Prerequisites
+- Ensure you have access to a machine with an internet connection and SSH (Secure Shell) installed. This is standard on most Linux and MacOS systems, and available on Windows through tools like PowerShell or Git Bash.
+- You must be connected to the university's network directly or via MyApps to access the virtual machine.
+- Make sure you have the private key (`prAppWeb11.key`) downloaded on your local machine and have set the appropriate permissions. For Linux/MacOS users, this can be done with the command `chmod 600 prAppWeb11.key`. Windows users may need to adjust permissions by following the guides provided in these links: [Microsoft vscode-remote release issue #1619](https://github.com/microsoft/vscode-remote-release/issues/1619#issuecomment-760990038), [Anuj Varma's SSH on Windows guide](https://www.anujvarma.com/ssh-on-windows-permissions-for-private-key-too-open/).
+
+### Deployment Steps
+1. Open a terminal on your system and use the following command to connect to the virtual machine.
+   ```
+   ssh -i prAppWeb11.key vmuser@10.100.139.249
+   ```
+
+2. Clone the repository in the virtual machine with the following command:
+   ```
+   git clone https://github.com/CodeURJC-DAW-2023-24/webapp11
+   ```
+
+3. Navigating to the Directory Containing docker-compose.yml:
+   ```
+   cd webapp11/Phase2/EventCrafters/
+   ```
+
+4. Deploying the Application with Docker Compose:
+   ```
+   docker compose up
+   ```
+5. The application will be accesible in the following URL: [https://10.100.139.249:8443](https://10.100.139.249:8443)
+
+6. To stop the deployment, run the following command:
+   ```
+   docker compose down
+   ```
+
+## 🔗 Virtual Machine Application URL and Example Users
+
+The application is deployed and can be accessed at the following URL: [https://10.100.139.249:8443](https://10.100.139.249:8443)
+
+Below are the credentials for example users, including an administrator user, to test the application:
+
+### 🔑 @admin
+- username: admin
+- password: adminpass
+  
+### 🛡️ @user
+- username: user
+- password: pass
+
+### 🛡️ @user
+- username: user2
+- password: pass
+
+### 🛡️ @user
+- username: user3
+- password: pass
+
+## 💪 Members Participation Phase 3
+
+### 👩‍🔧Lucía Domínguez Rodrigo
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/b1bb2d3e92899765903e732e0c80e20a3d5c7a93) |  Recover Password added to REST |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/15fe9dc4f0bb6aeab5ddef2fe8a9484ae54b6d3e) | Edit profile picture REST |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/84eacc151379dfc095d4fbd044961c8188e6be98) | Change dockerfile to make docker function in VM |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/89554f095aaed6e49b6bf2eb145db2f2cc618b6e) | Database initialiced in docker |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/f8db9427d5a8221b1e88126486265a55abacd356) | Properly dockerized app (this commits makes references to all the commits make in relation to docker to function)|
+
+| File | Description |
+| :----: | :---------: |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/UserRestController.java) | User Rest Controller|
+| [2º](Phase2/EventCrafters/docker-compose.yml) | Docker-compose.yml |
+| [3º](Phase2/EventCrafters/Dockerfile) | DockerFile |
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/FullUserDTO.java) | Full User DTO|
+| [5º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/CensoredUserDTO.java) | Censores User DTO|
+
+### 👨‍🔧 Ángel Marqués García
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() | |
+| [2º]() | |
+| [3º]() | |
+| [4º]() | |
+| [5º]() | |
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() | |
+| [2º]() | |
+| [3º]() | |
+| [4º]() | |
+| [5º]() | |
+
+### 👨‍🔧 Tarek Elshami Ahmed
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/79b748a3fa9febd0c7593ccf38457c7d8cb0eddc) | In this commit, the event creator (or admin) can enter the number of people who attended the event and view a graph showing the percentage of those who registered and attended versus those who did not. If an attempt is made to view the graph without specifying the attendance number, a graph with all values set to -1 is returned. |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/bc3841f967c0a3c1233ef7f10c2af44329a942c6) | This commit updates `EventFinishedDTO` to inherit from `EventDTO` so that one or the other can be returned depending on whether the event has finished to show more information. Additionally, the dates and the average rating of an event along with the number of ratings are formatted nicely in both WEB and REST contexts. |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/037fd429aef62e4661f629bf9028dad38f9d87b8) | In this commit, events are created with their category assigned and linked to the user who has logged in. |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/70222fec814c691da34167b38a9e324f663092f0) | This commit begins the API documentation and creates a DTO to display the necessary data to create an event. |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/cfb2ec44eec15ff838f5db7844c682d186b82d72) | In this commit, the creation of an event is separated into two parts: one for creating the event and another for assigning an image to it. |
+
+| File | Description |
+| :----: | :---------: |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/EventRestController.java) | EventRestController|
+| [2º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/EventDTO.java) | EventDTO|
+| [3º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/EventFinishedDTO.java) | EventFinishedDTO|
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/EventManipulationDTO.java) | EventManipulationDTO|
+| [5º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/EventWebController.java) | EventWebController|
+
+### 👨‍🔧 Álvaro Serrano Rodrigo
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/a9fbaf45ef800401a9c900dfff75d00d80ab3bfd) | This commit introduces the filtering options to the EventRestController. |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/6892f226a3253feb1f740f924c81b28c41820d7f) | This commit introduces a series of enhancements to the EventRestController, incorporating personalized requests as specified by the type of user. |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/2229c771f2aee89d13ed86ae212eb1f8bb9b4de8) | This commit adds the request for the graph that appears in the profile screen for the users with the ADMIN role. |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/191537982e7d3ea4dc0a015dab4249b5afa97fd0) | This commit adds the ReviewRestController |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/747a01ba43f93e03c8584e5239edc6fce2776c21) | This commit adds the CategoryRestController |
+
+| File | Description |
+| :----: | :---------: |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/EventRestController.java) | EventRestController |
+| [2º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/ReviewRestController.java) | ReviewRestController |
+| [3º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/CategoryRestController.java) | CategoryRestController |
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/security/RestSecurityConfig.java) | RestSecurityConfig |
+| [5º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/ReviewDTO.java) | ReviewDTO |
+
+### 👨‍🔧 Marcos Jiménez Pulido
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() | |
+| [2º]() | |
+| [3º]() | |
+| [4º]() | |
+| [5º]() | |
+
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() | |
+| [2º]() | |
+| [3º]() | |
+| [4º]() | |
+| [5º]() | |
+
+***
 
