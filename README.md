@@ -647,7 +647,7 @@ Below are the credentials for example users, including an administrator user, to
 | Commit | Description |
 | :----: | :---------: |
 | [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/a9fbaf45ef800401a9c900dfff75d00d80ab3bfd) | This commit introduces the filtering options to the EventRestController. |
-| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/6892f226a3253feb1f740f924c81b28c41820d7f) | This commit introduces a series of enhancements to the EventRestController, incorporating personalized requests as specified by the type of user. |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/6892f226a3253feb1f740f924c81b28c41820d7f) | This commit introduces a series of enhancements to the EventRestController, incorporating personalized rests as specified by the type of user. |
 | [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/2229c771f2aee89d13ed86ae212eb1f8bb9b4de8) | This commit adds the request for the graph that appears in the profile screen for the users with the ADMIN role. |
 | [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/191537982e7d3ea4dc0a015dab4249b5afa97fd0) | This commit adds the ReviewRestController |
 | [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/747a01ba43f93e03c8584e5239edc6fce2776c21) | This commit adds the CategoryRestController |
@@ -664,20 +664,20 @@ Below are the credentials for example users, including an administrator user, to
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/ce653e9912d305af36b474a108bcf21b72f61b91) | Edit event operation (REST) |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/e26210766f9515ec490acaba7e391050c0582fa5) | Properly remotedly dockerized application (in reference to all neccessary commits to make Docker function correctly on VM) |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/9206934b17c1ce3c5cc6df338ece4a2707016d67) | Docker and Docker Compose initialization and adjustments (several commits) |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/526cbfe0868d097d9fc64079f00895ed018f6313) | Ticket information generation (REST) |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/a4709c0d65f378cf7f9bbc0998abc0b874bdb271) | Automated docker command files for local and remote Docker and Docker Compose instancing (several commits) |
 
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() | |
-| [2º]() | |
-| [3º]() | |
-| [4º]() | |
-| [5º]() | |
+| [1º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/EventRestController.java) | Event REST Controller |
+| [2º](Phase2/EventCrafters/docker-compose.yml) | Docker-compose.yml |
+| [3º](Phase2/EventCrafters/Dockerfile) | Dockerfile |
+| [4º](Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/DTO/TicketDTO.java) | Ticket DTO |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/Phase2/EventCrafters/docker/create_image.sh) | .sh Files |
 
 ***
 
