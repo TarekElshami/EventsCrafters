@@ -1,6 +1,4 @@
-# webapp11
-
-# <p align="center"> Events Crafters </p>
+# <p align="center"> 🎉Events Crafters </p>
 ## 📑Index
 - [Phase 0](#phase-0)
    - [Team members](#team-members)
