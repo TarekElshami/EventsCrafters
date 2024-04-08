@@ -467,7 +467,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "2",
+									"raw": "{\r\n    \"attendeesCount\":2\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -607,7 +607,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/registration/2",
+									"raw": "https://10.100.139.249:8443/api/events/registrations/2",
 									"protocol": "https",
 									"host": [
 										"10",
@@ -619,7 +619,7 @@
 									"path": [
 										"api",
 										"events",
-										"registration",
+										"registrations",
 										"2"
 									]
 								}
@@ -629,10 +629,10 @@
 						{
 							"name": "Unregistration",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/unregistration/2",
+									"raw": "https://10.100.139.249:8443/api/events/registrations/2",
 									"protocol": "https",
 									"host": [
 										"10",
@@ -644,7 +644,7 @@
 									"path": [
 										"api",
 										"events",
-										"unregistration",
+										"registrations",
 										"2"
 									]
 								}
@@ -766,7 +766,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://10.100.139.249:8443/api/reviews/new",
+									"raw": "https://10.100.139.249:8443/api/reviews",
 									"protocol": "https",
 									"host": [
 										"10",
@@ -777,8 +777,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"reviews",
-										"new"
+										"reviews"
 									]
 								}
 							},
@@ -795,7 +794,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://10.100.139.249:8443/api/Categories?page=2",
+									"raw": "https://10.100.139.249:8443/api/categories?page=2",
 									"protocol": "https",
 									"host": [
 										"10",
@@ -806,7 +805,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"Categories"
+										"categories"
 									],
 									"query": [
 										{
@@ -1584,7 +1583,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "3",
+									"raw": "{\r\n    \"attendeesCount\":3\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1706,10 +1705,10 @@
 						{
 							"name": "Unregistration",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/events/unregistration/2",
+									"raw": "https://localhost:8443/api/events/registrations/2",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1718,7 +1717,7 @@
 									"path": [
 										"api",
 										"events",
-										"unregistration",
+										"registrations",
 										"2"
 									]
 								}
@@ -1731,7 +1730,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/events/registration/2",
+									"raw": "https://localhost:8443/api/events/registrations/2",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1740,7 +1739,7 @@
 									"path": [
 										"api",
 										"events",
-										"registration",
+										"registrations",
 										"2"
 									]
 								}
@@ -1878,7 +1877,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/Categories?page=2",
+									"raw": "https://localhost:8443/api/categories?page=2",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1886,7 +1885,7 @@
 									"port": "8443",
 									"path": [
 										"api",
-										"Categories"
+										"categories"
 									],
 									"query": [
 										{
