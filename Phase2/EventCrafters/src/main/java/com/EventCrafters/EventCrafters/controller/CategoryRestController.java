@@ -109,13 +109,14 @@ public class CategoryRestController {
                     content = { @Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public ResponseEntity<String> newCategory(@RequestBody CategoryDTO category){
+    public ResponseEntity<CategoryDTO> newCategory(@RequestBody CategoryDTO category){
         category.setId(-1L);
         Category newCategory = transformFromDTO(category);
-        categoryService.save(newCategory);
+        newCategory = categoryService.save(newCategory);
+        CategoryDTO createdCategoryDTO = transformToDTO(newCategory);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(categoryService.findAll().size()).toUri();
-        return ResponseEntity.created(location).body(location.toString());
+        return ResponseEntity.created(location).body(createdCategoryDTO);
     }
 
 
