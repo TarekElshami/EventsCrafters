@@ -1,9 +1,6 @@
 package com.EventCrafters.EventCrafters.controller;
 
-import com.EventCrafters.EventCrafters.DTO.EventDTO;
-import com.EventCrafters.EventCrafters.DTO.EventFinishedDTO;
-import com.EventCrafters.EventCrafters.DTO.EventManipulationDTO;
-import com.EventCrafters.EventCrafters.DTO.TicketDTO;
+import com.EventCrafters.EventCrafters.DTO.*;
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
 import com.EventCrafters.EventCrafters.model.User;
@@ -116,7 +113,7 @@ public class EventRestController {
         EventDTO eventDTO = transformDTO(savedEvent);
 
         // Build the URL created event
-        URI location = ServletUriComponentsBuilder.fromHttpUrl("https://localhost:8443")
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/events/{id}")
                 .buildAndExpand(savedEvent.getId())
                 .toUri();
@@ -183,7 +180,7 @@ public class EventRestController {
         return ResponseEntity.accepted().body(eventDTO);
     }
 
-    @PostMapping("/registration/{eventId}")
+    @PostMapping("/registrations/{eventId}")
     @Operation(summary = "Registers current user for selected event")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User successfully registered in the event", content = @Content),
@@ -227,7 +224,7 @@ public class EventRestController {
     }
 
 
-    @PostMapping("/unregistration/{eventId}")
+    @DeleteMapping("/registrations/{eventId}")
     @Operation(summary = "Unregisters current user for selected event")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User successfully unregistered in the event", content = @Content),
@@ -353,7 +350,7 @@ public class EventRestController {
             EventDTO eventDTO = transformDTO(event);
 
             // Build the URL created event
-            URI location = ServletUriComponentsBuilder.fromHttpUrl("https://localhost:8443")
+            URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/api/events/{id}")
                     .buildAndExpand(event.getId())
                     .toUri();
@@ -400,7 +397,7 @@ public class EventRestController {
 
 
     @PutMapping("/{eventId}/attendees")
-    @Operation(summary = "sets the number of attendees for an event")
+    @Operation(summary = "Sets the number of attendees for an event")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Number of attendees updated",
                     content = @Content(mediaType = "application/json",
@@ -409,8 +406,7 @@ public class EventRestController {
             @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content),
             @ApiResponse(responseCode = "404", description = "Event not found", content = @Content)
     })
-    public ResponseEntity<EventDTO> updateEventAttendees(@PathVariable Long eventId, @RequestBody Integer attendeesCount) {
-
+    public ResponseEntity<EventDTO> updateEventAttendees(@PathVariable Long eventId, @RequestBody AttendeesUpdateDTO attendeesUpdate) {
 
         Optional<Event> eventOpt = eventService.findById(eventId);
         if (!eventOpt.isPresent()) {
@@ -426,20 +422,22 @@ public class EventRestController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
+        Integer attendeesCount = attendeesUpdate.getAttendeesCount();
         if (event.getEndDate().before(new Date()) && attendeesCount != null && attendeesCount >= 0 && attendeesCount <= event.getNumRegisteredUsers() && event.getAttendeesCount() == -1) {
             // Update the attendees count (the event has already ended)
             event.setAttendeesCount(attendeesCount);
             eventService.save(event);
 
             EventDTO eventDTO = transformDTO(event);
-            // Return the "Location" header pointing to the event's URL
-            String eventUrl = "https://localhost:8443/api/events/" + eventId;
+            // Define the "Location" header pointing to the event's URL using a relative path
+            String eventUrl = "/api/events/" + eventId;
             return ResponseEntity.ok().header("Location", eventUrl).body(eventDTO);
         } else {
-            // Event has not ended yet
+            // Event has not ended yet or other validation errors
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
 
 
     @GetMapping("/graph/{eventId}")

@@ -52,7 +52,7 @@ public class EventDTO {
     }
 
     private String generateImageUrl(Long id) {
-        return "https://localhost:8443/api/events/image/" + id;
+        return "/api/events/image/" + id;
     }
 
     private String formatDuration(Date start, Date end) {
