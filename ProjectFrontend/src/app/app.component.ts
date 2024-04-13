@@ -7,7 +7,6 @@ import { EventService } from './services/event.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Mi Aplicación Angular';
 
   constructor(private eventService: EventService) {}
 
