@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './templates/index/index.component';
 import { ProfileComponent } from './templates/profile/profile.component';
 import { LoginComponent } from './templates/login/login.component';
-import { SignInComponent } from './templates/sign-in/sign-in.component';
+import { RegisterComponent } from './templates/register/register.component';
 import { ViewEventsComponent } from './templates/view-events/view-events.component';
 import { EventFormComponent } from './templates/event-form/event-form.component';
 
@@ -18,7 +18,7 @@ import { EventFormComponent } from './templates/event-form/event-form.component'
     IndexComponent,
     ProfileComponent,
     LoginComponent,
-    SignInComponent,
+    RegisterComponent,
     ViewEventsComponent,
     EventFormComponent
   ],

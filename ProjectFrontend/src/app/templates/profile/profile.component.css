@@ -1,0 +1,448 @@
+body {
+  padding-top: 56px;
+  /* Ajuste para la barra de navegación fija en la parte superior */
+}
+
+.logoText:hover {
+  color: white !important;
+  /* Forzar que el color sea blanco al pasar el ratón */
+  background-color: transparent !important;
+  /* Forzar que el fondo sea transparente al pasar el ratón */
+  text-decoration: none;
+  /* Evitar la subrayado en el hover */
+}
+
+.profile-container {
+  margin-top: 20px;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.user-data {
+  margin-bottom: 20px;
+}
+
+.user-events {
+  margin-top: 20px;
+}
+
+
+.logoText {
+  color: white;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.nav-link {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  text-align: left;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.nav-link:hover {
+  background-color: rgb(154, 154, 154);
+}
+
+
+.activity {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  position: relative;
+  margin-bottom: 0%;
+}
+
+.categories-container {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.activity h5 {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.activity .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.activity button {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0 10px 10px 0;
+  width: 100px;
+  height: 100%;
+  /* Ajuste para que el botón ocupe todo el alto */
+  box-sizing: border-box;
+  /* Asegura que el padding no afecte el ancho total */
+  margin-left: 10px;
+}
+
+.activity button:hover {
+  background-color: #0056b3;
+}
+
+.categories-container {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.event-category {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 10px;
+  top: 50%;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+
+}
+
+.etiqueta-campo {
+  background-color: #ffc107;
+}
+
+.etiqueta-deporte {
+  background-color: #cc00ff;
+}
+
+.etiqueta-educacion {
+  background-color: #28a745;
+}
+
+.etiqueta-pasado {
+  background-color: #e04242;
+}
+
+
+.event-title {
+  text-align: center;
+  background-color: #78d1ef;
+  color: #000000;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 24px;
+  font-weight: bold;/
+}
+
+.created,
+.next {
+  text-align: left;
+  margin-bottom: 2%;
+  border-bottom: 1px solid #ccc;
+}
+
+.load-events {
+  text-align: center;
+  margin-bottom: 5%;
+  margin-top: 2%;
+  margin-left: 42%;
+  margin-right: 42%;
+  background-color: #d8a6e5;
+  border-radius: 10px;
+}
+
+.admin-category-container {
+  width: 80%;
+}
+
+.btn-admin-tag {
+  width: auto;
+}
+
+.admin-category {
+  padding: 10px 20px;
+}
+
+.category-add {
+  color: black;
+  font-size: 300%;
+  margin-top: 0;
+}
+
+.window-background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 3;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.window-container {
+  position: relative;
+  background-color: #fff;
+  width: 550px;
+  height: auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  animation-name: modal;
+  animation-duration: .5s;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+@keyframes modal {
+  from {
+      transform: translateY(50vh);
+  }
+
+  to {
+      transform: translateY(0);
+  }
+}
+
+.close-window {
+  transition: transform 0.4s cubic-bezier(0, -0.42, 1, -0.41);
+  transform: translateY(60vh);
+}
+
+.close-button {
+  position: absolute;
+  border-radius: 50%;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  cursor: pointer;
+}
+.delete-button{
+  right: 25px;
+  background-color: lightcoral;
+}
+
+.icon-x {
+  fill: rgb(54, 54, 54);
+}
+
+.logoText {
+  color: white;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.event-title {
+  text-align: center;
+  background-color: #78d1ef;
+  color: #000000;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.load-events {
+  text-align: center;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  margin-left: 43%;
+  margin-right: 43%;
+  background-color: #d8a6e5;
+  border-radius: 10px;
+}
+
+.icoest1 {
+  font-size: 15px;
+  color: #000000;
+  font-weight: bold;
+  margin-left: 9px;
+}
+
+.navbar {
+  background-color: #007bff;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: white !important;
+}
+
+.nav-link {
+  color: white !important;
+  font-size: 16px;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  border-color: #007bff;
+}
+
+.dropdown-item {
+  color: #007bff;
+}
+
+.dropdown-item:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.form-inline .form-control {
+  margin-right: 10px;
+}
+
+.form-inline .btn {
+  background-color: #0056b3;
+  color: white;
+  border-color: #0056b3;
+}
+
+.form-inline .btn:hover {
+  background-color: #004094;
+  border-color: #004094;
+}
+
+/* shadow effect for the event containers */
+.activity:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.btn-edit-account {
+  right: 10%;
+}
+
+.container-delete-account {
+  z-index: 2;
+}
+
+/*
+Any value higher than 0 will make it so that the element with this class
+becomes the last one in its parent element
+*/
+.last {
+  order: 1;
+}
+
+.btn-delete-account {
+  background-color: #dc3545; /* Red background color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Styles for the delete account button on hover */
+.btn-delete-account:hover {
+  background-color: #c82333;
+}
+
+.event-container-text{
+  width: 60%;
+  margin: 0px 0px 8px 0px;
+}
+
+.event-container-btn{
+  width: 20%;
+  margin: 0px 0px 0px 10px;
+}
+
+@media (min-width: 779px ){
+  .event-container-btn{
+      margin: 0px 0px 0px 0px;
+  }
+}
+
+.event-container-tag-div {
+  width: auto;
+  margin: 0px 0px;
+}
+
+
+.custom-file-upload {
+  border: 2px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+
+#pfp {
+  display: none;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+#charts-container {
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+  margin-bottom: 40px;
+}
+
+#ban-user-form {
+  text-align: center;
+}
+
+#ban-user-form input[type="text"] {
+  width: 200px;
+  margin: 0 auto;
+}
+
+#main-container-profile {
+  height: 100vh;
+}
+
