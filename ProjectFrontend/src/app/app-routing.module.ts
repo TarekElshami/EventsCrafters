@@ -6,6 +6,7 @@ import { LoginComponent } from './templates/login/login.component';
 import { RegisterComponent } from './templates/register/register.component';
 import { ViewEventsComponent } from './templates/view-events/view-events.component';
 import { EventFormComponent } from './templates/event-form/event-form.component';
+import { ErrorComponent } from './templates/error/error.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'event-create',
     component: EventFormComponent
+  },
+  {
+    path: '**',
+    component: ErrorComponent
   }
 ];
 

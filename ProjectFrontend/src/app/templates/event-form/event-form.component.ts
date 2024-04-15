@@ -48,8 +48,17 @@ export class EventFormComponent implements OnInit {
       if (params['id']) {
         this.isEdit = true;
         this.eventId = params['id'];
-        this.eventService.getEventById(this.eventId).subscribe(event => {
-          this.eventForm.patchValue(event);
+        this.eventService.getEventById(this.eventId).subscribe({
+          next: (event) => {
+            if (!event) {
+              this.router.navigate(['/error']);
+            } else {
+              this.eventForm.patchValue(event);
+            }
+          },
+          error: () => {
+            this.router.navigate(['/error']);
+          }
         });
       }
     });
@@ -61,7 +70,7 @@ export class EventFormComponent implements OnInit {
         this.categories = categories;
       },
       error: (error) => {
-        console.error('Error loading categories:', error);
+        this.router.navigate(['/error']);
       }
     });
   }
@@ -80,7 +89,7 @@ export class EventFormComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error: (error) => {
-          console.error('Error updating event:', error);
+          this.router.navigate(['/error']);
         }
       });
     } else {
@@ -90,7 +99,7 @@ export class EventFormComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error: (error) => {
-          console.error('Error creating event:', error);
+          this.router.navigate(['/error']);
         }
       });
     }
