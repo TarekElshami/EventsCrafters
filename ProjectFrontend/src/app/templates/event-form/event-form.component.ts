@@ -4,10 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { CategoryService } from '../../services/category.service';
 
-interface Category {
-  id: number;
-  name: string;
-}
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-event-form',
