@@ -11,35 +11,43 @@ import { ErrorComponent } from './templates/error/error.component';
 const routes: Routes = [
   {
     path: '',
-    component: IndexComponent
+    component: IndexComponent,
+    data: { title: 'Inicio' }
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    data: { title: 'Perfil' }
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: { title: 'Login' }
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    data: { title: 'Registro' }
   },
   {
     path: 'event/:id',
-    component: ViewEventsComponent
+    component: ViewEventsComponent,
+    data: { title: 'Ver Evento' } 
   },
   {
     path: 'event/edit/:id',
-    component: EventFormComponent
+    component: EventFormComponent,
+    data: { title: 'Editar Evento' }
   },
   {
     path: 'event-create',
-    component: EventFormComponent
+    component: EventFormComponent,
+    data: { title: 'Crear Evento' }
   },
   {
     path: '**',
-    component: ErrorComponent
+    component: ErrorComponent,
+    data: { title: 'Error General' }
   }
 ];
 
