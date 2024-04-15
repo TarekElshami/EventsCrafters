@@ -16,6 +16,7 @@ export class EventFormComponent implements OnInit {
   categories: Category[] = [];
   isEdit = false;
   eventId = '';
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -66,7 +67,7 @@ export class EventFormComponent implements OnInit {
       next: (categories: Category[]) => {
         this.categories = categories;
       },
-      error: (error) => {
+      error: () => {
         this.router.navigate(['/error']);
       }
     });
@@ -78,28 +79,40 @@ export class EventFormComponent implements OnInit {
     }
 
     const formData = this.prepareData(this.eventForm.value);
-
     if (this.isEdit) {
-      // Update existing event
-      this.eventService.updateEvent(this.eventId, formData).subscribe({
-        next: () => {
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          this.router.navigate(['/error']);
-        }
-      });
+      this.updateEvent(formData);
     } else {
-      // Create new event
-      this.eventService.createEvent(formData).subscribe({
-        next: () => {
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          this.router.navigate(['/error']);
-        }
-      });
+      this.createEvent(formData);
     }
+  }
+
+  createEvent(formData: any): void {
+    this.eventService.createEvent(formData).subscribe({
+      next: (event) => {
+        this.eventId = event.id; 
+        if (this.selectedFile) {
+          this.uploadEventImage(this.eventId, this.selectedFile);
+        } else {
+          this.router.navigate([`/event/${this.eventId}`]);
+          alert('Evento creado sin imagen.');
+        }
+      },
+      error: () => this.router.navigate(['/error'])
+    });
+  }
+
+  updateEvent(formData: any): void {
+    this.eventService.updateEvent(this.eventId, formData).subscribe({
+      next: () => {
+        if (this.selectedFile) {
+          this.uploadEventImage(this.eventId, this.selectedFile);
+        } else {
+          this.router.navigate([`/event/${this.eventId}`]);
+          alert('Evento actualizado sin cambiar la imagen.');
+        }
+      },
+      error: () => this.router.navigate(['/error'])
+    });
   }
 
   prepareData(formData: any) {
@@ -109,5 +122,26 @@ export class EventFormComponent implements OnInit {
     data.endDate = new Date(data.endDate).toISOString();
   
     return data;
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input && input.files && input.files.length) {
+      this.selectedFile = input.files[0];
+    }
+  }
+  
+
+  uploadEventImage(eventId: string, image: File): void {
+    this.eventService.uploadEventImage(eventId, image).subscribe({
+      next: () => {
+        this.router.navigate([`/event/${this.eventId}`]);
+        alert('Imagen subida y evento actualizado.');
+      },
+      error: () => {
+        this.router.navigate(['/error']);
+        alert('Error subiendo la imagen.');
+      }
+    });
   }
 }

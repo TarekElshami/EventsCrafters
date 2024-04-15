@@ -22,8 +22,8 @@
 
                         <div class="form-group">
                             <label for="maxCapacity">Introduce el aforo del evento</label>
-                            <input type="number" id="maxCapacity" class="form-control" formControlName="maxCapacity" min="1"
-                                placeholder="Aforo">
+                            <input type="number" id="maxCapacity" class="form-control" formControlName="maxCapacity"
+                                min="1" placeholder="Aforo">
                         </div>
 
                         <div class="form-group">
@@ -48,17 +48,19 @@
                             <select id="categoryId" class="form-control" formControlName="categoryId">
                                 <option value="">Selecciona una categoría</option>
                                 <option *ngFor="let category of categories" [value]="category.id">
-                                  {{ category.name }}
+                                    {{ category.name }}
                                 </option>
                             </select>
                         </div>
 
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <div style="text-align: left;">
-                                <label for="photo">Introduce la foto del Evento</label>
+                                <label for="fileInput">Introduce la foto del Evento</label>
                             </div>
-                            <input type="file" id="fileInput" class="form-control-file">
-                        </div> -->
+                            <input type="file" id="fileInput" class="form-control-file"
+                                (change)="onFileSelected($event)" accept="image/*">
+                        </div>
+
 
                         <div class="form-group">
                             <label for="location">Introduce la direccion del evento</label>
