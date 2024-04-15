@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../../services/category.service'
 
-interface Category {
-  id: number;
-  name: string;
-  color: string;
-}
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-header',
