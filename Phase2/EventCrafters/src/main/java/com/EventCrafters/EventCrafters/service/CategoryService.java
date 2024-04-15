@@ -4,7 +4,9 @@ import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.repository.CategoryRepository;
 import com.EventCrafters.EventCrafters.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,10 @@ public class CategoryService {
 		return repository.findById(id);
 	}
 
-	public List<Category> findAll(int page) {return repository.findAll(PageRequest.of(page, pageSize)).getContent();}
+	public List<Category> findAll(int page) {
+		Pageable pageable = PageRequest.of(page, pageSize);
+		return repository.findCategories(pageable).getContent();
+	}
 
 	public boolean exist(long id) {
 		return repository.existsById(id);
@@ -39,8 +44,9 @@ public class CategoryService {
 
 	public List<Category> findAjax(){
 		// this is so that the result is rounded up
-		this.maxPageNum = (repository.findAll().size() + pageSize - 1) / pageSize;
-		return repository.findAll(PageRequest.of(1,pageSize)).getContent();
+		Page<Category> catPage = repository.findCategories(PageRequest.of(0, pageSize));
+		this.maxPageNum = catPage.getTotalPages();
+		return catPage.getContent();
 
 	}
 
