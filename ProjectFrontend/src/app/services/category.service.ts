@@ -10,9 +10,10 @@ export class CategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getCategories(page: number = 1): Observable<any> {
+  getCategories(page: number): Observable<any> {
     let params = new HttpParams().set('page', page.toString());
     return this.http.get<{id: number; name: string; color: string}[]>(this.apiUrl, { params });
   }
+
 }
 

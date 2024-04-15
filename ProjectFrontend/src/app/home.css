@@ -1,0 +1,232 @@
+body {
+    padding-top: 56px;
+}
+
+.nav-link {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    text-align: left;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.nav-link:hover {
+    background-color: rgb(154, 154, 154);
+}
+
+.logoText:hover {
+    color: white !important;
+    background-color: transparent !important;
+    text-decoration: none;
+}
+
+.activity {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 400px;
+    position: relative;
+}
+
+.activity:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+.activity img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ccc;
+}
+
+.activity h5 {
+    padding: 10px;
+    margin-bottom: 0;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    background-color: #f2f1f3;
+}
+
+.event-category {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.event-capacity {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+.etiqueta-campo {
+    background-color: #ffc107;
+}
+
+.etiqueta-deporte {
+    background-color: #cc00ff; /* Morado */
+}
+
+.etiqueta-conferencia {
+    background-color: #28a745; /* Verde */
+}
+
+.etiqueta-aforoMucho {
+    background-color: #6adee7; /* Cian */
+}
+
+.etiqueta-aforoLimitado {
+    background-color: #e76aca; /* Morado */
+}
+
+.etiqueta-aforoCompleto {
+    background-color: #e76a6a; /* rojo */
+}
+
+.actividad .descripcion,
+.actividad .localizacion,
+.fecha {
+    padding: 10px;
+    margin-bottom: 2%;
+    margin-top: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+
+}
+
+.actividad .descripcion {
+    margin-bottom: -30px; /* Espacio entre la descripción y el botón */
+}
+
+.activity button {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.activity button:hover {
+    background-color: #0056b3;
+}
+
+.logoText {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-name {
+    text-align: center;
+    background-color: #78d1ef; /* Color de fondo */
+    color: #000000; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 20px; /* Bordes redondeados */
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 15%;
+    margin-right:15%;
+    font-size: 24px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+}
+
+.cargar-eventos{
+    text-align:center;
+    margin-bottom: 5%;
+    margin-top:5%;
+    margin-left:43%;
+    margin-right: 43%;
+    background-color: #d8a6e5;
+    border-radius: 10px;
+}
+
+.icoest1 {
+    font-size: 15px;
+    color: #000000;
+    font-weight: bold;
+    margin-left: 9px;
+}
+
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 16px;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    border-color: #007bff;
+}
+
+.dropdown-item {
+    color: #007bff;
+}
+
+.dropdown-item:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.form-inline .form-control {
+    margin-right: 10px;
+}
+
+.form-inline .btn {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+.form-inline .btn:hover {
+    background-color: #004094;
+    border-color: #004094;
+}
+
+.no-events-message{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}

@@ -62,7 +62,7 @@ export class EventFormComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.categoryService.getCategories().subscribe({
+    this.categoryService.getCategories(1).subscribe({
       next: (categories: Category[]) => {
         this.categories = categories;
       },

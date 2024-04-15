@@ -13,6 +13,8 @@ import { RegisterComponent } from './templates/register/register.component';
 import { ViewEventsComponent } from './templates/view-events/view-events.component';
 import { EventFormComponent } from './templates/event-form/event-form.component';
 import { ErrorComponent } from './templates/error/error.component';
+import { HeaderComponent } from './templates/header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ErrorComponent } from './templates/error/error.component';
     RegisterComponent,
     ViewEventsComponent,
     EventFormComponent,
-    ErrorComponent
+    ErrorComponent,
+    HeaderComponent,
+
   ],
   imports: [
     BrowserModule,
