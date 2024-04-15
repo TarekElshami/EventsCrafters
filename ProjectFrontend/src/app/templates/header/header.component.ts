@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../../services/category.service'
-
+import { Router } from '@angular/router';
 import { Category } from '../../models/category.model';
 
 @Component({
@@ -11,18 +11,18 @@ import { Category } from '../../models/category.model';
 export class HeaderComponent {
   
   categories: Category[] = []
-
-  constructor(private categoryService: CategoryService) {}
+  isCollapsed = true;
+  constructor(private categoryService: CategoryService, private router: Router) {}
 
   ngOnInit() {
-    this.categoryService.getCategories(-1).subscribe(
-     data => {
-        this.categories = data; 
+    this.categoryService.getCategories(-1).subscribe({
+      next: (data) => {
+        this.categories = data;
       },
-      error => {
-        console.error('Error al cargar las categorías:', error);
+      error: () => {
+        this.router.navigate(['/error']); 
       }
-    );
+    });
   }
   
 }

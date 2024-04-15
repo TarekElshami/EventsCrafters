@@ -3,26 +3,24 @@
     <a class="navbar-brand" href="/">
         <img src="/assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Imagen Logo Events Crafters"> Event Crafters
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggled" aria-controls="navbarToggled" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbarToggled" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarToggled">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            
 
-            <li class="dropdown nav-item">
-                <a class="nav-link dropdown-toggle" type="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarToggled">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" aria-haspopup="true">
                     Filtrar Eventos
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="filtering-dropdown-menu">
-                    <option href="#" class="dropdown-item dropdown-filter" *ngFor="let category of categories">{{category.name}}</option>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <button class="dropdown-item" *ngFor="let category of categories">{{category.name}}</button>
                 </div>
             </li>
-
             <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" id="search-bar" >
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar eventos" aria-label="Buscar" id="search-bar-input">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-bar-btn">Buscar</button>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar eventos" aria-label="Buscar">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
             </li>
         </ul>
