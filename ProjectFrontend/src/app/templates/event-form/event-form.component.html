@@ -1,9 +1,9 @@
 <div *ngIf="isLoading" class="loading-overlay">
     <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Cargando...</span>
+        <span class="visually-hidden">Cargando...</span>
     </div>
-  </div>
-  
+</div>
+
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -14,42 +14,74 @@
                 </div>
                 <div class="card-body">
                     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
+                        <!-- Name Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('name')?.invalid && eventForm.get('name')?.touched}">
                             <label for="name">Introduce el nombre del evento</label>
                             <input type="text" id="name" class="form-control" formControlName="name"
                                 placeholder="Nombre del Evento">
+                            <div *ngIf="eventForm.get('name')?.invalid && eventForm.get('name')?.touched">
+                                <small class="text-danger">El nombre es requerido.</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Description Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('description')?.invalid && eventForm.get('description')?.touched}">
                             <label for="description">Introduce la descripción del evento</label>
                             <textarea id="description" class="form-control" formControlName="description" rows="3"
                                 placeholder="Descripción del Evento"></textarea>
+                            <div *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched">
+                                <small class="text-danger">La descripción es requerida.</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Max Capacity Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('maxCapacity')?.invalid && eventForm.get('maxCapacity')?.touched}">
                             <label for="maxCapacity">Introduce el aforo del evento</label>
                             <input type="number" id="maxCapacity" class="form-control" formControlName="maxCapacity"
                                 min="1" placeholder="Aforo">
+                            <div *ngIf="eventForm.get('maxCapacity')?.invalid && eventForm.get('maxCapacity')?.touched">
+                                <small class="text-danger">La capacidad es requerida y debe ser mayor a 1.</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Price Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('price')?.invalid && eventForm.get('price')?.touched}">
                             <label for="price">Introduce el precio de la entrada del evento</label>
                             <input type="number" id="price" class="form-control" formControlName="price" min="0"
-                                step="0.01" placeholder="Precio de la entrada">
+                                step="0.01" placeholder="precio">
+                            <div *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched">
+                                <small class="text-danger">El precio es requerido y no puede ser menor que 0.</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Start Date Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('startDate')?.invalid && eventForm.get('startDate')?.touched}">
                             <label for="startDate">Fecha y hora de inicio del evento</label>
                             <input type="datetime-local" id="startDate" class="form-control"
                                 formControlName="startDate">
+                            <div *ngIf="eventForm.get('startDate')?.invalid && eventForm.get('startDate')?.touched">
+                                <small class="text-danger">La fecha de inicio es requerida y debe ser en el futuro.</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- End Date Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('endDate')?.invalid && eventForm.get('endDate')?.touched}">
                             <label for="endDate">Fecha y hora de fin del evento</label>
                             <input type="datetime-local" id="endDate" class="form-control" formControlName="endDate">
+                            <div *ngIf="eventForm.get('endDate')?.invalid && eventForm.get('endDate')?.touched">
+                                <small class="text-danger">La fecha de fin es requerida y debe ser posterior a la de inicio</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Category Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('categoryId')?.invalid && eventForm.get('categoryId')?.touched}">
                             <label for="categoryId">Introduce la categoria del evento</label>
                             <select id="categoryId" class="form-control" formControlName="categoryId">
                                 <option value="">Selecciona una categoría</option>
@@ -57,6 +89,9 @@
                                     {{ category.name }}
                                 </option>
                             </select>
+                            <div *ngIf="eventForm.get('categoryId')?.invalid && eventForm.get('categoryId')?.touched">
+                                <small class="text-danger">Debe seleccionar una categoria.</small>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -67,29 +102,44 @@
                                 (change)="onFileSelected($event)" accept="image/*">
                         </div>
 
-
-                        <div class="form-group">
+                        <!-- Location Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('location')?.invalid && eventForm.get('location')?.touched}">
                             <label for="location">Introduce la direccion del evento</label>
                             <input type="text" id="location" class="form-control" formControlName="location"
-                                placeholder="Dirección">
+                                placeholder="Introduce la direccion">
+                            <div *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched">
+                                <small class="text-danger">La localización es requerida.</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Map Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('map')?.invalid && eventForm.get('map')?.touched}">
                             <label for="map">Introduce el mapa del evento</label>
-                            <input type="text" id="map" class="form-control" formControlName="map" placeholder="Mapa">
-                            <small id="mapHelp" class="form-text text-muted">
-                                Ve a Google Maps, busca tu ubicación, haz clic en "Compartir" y luego en "Insertar un
-                                mapa" para obtener el código HTML del mapa. Copia y pega ese código aquí.
+                            <input type="text" id="map" class="form-control" formControlName="map"
+                                placeholder="Infroduce el mapa">
+                            <div *ngIf="eventForm.get('map')?.invalid && eventForm.get('map')?.touched">
+                                <small class="text-danger">El mapa es requerido.</small>
+                            </div>
+                            <small class="text-danger" *ngIf="eventForm.get('map')?.errors?.['invalidIframe']">
+                                El mapa no es un iframe valido.
                             </small>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Additional Info Field -->
+                        <div class="form-group"
+                            [ngClass]="{'has-error': eventForm.get('additionalInfo')?.invalid && eventForm.get('additionalInfo')?.touched}">
                             <label for="additionalInfo">Introduce información adicional sobre el evento</label>
                             <textarea id="additionalInfo" class="form-control" formControlName="additionalInfo" rows="3"
-                                placeholder="Información Extra del Evento"></textarea>
+                                placeholder="información additional"></textarea>
+                            <div
+                                *ngIf="eventForm.get('additionalInfo')?.invalid && eventForm.get('additionalInfo')?.touched">
+                                <small class="text-danger">La información es requerida.</small>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">Submit</button>
                     </form>
                 </div>
             </div>

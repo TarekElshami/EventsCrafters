@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { CategoryService } from '../../services/category.service';
 
@@ -32,8 +32,8 @@ export class EventFormComponent implements OnInit {
       maxCapacity: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(0)]],
       location: ['', Validators.required],
-      map: ['', Validators.required],
-      startDate: ['', Validators.required],
+      map: ['', [Validators.required, this.iframeValidator()]],
+      startDate: ['', [Validators.required, this.futureDateValidator()]],
       endDate: ['', Validators.required],
       additionalInfo: ['', Validators.required],
       categoryId: ['', Validators.required]
@@ -153,5 +153,21 @@ export class EventFormComponent implements OnInit {
         alert('Error subiendo la imagen.');
       }
     });
+  }
+
+  iframeValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isValidIframe = /<iframe.*src="https?.*".*><\/iframe>/.test(control.value);
+      return isValidIframe ? null : { invalidIframe: 'El iframe no es válido.' };
+    };
+  }
+
+  futureDateValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const currentDate = new Date();
+      const inputDate = new Date(control.value);
+      currentDate.setHours(0, 0, 0, 0);
+      return inputDate > currentDate ? null : { 'futureDate': 'La fecha de inicio no puede ser en el pasado.' };
+    };
   }
 }
