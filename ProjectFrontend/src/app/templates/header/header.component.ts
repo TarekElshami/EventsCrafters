@@ -15,7 +15,7 @@ export class HeaderComponent {
   constructor(private categoryService: CategoryService, private router: Router) {}
 
   ngOnInit() {
-    this.categoryService.getCategories(-1).subscribe({
+    this.categoryService.getAllCategories().subscribe({
       next: (data) => {
         this.categories = data;
       },
