@@ -1,5 +1,6 @@
 package com.EventCrafters.EventCrafters.service;
 
+import com.EventCrafters.EventCrafters.DTO.PageCategoryDTO;
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.repository.CategoryRepository;
 import com.EventCrafters.EventCrafters.repository.EventRepository;
@@ -27,9 +28,10 @@ public class CategoryService {
 		return repository.findById(id);
 	}
 
-	public List<Category> findAll(int page) {
+	public Page<Category> findAll(int page) {
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findCategories(pageable).getContent();
+		Page<Category> categoriesPage = repository.findCategories(pageable);
+		return categoriesPage;
 	}
 
 	public boolean exist(long id) {

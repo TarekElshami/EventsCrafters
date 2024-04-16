@@ -55,7 +55,7 @@ public class CategoryWebController {
 
 	@GetMapping("categories")
 	public String loadCategories(Model model, @RequestParam("page") int page) {
-		model.addAttribute("category", categoryService.findAll(page) );
+		model.addAttribute("category", categoryService.findAll(page).getContent() );
 		if (categoryService.getMaxPageNum() - 1 <= page){
 			model.addAttribute("lastCategories", "");
 		}

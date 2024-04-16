@@ -1,6 +1,7 @@
 package com.EventCrafters.EventCrafters.controller;
 
 import com.EventCrafters.EventCrafters.DTO.CategoryDTO;
+import com.EventCrafters.EventCrafters.DTO.PageCategoryDTO;
 import com.EventCrafters.EventCrafters.model.Category;
 import com.EventCrafters.EventCrafters.model.Event;
 import com.EventCrafters.EventCrafters.service.CategoryService;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.aspectj.weaver.patterns.HasMemberTypePatternForPerThisMatching;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,22 +62,36 @@ public class CategoryRestController {
 
     }
     @GetMapping("/categories")
+    @Operation(summary = "Retrieves the categories available as well as the page and number of pages")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Categories obtained",
+                    content = { @Content(mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
+    })
+    public ResponseEntity<PageCategoryDTO> showCategories(@RequestParam(value = "page", required = false) Integer page){
+        if (page == null || page < 0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Page<Category> categoriesPage = categoryService.findAll(page);
+        List<CategoryDTO> categoriesDTO = new ArrayList<>();
+        for (Category c : categoriesPage.getContent()){
+            categoriesDTO.add(transformToDTO(c));
+        }
+        PageCategoryDTO pageCategoryDTO = new PageCategoryDTO(categoriesDTO, page, categoriesPage.getTotalPages());
+        return  ResponseEntity.ok(pageCategoryDTO);
+    }
+
+    @GetMapping("/allCategories")
     @Operation(summary = "Retrieves the categories available")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categories obtained",
                     content = { @Content(mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public ResponseEntity<List<CategoryDTO>> showCategories(@RequestParam(value = "page", required = false) Integer page){
+    public ResponseEntity<List<CategoryDTO>> showCategories(){
         List<Category> all;
-        if (page == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if (page > -1){
-            all = categoryService.findAll(page);
-        } else {
-            all = categoryService.findAll();
-        }
+        all = categoryService.findAll();
+
 
         List<CategoryDTO> answer = new ArrayList<>();
         for (Category c : all){
@@ -84,6 +100,7 @@ public class CategoryRestController {
         }
         return ResponseEntity.ok(answer);
     }
+
     @GetMapping("/categories/{id}")
     @Operation(summary = "Retrieves the category, with the ID specified in the url")
     @ApiResponses(value = {

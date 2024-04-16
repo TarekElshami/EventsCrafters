@@ -17,6 +17,7 @@ export class EventFormComponent implements OnInit {
   isEdit = false;
   eventId = '';
   selectedFile: File | null = null;
+  isLoading = false;  
 
   constructor(
     private fb: FormBuilder,
@@ -46,8 +47,10 @@ export class EventFormComponent implements OnInit {
       if (params['id']) {
         this.isEdit = true;
         this.eventId = params['id'];
+        this.isLoading = true;
         this.eventService.getEventById(this.eventId).subscribe({
           next: (event) => {
+            this.isLoading = false;
             if (!event) {
               this.router.navigate(['/error']);
             } else {
@@ -55,6 +58,7 @@ export class EventFormComponent implements OnInit {
             }
           },
           error: () => {
+            this.isLoading = true;
             this.router.navigate(['/error']);
           }
         });
@@ -63,7 +67,7 @@ export class EventFormComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.categoryService.getCategories(-1).subscribe({
+    this.categoryService.getAllCategories().subscribe({
       next: (categories: Category[]) => {
         this.categories = categories;
       },
@@ -87,12 +91,15 @@ export class EventFormComponent implements OnInit {
   }
 
   createEvent(formData: any): void {
+    this.isLoading = true;
     this.eventService.createEvent(formData).subscribe({
       next: (event) => {
+        this.isLoading = false;
         this.eventId = event.id; 
         if (this.selectedFile) {
           this.uploadEventImage(this.eventId, this.selectedFile);
         } else {
+          this.isLoading = false;
           this.router.navigate([`/event/${this.eventId}`]);
           alert('Evento creado sin imagen.');
         }
@@ -102,11 +109,14 @@ export class EventFormComponent implements OnInit {
   }
 
   updateEvent(formData: any): void {
+    this.isLoading = true;
     this.eventService.updateEvent(this.eventId, formData).subscribe({
       next: () => {
         if (this.selectedFile) {
+          this.isLoading = false;
           this.uploadEventImage(this.eventId, this.selectedFile);
         } else {
+          this.isLoading = false;
           this.router.navigate([`/event/${this.eventId}`]);
           alert('Evento actualizado sin cambiar la imagen.');
         }
