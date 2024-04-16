@@ -1,11 +1,13 @@
 package com.EventCrafters.EventCrafters.service;
 
 import com.EventCrafters.EventCrafters.model.Event;
+import com.EventCrafters.EventCrafters.model.Secondary.PageUserRecc;
 import com.EventCrafters.EventCrafters.model.User;
 import com.EventCrafters.EventCrafters.repository.EventRepository;
 import com.EventCrafters.EventCrafters.repository.ReviewRepository;
 import com.EventCrafters.EventCrafters.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.DisabledException;
@@ -119,16 +121,16 @@ public class UserService {
 		}
 	}
 
-	public int getUserCategoryPreferencesNum(Long id){return repository.getUserCategoryPreferences(id).size();}
-
-	public List<Event> getUserCategoryPreferences(Long id, int page, int pageSize){
+	public Page<Event> getUserCategoryPreferences(Long id, int page, int pageSize){
 		Pageable pageable = PageRequest.of(page, pageSize);
-		List<BigInteger> ids = repository.getUserCategoryPreferences(id, pageable).getContent();
+		Page<BigInteger> ids = repository.getUserCategoryPreferences(id, pageable);
 		List<Event> result = new ArrayList<>();
-		for(BigInteger aux : ids){
+		for(BigInteger aux : ids.getContent()){
 			result.add(eventService.findById(aux.longValue()).get());
-		}
-		return result;
+		};
+		PageUserRecc P = new PageUserRecc(result, ids.getTotalPages());
+		return P;
+
 	}
 
 	public boolean isValidUser(User user) {

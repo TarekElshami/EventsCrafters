@@ -14,6 +14,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -544,9 +546,9 @@ public class EventRestController {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
-    public ResponseEntity<List<EventDTO>> filterByCategory(@RequestParam("page") int page, @RequestParam(value = "id", required = false) Long id, @RequestParam("type") String type, @RequestParam(value = "input", required = false) String input, Principal principal) {
+    public ResponseEntity<PageEventDTO> filterByCategory(@RequestParam("page") int page, @RequestParam(value = "id", required = false) Long id, @RequestParam("type") String type, @RequestParam(value = "input", required = false) String input, Principal principal) {
         int pageSize = 3;
-        List<Event> events = new ArrayList<>();
+        Page<Event> events = new PageImpl<>(new ArrayList<>());
         List<EventDTO> eventDTOS = new ArrayList<>();
         switch (type) {
             case "category":
@@ -587,10 +589,11 @@ public class EventRestController {
             default:
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        for (Event e : events) {
+        for (Event e : events.getContent()) {
             eventDTOS.add(transformDTO(e));
         }
-        return ResponseEntity.ok(eventDTOS);
+
+        return ResponseEntity.ok(new PageEventDTO(eventDTOS, page, events.getTotalPages()));
     }
 
     @GetMapping("/user")
@@ -604,12 +607,12 @@ public class EventRestController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
 
     })
-    public ResponseEntity<List<EventDTO>> userEvents(@RequestParam("page") int page, Principal principal,
+    public ResponseEntity<PageEventDTO> userEvents(@RequestParam("page") int page, Principal principal,
                                                      @RequestParam(value = "time", required = false) String time,
                                                      @RequestParam(value = "type", required = false) String type) {
         int pageSize = 3;
         List<EventDTO> eventDTOS = new ArrayList<>();
-        List<Event> events = new ArrayList<>();
+        Page<Event> events;
 
         if (principal == null || principal.getName().equals("anonymousUser")) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -650,11 +653,13 @@ public class EventRestController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        for (Event e : events) {
+        for (Event e : events.getContent()) {
             eventDTOS.add(transformDTO(e));
         }
 
-        return ResponseEntity.ok(eventDTOS);
+        PageEventDTO pageEventDTO = new PageEventDTO(eventDTOS, page, events.getTotalPages());
+
+        return ResponseEntity.ok(pageEventDTO);
     }
     
     private EventDTO transformDTO(Event event) {

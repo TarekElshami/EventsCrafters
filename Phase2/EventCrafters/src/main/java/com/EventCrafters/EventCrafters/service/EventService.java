@@ -9,6 +9,7 @@ import com.EventCrafters.EventCrafters.DTO.EventManipulationDTO;
 import com.EventCrafters.EventCrafters.model.Event;
 import com.EventCrafters.EventCrafters.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,8 @@ public class EventService {
 	}
 
 	public List<Event> findAll() { return repository.findAll(); }
-	public List<Event> findAll(int page,int pageSize) {
-		return repository.findAll(PageRequest.of(page, pageSize)).getContent();
+	public Page<Event> findAll(int page,int pageSize) {
+		return repository.findAll(PageRequest.of(page, pageSize));
 	}
 
 	public Event save(Event event) {
@@ -117,45 +118,39 @@ public class EventService {
 						"</html>", eventName, eventName);
 	}
 
-	public List<Event> findByCategory(long id) {return repository.findByCategory(id);}
 
-	public List<Event> findByCategory(long id, int page, int pageSize) {
+	public Page<Event> findByCategory(long id, int page, int pageSize) {
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findByCategory(id, pageable).getContent();
+		return repository.findByCategory(id, pageable);
 	}
 
-	public List<Event> findBySearchBar(String input) {return repository.findBySearchBar(input);}
 
-	public List<Event> findBySearchBar(String input, int page, int pageSize) {
+	public Page<Event> findBySearchBar(String input, int page, int pageSize) {
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findBySearchBar(input, pageable).getContent();
+		return repository.findBySearchBar(input, pageable);
 	}
 
-	public List<Event> findByCreatorIdCurrentCreatedEvents(Long id){return repository.findByCreatorIdCurrentCreatedEvents(id);}
 
-	public List<Event> findByCreatorIdCurrentCreatedEvents(Long id, int page, int  pageSize) {
+	public Page<Event> findByCreatorIdCurrentCreatedEvents(Long id, int page, int  pageSize) {
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findByCreatorIdCurrentCreatedEvents(id, pageable).getContent();
-	}
-	public List<Event> findByCreatorIdPastCreatedEvents(Long id) {return repository.findByCreatorIdPastCreatedEvents(id);}
-
-	public List<Event> findByCreatorIdPastCreatedEvents(Long id, int page, int  pageSize) {
-		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findByCreatorIdPastCreatedEvents(id, pageable).getContent();
+		return repository.findByCreatorIdCurrentCreatedEvents(id, pageable);
 	}
 
-	public List<Event> findByRegisteredUserIdCurrentEvents(Long id) {return repository.findByRegisteredUserIdCurrentEvents(id);}
-
-	public List<Event> findByRegisteredUserIdCurrentEvents(Long id, int page, int  pageSize) {
+	public Page<Event> findByCreatorIdPastCreatedEvents(Long id, int page, int  pageSize) {
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findByRegisteredUserIdCurrentEvents(id, pageable).getContent();
+		return repository.findByCreatorIdPastCreatedEvents(id, pageable);
 	}
 
-	public List<Event> findByRegisteredUserIdPastEvents(Long id) {return repository.findByRegisteredUserIdPastEvents(id);}
 
-	public List<Event> findByRegisteredUserIdPastEvents(Long id, int page, int  pageSize) {
+	public Page<Event> findByRegisteredUserIdCurrentEvents(Long id, int page, int  pageSize) {
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findByRegisteredUserIdPastEvents(id, pageable).getContent();
+		return repository.findByRegisteredUserIdCurrentEvents(id, pageable);
+	}
+
+
+	public Page<Event> findByRegisteredUserIdPastEvents(Long id, int page, int  pageSize) {
+		Pageable pageable = PageRequest.of(page, pageSize);
+		return repository.findByRegisteredUserIdPastEvents(id, pageable);
 	}
 
 	@Transactional
@@ -166,13 +161,9 @@ public class EventService {
 		repository.save(event);
 	}
 
-	public List<Event> eventsOrderedByPopularity(){
-		return repository.findByRegisteredUsersCount();
-	}
-
-	public List<Event> eventsOrderedByPopularity(int page, int pageSize){
+	public Page<Event> eventsOrderedByPopularity(int page, int pageSize){
 		Pageable pageable = PageRequest.of(page, pageSize);
-		return repository.findByRegisteredUsersCount(pageable).getContent();
+		return repository.findByRegisteredUsersCount(pageable);
 	}
 
 	public String getShortDescription(String desc) {
