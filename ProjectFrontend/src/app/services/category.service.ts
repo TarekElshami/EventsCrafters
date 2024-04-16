@@ -15,5 +15,9 @@ export class CategoryService {
     return this.http.get<{id: number; name: string; color: string}[]>(this.apiUrl, { params });
   }
 
+  getAllCategories(): Observable<any>{
+    return this.http.get<{id: number; name: string; color: string}[]>('/api/allCategories');
+  }
+
 }
 
