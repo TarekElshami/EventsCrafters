@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PageEvent } from '../models/pageEvent.model';
+import { EventGraphData } from '../models/event-graph-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,12 @@ export class EventService {
     return this.http.get<PageEvent>(`/api/events/filter`, { params });
   }
     
+  getEventGraphData(eventId: number): Observable<EventGraphData> {
+    return this.http.get<EventGraphData>(`/api/events/graph/${eventId}`);
+  }
+
+  updateEventAttendees(eventId: number, attendees: number): Observable<any> {
+    return this.http.put(`/api/events/${eventId}/attendees`, { attendeesCount: attendees });
+  }
   
 }

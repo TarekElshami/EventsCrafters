@@ -1,1 +1,21 @@
 <p>view-events works!</p>
+<div *ngIf="showForm">
+    <form [formGroup]="attendeeForm" (ngSubmit)="updateAttendees()">
+        <input formControlName="attendees" type="number" placeholder="Introduce el número de asistentes" required>
+        <button type="submit" [disabled]="!attendeeForm.valid">Enviar</button>
+      </form>
+
+
+</div>
+
+<div *ngIf="graphData">
+    <ngx-charts-pie-chart
+      [results]="chartData"
+      [legend]="false"
+      [labels]="true"
+      [doughnut]="true"
+      [arcWidth]="0.25"
+      [gradient]="gradient"
+      [scheme]="colorScheme">
+    </ngx-charts-pie-chart>
+  </div>

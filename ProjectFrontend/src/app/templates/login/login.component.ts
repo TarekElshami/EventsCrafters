@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
   }
 
   autoLogin(): void {
-    const username = 'user';
+    const username = 'user2';
     const password = 'pass';
     this.userService.login(username, password).subscribe({
       next: (response) => {

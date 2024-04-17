@@ -15,7 +15,8 @@ import { EventFormComponent } from './templates/event-form/event-form.component'
 import { ErrorComponent } from './templates/error/error.component';
 import { HeaderComponent } from './templates/header/header.component';
 import { EventCardComponent } from './templates/event-card/event-card.component';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,10 @@ import { EventCardComponent } from './templates/event-card/event-card.component'
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, 
+    NgxChartsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
