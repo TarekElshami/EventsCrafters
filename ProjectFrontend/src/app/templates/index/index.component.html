@@ -1,13 +1,13 @@
 
 <body>
-<app-header></app-header>
+<app-header (searchBarInfo)='filterBySearchBar($event)'></app-header>
 <div class="container mt-4">
     <h2 class="event-name">Próximos Eventos</h2>
     <!-- Activities -->
     <div class="row">
-        <ng-template ngFor let-event [ngForOf]="events">
+        <ng-template ngFor let-eventInstance [ngForOf]="eventsInstances">
             <div class="col-md-4">
-                <app-event-card  [eventCard]='event'></app-event-card>
+                <app-event-card  [eventCard]='eventInstance'></app-event-card>
             </div>
         </ng-template>
     </div>

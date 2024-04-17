@@ -32,10 +32,25 @@ export class EventService {
     return `/api/events/image/${id}`;
   }
 
-  getRecommendedEvents(page: number): Observable<any> {
+  getFilteredEvents(page: number, type: string, input: string, id: number): Observable<any> {
     let params = new HttpParams().append('page', page.toString());
-    params = params.append('type', 'recommended');
-    return this.http.get<PageEvent>(`/api/events/filter`, {params})
+    params = params.append('type', type);
+
+    switch (type) {
+      case 'recommended':
+        break;
+      case 'searchBar':
+        params = params.append('input', input);
+        break;
+      case 'category':
+        params = params.append('id', id.toString());
+        break;
+      default:
+        throw new Error('Invalid type for event fetching');
+    }
+
+    return this.http.get<PageEvent>(`/api/events/filter`, { params });
   }
+    
   
 }

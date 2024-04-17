@@ -3,7 +3,7 @@
         <img src="/event/image/{{eventCard.id}}" alt="imagen actividad" class="img-fluid">
         <h5>{{eventCard.name}}</h5>
         <div class="categories-container">
-            <!--<span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>-->
+            <span class="event-category" [style.backgroundColor]="category.color">{{category.name}}</span>
             <span class="event-capacity etiqueta-aforoMucho">Aforo: {{eventCard.numRegisteredUsers}}/{{eventCard.maxCapacity}}</span>
         </div>
         <div class="mt-1">
