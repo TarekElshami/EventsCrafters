@@ -34,5 +34,9 @@ export class EventCardComponent {
             }
           });
     }
+
+    viewDetails(id: number){
+      this.router.navigate(['/event/'+id]);
+    }
   
 }

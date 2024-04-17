@@ -1,6 +1,6 @@
 
     <div class="activity">
-        <img src="/event/image/{{eventCard.id}}" alt="imagen actividad" class="img-fluid">
+        <img [src]="eventCard.imageUrl" alt="imagen actividad" class="img-fluid">
         <h5>{{eventCard.name}}</h5>
         <div class="categories-container">
             <span class="event-category" [style.backgroundColor]="category.color">{{category.name}}</span>
@@ -15,7 +15,7 @@
         </div>
         
         <form action="/event/" method="GET">
-            <button class="btn btn-primary" type="submit">Ver Detalles</button>
+            <button class="btn btn-primary" (click)="viewDetails(eventCard.id)">Ver Detalles</button>
         </form>
     
     </div>
