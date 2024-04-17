@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PageEvent } from '../models/pageEvent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,12 @@ export class EventService {
 
   getEventImageUrl(id: string): string {
     return `/api/events/image/${id}`;
+  }
+
+  getRecommendedEvents(page: number): Observable<any> {
+    let params = new HttpParams().append('page', page.toString());
+    params = params.append('type', 'recommended');
+    return this.http.get<PageEvent>(`/api/events/filter`, {params})
   }
   
 }

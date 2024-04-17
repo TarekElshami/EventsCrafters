@@ -14,6 +14,7 @@ import { ViewEventsComponent } from './templates/view-events/view-events.compone
 import { EventFormComponent } from './templates/event-form/event-form.component';
 import { ErrorComponent } from './templates/error/error.component';
 import { HeaderComponent } from './templates/header/header.component';
+import { EventCardComponent } from './templates/event-card/event-card.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { HeaderComponent } from './templates/header/header.component';
     EventFormComponent,
     ErrorComponent,
     HeaderComponent,
+    EventCardComponent
 
   ],
   imports: [

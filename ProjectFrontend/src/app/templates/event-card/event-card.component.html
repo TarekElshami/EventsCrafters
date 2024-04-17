@@ -1,0 +1,21 @@
+
+    <div class="activity">
+        <img src="/event/image/{{eventCard.id}}" alt="imagen actividad" class="img-fluid">
+        <h5>{{eventCard.name}}</h5>
+        <div class="categories-container">
+            <!--<span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>-->
+            <span class="event-capacity etiqueta-aforoMucho">Aforo: {{eventCard.numRegisteredUsers}}/{{eventCard.maxCapacity}}</span>
+        </div>
+        <div class="mt-1">
+            <span class="icoest1">&#128205; {{eventCard.location}}</span>
+        </div>
+        <div class="mx-3 my-2">
+            <p class="description">{{eventCard.description}}</p>
+            <p class="date"><strong>Fecha: </strong>{{eventCard.startDate}}</p>
+        </div>
+        
+        <form action="/event/" method="GET">
+            <button class="btn btn-primary" type="submit">Ver Detalles</button>
+        </form>
+    
+    </div>
