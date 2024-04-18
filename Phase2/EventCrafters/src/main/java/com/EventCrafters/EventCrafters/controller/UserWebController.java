@@ -153,6 +153,7 @@ public class UserWebController {
 	}
 
 	@GetMapping("/IsUserBanned")
+	@ResponseBody
 	public ResponseEntity<Boolean> isUserBanned(@RequestParam("username") String username) {
 		Optional<User> userOptional = userService.findByUserName(username);
 		if (userOptional.isPresent()) {

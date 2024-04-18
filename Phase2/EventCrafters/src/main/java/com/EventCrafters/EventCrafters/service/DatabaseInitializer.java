@@ -120,6 +120,7 @@ public class DatabaseInitializer {
 		userRepository.save(user4);
 
 		User user = new User("Pedro García","user", mail, photoBlobuser, passwordEncoder.encode("pass"), "USER");
+		user.setBanned(true);
 		userRepository.save(user);
 		userRepository.save(new User("Pepe Admin","admin","", photoBlobuser, passwordEncoder.encode("adminpass"), "ADMIN"));
 

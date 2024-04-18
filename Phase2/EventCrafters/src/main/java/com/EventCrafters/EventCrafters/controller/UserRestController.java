@@ -337,6 +337,16 @@ public class UserRestController {
 		return ResponseEntity.status(500).build();
 	}
 
+	@GetMapping("/IsUserBanned")
+	@ResponseBody
+	public ResponseEntity<Boolean> isUserBanned(@RequestParam("username") String username) {
+		Optional<User> userOptional = userService.findByUserName(username);
+		if (userOptional.isPresent()) {
+			return ResponseEntity.ok(userOptional.get().isBanned());
+		}
+		return ResponseEntity.ok(false);
+	}
+
 	private boolean checkUserPrivileges(Principal principal, Optional<User> optUser) {
 		if (optUser.isEmpty()) return false;
 		if (principal==null) return false;

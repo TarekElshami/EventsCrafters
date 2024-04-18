@@ -19,15 +19,15 @@
           <h2>Iniciar Sesión</h2>
         </div>
         <div class="card-body">
-          <form action="/login" method="POST">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <input type="text" class="form-control" name="username" id="username" onchange="checkUserBanned()" placeholder="Nombre de usuario" required>
+              <input formControlName="username" type="text" class="form-control" name="username" id="username" (change)="checkUserBanned()" placeholder="Nombre de usuario" required>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+              <input formControlName="password" type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
             </div>
 
-            <button type="submit" id="submit" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Iniciar Sesión</button>
+            <button type="submit" id="submit" (click)="onClickSubmit()" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Iniciar Sesión</button>
           </form>
           <div class="text-center mt-3">
             <a href="#" onclick="return recoverPassword(event)">¿Olvidaste tu contraseña?</a>
