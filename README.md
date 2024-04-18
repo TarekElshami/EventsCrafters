@@ -40,7 +40,13 @@
    - [Deployment on Virtual Machine](#deployment-on-virtual-machine)
    - [Virtual Machine Application URL and Example Users](#virtual-machine-application-url-and-example-users)
    - [Members Participation Phase 3](#members-participation-phase-3)
-     
+
+- [Phase 4](#phase-4---spa-implementation-with-angular)
+   - [Development Environment Setup](#development-environment-setup)
+   - [Angular Component Diagrams & Templates](#angular-component-diagrams--templates)
+   - [Members Participation Phase 4](#members-participation-phase-4)
+   - [Video Tutorial](#video-tutorial)
+
 ***   
 ### ♨️Phase 0
 ***
@@ -683,4 +689,110 @@ Below are the credentials for example users, including an administrator user, to
 | [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/Phase2/EventCrafters/docker/create_image.sh) | .sh Files |
 
 ***
+### 🅰️ Phase 4 - SPA Implementation with Angular
+***
 
+## 🛠️ Development Environment Setup
+
+## 📊 Angular Component Diagrams & Templates
+
+## 👥 Members Participation Phase 4
+
+### 👩‍🔧Lucía Domínguez Rodrigo
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+### 👨‍🔧 Ángel Marqués García
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+### 👨‍🔧 Tarek Elshami Ahmed
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+### 👨‍🔧 Álvaro Serrano Rodrigo
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+### 👨‍🔧 Marcos Jiménez Pulido
+
+| Commit | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+
+| File | Description |
+| :----: | :---------: |
+| [1º]() |  |
+| [2º]() |  |
+| [3º]() |  |
+| [4º]() |  |
+| [5º]() |  |
+
+## 🎥 Video Tutorial
+
+***
