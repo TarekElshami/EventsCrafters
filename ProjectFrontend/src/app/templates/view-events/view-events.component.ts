@@ -53,7 +53,7 @@ export class ViewEventsComponent implements OnInit {
         }
       },
       error: () => {
-        this.router.navigate(['/error']);
+        console.log("error");
       }
     });
   }
@@ -81,5 +81,12 @@ export class ViewEventsComponent implements OnInit {
         error: () => this.router.navigate(['/error'])
       });
     }
+  }
+
+  onDeleteClick(): void {
+    this.eventService.deleteEvent(this.eventId).subscribe({
+      next: () => this.router.navigate(['']),
+      error: () => this.router.navigate(['/error'])
+    });
   }
 }

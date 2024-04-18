@@ -60,5 +60,9 @@ export class EventService {
   updateEventAttendees(eventId: number, attendees: number): Observable<any> {
     return this.http.put(`/api/events/${eventId}/attendees`, { attendeesCount: attendees });
   }
+
+  deleteEvent(eventId: number): Observable<any> {
+    return this.http.delete(`/api/events/${eventId}`);
+  }
   
 }
