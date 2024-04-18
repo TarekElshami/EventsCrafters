@@ -1,21 +1,24 @@
-
+<div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+    </div>
+</div>
 <body>
-<app-header (searchBarInfo)='filterBySearchBar($event)'></app-header>
+<app-header (searchBarInfo)='filterBySearchBar($event)' (categoryFilter)='FilterByCategoryId($event)'></app-header>
 <div class="container mt-4">
     <h2 class="event-name">Próximos Eventos</h2>
     <!-- Activities -->
     <div class="row">
-        <ng-template ngFor let-eventInstance [ngForOf]="eventsInstances">
+        <ng-template ngFor let-event [ngForOf]="events">
             <div class="col-md-4">
-                <app-event-card  [eventCard]='eventInstance'></app-event-card>
+                <app-event-card  [eventCard]='event'></app-event-card>
             </div>
         </ng-template>
     </div>
-    <div class="text-center" *ngIf="isLoading">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+    <div class="text-center" *ngIf="noEvents">
+        <h5 class="no-events-message">No hay eventos.</h5>
     </div>
+    
 </div>
 <div class="container text-center mt-4" *ngIf="moreBtnVisible">
     <div class="row justify-content-center">
