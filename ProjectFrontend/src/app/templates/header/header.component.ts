@@ -41,4 +41,8 @@ export class HeaderComponent {
         this.categoryFilter.emit(id);
     }
 
+    goToProfile(){
+        this.router.navigate(['/profile']); 
+    }
+
 }

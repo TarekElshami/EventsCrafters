@@ -14,7 +14,7 @@
                     🧒 <!-- User emoji -->
                 </a>
                 <div ngbDropdownMenu  class="dropdown-menu dropdown-menu-right" aria-labelledby="perfilDropdown">
-                    <a class="dropdown-item" href="/profile">Perfil</a>
+                    <a class="dropdown-item" (click)="goToProfile()">Perfil</a>
                     <div class="dropdown-divider"></div>
                     <form action="/logout" method="post">
                         <input type="hidden" name="_method" value="POST">
