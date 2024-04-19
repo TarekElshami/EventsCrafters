@@ -740,20 +740,21 @@ Below are the credentials for example users, including an administrator user, to
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/9d0f2f3ae0c0738ce483e44f2a436b27d69f2786) | This commit includes the development of the `Event-Form` component, programming both the HTML and CSS. It handles the scenario where the user accesses the form via `event/edit/id`, capturing the event ID and displaying existing event details for editing. If no ID is provided, it displays an empty form to create a new event, ensuring full functionality. |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/a1cda93ced418094ed1ce3a84b6084aa816332ff) | Added field validations to the event creation and editing forms. These validations are aesthetic in the frontend to guide the user, with backend validations for security. Fields that fail validation turn red, a message is displayed, and the "Submit" button is disabled until all fields are valid. Requirements include a future date, non-negative price, and a minimum capacity of one. |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/59cc02c001c483e060af883e6fe6c66c3a0834ac) | This commit introduces a graph displaying the number of attendees who have registered for an event versus those who did not show up, using NGX-charts. Additionally, an input field was created for event organizers to enter the actual number of attendees. |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/a1cda93ced418094ed1ce3a84b6084aa816332ff) | Expanded the creation and editing of events to allow for creating an event without an image (assigning the EventsCrafters logo), with an image, and editing by replacing or retaining the existing image. This involves two backend requests: one for creating or editing the event, and another for handling the image. |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/b9307bcc5de0f06716ce25088bf10b48f83b6f21) | Implemented an error screen that activates if the user navigates to a non-existent route or if an error occurs, redirecting to the error screen. |
+
 
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](ProjectFrontend/src/app/templates/event-form/event-form.component.ts) | event-form.component.ts |
+| [2º](ProjectFrontend/src/app/services/event.service.ts) | event.service.ts |
+| [3º](ProjectFrontend/src/app/templates/view-events/view-events.component.ts) | view-events.component.ts |
+| [4º](ProjectFrontend/src/app/templates/event-form/event-form.component.html) | event-form.component.html |
+| [5º](ProjectFrontend/src/app/app-routing.module.ts) | app-routing.module.ts |
 
 ### 👨‍🔧 Álvaro Serrano Rodrigo
 
