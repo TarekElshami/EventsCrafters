@@ -1,24 +1,276 @@
-<p>view-events works!</p>
-<div *ngIf="showForm">
-    <form [formGroup]="attendeeForm" (ngSubmit)="updateAttendees()">
-        <input formControlName="attendees" type="number" placeholder="Introduce el número de asistentes" required>
-        <button type="submit" [disabled]="!attendeeForm.valid">Enviar</button>
-      </form>
+<!-- nav bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">
+    <img src="../img/logo.jpeg" width="30" height="30" class="d-inline-block align-top"
+         alt="Imagen Logo Events Crafters"> Event Crafters
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggled"
+          aria-controls="navbarToggled" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarToggled">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/"><i class="fas fa-home"></i></a>
+      </li>
+
+      <div *ngIf="logged">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            🧒 <!-- User emoji -->
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="perfilDropdown">
+            <a class="dropdown-item" href="/profile">Perfil</a>
+            <div class="dropdown-divider"></div>
+            <form action="/logout" method="post">
+              <input type="hidden" name="_method" value="POST">
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+              <button type="submit" name="logout" class="dropdown-item">Cerrar Sesión</button>
+            </form>
+          </div>
+        </li>
+      </div>
+
+      <div *ngIf="!logged">
+        <li class="nav-item dropdown">
+          <form action="/register" method="get" class="form-inline my-2 my-lg-0 mr-2">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Registrarse</button>
+          </form>
+        </li>
+        <li class="nav-item dropdown">
+          <form action="/login" method="get" class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar Sesión</button>
+          </form>
+        </li>
+      </div>
+
+    </ul>
+  </div>
+</nav>
 
 
+<div class="alert alert-warning text-center" role="alert" style="margin-top: 56px;" *ngIf="eventFinished">
+  Este evento ha finalizado.
 </div>
 
-<div *ngIf="graphData">
-    <ngx-charts-pie-chart
-      [results]="chartData"
-      [legend]="false"
-      [labels]="true"
-      [doughnut]="true"
-      [arcWidth]="0.25"
-      [gradient]="gradient"
-      [scheme]="colorScheme">
-    </ngx-charts-pie-chart>
-  </div>
 
-<button (click)="onDeleteClick()">Eliminar evento</button>
- 
+<div class="container mt-3">
+  <div class="profile-container">
+    <h2 class="event-title">{{ event.name }}</h2>
+    <img src="/event/image/{{event.id}}" class="d-block w-100" id="event-photo" alt="imagen {{event.name}}"><br>
+    <div class="categories-container info d-flex justify-content-between">
+      <div style="max-height: 15px; padding-top:10px;">
+        <span class="event-category"
+              style="background-color: {{event.category.color}};">{{ event.category.name }}</span>
+      </div>
+      <span class="event-capacity etiqueta-aforo">Aforo:
+        {{ numRegisteredUsers }}/{{ event.maxCapacity }}</span>
+    </div>
+
+    <!--Info section-->
+    <div class="user-events">
+      <h3 class="next">Información</h3>
+      <p><strong>Descripción: </strong> {{ event.description }}</p>
+      <div class="row flex-wrap p-3">
+        <div>
+          <p><strong><i class="fas fa-users"></i> Aforo máximo: </strong> {{ event.maxCapacity }} personas</p>
+          <p><strong><i class="fas fa-map-marker-alt"></i> Lugar: </strong> <a href="#map">Ver mapa</a></p>
+          <p><strong><i class="fas fa-euro-sign"></i> Precio: </strong> {{ priceDisplay }}</p>
+          <p><strong><i class="fas fa-clock"></i> Fecha de inicio: </strong> {{ startDateFormatted }}</p>
+          <p><strong><i class="fas fa-clock"></i> Fecha de fin: </strong> {{ endDateFormatted }}</p>
+          <p><strong><i class="fas fa-hourglass-half"></i> Duración: </strong> {{ duration }}</p>
+          <p><strong><i class="fas fa-info-circle"></i> Información adicional: </strong> {{ event.additionalInfo }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-events actions-section mt-4" *ngIf="eventFinished">
+      <h3 class="next">Acciones</h3>
+      <div class="d-flex justify-content-center flex-wrap">
+        <div class="user-events actions-section mt-4">
+          <div *ngIf="!isUserCreatorOrAdmin">
+            <div class="m-2">
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+              <button (click)="onDeleteClick()">Eliminar evento</button>
+              <button type="submit" class="btn btn-danger" onclick="return warnDeleteEvent()"><i
+                class="fas fa-trash-alt"></i>Borrar Evento
+              </button>
+            </div>
+            <div class="m-2">
+              <a href="/event/edit/{{event.id}}" class="btn btn-info"><i class="fas fa-edit"></i>Editar Evento</a>
+            </div>
+          </div>
+
+          <div *ngIf="logged">
+            <div class="m-2" *ngIf="isUserRegistered">
+              <form action="/event/leave/{{event.id}}" method="post">
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+                <button type="submit" class="btn btn-warning">Desapuntarte de {{ event.name }}</button>
+              </form>
+              <br>
+              <form action="/ticket/{{event.id}}" method="get">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-ticket-alt"></i>Ver entrada
+                  a {{ event.name }}
+                </button>
+              </form>
+            </div>
+            <div *ngIf="!isUserCreatorOrAdmin">
+              <div class="m-2" *ngIf="!isUserRegistered">
+                <form action="/event/register/{{event.id}}" method="post">
+                  <input type="hidden" name="_csrf" value="{{token}}"/>
+                  <button type="submit" class="btn btn-primary">Apuntarte a {{ event.name }}</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-2" *ngIf="logged">
+            <form action="/event/register/{{event.id}}" method="post">
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+              <button type="submit" class="btn btn-primary">Apuntarte a {{ event.name }}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="user-events actions-section mt-4" *ngIf="eventFinished">
+      <h3 class="next"><i class="fas fa-clipboard-list"></i> Retroalimentación</h3>
+      <div *ngIf="logged">
+        <div *ngIf="eventFinished">
+          <div *ngIf="isUserRegistered">
+            <div class="review-section mt-3" *ngIf="!hasUserReviewed">
+              <a href="/review/event/{{event.id}}" class="btn btn-primary"><i class="fas fa-star"></i> Dejar una
+                review</a>
+            </div>
+            <div class="alert alert-info" role="alert" *ngIf="hasUserReviewed">
+              Ya has valorado este evento. Gracias por tu feedback.
+            </div>
+          </div>
+
+          <div *ngIf="isUserCreatorOrAdmin">
+            <div class="event-attendance-input-section mt-3">
+              <div *ngIf="!attendeesCountSet">
+                <form action="/event/setAttendance/{{event.id}}" method="post" class="form-inline">
+                  <div class="form-group mb-2">
+                    <label for="attendeesCount" class="sr-only">Número de asistentes</label>
+                    <input type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes"
+                           min="0"
+                           max="{{numRegisteredUsers}}" required>
+                  </div>
+                  <input type="hidden" name="_csrf" value="{{token}}"/>
+                  <button type="submit" class="btn btn-info mb-2 ml-2"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+              </div>
+            </div>
+            <div class="graphicContainer">
+              <div class="event-attendance-chart-section mt-3">
+                <div *ngIf="attendeesCountSet">
+                  <h4><i class="fas fa-chart-pie"></i> Gráfica de Asistencia</h4>
+                  <div class="container charts-container">
+                    <div class="row flex-wrap">
+                      <div class="chart">
+                        <div *ngIf="graphData">
+                          <ngx-charts-pie-chart
+                            [results]="chartData"
+                            [legend]="false"
+                            [labels]="true"
+                            [doughnut]="true"
+                            [arcWidth]="0.25"
+                            [gradient]="gradient"
+                            [scheme]="colorScheme">
+                          </ngx-charts-pie-chart>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="event-average-rating-section mt-4">
+        <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ averageRating }} (Con {{ reviewNum }}
+          valoraciones)</h4>
+        <br>
+      </div>
+    </div>
+
+
+    <!--Location section-->
+    <div class="user-events" id="map">
+      <h3 class="created">Localización</h3>
+      Este evento tiene lugar en: {{ event.location }}.<br><br>
+      <div class="container map-container">
+        <div class="row flex-wrap">
+          <div class="map">
+            {{ {event.map }}}
+          </div>
+        </div>
+      </div>
+
+      <!--Creator secction-->
+      <div class="user-events">
+        <h3 class="next">Anfitrión</h3>
+        <div class="row flex-wrap p-5">
+          <div class="row">
+            <div class="mx-auto">
+              <img class="profile-photo" src="/profile/img/{{event.creator.username}}"
+                   alt="Foto de Perfil de {{event.creator.username}}">
+            </div>
+            <div>
+              <h4 class="fs-5 mt-4 px-4 pb-1">{{ event.creator.name }} (registrado como {{ event.creator.username }}
+                )</h4>
+              <p class="px-4">Soy {{ event.creator.name }}, tu organizador de confianza. Para contactar conmigo,
+                escríbeme a mi correo {{ event.creator.email }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Other events section-->
+      <div class="user-events">
+        <h3 class="next">Eventos a los que me he apuntado
+        </h3>
+        <div class="row flex-wrap" id="eventsChart">
+          <div class="col-md-4 mb-4" *ngIf="otherEvents">
+            <div class="activity d-flex flex-row align-items-center">
+              <div class="categories-container info event-container-tag-div">
+                <span class="event-category" style="background-color: {{category.color}};">{{ category.name }}</span>
+              </div>
+              <h5 class="info event-container-text">{{ name }}</h5>
+              <form action="/event/{{id}}" method="GET">
+                <button class="btn btn-primary" type="submit">Ver Detalles</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="text-center" *ngIf="!otherEvents">
+          <h5 class="no-events-message">No hay eventos.</h5>
+        </div>
+        <div class="text-center" id="spinner" style="display: none">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container text-center mt-4">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <button class="btn btn-primary" data-type="/otherEvents" data-nextPage="1" id="home-load-more-btn"
+                    style="display: {{moreEvents}}">Cargar más eventos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

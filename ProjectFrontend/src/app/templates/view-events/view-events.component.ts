@@ -10,13 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./view-events.component.css']
 })
 export class ViewEventsComponent implements OnInit {
-  eventId!: number;  
-  graphData?: EventGraphData; 
+  eventId!: number;
+  graphData?: EventGraphData;
   showForm = false;
   attendeeForm!: FormGroup;
-  
+
   gradient: boolean = false;
-  colorScheme = 'vivid'; 
+  colorScheme = 'vivid';
   chartData: any[] = [];
 
   constructor(
@@ -30,10 +30,9 @@ export class ViewEventsComponent implements OnInit {
     const eventIdString = this.route.snapshot.paramMap.get('id');
     if (eventIdString) {
       this.eventId = +eventIdString;  // String to num
-      // @Marcos debes controlar que solo se cargue cuando el evento ha terminado y
-      // el /me del usuario es el creador o admin
+
       this.attendeeForm = this.formBuilder.group({
-        attendees: ['', [Validators.required, Validators.min(0)]] // Poner aquí el máximo (registred users) 
+        attendees: ['', [Validators.required, Validators.min(0)]] // Poner aquí el máximo (registred users)
       });
       this.loadGraphData();
     } else {
@@ -72,7 +71,7 @@ export class ViewEventsComponent implements OnInit {
       ];
     }
   }
-  
+
   updateAttendees() {
     if (this.attendeeForm.valid) {
       const attendees = this.attendeeForm.get('attendees')?.value;
