@@ -30,5 +30,15 @@ export class UserService {
     )
   }
 
+  isUserBanned(userName: string) {
+    return this.http.get<any>("/api/users/IsUserBanned?username="+userName).pipe(
+      map(
+        (response: HttpResponse<any>) => {
+          return response;
+        }
+      )
+    )
+  }
+
 
 }

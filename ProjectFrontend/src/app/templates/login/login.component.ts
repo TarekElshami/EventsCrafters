@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {map, Observable, Observer} from "rxjs";
 import {Router} from "@angular/router";
@@ -25,28 +25,13 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', {validators: [Validators.required], asyncValidators: [this.checkUserBanned()], updateOn: 'blur'}],
       password: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
     //this.autoLogin();
-  }
-
-  autoLogin(): void {
-    //const username = 'user2';
-    //const password = 'pass';
-    //this.userService.login(username, password).subscribe({
-    //  next: (response) => {
-    //    console.log('Auto login successful', response);
-    //    // Optionally navigate or perform further actions on successful login
-    //  },
-    //  error: (error) => {
-    //    console.error('Auto login failed', error);
-    //    // Handle login failure (e.g., show error message)
-    //  }
-    //});
   }
 
   onSubmit() {
@@ -64,23 +49,26 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
     );
   }
 
-  checkUserBanned() {
-    var username : string = this.loginForm.get("username")?.value
-    if (username===""){
-      this.submitButtonEnabled = true;
-      return;
-    }
-
-    this.httpClient.get<boolean>("api/users/IsUserBanned?username="+username).subscribe(
-      (isBanned: boolean) => {
+  checkUserBanned(): AsyncValidatorFn {
+    return (control: AbstractControl) => {
+      const username: string = this.loginForm.get("username")?.value;
+      if (username===""){
+        this.submitButtonEnabled = true;
+      }
+      return this.userService.isUserBanned(username).pipe(
+        map( (isBanned: HttpResponse<any>): ValidationErrors | null => {
           if (isBanned) {
-            alert("Este usuario está baneado")
+            //alert("Este usuario está baneado")
             this.submitButtonEnabled = false;
+            return {isBanned:true}
           } else {
             this.submitButtonEnabled = true;
+            return null;
           }
-      }
-    )
+          }
+        )
+      )
+    }
   }
 
 
@@ -112,6 +100,9 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
 
 
   onClickSubmit() {
+    if (!this.submitButtonEnabled){
+      alert("Este usuario está baneado")
+    }
     return this.submitButtonEnabled;
   }
 }
