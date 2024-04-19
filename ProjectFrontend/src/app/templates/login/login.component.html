@@ -39,7 +39,7 @@
             <button type="submit" id="submit" (click)="onClickSubmit()" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Iniciar Sesión</button>
           </form>
           <div class="text-center mt-3">
-            <a href="#" onclick="return recoverPassword(event)">¿Olvidaste tu contraseña?</a>
+            <a (click)="recoverPassword()">¿Olvidaste tu contraseña?</a>
           </div>
         </div>
       </div>

@@ -72,9 +72,7 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
   }
 
 
-   recoverPassword(event: Event) {
-    event.preventDefault(); // Prevent the default link behavior
-
+   recoverPassword() {
     // Prompt the user for input
     const userInput: string | null = window.prompt('Please enter your username');
     if (userInput === null) {
@@ -84,7 +82,7 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
     // Check if the user exists
     this.userExists(userInput).subscribe(exists => {
       if (exists) {
-        window.location.href = "/recoverPassword/" + userInput;
+        this.router.navigate(["/recoverPassword/" + userInput]);
       } else {
         // Invalid input
         alert('Invalid input. Please try again.');
@@ -93,7 +91,7 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
   }
 
   userExists(input: string): Observable<boolean> {
-    return this.httpClient.post<any>("/IsUsernameTaken", input).pipe(
+    return this.httpClient.get<any>("/api/users/IsUsernameTaken?username="+input).pipe(
       map((response: HttpResponse<any>) => !response.ok)
     );
   }
@@ -105,4 +103,5 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
     }
     return this.submitButtonEnabled;
   }
+
 }
