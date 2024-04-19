@@ -347,6 +347,17 @@ public class UserRestController {
 		return ResponseEntity.ok(false);
 	}
 
+	@GetMapping("/IsUsernameTaken")
+	@ResponseBody
+	public ResponseEntity<Boolean> isUserNameTaken(@RequestParam("username") String username) {
+		Optional<User> userOptional = userService.findByUserName(username);
+		if (userOptional.isPresent()){
+			return ResponseEntity.ok(true);
+		} else {
+			return ResponseEntity.ok(false);
+		}
+	}
+
 	private boolean checkUserPrivileges(Principal principal, Optional<User> optUser) {
 		if (optUser.isEmpty()) return false;
 		if (principal==null) return false;

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {catchError, map, Observable} from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = '/api/auth/login'; 
+  private apiUrl = '/api/auth/login';
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +20,15 @@ export class UserService {
     return this.http.get<User>('/api/users/me');
   }
 
+  usernameTaken(userName: string) {
+    return this.http.get<any>("/api/users/IsUsernameTaken?username="+userName).pipe(
+      map(
+        (response: HttpResponse<any>) => {
+          return response;
+        }
+      )
+    )
+  }
 
 
 }

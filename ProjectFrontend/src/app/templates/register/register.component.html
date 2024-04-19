@@ -22,23 +22,56 @@
           <h1>Crear Cuenta</h1>
         </div>
         <div class="card-body">
-          <form action="/register" method="POST">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <input type="text" class="form-control" name="name" id="fullname" placeholder="Nombre completo" required>
+              <input formControlName="fullName" type="text" class="form-control" name="name" id="fullname" placeholder="Nombre completo" required>
+              <div *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+                <small class="text-danger">El nombre es requerido.</small>
+              </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="username" onblur="userNameTaken()" id="username" placeholder="Nombre de usuario" required>
+              <input formControlName="username" type="text" class="form-control" name="username" id="username" placeholder="Nombre de usuario" required>
+              <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                <small class="text-danger">El nombre de usuario es requerido.</small>
+              </div>
+              <div *ngIf="registerForm.get('username')?.errors?.['userNameTaken'] && registerForm.get('username')?.touched">
+                <small class="text-danger">Nombre de usuario inválido. Prueba con otro.</small>
+              </div>
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
+              <input formControlName="email" type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                  <small class="text-danger">El email es requerido.</small>
+                </div>
+                <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                  <small class="text-danger">El email debe tener formato correcto.</small>
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" name="encodedPassword" id="password" placeholder="Contraseña" required>
+              <input formControlName="password" type="password" class="form-control" name="encodedPassword" id="password" placeholder="Contraseña" required>
+              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                <div *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched">
+                  <small class="text-danger">La contraseña es requerida</small>
+                </div>
+              </div>
+              <div *ngIf="registerForm.errors?.['passwordsMatch'] && registerForm.get('confirmPassword')?.touched && registerForm.get('password')?.touched">
+                <small class="text-danger">Las contraseñas deben coincidir.</small>
+              </div>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+              <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+              <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+                <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched">
+                  <small class="text-danger">La confirmación de la contraseña es requerida</small>
+                </div>
+              </div>
+              <div *ngIf="registerForm.errors?.['passwordsMatch'] && registerForm.get('confirmPassword')?.touched && registerForm.get('password')?.touched">
+                <small class="text-danger">Las contraseñas deben coincidir.</small>
+              </div>
             </div>
-            <button type="submit" id="submit" onclick="return validateForm();" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Registrarse</button>
+            <button type="submit" id="submit" (click)="submitButtonOnClick()" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Registrarse</button>
           </form>
         </div>
         <div class="card-footer text-center">
