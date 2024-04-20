@@ -63,7 +63,7 @@
                             </label>
                             <input type="file" accept="image/png, image/jpeg, image/jpg"  onchange="sendProfileImage()" class="btn btn-primary" placeholder="Editar foto de perfil">
                         </div>
-                        <div class="col text-center btn-edit-account" *nfIf="!isAdmin">
+                        <div class="col text-center btn-edit-account" *ngIf="!isAdmin">
                             <button  class="btn btn-primary" >Editar Perfil</button>
     
                             <!-- Hidden div for the pop-up -->
@@ -168,24 +168,25 @@
                 <h3 class="created" *ngIf="isAdmin">Todos los eventos</h3>
                 <h3 class="created" *ngIf="!isAdmin">Mis eventos creados</h3>
                 <div class="row flex-wrap">
-                    <!--
-                    {{#events}}
+                    <ng-template ngFor let-event [ngForOf]="events1.events">
                         <div class="col-md-4 mb-4">
                             <div class="activity d-flex flex-row align-items-center">
-                                <div class="categories-container info event-container-tag-div">
-                                    <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
-                                </div>
-                                <h5 class="info event-container-text">{{name}}</h5>
-                                <form action="/event/{{id}}" method="GET">
+                                <!--
+                                <ng-container *ngIf="findCategory(event.categoryId) | async as category">
+                                    <div class="categories-container info event-container-tag-div">
+                                      <span class="event-category" [style.backgroundColor]="category.color">{{ category.name }}</span>
+                                    </div>
+                                  </ng-container>
+                                -->
+                                <h5 class="info event-container-text">{{event.name}}</h5>
+                                <form action="" method="GET">
                                     <button class="btn btn-primary" type="submit">Ver Detalles</button>
                                 </form>
                             </div>
                         </div>
-                    {{/events}}
-                    -->
-    
-                    <!--
-                    <div class="col-md-4 mb-4 last" *ngIf="!isAdmin">
+                    </ng-template>
+
+                    <div class="col-md-4 mb-4 last" *ngIf="isAdmin">
                         <form action="/create_event" method="get">
                             <div class="activity d-flex flex-row align-items-center" style="justify-content: center">
                                 <div class="categories-container info">
@@ -196,7 +197,6 @@
                             </div>
                         </form>
                     </div>
-                    -->
                 </div>
                 <div class="text-center"  style="display: none">
                     <div class="spinner-border" role="status">
@@ -204,22 +204,18 @@
                     </div>
                 </div>
             </div>
-            <!--
-            {{^events}}
-                <div class="{{showWhenAdmin}} text-center">
+                <div class="text-center" *ngIf="!events1.areThereEvents">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
-            {{/events}}
-            -->
-            <div class="container text-center mt-4" >
+            <div class="container text-center mt-4" *ngIf="events1.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary"  data-nextPage="1">Cargar más eventos</button>
+                        <button class="btn btn-primary">Cargar más eventos</button>
                     </div>
                 </div>
             </div>
             <!--Charts-->
-            <div class="Charts " *ngIF="isAdmin">
+            <div class="Charts " *ngIf="isAdmin">
                 <h3 class="created">Gráficas</h3>
                 <div id="charts-container" >
     
@@ -235,31 +231,29 @@
             <div class="user-events" *ngIf="!isAdmin">
                 <h3 class="next">Eventos pasados que he creado </h3>
                 <div class="row flex-wrap">
-                    <!--
-                    {{#pastEvents}}
+                    <ng-template ngFor let-event [ngForOf]="events2.events">
                         <div class="col-md-4 mb-4">
                             <div class="activity d-flex flex-row align-items-center">
+                                <!--
                                 <div class="categories-container info event-container-tag-div">
                                     <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
                                 </div>
-                                <h5 class="info event-container-text">{{name}}</h5>
-                                <form action="/event/{{id}}" method="GET">
+                                -->
+                                <h5 class="info event-container-text">{{event.name}}</h5>
+                                <form action="" method="GET">
                                     <button class="btn btn-primary" type="submit">Ver Detalles</button>
                                 </form>
                             </div>
                         </div>
-                    {{/pastEvents}}
-                    -->
+                    </ng-template>
+                    
                 </div>
             </div>
-            <!--
-            {{^pastEvents}}
-                <div class="{{showWhenUser}} text-center">
+
+                <div class=" text-center" *ngIf="!events2.areThereEvents">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
-            {{/pastEvents}}
-            -->
-            <div class="container text-center mt-4" *ngIf="!isAdmin">
+            <div class="container text-center mt-4" *ngIf="!isAdmin && events2.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <button class="btn btn-primary">Cargar más eventos</button>
@@ -270,31 +264,27 @@
             <div class="user-events" *ngIf="!isAdmin">
                 <h3 class="next">Eventos a los que me he apuntado</h3>
                 <div class="row flex-wrap" id="registered-events-container">
-                    <!--
-                    {{#registeredCurrentEvents}}
+                    <ng-template ngFor let-event [ngForOf]="events3.events">
                         <div class="col-md-4 mb-4">
                             <div class="activity d-flex flex-row align-items-center">
+                                <!--
                                 <div class="categories-container info event-container-tag-div">
                                     <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
                                 </div>
-                                <h5 class="info event-container-text">{{name}}</h5>
-                                <form action="/event/{{id}}" method="GET">
+                                -->
+                                <h5 class="info event-container-text">{{event.name}}</h5>
+                                <form action="" method="GET">
                                     <button class="btn btn-primary" type="submit">Ver Detalles</button>
                                 </form>
                             </div>
                         </div>
-                    {{/registeredCurrentEvents}}
-                    -->
+                    </ng-template>
                 </div>
             </div>
-            <!--
-            {{^registeredCurrentEvents}}
-                <div class="{{showWhenUser}} text-center">
+                <div class=" text-center" *ngIf="!events3.areThereEvents">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
-            {{/registeredCurrentEvents}}
-            -->
-            <div class="container text-center mt-4" *ngIf="!isAdmin">
+            <div class="container text-center mt-4" *ngIf="!isAdmin && events3.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <button class="btn btn-primary" >Cargar más eventos</button>
@@ -305,31 +295,29 @@
             <div class="user-events" *ngIf="!isAdmin">
                 <h3 class="next">Eventos pasados a los que me he apuntado</h3>
                 <div class="row flex-wrap">
-                    <!--
-                    {{#registeredPastEvents}}
+                    <ng-template ngFor let-event [ngForOf]="events4.events">
                         <div class="col-md-4 mb-4">
                             <div class="activity d-flex flex-row align-items-center">
+                                <!--
                                 <div class="categories-container info event-container-tag-div">
                                     <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
                                 </div>
-                                <h5 class="info event-container-text">{{name}}</h5>
-                                <form action="/event/{{id}}" method="GET">
+                                -->
+                                <h5 class="info event-container-text">{{event.name}}</h5>
+                                <form action="" method="GET">
                                     <button class="btn btn-primary" type="submit">Ver Detalles</button>
                                 </form>
                             </div>
                         </div>
-                    {{/registeredPastEvents}}
-                    -->
+                    </ng-template>
                 </div>
             </div>
-            <!--
-            {{^registeredPastEvents}}
-                <div class="{{showWhenUser}} text-center">
+
+                <div class="text-center" *ngIf="!events4.areThereEvents">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
-            {{/registeredPastEvents}}
-            -->
-            <div class="container text-center mt-4" *ngIf="!isAdmin">
+          
+            <div class="container text-center mt-4" *ngIf="!isAdmin && events4.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <button class="btn btn-primary">Cargar más eventos</button>

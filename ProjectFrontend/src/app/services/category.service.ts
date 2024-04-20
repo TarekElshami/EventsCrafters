@@ -20,7 +20,7 @@ export class CategoryService {
     return this.http.get<{id: number; name: string; color: string}[]>('/api/allCategories');
   }
 
-  getCategoryById(id: number): Observable<any>{
+  getCategoryById(id: number): Observable<Category>{
     return this.http.get<Category>(`/api/categories/${id}`);
   }
 

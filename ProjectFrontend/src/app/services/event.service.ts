@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { PageEvent } from '../models/pageEvent.model';
 import { EventGraphData } from '../models/event-graph-data.model';
 
@@ -63,6 +63,37 @@ export class EventService {
 
   deleteEvent(eventId: number): Observable<any> {
     return this.http.delete(`/api/events/${eventId}`);
+  }
+
+  getProfileEvents(role: string): Observable<any>{
+    
+    switch(role){
+      case 'user':
+        // user current created events
+        let request1 = this.userEventRequest(0, 'created', 'present');
+        // user past created events
+        let request2 = this.userEventRequest(0, 'created', 'past');
+        // use current registered events
+        let request3 = this.userEventRequest(0, 'registered', 'present');
+        //user past registered events
+        let request4 = this.userEventRequest(0, 'registered', 'past');
+
+        return forkJoin([request1,request2,request3,request4]);
+      case 'admin':
+        let params = new HttpParams().append('page',0);
+        return this.http.get<PageEvent>(`/api/events/user`, { params });
+
+        default:
+      throw new Error(`Unsupported role: ${role}`);
+    }
+  }
+
+  userEventRequest(page: number, type: string, time: string): Observable<any>{
+        let params = new HttpParams()
+                  .append('page',page)
+                  .append('time',time)
+                  .append('type',type);
+        return this.http.get<PageEvent>(`/api/events/user`, { params });
   }
   
 }
