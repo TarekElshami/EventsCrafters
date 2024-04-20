@@ -20,6 +20,10 @@ export class UserService {
     return this.http.get<User>('/api/users/me');
   }
 
+  getUser(userId : number):Observable<User>{
+    return this.http.get<User>('/api/users/'+userId);
+  }
+
   usernameTaken(userName: string) {
     return this.http.get<any>("/api/users/IsUsernameTaken?username="+userName).pipe(
       map(

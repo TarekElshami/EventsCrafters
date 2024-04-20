@@ -63,10 +63,10 @@
     <div class="categories-container info d-flex justify-content-between">
       <div style="max-height: 15px; padding-top:10px;">
         <span class="event-category"
-              style="background-color: {{event.category.color}};">{{ event.category.name }}</span>
+              style="background-color: {{category.color}};">{{ category.name }}</span>
       </div>
       <span class="event-capacity etiqueta-aforo">Aforo:
-        {{ numRegisteredUsers }}/{{ event.maxCapacity }}</span>
+        {{ event.numRegisteredUsers }}/{{ event.maxCapacity }}</span>
     </div>
 
     <!--Info section-->
@@ -77,10 +77,10 @@
         <div>
           <p><strong><i class="fas fa-users"></i> Aforo máximo: </strong> {{ event.maxCapacity }} personas</p>
           <p><strong><i class="fas fa-map-marker-alt"></i> Lugar: </strong> <a href="#map">Ver mapa</a></p>
-          <p><strong><i class="fas fa-euro-sign"></i> Precio: </strong> {{ priceDisplay }}</p>
-          <p><strong><i class="fas fa-clock"></i> Fecha de inicio: </strong> {{ startDateFormatted }}</p>
-          <p><strong><i class="fas fa-clock"></i> Fecha de fin: </strong> {{ endDateFormatted }}</p>
-          <p><strong><i class="fas fa-hourglass-half"></i> Duración: </strong> {{ duration }}</p>
+          <p><strong><i class="fas fa-euro-sign"></i> Precio: </strong> {{ event.price }}</p>
+          <p><strong><i class="fas fa-clock"></i> Fecha de inicio: </strong> {{ event.startDate }}</p>
+          <p><strong><i class="fas fa-clock"></i> Fecha de fin: </strong> {{ event.endDate }}</p>
+          <p><strong><i class="fas fa-hourglass-half"></i> Duración: </strong> {{ event.duration }}</p>
           <p><strong><i class="fas fa-info-circle"></i> Información adicional: </strong> {{ event.additionalInfo }}</p>
         </div>
       </div>
@@ -156,10 +156,10 @@
               <div *ngIf="!attendeesCountSet">
                 <form action="/event/setAttendance/{{event.id}}" method="post" class="form-inline">
                   <div class="form-group mb-2">
-                    <label for="attendeesCount" class="sr-only">Número de asistentes</label>
+                    <label class="sr-only"> Número de asistentes</label> <!--for="attendeesCount"-->
                     <input type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes"
                            min="0"
-                           max="{{numRegisteredUsers}}" required>
+                           max="{{event.numRegisteredUsers}}" required>
                   </div>
                   <input type="hidden" name="_csrf" value="{{token}}"/>
                   <button type="submit" class="btn btn-info mb-2 ml-2"><i class="fas fa-save"></i> Guardar</button>
@@ -194,7 +194,7 @@
         </div>
       </div>
       <div class="event-average-rating-section mt-4">
-        <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ averageRating }} (Con {{ reviewNum }}
+        <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ event.averageRating }} (Con {{ event.reviewNum }}
           valoraciones)</h4>
         <br>
       </div>
@@ -208,7 +208,7 @@
       <div class="container map-container">
         <div class="row flex-wrap">
           <div class="map">
-            {{ {event.map }}}
+            {{ event.map }}
           </div>
         </div>
       </div>
@@ -219,21 +219,20 @@
         <div class="row flex-wrap p-5">
           <div class="row">
             <div class="mx-auto">
-              <img class="profile-photo" src="/profile/img/{{event.creator.username}}"
-                   alt="Foto de Perfil de {{event.creator.username}}">
+              <img class="profile-photo" src="/profile/img/{{creator.username}}"
+                   alt="Foto de Perfil de {{creator.username}}">
             </div>
             <div>
-              <h4 class="fs-5 mt-4 px-4 pb-1">{{ event.creator.name }} (registrado como {{ event.creator.username }}
+              <h4 class="fs-5 mt-4 px-4 pb-1">{{ creator.name }} (registrado como {{ creator.username }}
                 )</h4>
-              <p class="px-4">Soy {{ event.creator.name }}, tu organizador de confianza. Para contactar conmigo,
-                escríbeme a mi correo {{ event.creator.email }}</p>
+              <p class="px-4">Soy {{ creator.name }}, tu organizador de confianza. Para contactar conmigo,
+                escríbeme a mi correo {{ creator.email }}</p>
             </div>
 
           </div>
         </div>
       </div>
-
-      <!-- Other events section-->
+      <!-- Other events section
       <div class="user-events">
         <h3 class="next">Eventos a los que me he apuntado
         </h3>
@@ -269,6 +268,7 @@
           </div>
         </div>
       </div>
+      -->
     </div>
   </div>
 </div>

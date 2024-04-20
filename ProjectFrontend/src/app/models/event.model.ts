@@ -14,5 +14,8 @@ export interface Event {
     numRegisteredUsers: number;
     categoryId: number;
     imageUrl: string;
+    attendeesCount: number;
+    reviewNum: number;
+    averageRating: number;
 
 }
