@@ -37,6 +37,9 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 
+	private static Map<String, TokenService> tokens = new HashMap<>();
+	public static void addToken(String user, TokenService token){tokens.put(user, token);}
+
 	@Operation(summary = "Gets the currently authenticated user",
 			description = "Returns all information associated to the authenticated user. If no user is authenticated, returns 404 not found")
 	@ApiResponses(value = {
@@ -356,6 +359,51 @@ public class UserRestController {
 		} else {
 			return ResponseEntity.ok(false);
 		}
+	}
+
+	@PostMapping("/recoverPassword")
+	@ResponseBody
+	public ResponseEntity<String> recoverPassword(@RequestBody String user) {
+		Optional<User> userOptional = userService.findByUserName(user);
+		if (userOptional.isPresent()) {
+			TokenService tokenService = new TokenService(userOptional.get());
+			tokens.put(userOptional.get().getUsername(), tokenService);
+			String link = "http://localhost:4200/recoverPassword/" + userOptional.get().getUsername() +"/randomToken?token=" + tokenService.getToken();
+			String status = new MailService().sendEmail(
+					userOptional.get(),
+					"Recuperación de contraseña de Event Crafters",
+					"He aquí un enlace de un solo uso para que restablezcas tu contraseña" + "\n\n" + link,
+					false
+			);
+			if ("emailSent".equals(status)) {
+				return ResponseEntity.ok().build();
+			} else {
+				return ResponseEntity.status(500).build();
+			}
+		}
+		return ResponseEntity.badRequest().build();
+	}
+
+	@PostMapping("/changePassword")
+	@ResponseBody
+	public ResponseEntity<String> changePassword(@RequestBody Map<String, String> body) {
+		String username = body.get("username");
+		String password = body.get("password");
+		String token = body.get("token");
+		Optional<User> userOptional = userService.findByUserName(username);
+		if (userOptional.isPresent()) {
+			TokenService tokenService = tokens.get(userOptional.get().getUsername());
+			if (!tokenService.isValid() || !token.equals(tokenService.getToken())){
+				return ResponseEntity.status(403).build(); // invalid link
+			}
+			tokens.remove(username);
+			userOptional.get().setEncodedPassword(passwordEncoder.encode(password));
+			//tell the user the operation was successful
+			userService.save(userOptional.get());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
+
 	}
 
 	private boolean checkUserPrivileges(Principal principal, Optional<User> optUser) {

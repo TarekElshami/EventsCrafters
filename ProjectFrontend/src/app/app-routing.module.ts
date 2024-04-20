@@ -7,6 +7,7 @@ import { RegisterComponent } from './templates/register/register.component';
 import { ViewEventsComponent } from './templates/view-events/view-events.component';
 import { EventFormComponent } from './templates/event-form/event-form.component';
 import { ErrorComponent } from './templates/error/error.component';
+import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,21 @@ const routes: Routes = [
     path: 'event-create',
     component: EventFormComponent,
     data: { title: 'Crear Evento' }
+  },
+  {
+    path: 'emailSent',
+    component: RecoverPasswordComponent,
+    data: { title: 'Recuperar Contraseña' }
+  },
+  {
+    path: 'recoverPassword/:username/randomToken',
+    component: RecoverPasswordComponent,
+    data: { title: 'Cambiar Contraseña' }
+  },
+  {
+    path: 'recoverPassword/:username/randomToken',
+    component: RecoverPasswordComponent,
+    data: { title: 'Recuperar Contraseña' }
   },
   {
     path: 'error/:type',

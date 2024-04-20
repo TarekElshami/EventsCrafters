@@ -34,4 +34,13 @@
       <a href="/login" class="btn">Volver a login</a>
     </div>
   </div>
+
+  <div *ngIf="errorType==='changePassword'">
+    <div class="error-container">
+      <h1>¡Ups!</h1>
+      <p>Ha ocurrido un error al cambiar la contraseña.</p>
+      <p>Puede que el token haya expirado o sea inválido. Ten en cuenta que sólo tienes 10 minutos para cambiar la contraseña.</p>
+      <a href="/" class="btn">Volver a inicio</a>
+    </div>
+  </div>
 </body>

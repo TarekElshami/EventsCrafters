@@ -82,7 +82,11 @@ export class LoginComponent implements OnInit {  // Implement OnInit interface
     // Check if the user exists
     this.userExists(userInput).subscribe(exists => {
       if (exists) {
-        this.router.navigate(["/recoverPassword/" + userInput]);
+        this.httpClient.post("/api/users/recoverPassword", userInput).subscribe({
+          next: (response) => {this.router.navigate(["/emailSent"]);},
+          error: (error) => {this.router.navigate(["/error/email"])}
+        })
+
       } else {
         // Invalid input
         alert('Invalid input. Please try again.');

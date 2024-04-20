@@ -17,6 +17,7 @@ import { HeaderComponent } from './templates/header/header.component';
 import { EventCardComponent } from './templates/event-card/event-card.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EventFormComponent,
     ErrorComponent,
     HeaderComponent,
-    EventCardComponent
+    EventCardComponent,
+    RecoverPasswordComponent
 
   ],
   imports: [
@@ -39,7 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     NgxChartsModule,
     ReactiveFormsModule
   ],

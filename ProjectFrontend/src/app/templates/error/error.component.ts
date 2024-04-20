@@ -12,9 +12,8 @@ export class ErrorComponent {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    let type: string | null = null;
     this.route.paramMap.subscribe(params => {
-      type = params.get("type");
+      let type = params.get("type");
       if (type==null) {
         this.errorType = "general"
       } else {
