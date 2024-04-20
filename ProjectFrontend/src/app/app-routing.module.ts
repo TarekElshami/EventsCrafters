@@ -32,7 +32,7 @@ const routes: Routes = [
   {
     path: 'event/:id',
     component: ViewEventsComponent,
-    data: { title: 'Ver Evento' } 
+    data: { title: 'Ver Evento' }
   },
   {
     path: 'event/edit/:id',
@@ -43,6 +43,11 @@ const routes: Routes = [
     path: 'event-create',
     component: EventFormComponent,
     data: { title: 'Crear Evento' }
+  },
+  {
+    path: 'error/:type',
+    component: ErrorComponent,
+    data: { title: 'Error General' }
   },
   {
     path: '**',

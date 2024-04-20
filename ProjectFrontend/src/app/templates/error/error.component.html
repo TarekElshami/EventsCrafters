@@ -3,14 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error General</title>
+  <title>Error</title>
   <link rel="icon" href="./assets/logo.png" type="image/png">
 </head>
 <body>
+
+  <div *ngIf="errorType==='general'">
+    <div class="error-container">
+        <h1>¡Ups!</h1>
+        <p>Lo sentimos, ha ocurrido un error.</p>
+        <p>Por favor, inténtalo de nuevo más tarde.</p>
+        <a href="/" class="btn">Volver a inicio</a>
+    </div>
+  </div>
+
+  <div *ngIf="errorType==='email'">
+    <div class="error-container">
+        <h1>¡Ups!</h1>
+        <p>Ha ocurrido un error al enviar un email.</p>
+        <p>Puede que el usuario especificado no tenga un email válido registrado.</p>
+        <a href="/" class="btn">Volver a inicio</a>
+      </div>
+  </div>
+
+  <div *ngIf="errorType==='login'">
     <div class="error-container">
       <h1>¡Ups!</h1>
-      <p>Lo sentimos, ha ocurrido un error.</p>
-      <p>Por favor, inténtalo de nuevo más tarde.</p>
-      <a href="/" class="btn">Volver a inicio</a>
+      <p>Error en el login.</p>
+      <p>Por favor, compruebe si su usuario o contraseña es correcta.</p>
+      <a href="/login" class="btn">Volver a login</a>
     </div>
+  </div>
 </body>
