@@ -128,18 +128,17 @@
             <!-- Tags section -->
             <div class="user-events " *ngIf="isAdmin">
                 <h3 class="created">Tags</h3>
-                <div class="row flex-wrap" id="categories-container">
-                    <!--{{#category}}
+                <div class="row flex-wrap">
+                    <ng-template ngFor let-category [ngForOf]="categories">
                         <div class="col-md-4 mb-4 categories">
-                            <div class="activity d-flex flex-row align-items-center" name="tag" id="{{id}}">
+                            <div class="activity d-flex flex-row align-items-center" name="tag">
                                 <div class="categories-container info admin-category-container">
-                                    <span class="event-category admin-category" style="background-color:{{color}}" name="tag-name">{{name}}</span>
+                                    <span class="event-category admin-category" [style.backgroundColor]="category.color" name="tag-name">{{category.name}}</span>
                                 </div>
                                 <button class="btn btn-block" id="open-button">Ver Detalles</button>
                             </div>
                         </div>
-                    {{/category}}
-                    -->
+                    </ng-template>
     
                     <div class="col-md-4 mb-4 last">
                         <div class="activity d-flex flex-row align-items-center" style="justify-content: center">
@@ -156,10 +155,10 @@
                 </div>
             </div>
     
-            <div class="container text-center mt-4" *ngIf="isAdmin">
+            <div class="container text-center mt-4" *ngIf="isAdmin && tagLoadMoreBtn">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary"  data-nextPage="1">Cargar más tags</button>
+                        <button class="btn btn-primary" (click)="nextCategory()" >Cargar más tags</button>
                     </div>
                 </div>
             </div>
@@ -185,18 +184,6 @@
                             </div>
                         </div>
                     </ng-template>
-
-                    <div class="col-md-4 mb-4 last" *ngIf="isAdmin">
-                        <form action="/create_event" method="get">
-                            <div class="activity d-flex flex-row align-items-center" style="justify-content: center">
-                                <div class="categories-container info">
-                                    <button type="submit" style="background: none; border: none; padding: 0; margin: 0;">
-                                        <span class="event-category category-add admin-category">+</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
                 <div class="text-center"  style="display: none">
                     <div class="spinner-border" role="status">
@@ -210,7 +197,7 @@
             <div class="container text-center mt-4" *ngIf="events1.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary">Cargar más eventos</button>
+                        <button class="btn btn-primary" (click)="nextEvent(1)">Cargar más eventos</button>
                     </div>
                 </div>
             </div>
@@ -236,7 +223,7 @@
                             <div class="activity d-flex flex-row align-items-center">
                                 <!--
                                 <div class="categories-container info event-container-tag-div">
-                                    <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
+                                    <span class="event-category" [style.backgroundColor]="background-color: {{category.color}};">{{category.name}}</span>
                                 </div>
                                 -->
                                 <h5 class="info event-container-text">{{event.name}}</h5>
@@ -250,7 +237,7 @@
                 </div>
             </div>
 
-                <div class=" text-center" *ngIf="!events2.areThereEvents">
+                <div class=" text-center" *ngIf="!events2.areThereEvents && !isAdmin">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
             <div class="container text-center mt-4" *ngIf="!isAdmin && events2.loadMore">
@@ -281,7 +268,7 @@
                     </ng-template>
                 </div>
             </div>
-                <div class=" text-center" *ngIf="!events3.areThereEvents">
+                <div class=" text-center" *ngIf="!events3.areThereEvents && !isAdmin">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
             <div class="container text-center mt-4" *ngIf="!isAdmin && events3.loadMore">
@@ -313,7 +300,7 @@
                 </div>
             </div>
 
-                <div class="text-center" *ngIf="!events4.areThereEvents">
+                <div class="text-center" *ngIf="!events4.areThereEvents && !isAdmin">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
           

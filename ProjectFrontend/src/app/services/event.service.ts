@@ -95,5 +95,6 @@ export class EventService {
                   .append('type',type);
         return this.http.get<PageEvent>(`/api/events/user`, { params });
   }
+
   
 }

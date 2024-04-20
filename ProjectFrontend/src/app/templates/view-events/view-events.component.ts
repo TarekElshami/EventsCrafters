@@ -29,7 +29,7 @@ export class ViewEventsComponent implements OnInit {
   chartData: any[] = [];
 
   event!: Event;
-  category: Category = {id : -1, name : '', color : ''};
+  category: Category = {id : -1, name : '', color : '', eventIdInCategories: []};
   creator! : User;
   params!: EventShowParams;
   token : any;

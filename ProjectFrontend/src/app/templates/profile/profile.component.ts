@@ -10,6 +10,7 @@ import { Category } from '../../models/category.model';
 import { ProfileEventCard } from '../../models/profileEventCard.model';
 import { switchMap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { PageCategory } from '../../models/pageCategory.model';
 
 @Component({
   selector: 'app-profile',
@@ -22,11 +23,15 @@ export class ProfileComponent {
   role!: string;
   currentUser!: User;
   eventsPages: PageEvent[] = []
+  eventPage!: PageEvent;
   events1: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
   events2: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
   events3: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
   events4: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
-  category!: Category;
+  categories: Category[] = [];
+  pageCategory!: PageCategory;
+  tagLoadMoreBtn: boolean = true;
+  areThereTags: boolean = true;
 
   constructor(
     private userService: UserService, 
@@ -37,7 +42,7 @@ export class ProfileComponent {
 
   ngOnInit(){
     
-    this.userService.login('user2', 'pass').pipe(
+    this.userService.login('admin', 'adminpass').pipe(
       switchMap(() => this.userService.getCurrentUser()),
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;
@@ -53,57 +58,12 @@ export class ProfileComponent {
     ).subscribe({
       next: (eventsData) => {
         if (eventsData) {
-          this.eventsPages = eventsData;
-          if (!this.isAdmin){
-            this.events2.events = this.eventsPages[1].events;
-            if (this.events2.events.length == 0){
-              this.events2.areThereEvents = false;
-              this.events2.loadMore = false;
-            }else {
-              this.events2.areThereEvents = true;
-              if (this.eventsPages[1].totalPages <= 1){
-                this.events2.loadMore = false;
-              } else {
-                this.events2.loadMore = true;
-              }
-            }
-            this.events3.events = this.eventsPages[2].events;
-            if (this.events3.events.length == 0){
-              this.events3.areThereEvents = false;
-              this.events3.loadMore = false;
-            }else {
-              this.events3.areThereEvents = true;
-              if (this.eventsPages[2].totalPages <= 1){
-                this.events3.loadMore = false;
-              } else {
-                this.events3.loadMore = true;
-              }
-            }
-            this.events4.events = this.eventsPages[3].events;
-            if (this.events4.events.length == 0){
-              this.events4.areThereEvents = false;
-              this.events4.loadMore = false;
-            }else {
-              this.events4.areThereEvents = true;
-              if (this.eventsPages[3].totalPages <= 1){
-                this.events4.loadMore = false;
-              } else {
-                this.events4.loadMore = true;
-              }
-            }
+          if (this.isAdmin){
+            this.eventPage = eventsData;
+          }else{
+            this.eventsPages = eventsData;
           }
-          this.events1.events = this.eventsPages[0].events;
-          if (this.events1.events.length == 0){
-            this.events1.areThereEvents = false;
-            this.events1.loadMore = false;
-          }else {
-            this.events1.areThereEvents = true;
-            if (this.eventsPages[0].totalPages <= 1){
-              this.events1.loadMore = false;
-            } else {
-              this.events1.loadMore = true;
-            }
-          }
+          this.processEventsData();
           
         }
       },
@@ -114,14 +74,127 @@ export class ProfileComponent {
   }
 
 
-  async findCategory(id: number): Promise<Category | undefined> {
-    try {
-        let category = await this.categoryService.getCategoryById(id).toPromise();
-        return category;
-    } catch (error) {
-        this.router.navigate(['/error']);
-        throw error;
+  processEventsData() {
+    if (!this.isAdmin) {
+      this.processEventCard(this.events1, this.eventsPages[0]);
+      this.processEventCard(this.events2, this.eventsPages[1]);
+      this.processEventCard(this.events3, this.eventsPages[2]);
+      this.processEventCard(this.events4, this.eventsPages[3]);
+    } else if (this.isAdmin) {
+      this.findCategories();
+      this.events1.events = this.eventPage.events;
+      this.processEventCard(this.events1, this.eventPage);
     }
+  }
+
+  processEventCard(eventCard: ProfileEventCard, pageData: PageEvent) {
+    eventCard.events = pageData.events;
+    if (eventCard.events.length === 0) {
+      eventCard.areThereEvents = false;
+      eventCard.loadMore = false;
+    } else {
+      eventCard.areThereEvents = true;
+      eventCard.loadMore = pageData.totalPages > 1;
+    }
+
+  }
+
+  nextEvent(i:number){
+    let page: number = -1;
+    let type: string = ''; 
+    let time: string = '';
+    let events!: ProfileEventCard;
+    let pageEvent!: PageEvent;
+    switch(i){
+      case 1:
+        if (!this.isAdmin){
+          time = 'present';
+          type = 'created';
+          pageEvent = this.eventsPages[0];
+        } else{
+          pageEvent = this.eventPage;
+        }
+        events = this.events1;
+        page = pageEvent.page + 1;
+        break;
+      case 2:
+        time = 'past';
+        type = 'created'
+        pageEvent = this.eventsPages[1]
+        page = pageEvent.page + 1;
+        events = this.events2
+        break;
+      case 3: 
+        time = 'present';
+        type = 'registered'
+        pageEvent = this.eventsPages[2]
+        page = pageEvent.page + 1;
+        events = this.events3;
+        break;
+      case 4: 
+        time = 'past';
+        type = 'registered'
+        pageEvent = this.eventsPages[3]
+        page = pageEvent.page + 1;
+        events = this.events4;
+        break;
+      default:
+      this.router.navigate(['/error']); 
+      return;
+    }
+    
+    if (!pageEvent || !events) {
+      this.router.navigate(['/error']);
+      return;
+    }
+
+    this.eventService.userEventRequest(page, type, time).subscribe({
+      next: (data) =>{
+        pageEvent =data;
+        events.events = events.events.concat(pageEvent.events);
+        events.loadMore = page+1 < data.totalPages
+      },
+      error: ()=>{
+        this.router.navigate(['/error']); 
+      }
+    })
+  }
+
+  nextCategory(){
+    let page = this.pageCategory.page + 1;
+    this.categoryService.getCategories(page).subscribe({
+      next: (data) =>{
+        this.pageCategory =data;
+        console.log(this.pageCategory)
+        this.categories = this.categories.concat(this.pageCategory.categories);
+        console.log(this.categories)
+      
+        this.tagLoadMoreBtn = page+1 < data.totalPages;
+        
+      },
+      error: ()=>{
+        this.router.navigate(['/error']); 
+      }
+    })
+  }
+
+  findCategories(){
+      this.categoryService.getCategories(0).subscribe({
+        next: (data) =>{
+          this.pageCategory =data;
+          this.categories = this.pageCategory.categories;
+          if (this.categories.length === 0){
+            this.areThereTags = false;
+            this.tagLoadMoreBtn = false;
+          }else {
+            this.tagLoadMoreBtn =this.pageCategory.totalPages > 1;
+          } 
+          
+        },
+        error: ()=>{
+          this.router.navigate(['/error']); 
+        }
+      })
   }
 
 }

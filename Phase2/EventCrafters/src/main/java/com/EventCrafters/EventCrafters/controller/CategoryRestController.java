@@ -69,9 +69,11 @@ public class CategoryRestController {
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
     })
     public ResponseEntity<PageCategoryDTO> showCategories(@RequestParam(value = "page", required = false) Integer page){
+
         if (page == null || page < 0){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        // this method ignores "sin tag"
         Page<Category> categoriesPage = categoryService.findAll(page);
         List<CategoryDTO> categoriesDTO = new ArrayList<>();
         for (Category c : categoriesPage.getContent()){

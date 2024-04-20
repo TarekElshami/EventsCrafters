@@ -11,7 +11,7 @@ import { CategoryService } from '../../services/category.service'
 })
 export class EventCardComponent {
 
-    category: Category = {id : -1, name : '', color : ''};
+    category: Category = {id : -1, name : '', color : '', eventIdInCategories: []};
   
     @Input()
     eventCard!: Event;
