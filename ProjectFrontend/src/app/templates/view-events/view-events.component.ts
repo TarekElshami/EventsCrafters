@@ -8,6 +8,7 @@ import {Category} from "../../models/category.model";
 import { CategoryService } from '../../services/category.service';
 import { UserService } from '../../services/user.service';
 import {User} from "../../models/user.model";
+import {EventShowParams} from "../../models/event-showParams.model";
 
 @Component({
   selector: 'app-view-events',
@@ -15,6 +16,9 @@ import {User} from "../../models/user.model";
   styleUrls: ['./view-events.component.css']
 })
 export class ViewEventsComponent implements OnInit {
+
+  isCollapsed = true;
+
   eventId!: number;
   graphData?: EventGraphData;
   showForm = false;
@@ -27,7 +31,9 @@ export class ViewEventsComponent implements OnInit {
   event!: Event;
   category: Category = {id : -1, name : '', color : ''};
   creator! : User;
+  params!: EventShowParams;
   token : any;
+
 
   constructor(
     private eventService: EventService,
@@ -104,6 +110,32 @@ export class ViewEventsComponent implements OnInit {
         this.router.navigate(['/error']);
       }
     });
+  }
+
+  findShowParams(){
+    //logged
+    this.userService.getCurrentUser().subscribe({
+      next: (user) => {
+        if(user != null){
+          this.params.logged = true;
+        }
+        else this.params.logged = false;
+      }
+    })
+    //eventFinished
+    if(new Date() > this.event.endDate){
+      this.params.eventFinished = true;
+    }
+    else this.params.eventFinished = false;
+
+    //isUserCreatorOrAdmin (PENDING)
+    this.params.isUserCreatorOrAdmin = true;
+    //isUserRegistered (PENDING)
+    this.params.isUserRegistered = true;
+    //hasUserReviewed (PENDING)
+    this.params.hasUserReviewed = true;
+    //attendeesCountSet (PENDING)
+    this.params.attendeesCountSet = true;
   }
 
   updateChartData() {
