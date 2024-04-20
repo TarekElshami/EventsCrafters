@@ -29,5 +29,13 @@ export class CategoryService {
     return this.http.post('/api/categories', categoryData);
   }
 
+  updateCategory(id: number, categoryData: FormData): Observable<any> {
+    return this.http.put(`/api/categories/${id}`, categoryData);
+  }
+
+  deleteCategory(id:number):Observable<any>{
+    return this.http.delete(`/api/categories/${id}`);
+  }
+
 }
 

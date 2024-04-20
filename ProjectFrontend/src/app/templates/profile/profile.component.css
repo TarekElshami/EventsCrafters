@@ -197,7 +197,6 @@ body {
   -webkit-backdrop-filter: blur(4px);
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 3;
-  display: none;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -206,6 +205,7 @@ body {
 .window-container {
   position: relative;
   background-color: #fff;
+  margin: 30% auto;
   width: 550px;
   height: auto;
   padding: 1.5rem;

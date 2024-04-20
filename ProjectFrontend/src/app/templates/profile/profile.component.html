@@ -1,17 +1,16 @@
 <body>
     
-    <!-- Popup for tag creation/editing -->
-    <div class="window-background"  *ngIf="isAdmin">
+    <div class="window-background" *ngIf="showTagPopUp">
         <div class="window-container">
             <!-- Close button for the popup -->
-            <a class="close-button">
+            <a class="close-button" (click)="closePopUp()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon-x">
                     <path
                             d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
                     </path>
                 </svg>
             </a>
-            <a class="close-button delete-button" >
+            <a class="close-button delete-button" *ngIf="showDeleteBtn" (click)="warn()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="icon-x">
                     <path
                             d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z">
@@ -20,16 +19,16 @@
                 </svg>
             </a>
             <!-- Form for creating/editing tags -->
-            <form action="/newCategory" method="post" enctype="multipart/form-data">
-                <div class="form-group">
+            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+                <div class="form-group" id="first-part-tag-form">
                     <label for="tag-name-in">Nombre del tag</label>
-                    <input type="text" class="form-control"  name="name" placeholder="Nombre del tag">
+                    <input type="text" class="form-control"  formControlName="name" placeholder="Nombre del tag">
                 </div>
                 <div class="form-group">
                     <label for="tag-color-in">Color del tag</label>
-                    <input type="color" class="form-control"  name="color" placeholder="Color del tag">
+                    <input type="color" class="form-control"  formControlName="color" placeholder="Color del tag">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block" name="btn-safe-tags">Guardar</button>
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="categoryForm.invalid">Guardar</button>
             </form>
         </div>
     </div>
@@ -135,12 +134,12 @@
                                 <div class="categories-container info admin-category-container">
                                     <span class="event-category admin-category" [style.backgroundColor]="category.color" name="tag-name">{{category.name}}</span>
                                 </div>
-                                <button class="btn btn-block" id="open-button">Ver Detalles</button>
+                                <button class="btn btn-block" (click)="showPopUp(category.id)">Ver Detalles</button>
                             </div>
                         </div>
                     </ng-template>
     
-                    <div class="col-md-4 mb-4 last">
+                    <div class="col-md-4 mb-4 last" (click)="showPopUp(-1)">
                         <div class="activity d-flex flex-row align-items-center" style="justify-content: center">
                             <div class="categories-container info" >
                                 <span class="event-category category-add admin-category" >+</span>
@@ -243,7 +242,7 @@
             <div class="container text-center mt-4" *ngIf="!isAdmin && events2.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary">Cargar más eventos</button>
+                        <button class="btn btn-primary" (click)="nextEvent(2)">Cargar más eventos</button>
                     </div>
                 </div>
             </div>
@@ -274,7 +273,7 @@
             <div class="container text-center mt-4" *ngIf="!isAdmin && events3.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary" >Cargar más eventos</button>
+                        <button class="btn btn-primary" (click)="nextEvent(3)">Cargar más eventos</button>
                     </div>
                 </div>
             </div>
@@ -307,7 +306,7 @@
             <div class="container text-center mt-4" *ngIf="!isAdmin && events4.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary">Cargar más eventos</button>
+                        <button class="btn btn-primary" (click)="nextEvent(4)">Cargar más eventos</button>
                     </div>
                 </div>
             </div>

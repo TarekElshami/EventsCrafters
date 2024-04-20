@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { EventService } from '../../services/event.service';
 import { CategoryService } from '../../services/category.service';
@@ -32,13 +33,25 @@ export class ProfileComponent {
   pageCategory!: PageCategory;
   tagLoadMoreBtn: boolean = true;
   areThereTags: boolean = true;
+  showTagPopUp: boolean = false;
+  categoryForm: FormGroup;
+  showDeleteBtn: boolean = false;
+  isEditing: boolean = false;
+  categoryId: number = -1;
 
   constructor(
     private userService: UserService, 
     private router: Router,
     private eventService: EventService, 
-    private categoryService: CategoryService
-  ) {}
+    private categoryService: CategoryService,
+    private fb: FormBuilder
+  ) {
+    this.categoryForm = this.fb.group({
+      name: ['', Validators.required],
+      color: ['', Validators.required],
+      eventIdInCategories: []
+    })
+  }
 
   ngOnInit(){
     
@@ -165,9 +178,7 @@ export class ProfileComponent {
     this.categoryService.getCategories(page).subscribe({
       next: (data) =>{
         this.pageCategory =data;
-        console.log(this.pageCategory)
         this.categories = this.categories.concat(this.pageCategory.categories);
-        console.log(this.categories)
       
         this.tagLoadMoreBtn = page+1 < data.totalPages;
         
@@ -195,6 +206,98 @@ export class ProfileComponent {
           this.router.navigate(['/error']); 
         }
       })
+  }
+
+  showPopUp(id: number){
+    if (id != -1){
+      this.categoryService.getCategoryById(id).subscribe({
+        next: (category) => {
+          if (!category) {
+            this.router.navigate(['/error']);
+          } else {
+            this.categoryId = id;
+            this.isEditing = true;
+            this.showDeleteBtn = true;
+            this.categoryForm.patchValue({
+              name: category.name,
+              color: category.color
+            })
+          }
+        },
+        error: () => {
+          this.router.navigate(['/error']);
+        }
+      });
+      
+    }
+    this.showTagPopUp = true;
+  }
+
+  closePopUp(){
+    this.categoryForm.patchValue({
+      name: '',
+      color: ''
+    })
+    this.categoryId = -1;
+    this.isEditing = false;
+    this.showDeleteBtn = false;
+    this.showTagPopUp = false;
+  }
+
+  onSubmit(): void {
+    if (this.categoryForm.invalid) {
+      return; 
+    }
+
+    const formData = this.prepareData(this.categoryForm.value);
+    if (this.isEditing) {
+      this.updateCategory(formData);
+    } else {
+      this.createCategory(formData);
+    }
+    location.reload();
+  }
+
+  prepareData(categoryData: any) {
+    const data = { ...categoryData };
+    data.eventIdInCategories = []
+    return data;
+  }
+
+  updateCategory(categoryData: any){
+    this.categoryService.updateCategory(this.categoryId, categoryData).subscribe({
+      next: () => {
+        this.closePopUp()
+      },
+      error: () => this.router.navigate(['/error'])
+    });
+  }
+
+  createCategory(categoryData: any){
+    this.categoryService.createCategory(categoryData).subscribe({
+      next: () => {
+        this.closePopUp()
+      },
+      error: () => this.router.navigate(['/error'])
+    });
+  }
+
+  warn(){
+    let confirmed = window.confirm("¿Estas seguro de que quieres borrar la categoria?")
+  
+    if (confirmed){
+      this.deleteCategory();
+      location.reload();
+    }
+  } 
+
+  deleteCategory(){
+    this.categoryService.deleteCategory(this.categoryId).subscribe({
+      next: () => {
+        this.closePopUp()
+      },
+      error: () => this.router.navigate(['/error'])
+    });
   }
 
 }
