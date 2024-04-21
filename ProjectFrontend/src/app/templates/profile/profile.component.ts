@@ -27,10 +27,10 @@ export class ProfileComponent {
   
   eventsPages: PageEvent[] = []
   eventPage!: PageEvent;
-  events1: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
-  events2: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
-  events3: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
-  events4: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
+  events1: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
+  events2: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
+  events3: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
+  events4: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
   
   categories: Category[] = [];
   pageCategory!: PageCategory;
@@ -72,7 +72,7 @@ export class ProfileComponent {
 
   ngOnInit(){
     
-    this.userService.login('admin', 'adminpass').pipe(
+    this.userService.login('user2', 'pass').pipe(
       switchMap(() => this.userService.getCurrentUser()),
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;

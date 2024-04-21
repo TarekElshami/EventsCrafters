@@ -1,0 +1,9 @@
+<div class="activity d-flex flex-row align-items-center">
+    <div class="categories-container info event-container-tag-div">
+        <span class="event-category" [style.backgroundColor]="category.color">{{ category.name }}</span>
+    </div>
+    <h5 class="info event-container-text">{{eventCard.name}}</h5>
+    <form action="" method="GET">
+        <button class="btn btn-primary" (click)="viewDetails(eventCard.id)">Ver Detalles</button>
+    </form>
+</div>

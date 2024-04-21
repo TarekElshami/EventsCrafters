@@ -18,6 +18,7 @@ import { EventCardComponent } from './templates/event-card/event-card.component'
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
+import { ProfileEventCardComponent } from './templates/profile-event-card/profile-event-card.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPas
     ErrorComponent,
     HeaderComponent,
     EventCardComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    ProfileEventCardComponent
 
   ],
   imports: [

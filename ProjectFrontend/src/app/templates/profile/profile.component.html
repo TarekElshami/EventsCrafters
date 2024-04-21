@@ -168,19 +168,7 @@
                 <div class="row flex-wrap">
                     <ng-template ngFor let-event [ngForOf]="events1.events">
                         <div class="col-md-4 mb-4">
-                            <div class="activity d-flex flex-row align-items-center">
-                                <!--
-                                <ng-container *ngIf="findCategory(event.categoryId) | async as category">
-                                    <div class="categories-container info event-container-tag-div">
-                                      <span class="event-category" [style.backgroundColor]="category.color">{{ category.name }}</span>
-                                    </div>
-                                  </ng-container>
-                                -->
-                                <h5 class="info event-container-text">{{event.name}}</h5>
-                                <form action="" method="GET">
-                                    <button class="btn btn-primary" type="submit">Ver Detalles</button>
-                                </form>
-                            </div>
+                            <app-profile-event-card [eventCard]="event"></app-profile-event-card>
                         </div>
                     </ng-template>
                 </div>
@@ -225,17 +213,7 @@
                 <div class="row flex-wrap">
                     <ng-template ngFor let-event [ngForOf]="events2.events">
                         <div class="col-md-4 mb-4">
-                            <div class="activity d-flex flex-row align-items-center">
-                                <!--
-                                <div class="categories-container info event-container-tag-div">
-                                    <span class="event-category" [style.backgroundColor]="background-color: {{category.color}};">{{category.name}}</span>
-                                </div>
-                                -->
-                                <h5 class="info event-container-text">{{event.name}}</h5>
-                                <form action="" method="GET">
-                                    <button class="btn btn-primary" type="submit">Ver Detalles</button>
-                                </form>
-                            </div>
+                            <app-profile-event-card [eventCard]="event"></app-profile-event-card>
                         </div>
                     </ng-template>
                     
@@ -255,20 +233,10 @@
             <!-- Events user has signed up for -->
             <div class="user-events" *ngIf="!isAdmin">
                 <h3 class="next">Eventos a los que me he apuntado</h3>
-                <div class="row flex-wrap" id="registered-events-container">
+                <div class="row flex-wrap">
                     <ng-template ngFor let-event [ngForOf]="events3.events">
                         <div class="col-md-4 mb-4">
-                            <div class="activity d-flex flex-row align-items-center">
-                                <!--
-                                <div class="categories-container info event-container-tag-div">
-                                    <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
-                                </div>
-                                -->
-                                <h5 class="info event-container-text">{{event.name}}</h5>
-                                <form action="" method="GET">
-                                    <button class="btn btn-primary" type="submit">Ver Detalles</button>
-                                </form>
-                            </div>
+                            <app-profile-event-card [eventCard]="event"></app-profile-event-card>
                         </div>
                     </ng-template>
                 </div>
@@ -289,17 +257,7 @@
                 <div class="row flex-wrap">
                     <ng-template ngFor let-event [ngForOf]="events4.events">
                         <div class="col-md-4 mb-4">
-                            <div class="activity d-flex flex-row align-items-center">
-                                <!--
-                                <div class="categories-container info event-container-tag-div">
-                                    <span class="event-category" style="background-color: {{category.color}};">{{category.name}}</span>
-                                </div>
-                                -->
-                                <h5 class="info event-container-text">{{event.name}}</h5>
-                                <form action="" method="GET">
-                                    <button class="btn btn-primary" type="submit">Ver Detalles</button>
-                                </form>
-                            </div>
+                            <app-profile-event-card [eventCard]="event"></app-profile-event-card>
                         </div>
                     </ng-template>
                 </div>
