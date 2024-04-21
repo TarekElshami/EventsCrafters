@@ -19,6 +19,7 @@ export class IndexComponent {
   searchBarInput: string = '';
   categoryId: number = -1;
   noEvents: boolean = false;
+  isUserLogged: boolean = true;
 
   constructor(private eventService: EventService, private router: Router){}
 

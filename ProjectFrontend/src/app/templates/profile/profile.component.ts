@@ -74,8 +74,7 @@ export class ProfileComponent {
 
   ngOnInit(){
     this.isLoading = true;
-    this.userService.login('admin', 'adminpass').pipe(
-      switchMap(() => this.userService.getCurrentUser()),
+    this.userService.getCurrentUser().pipe(
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;
         console.log(currentUser.photo)

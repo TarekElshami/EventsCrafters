@@ -14,8 +14,8 @@ export class HeaderComponent {
     categories: Category[] = []
     isCollapsed = true;
     searchBarInput: string = '';
-    logged: boolean = true;
     
+    @Input() logged!: boolean;
     @Input() isIndex!: boolean;
 
     @Output() searchBarInfo = new EventEmitter<string>();
