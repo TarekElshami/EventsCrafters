@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { PageEvent } from '../models/pageEvent.model';
 import { EventGraphData } from '../models/event-graph-data.model';
+import { ProfileGraphData } from '../models/profile-graph-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,10 @@ export class EventService {
                   .append('time',time)
                   .append('type',type);
         return this.http.get<PageEvent>(`/api/events/user`, { params });
+  }
+
+  getProfileGraphData():Observable<any>{
+    return this.http.get<ProfileGraphData>(`/api/events/profile/graph`);
   }
 
   

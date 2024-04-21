@@ -481,21 +481,25 @@ public class EventRestController {
         return ResponseEntity.ok(graphData);
     }
 
-    @GetMapping("/AdminProfile/graph")
+    @GetMapping("/profile/graph")
     @Operation(summary = "Gets graph data of categories in relation to events")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Graph data obtained",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content),
     })
-    public ResponseEntity<Map<String, Integer>> getAdminProfileGraphData() {
+    public ResponseEntity<Map<String, List<String>>> getAdminProfileGraphData() {
 
-        Map<String, Integer> graphData = new HashMap<>();
+        Map<String, List<String>> graphData = new HashMap<>();
         List<String> labels = categoryService.findAllNames();
         List<Integer> data = categoryService.categoriesNumbers();
-        for (int i = 0; i < labels.size(); i++) {
-            graphData.put(labels.get(i), data.get(i));
+        List<String> aux = new ArrayList<>();
+        for (int i = 0; i< data.size();i++){
+            aux.add(String.valueOf(data.get(i)));
         }
+        graphData.put("data",aux);
+        graphData.put("labels", labels);
+
 
         return ResponseEntity.ok(graphData);
     }

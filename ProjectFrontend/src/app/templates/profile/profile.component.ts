@@ -12,6 +12,7 @@ import { ProfileEventCard } from '../../models/profileEventCard.model';
 import { switchMap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { PageCategory } from '../../models/pageCategory.model';
+import { ProfileGraphData } from '../../models/profile-graph-data.model';
 
 @Component({
   selector: 'app-profile',
@@ -23,14 +24,17 @@ export class ProfileComponent {
   isAdmin: boolean = false;
   role!: string;
   currentUser!: User;
+  
   eventsPages: PageEvent[] = []
   eventPage!: PageEvent;
   events1: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
   events2: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
   events3: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
   events4: ProfileEventCard = {events: [], categories: [], areThereEvents: false, loadMore: false}
+  
   categories: Category[] = [];
   pageCategory!: PageCategory;
+
   tagLoadMoreBtn: boolean = true;
   areThereTags: boolean = true;
   showTagPopUp: boolean = false;
@@ -39,12 +43,25 @@ export class ProfileComponent {
   isEditing: boolean = false;
   categoryId: number = -1;
 
+  graphData?: ProfileGraphData;
+  chartData: any[] = [];
+  view: [number, number] = [900, 400]; // width, height
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Etiqueta';
+  showYAxisLabel = true;
+  yAxisLabel = 'Número';
+
+
   constructor(
     private userService: UserService, 
     private router: Router,
     private eventService: EventService, 
     private categoryService: CategoryService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
     this.categoryForm = this.fb.group({
       name: ['', Validators.required],
@@ -59,7 +76,11 @@ export class ProfileComponent {
       switchMap(() => this.userService.getCurrentUser()),
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;
+        console.log(currentUser.photo)
         this.isAdmin = currentUser.roles.includes("ADMIN");
+        if (this.isAdmin){
+          this.loadGraphData();
+        }
         this.role = this.isAdmin ? 'admin' : 'user';
         return this.eventService.getProfileEvents(this.role); 
       }),
@@ -77,13 +98,13 @@ export class ProfileComponent {
             this.eventsPages = eventsData;
           }
           this.processEventsData();
-          
         }
       },
       error: (error) => {
         this.router.navigate(['/error']);
       }
     });
+    
   }
 
 
@@ -299,5 +320,32 @@ export class ProfileComponent {
       error: () => this.router.navigate(['/error'])
     });
   }
+
+  loadGraphData() {
+    
+    this.eventService.getProfileGraphData().subscribe({
+      next: (data) => {
+          this.graphData = data;
+          this.updateChartData();
+          console.log(this.chartData);
+      },
+      error: () => {
+        console.log("error");
+      }
+    });
+  }
+
+  updateChartData() {
+    if (this.graphData) {
+      const newChartData = [];
+      for (let i = 0; i < this.graphData.data.length; i++) {
+        let value = this.graphData.data[i];
+        let name = this.graphData.labels[i];
+        newChartData.push({ name: name, value: parseInt(value, 10) });
+      }
+      this.chartData = [...newChartData];
+    }
+  }
+
 
 }
