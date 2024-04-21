@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "fa5ca45f-39bf-4ef0-bf13-77b301846107",
+		"_postman_id": "b93d38be-102b-4506-a1b0-1632dfbbeddb",
 		"name": "EventsCrafters",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33136046"
+		"_exporter_id": "33135994"
 	},
 	"item": [
 		{
@@ -500,7 +500,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://10.100.139.249:8443/api/events/AdminProfile/graph",
+									"raw": "https://10.100.139.249:8443/api/events/profile/graph",
 									"protocol": "https",
 									"host": [
 										"10",
@@ -512,7 +512,7 @@
 									"path": [
 										"api",
 										"events",
-										"AdminProfile",
+										"profile",
 										"graph"
 									]
 								}
@@ -1613,7 +1613,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://localhost:8443/api/events/AdminProfile/graph",
+									"raw": "https://localhost:8443/api/events/profile/graph",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -1622,7 +1622,7 @@
 									"path": [
 										"api",
 										"events",
-										"AdminProfile",
+										"profile",
 										"graph"
 									]
 								}
