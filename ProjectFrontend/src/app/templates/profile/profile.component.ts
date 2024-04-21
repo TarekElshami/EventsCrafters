@@ -21,16 +21,17 @@ import { ProfileGraphData } from '../../models/profile-graph-data.model';
 })
 export class ProfileComponent {
 
+  isLoading: boolean = false;
   isAdmin: boolean = false;
   role!: string;
   currentUser!: User;
   
   eventsPages: PageEvent[] = []
   eventPage!: PageEvent;
-  events1: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
-  events2: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
-  events3: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
-  events4: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false}
+  events1: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
+  events2: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
+  events3: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
+  events4: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
   
   categories: Category[] = [];
   pageCategory!: PageCategory;
@@ -42,6 +43,7 @@ export class ProfileComponent {
   showDeleteBtn: boolean = false;
   isEditing: boolean = false;
   categoryId: number = -1;
+  loadingTags: boolean = false;
 
   graphData?: ProfileGraphData;
   chartData: any[] = [];
@@ -71,8 +73,8 @@ export class ProfileComponent {
   }
 
   ngOnInit(){
-    
-    this.userService.login('user2', 'pass').pipe(
+    this.isLoading = true;
+    this.userService.login('admin', 'adminpass').pipe(
       switchMap(() => this.userService.getCurrentUser()),
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;
@@ -99,6 +101,7 @@ export class ProfileComponent {
           }
           this.processEventsData();
         }
+        this.isLoading= false;
       },
       error: (error) => {
         this.router.navigate(['/error']);
@@ -182,8 +185,11 @@ export class ProfileComponent {
       return;
     }
 
+    events.loadingEvents = true;
+
     this.eventService.userEventRequest(page, type, time).subscribe({
       next: (data) =>{
+        events.loadingEvents = false;
         pageEvent =data;
         events.events = events.events.concat(pageEvent.events);
         events.loadMore = page+1 < data.totalPages
@@ -195,13 +201,16 @@ export class ProfileComponent {
   }
 
   nextCategory(){
+    this.loadingTags = true;
     let page = this.pageCategory.page + 1;
     this.categoryService.getCategories(page).subscribe({
       next: (data) =>{
+        this.loadingTags = false;
         this.pageCategory =data;
         this.categories = this.categories.concat(this.pageCategory.categories);
       
         this.tagLoadMoreBtn = page+1 < data.totalPages;
+        
         
       },
       error: ()=>{
