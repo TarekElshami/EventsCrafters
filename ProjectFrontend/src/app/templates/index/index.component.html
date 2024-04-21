@@ -4,7 +4,7 @@
     </div>
 </div>
 <body>
-<app-header (searchBarInfo)='filterBySearchBar($event)' (categoryFilter)='FilterByCategoryId($event)'></app-header>
+<app-header [isIndex]="true" (searchBarInfo)='filterBySearchBar($event)' (categoryFilter)='FilterByCategoryId($event)'></app-header>
 <div class="container mt-4">
     <h2 class="event-name">Próximos Eventos</h2>
     <!-- Activities -->

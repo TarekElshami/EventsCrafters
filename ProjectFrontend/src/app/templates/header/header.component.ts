@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CategoryService } from '../../services/category.service'
 import { Router } from '@angular/router';
 import { Category } from '../../models/category.model';
@@ -15,6 +15,8 @@ export class HeaderComponent {
     isCollapsed = true;
     searchBarInput: string = '';
     logged: boolean = true;
+    
+    @Input() isIndex!: boolean;
 
     @Output() searchBarInfo = new EventEmitter<string>();
     @Output() categoryFilter = new EventEmitter<number>();
