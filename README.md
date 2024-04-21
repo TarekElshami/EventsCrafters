@@ -760,20 +760,20 @@ Below are the credentials for example users, including an administrator user, to
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/daf7c8948313557e8c534baf4bd5a79933fb9693) | This commit introduces a filtering function to the index component, allowing for filtering by search bar input and category type. |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/eee2c91673a4a8bb10991cf1ac562c4088c798a3) | In this commit, the `event-card` component was added to the project, significantly enhancing the cleanliness of the `index.html` file. This new component simplifies the HTML structure, making it easier to maintain and more readable. |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/7cd645f7075c892102eb76d589964da6482311d5) | This commit added a popup for creating categories in the profile component as well as the option to delete the already existing ones. |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/0bf5035b5136055e6ca46f535ec86ef509c65015) | This commit adds a new visualization feature to the profile component: a graph that displays the relationship between tags and the number of events associated with each tag. This graph, implemented as a bar chart, provides the admin with a clear, at-a-glance understanding of tag usage and event distribution, enhancing data accessibility. |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/bf6b05d19c9a1bd52cee4f2b96a5cfc032868d10) | In this commit, the `header` component was added to enhance the project's user interface by significantly cleaning up the `index.html` file. This new component organizes key navigational elements and branding, which simplifies the HTML structure, making it more maintainable and readable. |
 
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](ProjectFrontend/src/app/templates/profile/profile.component.ts) | profile.component.ts |
+| [2º](ProjectFrontend/src/app/services/category.service.ts) | category.service.ts |
+| [3º](ProjectFrontend/src/app/services/event.service.ts) | event.service.ts |
+| [4º](ProjectFrontend/src/app/templates/event-card/event-card.component.ts) | event-card.component.ts |
+| [5º](ProjectFrontend/src/app/templates/profile/profile.component.html) | profile.component.html  |
 
 ### 👨‍🔧 Marcos Jiménez Pulido
 
