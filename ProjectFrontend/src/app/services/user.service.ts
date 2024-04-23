@@ -45,4 +45,8 @@ export class UserService {
   }
 
 
+  update(user: {id: number, name: string; email: string; username: string}) {
+    return this.http.post("/api/users/updateProfile", user);
+  }
+  //action="/updateProfile" method="post"
 }

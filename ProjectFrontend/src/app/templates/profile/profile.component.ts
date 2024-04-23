@@ -25,14 +25,14 @@ export class ProfileComponent {
   isAdmin: boolean = false;
   role!: string;
   currentUser!: User;
-  
+
   eventsPages: PageEvent[] = []
   eventPage!: PageEvent;
   events1: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
   events2: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
   events3: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
   events4: ProfileEventCard = {events: [], areThereEvents: false, loadMore: false, loadingEvents: false}
-  
+
   categories: Category[] = [];
   pageCategory!: PageCategory;
 
@@ -57,14 +57,27 @@ export class ProfileComponent {
   showYAxisLabel = true;
   yAxisLabel = 'Número';
 
+  editProfileForm: FormGroup;
+  editingProfile = false;
+
 
   constructor(
-    private userService: UserService, 
+    private userService: UserService,
     private router: Router,
-    private eventService: EventService, 
+    private eventService: EventService,
     private categoryService: CategoryService,
     private fb: FormBuilder,
   ) {
+    this.categoryForm = this.fb.group({
+      name: ['', Validators.required],
+      color: ['', Validators.required],
+      eventIdInCategories: []
+    })
+    this.editProfileForm = this.fb.group({
+      name: [this.currentUser.name, Validators.required],
+      email: [this.currentUser.email, Validators.required],
+      username: [this.currentUser.username, Validators.required]
+    })
     this.categoryForm = this.fb.group({
       name: ['', Validators.required],
       color: ['', Validators.required],
@@ -83,12 +96,12 @@ export class ProfileComponent {
           this.loadGraphData();
         }
         this.role = this.isAdmin ? 'admin' : 'user';
-        return this.eventService.getProfileEvents(this.role); 
+        return this.eventService.getProfileEvents(this.role);
       }),
       catchError(error => {
         console.error('Error fetching data: ', error);
         this.router.navigate(['/error']);
-        return of(null); 
+        return of(null);
       })
     ).subscribe({
       next: (eventsData) => {
@@ -106,7 +119,7 @@ export class ProfileComponent {
         this.router.navigate(['/error']);
       }
     });
-    
+
   }
 
 
@@ -137,7 +150,7 @@ export class ProfileComponent {
 
   nextEvent(i:number){
     let page: number = -1;
-    let type: string = ''; 
+    let type: string = '';
     let time: string = '';
     let events!: ProfileEventCard;
     let pageEvent!: PageEvent;
@@ -160,14 +173,14 @@ export class ProfileComponent {
         page = pageEvent.page + 1;
         events = this.events2
         break;
-      case 3: 
+      case 3:
         time = 'present';
         type = 'registered'
         pageEvent = this.eventsPages[2]
         page = pageEvent.page + 1;
         events = this.events3;
         break;
-      case 4: 
+      case 4:
         time = 'past';
         type = 'registered'
         pageEvent = this.eventsPages[3]
@@ -175,10 +188,10 @@ export class ProfileComponent {
         events = this.events4;
         break;
       default:
-      this.router.navigate(['/error']); 
+      this.router.navigate(['/error']);
       return;
     }
-    
+
     if (!pageEvent || !events) {
       this.router.navigate(['/error']);
       return;
@@ -194,7 +207,7 @@ export class ProfileComponent {
         events.loadMore = page+1 < data.totalPages
       },
       error: ()=>{
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/error']);
       }
     })
   }
@@ -207,13 +220,13 @@ export class ProfileComponent {
         this.loadingTags = false;
         this.pageCategory =data;
         this.categories = this.categories.concat(this.pageCategory.categories);
-      
+
         this.tagLoadMoreBtn = page+1 < data.totalPages;
-        
-        
+
+
       },
       error: ()=>{
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/error']);
       }
     })
   }
@@ -228,11 +241,11 @@ export class ProfileComponent {
             this.tagLoadMoreBtn = false;
           }else {
             this.tagLoadMoreBtn =this.pageCategory.totalPages > 1;
-          } 
-          
+          }
+
         },
         error: ()=>{
-          this.router.navigate(['/error']); 
+          this.router.navigate(['/error']);
         }
       })
   }
@@ -257,7 +270,7 @@ export class ProfileComponent {
           this.router.navigate(['/error']);
         }
       });
-      
+
     }
     this.showTagPopUp = true;
   }
@@ -275,7 +288,7 @@ export class ProfileComponent {
 
   onSubmit(): void {
     if (this.categoryForm.invalid) {
-      return; 
+      return;
     }
 
     const formData = this.prepareData(this.categoryForm.value);
@@ -313,12 +326,12 @@ export class ProfileComponent {
 
   warn(){
     let confirmed = window.confirm("¿Estas seguro de que quieres borrar la categoria?")
-  
+
     if (confirmed){
       this.deleteCategory();
       location.reload();
     }
-  } 
+  }
 
   deleteCategory(){
     this.categoryService.deleteCategory(this.categoryId).subscribe({
@@ -330,7 +343,7 @@ export class ProfileComponent {
   }
 
   loadGraphData() {
-    
+
     this.eventService.getProfileGraphData().subscribe({
       next: (data) => {
           this.graphData = data;
@@ -355,5 +368,32 @@ export class ProfileComponent {
     }
   }
 
+  onSubmitProfile(){
+    //asegurarse de no cerrar sesión
+    this.userService.update({
+      id: this.currentUser.id,
+      name:this.currentUser.name,
+      username:this.currentUser.username,
+      email:this.currentUser.email
+    }).subscribe({
+      next: (response) => {this.editingProfile = false;},
+      error: (error) => {alert("Ha habido un error al editar el perfil.");}
+    }
+    )
+  }
+
+  warnProfile(){
+    let confirmed = window.confirm("Cuidao que te cerramos la sesión")
+
+    if (confirmed){
+      this.editingProfile = false;
+      location.reload();
+    }
+  }
+  cancel() {
+    //window.location.href = 'profile';
+    this.editingProfile = false;
+    return false;
+  }
 
 }

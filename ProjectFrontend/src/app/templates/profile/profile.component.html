@@ -19,7 +19,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="icon-x">
                     <path
                             d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z">
-    
+
                     </path>
                 </svg>
             </a>
@@ -37,10 +37,10 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Main content area -->
     <div class="container mt-4">
-    
+
         <!-- Profile section -->
         <div class="profile-container">
             <h2 class="event-title">Mi Perfil</h2>
@@ -52,10 +52,10 @@
                 <!-- User information -->
                 <div class="col-md-8">
                     <div class="user-data">
-                        <p><strong>Nombre:</strong>{{currentUser.name}}</p>
-                        <p><strong>Correo:</strong>{{currentUser.email}}</p>
-                        <p><strong>Nick:</strong>{{currentUser.username}}</p>
-    
+                        <p><strong>Nombre: </strong>{{currentUser.name}}</p>
+                        <p><strong>Correo: </strong>{{currentUser.email}}</p>
+                        <p><strong>Nick: </strong>{{currentUser.username}}</p>
+
                     </div>
                 </div>
                 <!-- Buttons for account management -->
@@ -69,31 +69,31 @@
                         </div>
                         <div class="col text-center btn-edit-account" *ngIf="!isAdmin">
                             <button  class="btn btn-primary" >Editar Perfil</button>
-    
+
                             <!-- Hidden div for the pop-up -->
-                            <div  style="display: none;">
-                                <form  action="/updateProfile" method="post">
+                            <div  *ngIf="editingProfile">
+                                <form  [formGroup]="editProfileForm" (ngSubmit)="onSubmitProfile()" >
                                     <div class="form-group">
                                         <label for="edit-name">Nombre:</label>
-                                        <input type="text" class="form-control" name="name" value="">
+                                        <input formControlName="name" type="text" class="form-control" name="name" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-email">Correo:</label>
-                                        <input type="email" class="form-control"  name="email" value="">
+                                        <input formControlName="email" type="email" class="form-control"  name="email" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-username">Nick:</label>
-                                        <input type="text" class="form-control"  name="username" value="">
+                                        <input formControlName="username" type="text" class="form-control"  name="username" value="">
                                     </div>
-                                    <button type="submit" onclick ="return warn()" class="btn btn-primary" >Guardar Cambios</button>
-                                    <button type="submit" onclick ="return cancel()" class="btn btn-danger" >Cancelar</button>
+                                    <button type="submit" (click)="warnProfile()" class="btn btn-primary" >Guardar Cambios</button>
+                                    <button type="submit"  (click)="cancel()" class="btn btn-danger" >Cancelar</button>
                                 </form>
                             </div>
                         </div>
-    
+
                         <div class="col text-center profile" *ngIf="isAdmin">
                             <button  class="btn btn-warning"><i class="fas fa-user-slash"></i>Banear</button>
-    
+
                             <!-- Hidden div for the ban pop-up -->
                             <div  style="display: none;">
                                 <form  action="/ban" method="post">
@@ -107,7 +107,7 @@
                         </div>
                         <div class="col text-right profile" *ngIf="isAdmin">
                             <button  class="btn btn-success"><i class="fas fa-user"></i>Desbanear</button>
-    
+
                             <!-- Hidden div for the unban pop-up -->
                             <div  style="display: none;">
                                 <form  action="/unban" method="post">
@@ -143,7 +143,7 @@
                             </div>
                         </div>
                     </ng-template>
-    
+
                     <div class="col-md-4 mb-4 last" (click)="showPopUp(-1)">
                         <div class="activity d-flex flex-row align-items-center" style="justify-content: center">
                             <div class="categories-container info" >
@@ -158,7 +158,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="container text-center mt-4" *ngIf="isAdmin && tagLoadMoreBtn">
                 <div class="row justify-content-center">
                     <div class="col-auto">
@@ -285,7 +285,7 @@
                 <div class="text-center" *ngIf="!events4.areThereEvents && !isAdmin">
                     <h5 class="no-events-message">No hay eventos.</h5>
                 </div>
-          
+
             <div class="container text-center mt-4" *ngIf="!isAdmin && events4.loadMore">
                 <div class="row justify-content-center">
                     <div class="col-auto">
@@ -295,5 +295,5 @@
             </div>
         </div>
     </div>
-    
+
 </body>
