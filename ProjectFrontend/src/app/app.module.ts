@@ -19,6 +19,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
 import { ProfileEventCardComponent } from './templates/profile-event-card/profile-event-card.component';
+import { ReviewFormComponent } from './templates/review-form/review-form.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,7 @@ import { ProfileEventCardComponent } from './templates/profile-event-card/profil
     EventCardComponent,
     RecoverPasswordComponent,
     ProfileEventCardComponent,
-    ProfileComponent
-
+    ReviewFormComponent
   ],
   imports: [
     BrowserModule,

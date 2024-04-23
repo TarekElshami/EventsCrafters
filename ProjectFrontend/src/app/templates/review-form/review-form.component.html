@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <img src="./assets/logo.png" alt="Logo" class="img-fluid small-logo">
+          <h2>Reseña del Evento</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+            <div class="form-group rating">
+              <label>Calificación del Evento</label>
+              <ngb-rating [rate]="reviewForm.controls['rating'].value"
+                (rateChange)="reviewForm.controls['rating'].setValue($event)" [max]="5" [readonly]="false"></ngb-rating>
+            </div>
+            <div class="form-group">
+              <label for="event-review">Reseña</label>
+              <textarea class="form-control" id="event-review" rows="5" formControlName="text"
+                placeholder="Escribe tu reseña aquí" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!reviewForm.valid">Enviar
+              Reseña</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

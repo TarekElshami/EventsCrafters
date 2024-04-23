@@ -97,39 +97,36 @@ public class ReviewRestController {
     @PostMapping("/reviews")
     @Operation(summary = "Create a review for an event that has ended and for which the user had signed up.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Review created",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
-            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = @Content)
+            @ApiResponse(responseCode = "201", description = "Review created", content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "400", description = "Bad request", content = {@Content}),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content}),
+            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = {@Content})
     })
-
-    public ResponseEntity<String> newReview(@RequestBody ReviewDTO review) {
+    public ResponseEntity<?> newReview(@RequestBody ReviewDTO review) {
         Review newReview = transformFromDTO(review);
         if (review.getRating() < 1 || review.getRating() > 5) {
-            return ResponseEntity.badRequest().body("Rating must be between 1 and 5.");
+            return ResponseEntity.badRequest().body("{\"message\":\"Rating must be between 1 and 5.\"}");
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(isAuthenticated(authentication)){
+        if (isAuthenticated(authentication)) {
             Optional<User> user = userService.findByUserName(authentication.getName());
             Optional<Event> event = eventService.findById(review.getEventId());
-            if (user.isPresent() && event.isPresent()){
+            if (user.isPresent() && event.isPresent()) {
                 if (reviewService.hasUserReviewedEvent(review.getEventId(), user.get().getId())) {
-                    return ResponseEntity.badRequest().body("User has already reviewed this event.");
+                    return ResponseEntity.badRequest().body("{\"message\":\"User has already reviewed this event.\"}");
                 }
                 if (user.get().getId().equals(review.getUserId()) &&
                         event.get().getRegisteredUsers().contains(user.get()) &&
-                        event.get().getEndDate().before(new Date())){
+                        event.get().getEndDate().before(new Date())) {
                     reviewService.save(newReview);
-                    return ResponseEntity.status(201).body("The review has been created correctly");
+                    return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\":\"The review has been created correctly\"}");
                 }
             }
-        }else if (!isAuthenticated(authentication)){
+        } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         return ResponseEntity.badRequest().build();
     }
-
 
 
 }

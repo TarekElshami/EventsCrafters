@@ -8,6 +8,7 @@ import { ViewEventsComponent } from './templates/view-events/view-events.compone
 import { EventFormComponent } from './templates/event-form/event-form.component';
 import { ErrorComponent } from './templates/error/error.component';
 import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
+import { ReviewFormComponent } from './templates/review-form/review-form.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     data: { title: 'Registro' }
+  },
+  {
+    path: 'review/:id',
+    component: ReviewFormComponent,
+    data: { title: 'Valorar' }
   },
   {
     path: 'event/:id',

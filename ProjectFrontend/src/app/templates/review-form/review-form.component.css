@@ -1,0 +1,13 @@
+.rating .star {
+    color: gold; /* Color dorado para las estrellas */
+    font-size: 24px; /* Tamaño más grande para las estrellas */
+}
+
+.rating .star:hover {
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    color: orange; /* Cambia de color al pasar el ratón */
+}
+
+.rating .star.full {
+    color: darkorange; /* Color para estrellas llenas */
+}
