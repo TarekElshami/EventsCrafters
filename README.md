@@ -694,6 +694,38 @@ Below are the credentials for example users, including an administrator user, to
 
 ## 🛠️ Development Environment Setup
 
+## Development Environment Setup
+
+To set up the development environment for the SPA application using Angular, follow these steps:
+
+### Prerequisites
+1. **Node.js**: Ensure that Node.js is installed on your system. You can download it from [Node.js official website](https://nodejs.org/en).
+2. **Angular CLI**: Install Angular CLI globally using npm:
+   ```bash
+   npm install -g @angular/cli
+   ```
+### Start Angular
+1. **Clone the project**
+   ```bash
+   https://github.com/CodeURJC-DAW-2023-24/webapp11.git
+   ```
+2. **Make sure the backend is running**: Following the instructions 🔣`Execution instructions` of the phase 2 documentation
+3. **Redirect to the ProjectFrontend directory**
+   ```bash
+   cd webapp11/ProjectFrontend
+   ```
+4. **Install all the necessary modules**
+   ```bash
+   npm install
+   ```
+
+5. **Run the SPA**
+   ```bash
+   npm start
+   ```
+
+The SPA will be ready at [http://localhost:4200/](http://localhost:4200/)
+
 ## 📊 Angular Component Diagrams & Templates
 
 ## 👥 Members Participation Phase 4
