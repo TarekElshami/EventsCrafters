@@ -693,9 +693,6 @@ Below are the credentials for example users, including an administrator user, to
 ***
 
 ## 🛠️ Development Environment Setup
-
-## Development Environment Setup
-
 To set up the development environment for the SPA application using Angular, follow these steps:
 
 ### Prerequisites
