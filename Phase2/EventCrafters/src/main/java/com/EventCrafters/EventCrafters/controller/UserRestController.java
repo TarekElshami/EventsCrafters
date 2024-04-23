@@ -14,10 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.rowset.serial.SerialBlob;
@@ -418,6 +422,23 @@ public class UserRestController {
 		return false;
 	}
 
+	@PostMapping("/updateProfile")
+	@ResponseBody
+	public ResponseEntity<?> updateProfile(@RequestBody FullUserDTO updatedUser) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentUsername = authentication.getName();
+		Optional<User> userOptional = userService.findByUserName(currentUsername);
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			user.setName(updatedUser.getName());
+			user.setEmail(updatedUser.getEmail());
+			user.setUsername(updatedUser.getUsername());
+			userService.save(user);
+			SecurityContextHolder.clearContext();
+			return ResponseEntity.ok().build();
+		}
 
+		return ResponseEntity.badRequest().build();
+	}
 
 }

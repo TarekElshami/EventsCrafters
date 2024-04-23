@@ -33,7 +33,8 @@ import { ProfileEventCardComponent } from './templates/profile-event-card/profil
     HeaderComponent,
     EventCardComponent,
     RecoverPasswordComponent,
-    ProfileEventCardComponent
+    ProfileEventCardComponent,
+    ProfileComponent
 
   ],
   imports: [
