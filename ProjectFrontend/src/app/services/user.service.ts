@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
+
   private apiUrl = '/api/auth/login';
 
   constructor(private http: HttpClient) {}
@@ -44,9 +45,12 @@ export class UserService {
     )
   }
 
-
   update(user: {id: number, name: string; email: string; username: string}) {
     return this.http.post("/api/users/updateProfile", user);
   }
   //action="/updateProfile" method="post"
+
+  delete(id: number) {
+    return this.http.delete("/api/users/"+id);
+  }
 }

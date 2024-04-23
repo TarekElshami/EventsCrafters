@@ -21,7 +21,8 @@ import { switchMap, catchError } from 'rxjs/operators';
 import {map, Observable, of} from 'rxjs';
 import { PageCategory } from '../../models/pageCategory.model';
 import { ProfileGraphData } from '../../models/profile-graph-data.model';
-import {HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-profile',
@@ -437,5 +438,29 @@ export class ProfileComponent {
         )
       )
     }
+  }
+
+  deleteUser() {
+    const result = confirm("Si continua, se eliminará la cuenta. ¿Está seguro?");
+    if (!result) {
+      alert("Operación cancelada");
+      return;
+    }
+    this.userService.delete(this.currentUser.id).subscribe({
+      next: (response) => {
+        alert("La cuenta ha sido eliminada");
+        this.router.navigate(["/"]);
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status===403) {
+          alert("No tienes permiso para borrar esta cuenta.");
+        } else if (error.status === 404) {
+          alert("No se ha encontrado la cuenta a borrar.")
+        }
+      }
+    });
+
+
+
   }
 }

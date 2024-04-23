@@ -137,9 +137,7 @@
                         </div>
                         <!-- Option visible only for regular users (to delete account) -->
                         <div class="col-lg-2" *ngIf="!isAdmin">
-                            <form action="delete-account" method="post">
-                                <button type="submit" onclick="return warnDelete()" class="btn btn-danger">Eliminar Cuenta</button>
-                            </form>
+                          <button (click)="deleteUser()" class="btn btn-danger">Eliminar Cuenta</button>
                         </div>
                     </div>
                 </div>
