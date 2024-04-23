@@ -68,10 +68,14 @@ export class ProfileComponent {
   yAxisLabel = 'Número';
 
   editProfileForm: FormGroup;
+  banUserForm: FormGroup;
+  unbanUserForm: FormGroup;
   editingProfile = false;
   currentName:string = "";
   currentEmail:string = "";
   currentUsername:string = "";
+  banFormOpen: boolean = false;
+  unbanFormOpen: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -89,6 +93,12 @@ export class ProfileComponent {
       name: [this.currentName, Validators.required],
       email: [this.currentEmail, [Validators.required, Validators.email]],
       username: [this.currentUsername, { validators: [Validators.required], asyncValidators: [this.userNameTaken()], updateOn: 'blur' }]
+    })
+    this.banUserForm = this.fb.group({
+      banUser: ['', Validators.required]
+    })
+    this.unbanUserForm = this.fb.group({
+      unbanUser: ['', Validators.required]
     })
   }
 
@@ -462,5 +472,43 @@ export class ProfileComponent {
 
 
 
+  }
+
+  onSubmitBan() {
+    this.userService.ban(this.banUserForm.get('banUser')?.value).subscribe({
+      next: (response) => {
+        alert("Usuario baneado.");
+        this.banFormOpen = false;
+        this.banUserForm.get('banUser')?.setValue("");
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 403) alert("No tienes permiso para banear a este usuario.")
+        else if (error.status == 404) alert("No se ha encontrado el usuario a banear.")
+        else alert("Error al banear al usuario.")
+      }
+    });
+  }
+
+  onSubmitUnban() {
+    this.userService.unban(this.unbanUserForm.get('unbanUser')?.value).subscribe({
+      next: (response) => {
+        alert("Usuario desbaneado.");
+        this.unbanFormOpen = false;
+        this.unbanUserForm.get('unbanUser')?.setValue("");
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 403) alert("No tienes permiso para desbanear a este usuario.")
+        else if (error.status == 404) alert("No se ha encontrado el usuario a desbanear.")
+        else alert("Error al desbanear al usuario.")
+      }
+    });
+  }
+
+  warnBan() {
+    return confirm("Seguro que quieres banear a este usuario?");
+  }
+
+  warnUnBan() {
+    return confirm("Seguro que quieres desbanear a este usuario?");
   }
 }

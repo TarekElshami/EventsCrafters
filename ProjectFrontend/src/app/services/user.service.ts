@@ -59,4 +59,12 @@ export class UserService {
       error: err => {console.log(err)}
     });
   }
+
+  ban(banUser: string) {
+    return this.http.post("/api/users/ban", banUser);
+  }
+
+  unban(unbanUser: string) {
+    return this.http.post("/api/users/unban", unbanUser);
+  }
 }

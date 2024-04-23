@@ -407,7 +407,41 @@ public class UserRestController {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
+	}
 
+	@PostMapping("/ban")
+	public ResponseEntity<String> banUser(@RequestBody String body, Principal principal) {
+		if (principal==null) return ResponseEntity.status(403).build();
+		Optional<User> principalUser = userService.findByUserName(principal.getName());
+		if (principalUser.isPresent()){
+			if (!principalUser.get().hasRole("ADMIN")){
+				return ResponseEntity.status(403).build();
+			}
+			Optional<User> userOp = userService.findByUserName(body);
+			if (userOp.isEmpty()){ return ResponseEntity.notFound().build();}
+			if (userOp.get().hasRole("ADMIN")) { return ResponseEntity.status(403).build();}
+			userOp.get().setBanned(true);
+			userService.save(userOp.get());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(500).build();
+	}
+
+	@PostMapping("/unban")
+	public ResponseEntity<String> unbanUser(@RequestBody String body, Principal principal) {
+		if (principal==null) return ResponseEntity.status(403).build();
+		Optional<User> principalUser = userService.findByUserName(principal.getName());
+		if (principalUser.isPresent()){
+			if (!principalUser.get().hasRole("ADMIN")){
+				return ResponseEntity.status(403).build();
+			}
+			Optional<User> userOp = userService.findByUserName(body);
+			if (userOp.isEmpty()){ return ResponseEntity.notFound().build();}
+			userOp.get().setBanned(false);
+			userService.save(userOp.get());
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(500).build();
 	}
 
 	private boolean checkUserPrivileges(Principal principal, Optional<User> optUser) {
@@ -438,7 +472,6 @@ public class UserRestController {
 			//SecurityContextHolder.clearContext();
 			return ResponseEntity.ok().build();
 		}
-
 		return ResponseEntity.badRequest().build();
 	}
 
