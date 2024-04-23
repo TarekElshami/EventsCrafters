@@ -1,6 +1,6 @@
 services:
   web:
-    image: luciadominguezrodrigo/eventcrafters:latest
+    image: luciadominguezrodrigo/eventcrafters:v2.0
     #build:
     #  context: .
     #  dockerfile: Dockerfile

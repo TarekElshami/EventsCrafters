@@ -2,7 +2,7 @@
 DOCKER_USERNAME="luciadominguezrodrigo"
 DOCKER_PASSWORD="916901930Aa."
 DOCKER_REPO="$DOCKER_USERNAME/eventcrafters"
-DOCKER_TAG="latest"
+DOCKER_TAG="v2.0"
 
 #Build and push project image
 cd ..
