@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+  AsyncValidatorFn
+} from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { EventService } from '../../services/event.service';
 import { CategoryService } from '../../services/category.service';
@@ -10,9 +18,10 @@ import { Event } from '../../models/event.model';
 import { Category } from '../../models/category.model';
 import { ProfileEventCard } from '../../models/profileEventCard.model';
 import { switchMap, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import { PageCategory } from '../../models/pageCategory.model';
 import { ProfileGraphData } from '../../models/profile-graph-data.model';
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -78,7 +87,7 @@ export class ProfileComponent {
     this.editProfileForm = this.fb.group({
       name: [this.currentName, Validators.required],
       email: [this.currentEmail, [Validators.required, Validators.email]],
-      username: [this.currentUsername, Validators.required]
+      username: [this.currentUsername, { validators: [Validators.required], asyncValidators: [this.userNameTaken()], updateOn: 'blur' }]
     })
   }
 
@@ -369,17 +378,26 @@ export class ProfileComponent {
   }
 
   onSubmitProfile(){
+    let confirmed = window.confirm("Por razones de seguridad, si has modificado tu nombre de usuario, se te cerrará sesión. ¿Quieres continuar?")
+
+    if (!confirmed){
+      this.editingProfile = false;
+      //location.reload();
+      return;
+    }
+
     //asegurarse de no cerrar sesión
     this.userService.update({
       id: this.currentUser.id,
-      name:this.currentUser.name,
-      username:this.currentUser.username,
-      email:this.currentUser.email
+      name:this.currentName,
+      username:this.currentUsername,
+      email:this.currentEmail
     }).subscribe({
-      next: (response) => {this.editingProfile = false;},
+      next: (response) => {this.router.navigate(["/login"])},
       error: (error) => {alert("Ha habido un error al editar el perfil.");}
     }
     )
+    this.editingProfile = false;
   }
 
   warnProfile(){
@@ -387,16 +405,37 @@ export class ProfileComponent {
 
     if (confirmed){
       this.editingProfile = false;
-      location.reload();
+      //location.reload();
     }
+    return confirmed
   }
   cancel() {
     //window.location.href = 'profile';
+    this.currentName = this.currentUser.name;
+    this.currentEmail = this.currentUser.email;
+    this.currentUsername = this.currentUser.username;
     this.editingProfile = false;
     return false;
   }
 
   activateEditing() {
     this.editingProfile=true;
+  }
+
+  userNameTaken(): AsyncValidatorFn {
+    return (control: AbstractControl) => {
+      const userName = control.value;
+      return this.userService.usernameTaken(userName).pipe(
+        map(
+          (isTaken: HttpResponse<any>) => {
+            if (isTaken) {
+              return {userNameTaken:true};
+            } else {
+              return null
+            }
+          }
+        )
+      )
+    }
   }
 }

@@ -429,12 +429,13 @@ public class UserRestController {
 		String currentUsername = authentication.getName();
 		Optional<User> userOptional = userService.findByUserName(currentUsername);
 		if (userOptional.isPresent()) {
+
 			User user = userOptional.get();
 			user.setName(updatedUser.getName());
 			user.setEmail(updatedUser.getEmail());
 			user.setUsername(updatedUser.getUsername());
 			userService.save(user);
-			SecurityContextHolder.clearContext();
+			//SecurityContextHolder.clearContext();
 			return ResponseEntity.ok().build();
 		}
 
