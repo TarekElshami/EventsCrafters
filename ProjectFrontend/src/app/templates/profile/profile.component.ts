@@ -436,6 +436,7 @@ export class ProfileComponent {
   userNameTaken(): AsyncValidatorFn {
     return (control: AbstractControl) => {
       const userName = control.value;
+      if (userName===this.currentUser.username) return of(null);
       return this.userService.usernameTaken(userName).pipe(
         map(
           (isTaken: HttpResponse<any>) => {
