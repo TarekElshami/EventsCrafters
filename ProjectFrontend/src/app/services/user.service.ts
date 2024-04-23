@@ -48,9 +48,15 @@ export class UserService {
   update(user: {id: number, name: string; email: string; username: string}) {
     return this.http.post("/api/users/updateProfile", user);
   }
-  //action="/updateProfile" method="post"
 
   delete(id: number) {
     return this.http.delete("/api/users/"+id);
+  }
+
+  logout(){
+    this.http.post("api/auth/logout",{}).subscribe({
+      next: value => {console.log(value)},
+      error: err => {console.log(err)}
+    });
   }
 }

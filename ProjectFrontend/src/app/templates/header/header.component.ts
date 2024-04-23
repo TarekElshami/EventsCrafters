@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CategoryService } from '../../services/category.service'
 import { Router } from '@angular/router';
 import { Category } from '../../models/category.model';
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -10,18 +11,18 @@ import { Category } from '../../models/category.model';
   styleUrls: ['../../home.css', './header.component.css']
 })
 export class HeaderComponent {
-  
+
     categories: Category[] = []
     isCollapsed = true;
     searchBarInput: string = '';
-    
+
     @Input() logged!: boolean;
     @Input() isIndex!: boolean;
 
     @Output() searchBarInfo = new EventEmitter<string>();
     @Output() categoryFilter = new EventEmitter<number>();
 
-    constructor(private categoryService: CategoryService, private router: Router) {}
+    constructor(private categoryService: CategoryService, private userService: UserService, private router: Router) {}
 
     ngOnInit() {
         this.categoryService.getAllCategories().subscribe({
@@ -29,7 +30,7 @@ export class HeaderComponent {
             this.categories = data;
         },
         error: () => {
-            this.router.navigate(['/error']); 
+            this.router.navigate(['/error']);
         }
         });
     }
@@ -44,7 +45,11 @@ export class HeaderComponent {
     }
 
     goToProfile(){
-        this.router.navigate(['/profile']); 
+        this.router.navigate(['/profile']);
     }
 
+  logout() {
+      this.userService.logout();
+      this.router.navigate(["/login"])
+  }
 }

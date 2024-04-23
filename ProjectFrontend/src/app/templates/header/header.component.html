@@ -16,10 +16,8 @@
                 <div ngbDropdownMenu  class="dropdown-menu dropdown-menu-right" aria-labelledby="perfilDropdown">
                     <a class="dropdown-item" (click)="goToProfile()" *ngIf="isIndex">Perfil</a>
                     <div class="dropdown-divider" *ngIf="isIndex"></div>
-                    <form action="/logout" method="post">
-                        <input type="hidden" name="_method" value="POST">
-                        <button type="submit" name="logout"  class="dropdown-item">Cerrar Sesión</button>
-                    </form>
+                    <button name="logout" (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
+
                 </div>
             </li>
             <li class="nav-item dropdown" *ngIf="!logged && isIndex">
