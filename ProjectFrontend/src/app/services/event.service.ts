@@ -4,6 +4,7 @@ import { Observable, forkJoin } from 'rxjs';
 import { PageEvent } from '../models/pageEvent.model';
 import { EventGraphData } from '../models/event-graph-data.model';
 import { ProfileGraphData } from '../models/profile-graph-data.model';
+import {EventStats} from "../models/eventLiveStats.model";
 
 @Injectable({
   providedIn: 'root'
@@ -53,9 +54,13 @@ export class EventService {
 
     return this.http.get<PageEvent>(`/api/events/filter`, { params });
   }
-    
+
   getEventGraphData(eventId: number): Observable<EventGraphData> {
     return this.http.get<EventGraphData>(`/api/events/graph/${eventId}`);
+  }
+
+  getEventLiveStats(eventId: number): Observable<EventStats> {
+    return this.http.get<EventStats>(`/api/events/stats/${eventId}`);
   }
 
   updateEventAttendees(eventId: number, attendees: number): Observable<any> {
@@ -67,7 +72,7 @@ export class EventService {
   }
 
   getProfileEvents(role: string): Observable<any>{
-    
+
     switch(role){
       case 'user':
         // user current created events
@@ -101,5 +106,5 @@ export class EventService {
     return this.http.get<ProfileGraphData>(`/api/events/profile/graph`);
   }
 
-  
+
 }

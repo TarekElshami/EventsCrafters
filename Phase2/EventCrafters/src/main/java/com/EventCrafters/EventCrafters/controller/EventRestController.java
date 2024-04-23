@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -543,6 +544,51 @@ public class EventRestController {
     }
 
 
+    @GetMapping("/stats/{eventId}")
+    @Operation(summary = "Retrieves event basic stats for properly visualization")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Event not found"),
+    })
+    public ResponseEntity<EventLiveStatsDTO> getEventLiveStats(@PathVariable long eventId) {
+        //Check if event exists
+        Optional<Event> eventOptional = eventService.findById(eventId);
+        if (!eventOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Event existingEvent = eventOptional.get();
+
+        EventLiveStatsDTO stats = new EventLiveStatsDTO();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isLoggedIn = isAuthenticated(authentication);
+
+        boolean isUserCreator = false;
+        boolean isUserRegistered = false;
+        boolean hasUserReviewed = false;
+        if (isLoggedIn) {
+            String currentUsername = authentication.getName();
+            Optional<User> currentUser = userService.findByUserName(currentUsername);
+            if (currentUser.isPresent()) {
+                if (existingEvent.getCreator().equals(currentUser.get())) {
+                    isUserCreator = true;
+                }
+                isUserRegistered = existingEvent.getRegisteredUsers().contains(currentUser.get());
+                hasUserReviewed = reviewService.hasUserReviewedEvent(eventId, currentUser.get().getId());
+            }
+        }
+
+        stats.setUserLogged(isLoggedIn);
+        stats.setHasUserJoined(isUserRegistered);
+        stats.setCreator(isUserCreator);
+        stats.setHasUserReviewed(hasUserReviewed);
+
+        LocalDateTime now = LocalDateTime.now();
+        boolean eventFinished = now.isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+
+        stats.setEventFinished(eventFinished);
+
+        return ResponseEntity.status(200).body(stats);
+    }
+
     @GetMapping("/filter")
     @Operation(summary = "Retrieves events filtered by category, with the category's ID specified in the URL, by input from the search bar or depending on our recommendation algorithm.")
     @ApiResponses(value = {
@@ -689,6 +735,10 @@ public class EventRestController {
         boolean isCreator = event.getCreator().equals(user);
 
         return isAdmin || isCreator;
+    }
+
+    private boolean isAuthenticated(Authentication authentication) {
+        return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
     }
 
     public Event transformEvent(EventManipulationDTO dto) {
