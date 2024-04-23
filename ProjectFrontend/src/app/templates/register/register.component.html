@@ -71,7 +71,7 @@
                 <small class="text-danger">Las contraseñas deben coincidir.</small>
               </div>
             </div>
-            <button type="submit" id="submit" (click)="submitButtonOnClick()" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Registrarse</button>
+            <button type="submit" id="submit" [disabled]="!registerForm.valid" (click)="submitButtonOnClick()" class="btn btn-primary btn-block" style = "display: block; margin: 0 auto;">Registrarse</button>
           </form>
         </div>
         <div class="card-footer text-center">
