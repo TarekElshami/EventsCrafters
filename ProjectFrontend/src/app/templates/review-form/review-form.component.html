@@ -1,3 +1,9 @@
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
@@ -10,8 +16,11 @@
           <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
             <div class="form-group rating">
               <label>Calificación del Evento</label>
-              <ngb-rating [rate]="reviewForm.controls['rating'].value"
-                (rateChange)="reviewForm.controls['rating'].setValue($event)" [max]="5" [readonly]="false"></ngb-rating>
+              <ngb-rating [(rate)]="reviewForm.controls['rating'].value" [max]="5" [readonly]="false">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star" [class.full]="fill === 100">&#9733;</span>
+                </ng-template>
+              </ngb-rating>
             </div>
             <div class="form-group">
               <label for="event-review">Reseña</label>

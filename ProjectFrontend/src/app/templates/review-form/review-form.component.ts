@@ -15,6 +15,7 @@ export class ReviewFormComponent implements OnInit {
   reviewForm: FormGroup;
   eventId: number;
   currentUser!: User;
+  isLoading = false;  
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,12 +32,15 @@ export class ReviewFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
         this.currentUser = user; 
+        this.isLoading = false;  
       },
       error: () => {
         this.router.navigate(['/error']); 
+        this.isLoading = false;
       }
     });
   }
@@ -49,15 +53,15 @@ export class ReviewFormComponent implements OnInit {
         userId: this.currentUser.id,
         eventId: this.eventId
       };
-      console.log(reviewData);
-  
+      this.isLoading = true;
       this.reviewService.createReview(reviewData).subscribe({
         next: () => {
           this.router.navigate([`/event/${this.eventId}`]);
+          this.isLoading = false;  
         },
-        error: (error) => {
-          console.error('Error al enviar la reseña:', error);
+        error: () => {
           this.router.navigate(['/error']);
+          this.isLoading = false;
         }
       });
     } else {
