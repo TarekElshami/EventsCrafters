@@ -59,7 +59,9 @@ export class ProfileComponent {
 
   editProfileForm: FormGroup;
   editingProfile = false;
-
+  currentName:string = "";
+  currentEmail:string = "";
+  currentUsername:string = "";
 
   constructor(
     private userService: UserService,
@@ -74,14 +76,9 @@ export class ProfileComponent {
       eventIdInCategories: []
     })
     this.editProfileForm = this.fb.group({
-      name: [this.currentUser.name, Validators.required],
-      email: [this.currentUser.email, Validators.required],
-      username: [this.currentUser.username, Validators.required]
-    })
-    this.categoryForm = this.fb.group({
-      name: ['', Validators.required],
-      color: ['', Validators.required],
-      eventIdInCategories: []
+      name: [this.currentName, Validators.required],
+      email: [this.currentEmail, [Validators.required, Validators.email]],
+      username: [this.currentUsername, Validators.required]
     })
   }
 
@@ -106,6 +103,9 @@ export class ProfileComponent {
     ).subscribe({
       next: (eventsData) => {
         if (eventsData) {
+          this.currentName = this.currentUser.name;
+          this.currentEmail = this.currentUser.email;
+          this.currentUsername = this.currentUser.username;
           if (this.isAdmin){
             this.eventPage = eventsData;
           }else{
@@ -396,4 +396,7 @@ export class ProfileComponent {
     return false;
   }
 
+  activateEditing() {
+    this.editingProfile=true;
+  }
 }
