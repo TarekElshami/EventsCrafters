@@ -1,80 +1,101 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { EventGraphData } from '../../models/event-graph-data.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Event } from '../../models/event.model';
-import {Category} from "../../models/category.model";
+import { Category } from "../../models/category.model";
 import { CategoryService } from '../../services/category.service';
 import { UserService } from '../../services/user.service';
-import {User} from "../../models/user.model";
-import {EventShowParams} from "../../models/event-showParams.model";
+import { User } from "../../models/user.model";
+import { EventStats } from "../../models/eventLiveStats.model";
 
 @Component({
   selector: 'app-view-events',
   templateUrl: './view-events.component.html',
   styleUrls: ['./view-events.component.css']
 })
-export class ViewEventsComponent implements OnInit {
+export class ViewEventsComponent {
 
-  isCollapsed = true;
+  //Miscellaneous
+  isLoading: boolean = false;
 
-  eventId!: number;
+  //Graph data
   graphData?: EventGraphData;
   showForm = false;
   attendeeForm!: FormGroup;
-
   gradient: boolean = false;
   colorScheme = 'vivid';
   chartData: any[] = [];
+  attendeesCountSet : boolean = false;
 
+  //Event
   event!: Event;
   category: Category = {id : -1, name : '', color : '', eventIdInCategories: []};
   creator! : User;
-  params!: EventShowParams;
-  token : any;
+  stats!: EventStats;
+
+  //User
+  isUserAdmin!: boolean;
 
 
   constructor(
     private eventService: EventService,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private userService: UserService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
+    this.attendeesCountSet = false;
+
     const eventIdString = this.route.snapshot.paramMap.get('id');
-    this.token = localStorage.getItem('token');
     if (eventIdString) {
       let eventIdNum = +eventIdString;
-      if (eventIdNum >= 0){
+      if (eventIdNum > 0) {
         this.findCategory();
+
+        this.eventService.getEventLiveStats(eventIdNum).subscribe({
+          next: (eventStats) => {
+            this.stats = eventStats;
+          },
+          error: (error) => {
+            this.router.navigate(['/error']);
+          }
+        });
+
+        this.eventService.getEventById(eventIdString).subscribe({
+          next: (event) => {
+            this.event = event;
+          },
+          error: (error) => {
+            console.error('Error al obtener el evento:', error);
+            this.router.navigate(['/error']);
+          }
+        });
       }
-      this.eventService.getEventById(eventIdString).subscribe({
-        next: (data: Event) => {
-          this.event = data;
-          this.findCreator();
-        },
-        error: (error) => {
-          console.error('Error al obtener el evento:', error);
-        }
-      });
-
-      // Controlar que solo se cargue cuando el evento ha terminado y el /me del usuario es el creador o admin
-      this.attendeeForm = this.formBuilder.group({
-        attendees: ['', [Validators.required, Validators.min(0)]] // Poner aquí el máximo (registred users)
-      });
-      this.loadGraphData();
-
-    } else {
-      this.router.navigate(['/error']);
     }
+
+    this.userService.getCurrentUser().subscribe({
+      next: (currentUser) => {
+        this.isUserAdmin = currentUser.roles.includes("ADMIN");
+        if (this.isUserAdmin || this.stats.isCreator) {
+          this.loadGraphData();
+        }
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.router.navigate(['/error']);
+      }
+    });
+
   }
 
   loadGraphData() {
-    this.eventService.getEventGraphData(this.eventId).subscribe({
+    this.eventService.getEventGraphData(this.event.id).subscribe({
       next: (data) => {
         if (data.registeredUsers === -1) {
           this.showForm = true;
@@ -101,43 +122,6 @@ export class ViewEventsComponent implements OnInit {
     });
   }
 
-  findCreator(){
-    this.userService.getUser(this.event.creatorId).subscribe({
-      next: (data) => {
-        this.creator = data;
-      },
-      error: () => {
-        this.router.navigate(['/error']);
-      }
-    });
-  }
-
-  findShowParams(){
-    //logged
-    this.userService.getCurrentUser().subscribe({
-      next: (user) => {
-        if(user != null){
-          this.params.logged = true;
-        }
-        else this.params.logged = false;
-      }
-    })
-    //eventFinished
-    if(new Date() > this.event.endDate){
-      this.params.eventFinished = true;
-    }
-    else this.params.eventFinished = false;
-
-    //isUserCreatorOrAdmin (PENDING)
-    this.params.isUserCreatorOrAdmin = true;
-    //isUserRegistered (PENDING)
-    this.params.isUserRegistered = true;
-    //hasUserReviewed (PENDING)
-    this.params.hasUserReviewed = true;
-    //attendeesCountSet (PENDING)
-    this.params.attendeesCountSet = true;
-  }
-
   updateChartData() {
     if (this.graphData) {
       this.chartData = [
@@ -156,7 +140,7 @@ export class ViewEventsComponent implements OnInit {
   updateAttendees() {
     if (this.attendeeForm.valid) {
       const attendees = this.attendeeForm.get('attendees')?.value;
-      this.eventService.updateEventAttendees(this.eventId, attendees).subscribe({
+      this.eventService.updateEventAttendees(this.event.id, attendees).subscribe({
         next: () => this.loadGraphData(),
         error: () => this.router.navigate(['/error'])
       });
@@ -164,9 +148,26 @@ export class ViewEventsComponent implements OnInit {
   }
 
   onDeleteClick(): void {
-    this.eventService.deleteEvent(this.eventId).subscribe({
+    this.eventService.deleteEvent(this.event.id).subscribe({
       next: () => this.router.navigate(['']),
       error: () => this.router.navigate(['/error'])
     });
+  }
+
+
+  leaveEvent() {
+
+  }
+
+  eventTicket() {
+
+  }
+
+  joinEvent() {
+
+  }
+
+  onEditClick() {
+
   }
 }
