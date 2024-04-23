@@ -32,7 +32,7 @@ RUN mvn clean verify --fail-never
 
 # Copy project source from local project to compilation container directory
 COPY Phase2/EventCrafters/src /project/src
-COPY --from=angular /code/dist/project-frontend /project/src/main/resources/static/new/
+COPY --from=angular /code/dist/project-frontend/browser/ /project/src/main/resources/static/new
 
 # Compiles the project
 RUN mvn package -DskipTests
