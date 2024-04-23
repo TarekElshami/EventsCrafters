@@ -56,7 +56,6 @@ export class ViewEventsComponent {
     if (eventIdString) {
       let eventIdNum = +eventIdString;
       if (eventIdNum > 0) {
-        this.findCategory();
 
         this.eventService.getEventLiveStats(eventIdNum).subscribe({
           next: (eventStats) => {
@@ -76,6 +75,8 @@ export class ViewEventsComponent {
             this.router.navigate(['/error']);
           }
         });
+        this.findCategory();
+
       }
     }
 
@@ -85,10 +86,9 @@ export class ViewEventsComponent {
         if (this.isUserAdmin || this.stats.isCreator) {
           this.loadGraphData();
         }
-        this.isLoading = false;
       },
       error: (error) => {
-        this.router.navigate(['/error']);
+        this.isLoading = false;
       }
     });
 
@@ -149,7 +149,7 @@ export class ViewEventsComponent {
 
   onDeleteClick(): void {
     this.eventService.deleteEvent(this.event.id).subscribe({
-      next: () => this.router.navigate(['']),
+      next: () => this.router.navigate(['/']),
       error: () => this.router.navigate(['/error'])
     });
   }

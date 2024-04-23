@@ -16,28 +16,28 @@
   <div class="container mt-3">
     <div class="profile-container">
       <!-- Main title, photo, category and registered users-->
-      <h2 class="event-title">{{ event.name }}</h2>
-      <img [src]="event.imageUrl" class="d-block w-100" id="event-photo" alt="imagen {{event.name}}"><br>
+      <h2 class="event-title">{{ event?.name }}</h2>
+      <img [src]="event?.imageUrl" class="d-block w-100" id="event-photo" alt="imagen {{event?.name}}"><br>
       <div class="categories-container info d-flex justify-content-between">
         <div style="max-height: 15px; padding-top:10px;">
-          <span class="event-category" [style.background-color]="category.color">{{ category.name }}</span>
+          <span class="event-category" [style.background-color]="category?.color">{{ category?.name }}</span>
         </div>
-        <span class="event-capacity etiqueta-aforo">Aforo: {{ event.numRegisteredUsers }}/{{ event.maxCapacity }}</span>
+        <span class="event-capacity etiqueta-aforo">Aforo: {{ event?.numRegisteredUsers }}/{{ event?.maxCapacity }}</span>
       </div>
 
       <!--Info section-->
       <div class="user-events">
         <h3 class="next">Información</h3>
-        <p><strong>Descripción: </strong> {{ event.description }}</p>
+        <p><strong>Descripción: </strong> {{ event?.description }}</p>
         <div class="row flex-wrap p-3">
           <div>
-            <p><strong><i class="fas fa-users"></i> Aforo máximo: </strong> {{ event.maxCapacity }} personas</p>
+            <p><strong><i class="fas fa-users"></i> Aforo máximo: </strong> {{ event?.maxCapacity }} personas</p>
             <p><strong><i class="fas fa-map-marker-alt"></i> Lugar: </strong> <a href="#map">Ver mapa</a></p>
-            <p><strong><i class="fas fa-euro-sign"></i> Precio: </strong> {{ event.price }}</p>
-            <p><strong><i class="fas fa-clock"></i> Fecha de inicio: </strong> {{ event.startDate }}</p>
-            <p><strong><i class="fas fa-clock"></i> Fecha de fin: </strong> {{ event.endDate }}</p>
-            <p><strong><i class="fas fa-hourglass-half"></i> Duración: </strong> {{ event.duration }}</p>
-            <p><strong><i class="fas fa-info-circle"></i> Información adicional: </strong> {{ event.additionalInfo }}</p>
+            <p><strong><i class="fas fa-euro-sign"></i> Precio: </strong> {{ event?.price }}</p>
+            <p><strong><i class="fas fa-clock"></i> Fecha de inicio: </strong> {{ event?.startDate }}</p>
+            <p><strong><i class="fas fa-clock"></i> Fecha de fin: </strong> {{ event?.endDate }}</p>
+            <p><strong><i class="fas fa-hourglass-half"></i> Duración: </strong> {{ event?.duration }}</p>
+            <p><strong><i class="fas fa-info-circle"></i> Información adicional: </strong> {{ event?.additionalInfo }}</p>
           </div>
         </div>
       </div>
@@ -59,12 +59,12 @@
 
             <div *ngIf="stats.isUserLogged">
               <div class="m-2" *ngIf="stats.hasUserJoined">
-                  <button (click)="leaveEvent()" class="btn btn-warning">Desapuntarte de {{ event.name }}</button>
+                  <button (click)="leaveEvent()" class="btn btn-warning">Desapuntarte de {{ event?.name }}</button>
                 <br>
-                  <button (click)="eventTicket()" class="btn btn-primary"><i class="fas fa-ticket-alt"></i>Ver entrada a {{ event.name }}</button>
+                  <button (click)="eventTicket()" class="btn btn-primary"><i class="fas fa-ticket-alt"></i>Ver entrada a {{ event?.name }}</button>
               </div>
               <div class="m-2" *ngIf="!stats.hasUserJoined">
-                <button (click)="joinEvent()" class="btn btn-primary">Apuntarte a {{ event.name }}</button>
+                <button (click)="joinEvent()" class="btn btn-primary">Apuntarte a {{ event?.name }}</button>
               </div>
             </div>
           </div>
@@ -75,11 +75,11 @@
       <div class="user-events actions-section mt-4" *ngIf="stats.eventFinished">
         <!-- Feedback and rating section -->
         <h3 class="next"><i class="fas fa-clipboard-list"></i> Retroalimentación</h3>
-        <div *ngIf="stats.isUserLogged">
-          <div *ngIf="stats.eventFinished">
-            <div *ngIf="stats.hasUserJoined">
-              <div class="review-section mt-3" *ngIf="!stats.hasUserReviewed">
-                <a href="/review/event/{{event.id}}" class="btn btn-primary"><i class="fas fa-star"></i> Dejar una
+        <div *ngIf="stats?.isUserLogged">
+          <div *ngIf="stats?.eventFinished">
+            <div *ngIf="stats?.hasUserJoined">
+              <div class="review-section mt-3" *ngIf="!stats?.hasUserReviewed">
+                <a href="/review/event/{{event?.id}}" class="btn btn-primary"><i class="fas fa-star"></i> Dejar una
                   review</a>
               </div>
               <div class="alert alert-info" role="alert" *ngIf="stats.hasUserReviewed">
@@ -94,7 +94,7 @@
                       <label class="sr-only"> Número de asistentes</label> <!--for="attendeesCount"-->
                       <input type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes"
                             min="0"
-                            max="{{event.numRegisteredUsers}}" required>
+                            max="{{event?.numRegisteredUsers}}" required>
                     </div>
                     <button type="submit" class="btn btn-info mb-2 ml-2"><i class="fas fa-save"></i> Guardar</button>
                   </form>
@@ -128,8 +128,8 @@
           </div>
         </div>
         <div class="event-average-rating-section mt-4">
-          <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ event.averageRating }}
-            (Con {{ event.reviewNum }}
+          <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ event?.averageRating }}
+            (Con {{ event?.reviewNum }}
             valoraciones)
           </h4>
           <br>
