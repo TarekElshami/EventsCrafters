@@ -50,6 +50,14 @@ export class HeaderComponent {
 
   logout() {
       this.userService.logout();
-      this.router.navigate(["/login"])
+      this.goToLogin();
+  }
+
+  goToRegister(){
+      this.router.navigate(["/register"])
+  }
+
+  goToLogin(){
+    this.router.navigate(["/login"])
   }
 }

@@ -72,9 +72,7 @@ export class ViewEventsComponent {
             this.mapHtml = this.sanitizer.bypassSecurityTrustHtml(this.event.map);
             this.findCategory();
             this.getCreatorData();
-            if(this.isUserLogged){
-              this.getLoggedUserData(); //Updates isAdmin or isCreator, which are initially false
-            }
+            this.getLoggedUserData(); //Updates isLogged, isAdmin and isCreator, which are initially false
             this.getEventLiveStats();
             this.isLoading = false;
           },
@@ -162,10 +160,11 @@ export class ViewEventsComponent {
     });
   }
 
-  //As it is now, it MUST be run after getCreatorData
+
   getLoggedUserData(){
     this.userService.getCurrentUser().subscribe({
       next: (currentUser) => {
+        this.isUserLogged = true;
         this.isUserAdmin = currentUser.roles.includes("ADMIN");
         this.isUserCreator = (this.event.creatorId == currentUser.id);
         if (this.isUserAdmin || this.isUserCreator) {
@@ -173,7 +172,7 @@ export class ViewEventsComponent {
         }
       },
       error: (error) => {
-        this.router.navigate(['/error']);
+        this.isUserLogged = false;
       }
     });
   }

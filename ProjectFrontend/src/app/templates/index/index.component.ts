@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service'
 import { PageEvent } from '../../models/pageEvent.model';
 import { Event } from '../../models/event.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-index',
@@ -19,13 +20,14 @@ export class IndexComponent {
   searchBarInput: string = '';
   categoryId: number = -1;
   noEvents: boolean = false;
-  isUserLogged: boolean = true;
+  isUserLogged: boolean = false;
 
-  constructor(private eventService: EventService, private router: Router){}
+  constructor(private eventService: EventService, private router: Router, private userService: UserService){}
 
   ngOnInit(){
     this.isLoading= true;
     this.noEvents = false;
+    this.checkLogin();
     this.eventService.getFilteredEvents(0, 'recommended', '', -1).subscribe({
       next: (data) => {
         this.pageEvent = data;
@@ -35,10 +37,10 @@ export class IndexComponent {
 
       },
       error: () => {
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/error']);
       }
     });
-    
+
   }
 
   newPage(){
@@ -47,7 +49,7 @@ export class IndexComponent {
       next: (data) => {
         this.pageEvent = data;
         this.events = this.events.concat(this.pageEvent.events)
-        
+
         if (this.pageEvent.page+1 >= this.pageEvent.totalPages){
           this.moreBtnVisible = false;
         }
@@ -55,10 +57,10 @@ export class IndexComponent {
         this.isLoading= false;
       },
       error: () => {
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/error']);
       }
     });
-    
+
   }
 
   filterBySearchBar(input: string){
@@ -75,10 +77,10 @@ export class IndexComponent {
 
       },
       error: () => {
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/error']);
       }
     });
-    
+
   }
 
   FilterByCategoryId(id: number){
@@ -95,7 +97,7 @@ export class IndexComponent {
 
       },
       error: () => {
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/error']);
       }
     });
   }
@@ -114,5 +116,14 @@ export class IndexComponent {
     this.isLoading= false;
   }
 
-
+  checkLogin(){
+    this.userService.getCurrentUser().subscribe({
+      next: (currentUser) => {
+        this.isUserLogged = true;
+      },
+      error: (error) => {
+        this.isUserLogged = false;
+      }
+    });
+  }
 }
