@@ -108,7 +108,6 @@ export class ProfileComponent {
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;
         this.currentPhoto = currentUser.photo;
-        console.log(currentUser.photo)
         this.isAdmin = currentUser.roles.includes("ADMIN");
         if (this.isAdmin){
           this.loadGraphData();
@@ -170,6 +169,7 @@ export class ProfileComponent {
   }
 
   nextEvent(i:number){
+    let eventPageNum: number = -1;
     let page: number = -1;
     let type: string = '';
     let time: string = '';
@@ -181,8 +181,10 @@ export class ProfileComponent {
           time = 'present';
           type = 'created';
           pageEvent = this.eventsPages[0];
+          eventPageNum = 0;
         } else{
           pageEvent = this.eventPage;
+          eventPageNum = -1;
         }
         events = this.events1;
         page = pageEvent.page + 1;
@@ -193,6 +195,7 @@ export class ProfileComponent {
         pageEvent = this.eventsPages[1]
         page = pageEvent.page + 1;
         events = this.events2
+        eventPageNum = 1;
         break;
       case 3:
         time = 'present';
@@ -200,6 +203,7 @@ export class ProfileComponent {
         pageEvent = this.eventsPages[2]
         page = pageEvent.page + 1;
         events = this.events3;
+        eventPageNum = 2;
         break;
       case 4:
         time = 'past';
@@ -207,6 +211,7 @@ export class ProfileComponent {
         pageEvent = this.eventsPages[3]
         page = pageEvent.page + 1;
         events = this.events4;
+        eventPageNum = 3;
         break;
       default:
       this.router.navigate(['/error']);
@@ -223,7 +228,12 @@ export class ProfileComponent {
     this.eventService.userEventRequest(page, type, time).subscribe({
       next: (data) =>{
         events.loadingEvents = false;
-        pageEvent =data;
+        if (eventPageNum == -1){
+          this.eventPage = data;
+        } else{
+          this.eventsPages[eventPageNum] = data;
+        }
+        pageEvent = data;
         events.events = events.events.concat(pageEvent.events);
         events.loadMore = page+1 < data.totalPages
       },
@@ -369,7 +379,6 @@ export class ProfileComponent {
       next: (data) => {
           this.graphData = data;
           this.updateChartData();
-          console.log(this.chartData);
       },
       error: () => {
         console.log("error");
@@ -511,6 +520,7 @@ export class ProfileComponent {
     return confirm("Seguro que quieres desbanear a este usuario?");
   }
 
+
   sendProfileImage(event: Event){
     let pfpElement = event.target as HTMLInputElement;
 
@@ -530,4 +540,10 @@ export class ProfileComponent {
 
     //showReloadWarning();
   }
+
+  toCreateEvent(){
+    this.router.navigate(['/event-create']);
+  }
+
+
 }
