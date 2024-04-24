@@ -9,6 +9,7 @@ import { CategoryService } from '../../services/category.service';
 import { UserService } from '../../services/user.service';
 import { User } from "../../models/user.model";
 import { EventStats } from "../../models/eventLiveStats.model";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-view-events',
@@ -19,6 +20,7 @@ export class ViewEventsComponent {
 
   //Miscellaneous
   isLoading: boolean = false;
+  mapHtml!: SafeResourceUrl;
 
   //Graph data
   graphData?: EventGraphData;
@@ -45,6 +47,7 @@ export class ViewEventsComponent {
 
 
   constructor(
+    private sanitizer: DomSanitizer,
     private eventService: EventService,
     private categoryService: CategoryService,
     private userService: UserService,
@@ -66,6 +69,7 @@ export class ViewEventsComponent {
         this.eventService.getEventById(eventIdString).subscribe({
           next: (event) => {
             this.event = event;
+            this.mapHtml = this.sanitizer.bypassSecurityTrustHtml(this.event.map);
             this.findCategory();
             this.getCreatorData();
             if(this.isUserLogged){
