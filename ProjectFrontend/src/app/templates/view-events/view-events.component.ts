@@ -37,7 +37,6 @@ export class ViewEventsComponent {
   category: Category = {id : -1, name : '', color : '', eventIdInCategories: []};
   creator! : User;
   stats: EventStats = {eventFinished: false, hasUserJoined: false, hasUserReviewed: false};
-  //isUserLogged brings incorrect data from API, and isCreator can be obtained from here (if user is logged, compare current user id with creator id)
 
   //User
   currentUserId: number = 0;
@@ -71,10 +70,6 @@ export class ViewEventsComponent {
             this.event = event;
             this.mapHtml = this.sanitizer.bypassSecurityTrustHtml(this.event.map);
             this.findCategory();
-            this.getCreatorData();
-            this.getLoggedUserData(); //Updates isLogged, isAdmin and isCreator, which are initially false
-            this.getEventLiveStats();
-            this.isLoading = false;
           },
           error: (error) => {
             console.error('Error al obtener el evento:', error);
@@ -89,6 +84,7 @@ export class ViewEventsComponent {
     this.eventService.getEventLiveStats(this.requestedEventId, this.currentUserId).subscribe({
       next: (eventStats) => {
         this.stats = eventStats;
+        this.isLoading = false;
       },
       error: (error) => {
         this.router.navigate(['/error']);
@@ -117,6 +113,7 @@ export class ViewEventsComponent {
     this.categoryService.getCategoryById(this.event.categoryId).subscribe({
       next: (data) => {
         this.category = data;
+        this.getCreatorData();
       },
       error: () => {
         this.router.navigate(['/error']);
@@ -153,6 +150,7 @@ export class ViewEventsComponent {
     this.userService.getUser(this.event.creatorId).subscribe({
       next: (creator) => {
         this.creator = creator;
+        this.getLoggedUserData(); //Updates isLogged, isAdmin and isCreator, which are initially false
       },
       error: (error) => {
         this.router.navigate(['/error']);
@@ -170,6 +168,7 @@ export class ViewEventsComponent {
         if (this.isUserAdmin || this.isUserCreator) {
           this.loadGraphData();
         }
+        this.getEventLiveStats();
       },
       error: (error) => {
         this.isUserLogged = false;
