@@ -1,2 +1,39 @@
 
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /
+}
+
+.navbar-brand {
+  margin-left: 20px; 
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+  margin-right:20px;
+}
+
+
+  .form-inline {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-inline .form-control {
+    margin-right: 5px;
+  }
+
+  @media (max-width: 767px) {
+    .form-inline .form-control {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
+
+    .form-inline .btn {
+      width: 100%;
+    }
+  }
+
