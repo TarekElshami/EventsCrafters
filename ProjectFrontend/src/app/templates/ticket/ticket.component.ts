@@ -4,6 +4,7 @@ import { Event } from '../../models/event.model';
 import { ActivatedRoute, Router } from "@angular/router";
 import { EventService } from "../../services/event.service";
 import { UserService } from "../../services/user.service";
+import {toRelativeImport} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-ticket',
@@ -13,6 +14,7 @@ import { UserService } from "../../services/user.service";
 export class TicketComponent {
 
   isLoading: boolean = false;
+  showDownloadButton: boolean = true;
 
   isUserLogged: boolean = false;
   event!: Event;
@@ -83,6 +85,12 @@ export class TicketComponent {
   }
 
   downloadTicket(){
-
+    this.showDownloadButton = false;
+    setTimeout(() => {
+      window.print();
+    }, 100);
+    setTimeout(() => {
+      this.showDownloadButton = true;
+    }, 100); // Cambia 1000 por el tiempo necesario para que la impresión se complete en tu caso
   }
 }

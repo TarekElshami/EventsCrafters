@@ -8,120 +8,118 @@
   <body>
   <!-- Header -->
   <app-header [isIndex]="false" [logged]="isUserLogged"></app-header> <!-- If ticket is shown, user must be logged in-->
+    <!-- Contenido principal -->
+    <div style="align-content: center" class="m-0">
+      <section>
+        <div class="contentinput">
+          <div class="invoice-box">
+            <table>
+              <tr class="top">
+                <td colspan="2">
+                  <table>
+                    <tr class="item">
+                      <td><br><h2>{{event.name}}</h2></td>
+                    </tr>
+                    <tr>
+                      <td class="title">
+                        <br>
+                        <img alt="FotoLogo" [src]="event.imageUrl" type="image/png" style="width: 100%; max-width: 500px">
+                      </td>
 
-  <!-- Contenido principal -->
-  <section>
-    <div class="contentinput">
-      <div class="invoice-box">
-        <table>
-          <tr class="heading">
-            <td><img alt="FotoLogo" src="../img/logo.jpeg" type="image/png" style="width: 50px; max-width: 50px"> Event Crafters </td>
-          </tr>
-          <tr class="top">
-            <td colspan="2">
-              <table>
-                <tr class="item">
-                  <td><br><h2>{{event.name}}</h2></td>
-                </tr>
-                <tr>
-                  <td class="title">
-                    <br>
-                    <img alt="FotoLogo" [src]="event.imageUrl" type="image/png" style="width: 100%; max-width: 500px">
-                  </td>
+                      <td>
+                        <br><br>
+                        <strong>Participante:</strong><br><br>
+                        {{user.name}}<br/>
+                        {{user.username}}<br/>
+                        {{user.email}}<br/>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
 
-                  <td>
-                    <br>
-                    {{user.name}}<br/>
-                    {{user.username}}<br/>
-                    {{user.email}}<br/>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+              <tr class="information">
+                <td colspan="4">
+                  <table>
+                    <tr>
+                      <td>
+                        <strong>Organiza:</strong><br><br>
+                        {{creator.name}}<br/>
+                        {{creator.username}}<br/>
+                        {{creator.email}}
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
 
-          <tr class="information">
-            <td colspan="2">
-              <table>
-                <tr>
-                  <td>
-                    <strong>Organiza:</strong><br><br>
-                    {{creator.name}}<br/>
-                    {{creator.username}}<br/>
-                    {{creator.email}}
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+              <tr class="heading">
+                <td>Información del evento</td>
+              </tr>
 
-          <tr class="heading">
-            <td>Información del evento</td>
-          </tr>
+              <tr class="item">
+                <td>Aforo máximo:</td>
+                <td>{{event.maxCapacity}} personas</td>
+              </tr>
+              <tr class="item">
+                <td>Lugar:</td>
+                <td>{{event.location}}</td>
+              </tr>
+              <tr class="item">
+                <td>Fecha de inicio:</td>
+                <td>{{event.startDate}}</td>
+              </tr>
+              <tr class="item">
+                <td>Fecha de finalización:</td>
+                <td>{{event.endDate}}</td>
+              </tr>
+              <tr class="item">
+                <td>Duración:</td>
+                <td>{{event.duration}}</td>
+              </tr>
 
-          <tr class="item">
-            <td>Aforo máximo:</td>
-            <td>{{event.maxCapacity}} personas</td>
-          </tr>
-          <tr class="item">
-            <td>Lugar:</td>
-            <td>{{event.location}}</td>
-          </tr>
-          <tr class="item">
-            <td>Fecha de inicio:</td>
-            <td>{{event.startDate}}</td>
-          </tr>
-          <tr class="item">
-            <td>Fecha de finalización:</td>
-            <td>{{event.endDate}}</td>
-          </tr>
-          <tr class="item">
-            <td>Duración:</td>
-            <td>{{event.duration}}</td>
-          </tr>
+              <tr class="item">
+                <td></td>
+                <td></td>
+              </tr>
 
-          <tr class="item">
-            <td></td>
-            <td></td>
-          </tr>
+              <tr class="heading">
+                <td>Información adicional</td>
+              </tr>
+              <tr class="item">
+                <td>{{event.additionalInfo}}</td>
+              </tr>
 
-          <tr class="heading">
-            <td>Información adicional</td>
-          </tr>
-          <tr class="item">
-            <td>{{event.additionalInfo}}</td>
-          </tr>
+              <tr class="item">
+                <td></td>
+                <td></td>
+              </tr>
 
-          <tr class="item">
-            <td></td>
-            <td></td>
-          </tr>
+              <tr class="heading">
+                <td>Método de pago</td>
+              </tr>
 
-          <tr class="heading">
-            <td>Método de pago</td>
-          </tr>
+              <tr class="item last">
+                <td>Entrada regular</td>
+                <td>{{event.price}} €</td>
+              </tr>
 
-          <tr class="item last">
-            <td>Entrada regular</td>
-            <td>{{event.price}}</td>
-          </tr>
+              <tr class="total">
+                <td></td>
 
-          <tr class="total">
-            <td></td>
+                <td>Total: {{event.price}} €</td>
+              </tr>
+            </table>
+          </div>
+        </div>
 
-            <td>Total: {{event.price}}</td>
-          </tr>
-        </table>
-      </div>
+        <div style="text-align: center" *ngIf="showDownloadButton">
+          <p>
+            <br>
+            <button class="butn btn btn-primary" id="myfilepdf" (click)="downloadTicket()">Descargar entrada en PDF</button>
+          </p>
+        </div>
+      </section>
     </div>
-
-    <div style="text-align: center">
-      <p>
-        <br>
-        <button class="butn btn btn-primary" id="myfilepdf" (click)="downloadTicket()">Descargar entrada en PDF</button>
-      </p>
-    </div>
-  </section>
-
   </body>
 </div>
