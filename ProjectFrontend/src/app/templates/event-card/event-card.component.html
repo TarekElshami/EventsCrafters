@@ -10,12 +10,12 @@
             <span class="icoest1">&#128205; {{eventCard.location}}</span>
         </div>
         <div class="mx-3 my-2">
-            <p class="description">{{eventCard.description}}</p>
+            <p class="description">{{description}}</p>
             <p class="date"><strong>Fecha: </strong>{{eventCard.startDate}}</p>
         </div>
-        
+
         <form action="/event/" method="GET">
             <button class="btn btn-primary" (click)="viewDetails(eventCard.id)">Ver Detalles</button>
         </form>
-    
+
     </div>
