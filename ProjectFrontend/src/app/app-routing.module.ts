@@ -9,6 +9,7 @@ import { EventFormComponent } from './templates/event-form/event-form.component'
 import { ErrorComponent } from './templates/error/error.component';
 import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
 import { ReviewFormComponent } from './templates/review-form/review-form.component';
+import { TicketComponent } from "./templates/ticket/ticket.component";
 
 const routes: Routes = [
   {
@@ -45,6 +46,11 @@ const routes: Routes = [
     path: 'event/edit/:id',
     component: EventFormComponent,
     data: { title: 'Editar Evento' }
+  },
+  {
+    path: 'event/:id/ticket',
+    component: TicketComponent,
+    data: { title: 'Entrada al evento' }
   },
   {
     path: 'event-create',

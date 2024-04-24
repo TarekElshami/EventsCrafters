@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPassword.component";
 import { ProfileEventCardComponent } from './templates/profile-event-card/profile-event-card.component';
 import { ReviewFormComponent } from './templates/review-form/review-form.component';
+import { TicketComponent } from './templates/ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ReviewFormComponent } from './templates/review-form/review-form.compone
     EventCardComponent,
     RecoverPasswordComponent,
     ProfileEventCardComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
