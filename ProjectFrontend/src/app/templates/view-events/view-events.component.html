@@ -42,9 +42,10 @@
               <p><strong><i class="fas fa-info-circle"></i> Información adicional: </strong> {{ event.additionalInfo }}</p>
             </div>
           </div>
+        </div>
 
           <!-- Actions section -->
-          <div class="user-events actions-section mt-4" *ngIf="stats.eventFinished">
+          <div class="user-events actions-section mt-4" *ngIf="!stats.eventFinished">
                 <div *ngIf="isUserCreator || isUserAdmin">
                   <h3 class="next">Acciones</h3>
                   <div class="d-flex justify-content-center flex-wrap">
@@ -63,13 +64,26 @@
                     <br>
                     <button (click)="eventTicket()" class="btn btn-primary"><i class="fas fa-ticket-alt"></i>Ver entrada a {{ event.name }}</button>
                   </div>
-                  <div class="m-2" *ngIf="!stats?.hasUserJoined">
-                    <button (click)="joinEvent()" class="btn btn-primary">Apuntarte a {{ event.name }}</button>
+
+                  <div *ngIf="!(isUserCreator || isUserAdmin)">
+                    <div class="m-2" *ngIf="!stats?.hasUserJoined">
+                      <button (click)="joinEvent()" class="btn btn-primary">Apuntarte a {{ event.name }}</button>
+                    </div>
                   </div>
                 </div>
+
+                <div *ngIf="!isUserLogged">
+                  <div class="m-2">
+                  <form action="/event/register/{{event.id}}" method="post">
+                      <button type="submit" class="btn btn-primary">Apuntarte a {{event.name}}</button>
+                  </form>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
+
 
           <div class="user-events actions-section mt-4" *ngIf="stats.eventFinished">
             <!-- Feedback and rating section -->
@@ -85,55 +99,57 @@
                     Ya has valorado este evento. Gracias por tu feedback.
                   </div>
                 </div>
-                <div *ngIf="isUserCreator || isUserAdmin">
+
+
+                <div *ngIf="(isUserCreator || isUserAdmin)">
                   <div class="event-attendance-input-section mt-3">
                     <div *ngIf="!attendeesCountSet">
                       <form [formGroup]="attendeeForm" (ngSubmit)="updateAttendees()">
                         <div class="form-group mb-2">
                           <label class="sr-only"> Número de asistentes</label> <!--for="attendeesCount"-->
-                          <input type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes"
-                                 min="0"
-                                 max="{{event.numRegisteredUsers}}" required>
+                          <input type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes" min="0" max="{{event.numRegisteredUsers}}" required>
                         </div>
                         <button type="submit" class="btn btn-info mb-2 ml-2"><i class="fas fa-save"></i> Guardar</button>
                       </form>
                     </div>
                   </div>
-                  <div class="graphicContainer">
-                    <div class="event-attendance-chart-section mt-3">
-                      <div *ngIf="attendeesCountSet">
-                        <h4><i class="fas fa-chart-pie"></i> Gráfica de Asistencia</h4>
-                        <div class="container charts-container">
-                          <div class="row flex-wrap">
-                            <div class="chart">
-                              <div *ngIf="graphData">
-                                <ngx-charts-pie-chart
-                                  [results]="chartData"
-                                  [legend]="false"
-                                  [labels]="true"
-                                  [doughnut]="true"
-                                  [arcWidth]="0.25"
-                                  [gradient]="gradient"
-                                  [scheme]="colorScheme">
-                                </ngx-charts-pie-chart>
+
+                    <div class="graphicContainer">
+                      <div class="event-attendance-chart-section mt-3">
+                        <div *ngIf="attendeesCountSet">
+                          <h4><i class="fas fa-chart-pie"></i> Gráfica de Asistencia</h4>
+                          <div class="container charts-container">
+                            <div class="row flex-wrap">
+                              <div class="chart">
+                                <div *ngIf="graphData">
+                                  <ngx-charts-pie-chart
+                                    [results]="chartData"
+                                    [legend]="false"
+                                    [labels]="true"
+                                    [doughnut]="true"
+                                    [arcWidth]="0.25"
+                                    [gradient]="gradient"
+                                    [scheme]="colorScheme">
+                                  </ngx-charts-pie-chart>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> <!-- AttendeesCouuntSet -->
+
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </div> <!-- GraphicContainer -->
+                  </div> <!-- IsUserCreatorOrAdmin -->
+                </div> <!-- EventFinished -->
+              </div> <!-- Logged -->
+
+
             <div class="event-average-rating-section mt-4">
-              <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ event.averageRating }}
-                (Con {{ event.reviewNum }}
-                valoraciones)
-              </h4>
+              <h4><i class="fas fa-star-half-alt"></i> Valoración Media del Evento: {{ event.averageRating }} (Con {{ event.reviewNum }} valoraciones) </h4>
               <br>
             </div>
-          </div>
+          </div> <!-- EventFinished -->
+
 
           <!--Location section-->
           <div class="user-events" id="map">
@@ -145,6 +161,7 @@
               </div>
             </div>
 
+
             <!--Creator section-->
             <div class="user-events">
               <h3 class="next">Anfitrión</h3>
@@ -154,14 +171,12 @@
                     <!-- It´s noted as ? because the photo takes a lot of time to be retrieved from DB and throws lots of errors -->
                     <img class="profile-photo" [src]="creator.photo" alt="Foto de Perfil de {{ creator.username }}">
                   </div>
+
                   <div>
-                    <h4 class="fs-5 mt-4 px-4 pb-1">{{ creator.name }} (registrado como {{ creator.username }}
-                      )
-                    </h4>
-                    <p class="px-4">Soy {{ creator.name }}, tu organizador de confianza. Para contactar conmigo,
-                      escríbeme a mi correo {{ creator.email }}
-                    </p>
+                    <h4 class="fs-5 mt-4 px-4 pb-1">{{ creator.name }} (registrado como {{ creator.username }})</h4>
+                    <p class="px-4">Soy {{ creator.name }}, tu organizador de confianza. Para contactar conmigo, escríbeme a mi correo {{ creator.email }}</p>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -207,7 +222,5 @@
         </div>
 
       </div>
-
-    </div>
   </body>
 </div>

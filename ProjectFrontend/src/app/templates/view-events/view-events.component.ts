@@ -184,20 +184,23 @@ export class ViewEventsComponent {
     });
   }
 
-
-  leaveEvent() {
-
+  onEditClick() {
+    this.router.navigate([`/event/edit/${this.event.id}`]);
   }
 
   eventTicket() {
-
+    this.router.navigate([`/event/${this.event.id}/ticket`]);
   }
 
   joinEvent() {
 
   }
 
-  onEditClick() {
+  leaveEvent() {
 
   }
+
+
+
 }
+
