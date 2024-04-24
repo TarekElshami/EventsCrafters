@@ -58,3 +58,14 @@
     align-items: center;
     z-index: 9999;
 }
+
+.error-message {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ffdddd;
+    background-color: #fff4f4;
+    color: #d8000c;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1.1em;
+}

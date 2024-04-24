@@ -100,7 +100,9 @@ public class ReviewRestController {
             @ApiResponse(responseCode = "201", description = "Review created", content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Bad request", content = {@Content}),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content}),
-            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = {@Content})
+            @ApiResponse(responseCode = "403", description = "Operation not permitted", content = {@Content}),
+            @ApiResponse(responseCode = "409", description = "Conflict - User has already reviewed this event", content = {@Content})
+
     })
     public ResponseEntity<?> newReview(@RequestBody ReviewDTO review) {
         Review newReview = transformFromDTO(review);
@@ -113,7 +115,7 @@ public class ReviewRestController {
             Optional<Event> event = eventService.findById(review.getEventId());
             if (user.isPresent() && event.isPresent()) {
                 if (reviewService.hasUserReviewedEvent(review.getEventId(), user.get().getId())) {
-                    return ResponseEntity.badRequest().body("{\"message\":\"User has already reviewed this event.\"}");
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\":\"User has already reviewed this event.\"}");
                 }
                 if (user.get().getId().equals(review.getUserId()) &&
                         event.get().getRegisteredUsers().contains(user.get()) &&

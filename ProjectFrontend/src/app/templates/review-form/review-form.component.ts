@@ -16,6 +16,7 @@ export class ReviewFormComponent implements OnInit {
   eventId: number;
   currentUser!: User;
   isLoading = false;  
+  errorMessage: string = ''; 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +40,7 @@ export class ReviewFormComponent implements OnInit {
         this.isLoading = false;  
       },
       error: () => {
-        this.router.navigate(['/error']); 
+        this.router.navigate(['/login']); 
         this.isLoading = false;
       }
     });
@@ -59,8 +60,12 @@ export class ReviewFormComponent implements OnInit {
           this.router.navigate([`/event/${this.eventId}`]);
           this.isLoading = false;  
         },
-        error: () => {
-          this.router.navigate(['/error']);
+        error: (error) => {
+          if (error.status === 409) {
+            this.errorMessage = 'Ya has enviado una reseña para este evento.';
+          } else {
+            this.router.navigate(['/error']);
+          }
           this.isLoading = false;
         }
       });
