@@ -23,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -249,34 +248,8 @@ public class UserWebController {
 	}
 
 	@PostMapping("/setProfilePicture")
-	public ResponseEntity<String> setProfilePicture(Model model, @RequestParam("profilePicture") MultipartFile pfp) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentUsername = authentication.getName();
-		Optional<User> userOptional = userService.findByUserName(currentUsername);
-
-		if (userOptional.isPresent()) {
-			User user = userOptional.get();
-			try {
-				// Get the file content as a byte array
-				byte[] fileContent = pfp.getBytes();
-
-				// Convert the byte array to a Blob
-				Blob pfpBlob = new SerialBlob(fileContent);
-
-				// Process the Blob as needed
-				// For example, you can save it to a database or use it in your application
-				user.setPhoto(pfpBlob);
-				userService.save(user);
-
-				return ResponseEntity.ok("Profile picture uploaded successfully");
-			} catch (IOException | SQLException e) {
-				// Handle exceptions
-				e.printStackTrace();
-				return ResponseEntity.status(500).body("Error uploading profile picture");
-			}
-			//SecurityContextHolder.clearContext();
-		}
-		return ResponseEntity.status(500).body("Username not found");
+	public ResponseEntity<?> setProfilePicture(@RequestParam("profilePicture") MultipartFile pfp) {
+		return userService.changeCurrentUserProfilePicture(pfp);
 	}
 
 	@Hidden

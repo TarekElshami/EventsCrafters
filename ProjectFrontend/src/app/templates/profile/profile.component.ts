@@ -14,7 +14,6 @@ import { EventService } from '../../services/event.service';
 import { CategoryService } from '../../services/category.service';
 import { User } from '../../models/user.model';
 import { PageEvent } from '../../models/pageEvent.model';
-import { Event } from '../../models/event.model';
 import { Category } from '../../models/category.model';
 import { ProfileEventCard } from '../../models/profileEventCard.model';
 import { switchMap, catchError } from 'rxjs/operators';
@@ -74,6 +73,7 @@ export class ProfileComponent {
   currentName:string = "";
   currentEmail:string = "";
   currentUsername:string = "";
+  currentPhoto:string = "";
   banFormOpen: boolean = false;
   unbanFormOpen: boolean = false;
 
@@ -107,6 +107,7 @@ export class ProfileComponent {
     this.userService.getCurrentUser().pipe(
       switchMap((currentUser: User) => {
         this.currentUser = currentUser;
+        this.currentPhoto = currentUser.photo;
         console.log(currentUser.photo)
         this.isAdmin = currentUser.roles.includes("ADMIN");
         if (this.isAdmin){
@@ -470,9 +471,6 @@ export class ProfileComponent {
         }
       }
     });
-
-
-
   }
 
   onSubmitBan() {
@@ -511,5 +509,25 @@ export class ProfileComponent {
 
   warnUnBan() {
     return confirm("Seguro que quieres desbanear a este usuario?");
+  }
+
+  sendProfileImage(event: Event){
+    let pfpElement = event.target as HTMLInputElement;
+
+
+    if (pfpElement && pfpElement.files && pfpElement.files.length) {
+      const selectedFile = pfpElement.files[0];
+      this.userService.changePFP(selectedFile).subscribe({
+        next: (response) => {
+          this.currentPhoto = this.currentUser.photo;
+          location.reload();
+        },
+        error: (error) => {
+          alert("Ha habido un error cambiando la foto de perfil.")
+        }
+      })
+    }
+
+    //showReloadWarning();
   }
 }

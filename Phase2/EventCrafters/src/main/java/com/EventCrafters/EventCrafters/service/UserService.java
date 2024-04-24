@@ -10,12 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -152,5 +161,35 @@ public class UserService {
 			return false;
 		}
 		return true;
+	}
+
+	public ResponseEntity<?> changeCurrentUserProfilePicture(@RequestParam("profilePicture") MultipartFile pfp) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentUsername = authentication.getName();
+		Optional<User> userOptional = this.findByUserName(currentUsername);
+
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			try {
+				// Get the file content as a byte array
+				byte[] fileContent = pfp.getBytes();
+
+				// Convert the byte array to a Blob
+				Blob pfpBlob = new SerialBlob(fileContent);
+
+				// Process the Blob as needed
+				// For example, you can save it to a database or use it in your application
+				user.setPhoto(pfpBlob);
+				this.save(user);
+
+				return ResponseEntity.ok().build();
+			} catch (IOException | SQLException e) {
+				// Handle exceptions
+				e.printStackTrace();
+				return ResponseEntity.status(500).build();
+			}
+			//SecurityContextHolder.clearContext();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }

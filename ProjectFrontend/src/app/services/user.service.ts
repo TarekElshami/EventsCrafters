@@ -67,4 +67,11 @@ export class UserService {
   unban(unbanUser: string) {
     return this.http.post("/api/users/unban", unbanUser);
   }
+
+  changePFP(newPPF: File) {
+    let formData = new FormData();
+    formData.append("profilePicture", newPPF);
+
+    return this.http.post("/api/users/setProfilePicture", formData);
+  }
 }

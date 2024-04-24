@@ -17,11 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.rowset.serial.SerialBlob;
@@ -473,6 +471,12 @@ public class UserRestController {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.badRequest().build();
+	}
+
+	@PostMapping("/setProfilePicture")
+	@ResponseBody
+	public ResponseEntity<?> setProfilePicture(@RequestParam("profilePicture") MultipartFile pfp) {
+		return userService.changeCurrentUserProfilePicture(pfp);
 	}
 
 }
