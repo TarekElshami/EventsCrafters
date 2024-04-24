@@ -172,10 +172,10 @@ export class ViewEventsComponent {
       },
       error: (error) => {
         this.isUserLogged = false;
+        this.getEventLiveStats();
       }
     });
   }
-
 
   onDeleteClick(): void {
     this.eventService.deleteEvent(this.event.id).subscribe({
