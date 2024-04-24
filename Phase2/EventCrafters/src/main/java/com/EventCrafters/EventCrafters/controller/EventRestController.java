@@ -544,12 +544,12 @@ public class EventRestController {
     }
 
 
-    @GetMapping("/stats/{eventId}")
+    @GetMapping("/{eventId}/stats/{currentUserId}")
     @Operation(summary = "Retrieves event basic stats for properly visualization")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Event not found"),
     })
-    public ResponseEntity<EventLiveStatsDTO> getEventLiveStats(@PathVariable long eventId) {
+    public ResponseEntity<EventLiveStatsDTO> getEventLiveStats(@PathVariable long eventId, @PathVariable long currentUserId) {
         //Check if event exists
         Optional<Event> eventOptional = eventService.findById(eventId);
         if (!eventOptional.isPresent()) {
@@ -558,28 +558,19 @@ public class EventRestController {
         Event existingEvent = eventOptional.get();
 
         EventLiveStatsDTO stats = new EventLiveStatsDTO();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isLoggedIn = isAuthenticated(authentication);
 
-        boolean isUserCreator = false;
-        boolean isUserRegistered = false;
-        boolean hasUserReviewed = false;
-        if (isLoggedIn) {
-            String currentUsername = authentication.getName();
-            Optional<User> currentUser = userService.findByUserName(currentUsername);
-            if (currentUser.isPresent()) {
-                if (existingEvent.getCreator().equals(currentUser.get())) {
-                    isUserCreator = true;
-                }
-                isUserRegistered = existingEvent.getRegisteredUsers().contains(currentUser.get());
-                hasUserReviewed = reviewService.hasUserReviewedEvent(eventId, currentUser.get().getId());
+        if(currentUserId != 0){
+            Optional<User> currentUser = userService.findById(currentUserId);
+            if (!currentUser.isPresent()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
-        }
 
-        stats.setUserLogged(isLoggedIn);
-        stats.setHasUserJoined(isUserRegistered);
-        stats.setCreator(isUserCreator);
-        stats.setHasUserReviewed(hasUserReviewed);
+            boolean isUserRegistered = existingEvent.getRegisteredUsers().contains(currentUser.get());
+            boolean hasUserReviewed = reviewService.hasUserReviewedEvent(eventId, currentUser.get().getId());
+
+            stats.setHasUserJoined(isUserRegistered);
+            stats.setHasUserReviewed(hasUserReviewed);
+        }
 
         LocalDateTime now = LocalDateTime.now();
         boolean eventFinished = now.isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());

@@ -59,8 +59,8 @@ export class EventService {
     return this.http.get<EventGraphData>(`/api/events/graph/${eventId}`);
   }
 
-  getEventLiveStats(eventId: number): Observable<EventStats> {
-    return this.http.get<EventStats>(`/api/events/stats/${eventId}`);
+  getEventLiveStats(eventId: number, currentUserId: number): Observable<EventStats> {
+    return this.http.get<EventStats>(`/api/events/${eventId}/stats/${currentUserId}`);
   }
 
   updateEventAttendees(eventId: number, attendees: number): Observable<any> {

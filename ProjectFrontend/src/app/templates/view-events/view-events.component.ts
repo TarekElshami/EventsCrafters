@@ -30,13 +30,18 @@ export class ViewEventsComponent {
   attendeesCountSet : boolean = false;
 
   //Event
+  requestedEventId: number = 0;
   event!: Event;
   category: Category = {id : -1, name : '', color : '', eventIdInCategories: []};
   creator! : User;
-  stats!: EventStats;
+  stats: EventStats = {eventFinished: false, hasUserJoined: false, hasUserReviewed: false};
+  //isUserLogged brings incorrect data from API, and isCreator can be obtained from here (if user is logged, compare current user id with creator id)
 
   //User
-  isUserAdmin!: boolean;
+  currentUserId: number = 0;
+  isUserLogged: boolean = false;
+  isUserAdmin: boolean = false;
+  isUserCreator: boolean = false;
 
 
   constructor(
@@ -46,7 +51,9 @@ export class ViewEventsComponent {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -54,44 +61,37 @@ export class ViewEventsComponent {
 
     const eventIdString = this.route.snapshot.paramMap.get('id');
     if (eventIdString) {
-      let eventIdNum = +eventIdString;
-      if (eventIdNum > 0) {
-
-        this.eventService.getEventLiveStats(eventIdNum).subscribe({
-          next: (eventStats) => {
-            this.stats = eventStats;
-          },
-          error: (error) => {
-            this.router.navigate(['/error']);
-          }
-        });
-
+      this.requestedEventId = +eventIdString;
+      if (this.requestedEventId > 0) {
         this.eventService.getEventById(eventIdString).subscribe({
           next: (event) => {
             this.event = event;
+            this.findCategory();
+            this.getCreatorData();
+            if(this.isUserLogged){
+              this.getLoggedUserData(); //Updates isAdmin or isCreator, which are initially false
+            }
+            this.getEventLiveStats();
+            this.isLoading = false;
           },
           error: (error) => {
             console.error('Error al obtener el evento:', error);
             this.router.navigate(['/error']);
           }
         });
-        this.findCategory();
-
       }
     }
+  }
 
-    this.userService.getCurrentUser().subscribe({
-      next: (currentUser) => {
-        this.isUserAdmin = currentUser.roles.includes("ADMIN");
-        if (this.isUserAdmin || this.stats.isCreator) {
-          this.loadGraphData();
-        }
+  getEventLiveStats() {
+    this.eventService.getEventLiveStats(this.requestedEventId, this.currentUserId).subscribe({
+      next: (eventStats) => {
+        this.stats = eventStats;
       },
       error: (error) => {
-        this.isLoading = false;
+        this.router.navigate(['/error']);
       }
     });
-
   }
 
   loadGraphData() {
@@ -146,6 +146,34 @@ export class ViewEventsComponent {
       });
     }
   }
+
+  getCreatorData(){
+    this.userService.getUser(this.event.creatorId).subscribe({
+      next: (creator) => {
+        this.creator = creator;
+      },
+      error: (error) => {
+        this.router.navigate(['/error']);
+      }
+    });
+  }
+
+  //As it is now, it MUST be run after getCreatorData
+  getLoggedUserData(){
+    this.userService.getCurrentUser().subscribe({
+      next: (currentUser) => {
+        this.isUserAdmin = currentUser.roles.includes("ADMIN");
+        this.isUserCreator = (this.event.creatorId == currentUser.id);
+        if (this.isUserAdmin || this.isUserCreator) {
+          this.loadGraphData();
+        }
+      },
+      error: (error) => {
+        this.router.navigate(['/error']);
+      }
+    });
+  }
+
 
   onDeleteClick(): void {
     this.eventService.deleteEvent(this.event.id).subscribe({
