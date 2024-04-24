@@ -23,7 +23,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   isLoading = false;
   submitButtonEnabled: boolean = false;
-  imgUrl = "/assets/logo.png";
+  imgUrl = "./assets/logo.png";
 
   constructor(
     private fb: FormBuilder,
