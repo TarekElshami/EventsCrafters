@@ -237,3 +237,20 @@ body {
     margin-right: -15px;
     margin-left: -15px;
   }
+
+.arrow::before {
+  content: "→ ";
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+
+.activity .description {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.activity .date {
+  font-size: 12px;
+}
+

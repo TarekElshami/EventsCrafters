@@ -34,5 +34,10 @@
     .form-inline .btn {
       width: 100%;
     }
+
+    .dropdown-menu {
+      right: 0;
+    }
+
   }
 
