@@ -193,15 +193,21 @@ export class ViewEventsComponent {
   }
 
   joinEvent() {
+    this.eventService.joinToEvent(this.event.id).subscribe({
+      next: () => this.stats.hasUserJoined = true,
+      error: () => this.router.navigate(['/error'])
+    });
+  }
 
+  leaveEvent() {
+    this.eventService.leaveAnEvent(this.event.id).subscribe({
+      next: () => this.stats.hasUserJoined = false,
+      error: () => this.router.navigate(['/error'])
+    });
   }
 
   joinEventNotLogged(){
     this.router.navigate([`/`]);
-  }
-
-  leaveEvent() {
-
   }
 
   makeReview() {

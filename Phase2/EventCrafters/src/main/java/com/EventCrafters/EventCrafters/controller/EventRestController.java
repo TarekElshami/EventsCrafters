@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.Blob;
@@ -192,7 +193,7 @@ public class EventRestController {
             @ApiResponse(responseCode = "405", description = "Event has already finished", content = @Content),
             @ApiResponse(responseCode = "500", description = "User is not registered", content = @Content)
     })
-    public ResponseEntity<String> registerToEvent(@PathVariable("eventId") Long eventId) {
+    public ResponseEntity<String> registerToEvent(HttpServletRequest request, @PathVariable("eventId") Long eventId) {
         //Check if event exists
         Optional<Event> eventOptional = eventService.findById(eventId);
         if (!eventOptional.isPresent()) {
@@ -207,20 +208,25 @@ public class EventRestController {
         }
 
         //Check if user is registered
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUsername = authentication.getName();
-        Optional<User> userOpt = userService.findByUserName(currentUsername);
-        if (!userOpt.isPresent()) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        Principal principal = request.getUserPrincipal();
+        User userPrincipal;
+        if(principal == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        User currentUser = userOpt.get();
+        else {
+            Optional<User> userPrincipalOptional = userService.findByUserName(principal.getName());
+            if (!userPrincipalOptional.isPresent()) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            }
+            userPrincipal = userPrincipalOptional.get();
+        }
 
         //Check if user is not registered in the event yet, is not the event creator and event is not full
-        if (existingEvent.getRegisteredUsers().contains(currentUser) || existingEvent.getCreator().equals(currentUser) || existingEvent.getRegisteredUsers().size() >= existingEvent.getMaxCapacity()) {
+        if (existingEvent.getRegisteredUsers().contains(userPrincipal) || existingEvent.getCreator().equals(userPrincipal) || existingEvent.getRegisteredUsers().size() >= existingEvent.getMaxCapacity()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
-        existingEvent.getRegisteredUsers().add(currentUser);
+        existingEvent.getRegisteredUsers().add(userPrincipal);
         eventService.save(existingEvent);
 
         return ResponseEntity.ok("");
@@ -236,7 +242,7 @@ public class EventRestController {
             @ApiResponse(responseCode = "405", description = "Event has already finished", content = @Content),
             @ApiResponse(responseCode = "500", description = "User is not registered", content = @Content)
     })
-    public ResponseEntity<String> leaveAnEvent(@PathVariable("eventId") Long eventId) {
+    public ResponseEntity<String> leaveAnEvent(HttpServletRequest request, @PathVariable("eventId") Long eventId) {
         //Check if event exists
         Optional<Event> eventOptional = eventService.findById(eventId);
         if (!eventOptional.isPresent()) {
@@ -251,20 +257,25 @@ public class EventRestController {
         }
 
         //Check if user is registered
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUsername = authentication.getName();
-        Optional<User> userOpt = userService.findByUserName(currentUsername);
-        if (!userOpt.isPresent()) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        Principal principal = request.getUserPrincipal();
+        User userPrincipal;
+        if(principal == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        User currentUser = userOpt.get();
+        else {
+            Optional<User> userPrincipalOptional = userService.findByUserName(principal.getName());
+            if (!userPrincipalOptional.isPresent()) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            }
+            userPrincipal = userPrincipalOptional.get();
+        }
 
         //Check if user is registered in the event
-        if (!existingEvent.getRegisteredUsers().contains(currentUser)) {
+        if (!existingEvent.getRegisteredUsers().contains(userPrincipal)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
-        existingEvent.getRegisteredUsers().remove(currentUser);
+        existingEvent.getRegisteredUsers().remove(userPrincipal);
         eventService.save(existingEvent);
 
         return ResponseEntity.ok("");

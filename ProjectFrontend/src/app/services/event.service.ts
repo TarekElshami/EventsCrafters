@@ -17,6 +17,14 @@ export class EventService {
     return this.http.get(`/api/events/${id}`);
   }
 
+  joinToEvent(id: number): Observable<any> {
+    return this.http.post(`/api/events/registrations/${id}`, id);
+  }
+
+  leaveAnEvent(id: number): Observable<any> {
+    return this.http.delete(`/api/events/registrations/${id}`);
+  }
+
   createEvent(eventData: FormData): Observable<any> {
     return this.http.post('/api/events', eventData);
   }
