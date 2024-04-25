@@ -196,7 +196,15 @@ export class ViewEventsComponent {
 
   }
 
+  joinEventNotLogged(){
+    this.router.navigate([`/`]);
+  }
+
   leaveEvent() {
+
+  }
+
+  makeReview() {
 
   }
 
