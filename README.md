@@ -43,6 +43,7 @@
 
 - [Phase 4](#phase-4---spa-implementation-with-angular)
    - [Development Environment Setup](#development-environment-setup)
+   - [SPA with docker and virtual machine](#SPA-with-docker-and-virtual-machine)
    - [Angular Component Diagrams & Templates](#angular-component-diagrams--templates)
    - [Members Participation Phase 4](#members-participation-phase-4)
    - [Video Tutorial](#video-tutorial)
@@ -722,6 +723,9 @@ To set up the development environment for the SPA application using Angular, fol
    ```
 
 The SPA will be ready at [http://localhost:4200/](http://localhost:4200/)
+
+## 🐳 SPA with docker and virtual machine
+To access the SPA with docker or with the virtual machine you must follow the instructions in `🐳 Docker Application Execution Instructions` or `🖥️ Deployment on Virtual Machine` respectively, but accessing the path [https://localhost:8443/new] (https://localhost:8443/new) in docker or [https://10.100.139.249:8443/new](https://10.100.139.249:8443/new) in virtual machine
 
 ## 📊 Angular Component Diagrams & Templates
 
