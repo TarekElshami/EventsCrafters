@@ -342,6 +342,12 @@ public class UserRestController {
 		return ResponseEntity.status(500).build();
 	}
 
+
+	@Operation(summary = "Check banned users",
+			description = "Check is users is banned. The response entity will provide the boolean comprobation")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User banned/User not banned")
+	})
 	@GetMapping("/IsUserBanned")
 	@ResponseBody
 	public ResponseEntity<Boolean> isUserBanned(@RequestParam("username") String username) {
@@ -352,6 +358,13 @@ public class UserRestController {
 		return ResponseEntity.ok(false);
 	}
 
+
+
+	@Operation(summary = "Check username taken",
+			description = "Check if username is taken")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Username taken /not taken")
+	})
 	@GetMapping("/IsUsernameTaken")
 	@ResponseBody
 	public ResponseEntity<Boolean> isUserNameTaken(@RequestParam("username") String username) {
@@ -362,6 +375,16 @@ public class UserRestController {
 			return ResponseEntity.ok(false);
 		}
 	}
+
+
+	@Operation(summary = "recover password",
+			description = "recover pssword")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "email sent"),
+			@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content),
+			@ApiResponse(responseCode = "400", description = "Bad request")
+
+	})
 
 	@PostMapping("/recoverPassword")
 	@ResponseBody
@@ -386,6 +409,14 @@ public class UserRestController {
 		return ResponseEntity.badRequest().build();
 	}
 
+
+
+	@Operation(summary = "change password",
+			description = "change password")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "changed password"),
+			@ApiResponse(responseCode = "403", description = "Invalid link")
+	})
 	@PostMapping("/changePassword")
 	@ResponseBody
 	public ResponseEntity<String> changePassword(@RequestBody Map<String, String> body) {
@@ -407,6 +438,15 @@ public class UserRestController {
 		return ResponseEntity.notFound().build();
 	}
 
+
+
+
+	@Operation(summary = "ban user",
+			description = "ban user ")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User has been successfully banned"),
+			@ApiResponse(responseCode = "403", description = "User is not authorized to perform this action")
+	})
 	@PostMapping("/ban")
 	public ResponseEntity<String> banUser(@RequestBody String body, Principal principal) {
 		if (principal==null) return ResponseEntity.status(403).build();
@@ -425,6 +465,15 @@ public class UserRestController {
 		return ResponseEntity.status(500).build();
 	}
 
+
+
+
+	@Operation(summary = "unban user",
+			description = "unban user ")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User has been successfully unbanned"),
+			@ApiResponse(responseCode = "403", description = "User is not authorized to perform this action")
+	})
 	@PostMapping("/unban")
 	public ResponseEntity<String> unbanUser(@RequestBody String body, Principal principal) {
 		if (principal==null) return ResponseEntity.status(403).build();
@@ -454,6 +503,13 @@ public class UserRestController {
 		return false;
 	}
 
+
+	@Operation(summary = "Update user profile",
+			description = "Update user profile information.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User profile successfully updated"),
+			@ApiResponse(responseCode = "400", description = "Bad request")
+	})
 	@PostMapping("/updateProfile")
 	@ResponseBody
 	public ResponseEntity<?> updateProfile(@RequestBody FullUserDTO updatedUser) {
@@ -473,6 +529,13 @@ public class UserRestController {
 		return ResponseEntity.badRequest().build();
 	}
 
+
+	@Operation(summary = "Set profile picture",
+			description = "Set the profile picture of the current user.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Profile picture successfully set"),
+			@ApiResponse(responseCode = "400", description = "Bad request")
+	})
 	@PostMapping("/setProfilePicture")
 	@ResponseBody
 	public ResponseEntity<?> setProfilePicture(@RequestParam("profilePicture") MultipartFile pfp) {
