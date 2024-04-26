@@ -1,6 +1,6 @@
 # <p align="center"> 🎉Events Crafters </p>
-## 📑Index
-- [Phase 0](#phase-0)
+# 📑Index
+- [Phase 0](#%EF%B8%8Fphase-0)
    - [Team members](#team-members)
    - [Team organization](#team-organization)
    - [Entities](#entities)
@@ -10,46 +10,46 @@
    - [Advanced Algorithms](#advanced-algorithms)
    - [Optional features](#optional-features)
 
-- [Phase 1](#phase-1)
-   - [Screens](#screens)
+- [Phase 1](#%EF%B8%8Fphase-1)
+   - [Screens](#%EF%B8%8Fscreens)
       - [Home Screen](#home-screen)
       - [Login Screen](#login-screen)
       - [Profile Screen](#profile-screen)
-      - [Event Info Screen](#event-info-screen)
+      - [Event Info Screen](#information_sourceticket-event-info-screen)
       - [Change Password Screen](#change-password-screen)
-      - [Create Account Screen](#create-account-screen)
-      - [Create Review Screen](#create-review-screen)
-      - [Create Event Screen](#create-event-screen)
-   - [Screens Flow](#screens-flow)
+      - [Create Account Screen](#%EF%B8%8Fcreate-account-screen)
+      - [Create Review Screen](#%EF%B8%8Fcreate-review-screen)
+      - [Create Event Screen](#%EF%B8%8Fcreate-event-screen)
+   - [Screens Flow](#%EF%B8%8Fscreens-flow)
 
- - [Phase 2](#phase-2)
+ - [Phase 2](#%EF%B8%8Fphase-2----web-with-server-generated-html-and-ajax)
    - [Execution instructions](#execution-instructions)
-   - [Diagrams](#diagrams)  
-   - [ScreenFlow](#sreenflow) 
-   - [Possible actions to perform in the application](#possible-actions-to-perform-in-the-application)
-   - [Recommendation algorithm](#recommendation-algorithm)
-   - [Members Participation](#members-participation)
-   - [Sample users](#sample-users)
+   - [Diagrams](#%EF%B8%8Fdiagrams)  
+   - [ScreenFlow](#screenflow) 
+   - [Possible actions to perform in the application](#-possible-actions-to-perform-in-the-application)
+   - [Recommendation algorithm](#-recommendation-algorithm)
+   - [Members Participation Phase 2](#%EF%B8%8Fmembers-participation)
+   - [Sample users](#%EF%B8%8F-sample-users)
      
-- [Phase 3](#phase-3---add-a-rest-api-to-the-web-application-and-package-with-docker)
-   - [API REST documentation](#api-rest-documentation)
-   - [Updated Class and Templates Diagram](#updated-class-and-templates-diagram)
-   - [Docker Application Execution Instructions](#docker-application-execution-instructions)
-   - [Docker Image Construction Documentation](#docker-image-construction-documentation)
-   - [Docker Image](#docker-image)
-   - [Deployment on Virtual Machine](#deployment-on-virtual-machine)
-   - [Virtual Machine Application URL and Example Users](#virtual-machine-application-url-and-example-users)
-   - [Members Participation Phase 3](#members-participation-phase-3)
+- [Phase 3](#whale2-phase-3---add-a-rest-api-to-the-web-application-and-package-with-docker)
+   - [API REST documentation](#-api-rest-documentation)
+   - [Updated Class and Templates Diagram](#-updated-class-and-templates-diagram)
+   - [Docker Application Execution Instructions](#-docker-application-execution-instructions)
+   - [Docker Image Construction Documentation](#%EF%B8%8F-docker-image-construction-documentation)
+   - [Docker Image](#-docker-image)
+   - [Deployment on Virtual Machine](#%EF%B8%8F-deployment-on-virtual-machine)
+   - [Virtual Machine Application URL and Example Users](#-virtual-machine-application-url-and-example-users)
+   - [Members Participation Phase 3](#-members-participation-phase-3)
 
-- [Phase 4](#phase-4---spa-implementation-with-angular)
-   - [Development Environment Setup](#development-environment-setup)
-   - [SPA with docker and virtual machine](#SPA-with-docker-and-virtual-machine)
-   - [Angular Component Diagrams & Templates](#angular-component-diagrams--templates)
-   - [Members Participation Phase 4](#members-participation-phase-4)
-   - [Video Tutorial](#video-tutorial)
+- [Phase 4](#🅰%EF%B8%8F-phase-4---spa-implementation-with-angular)
+   - [Development Environment Setup](#%EF%B8%8F-development-environment-setup)
+   - [SPA with docker and virtual machine](#-spa-with-docker-and-virtual-machine)
+   - [Angular Component Diagrams & Templates](#-angular-component-diagrams--templates)
+   - [Members Participation Phase 4](#-members-participation-phase-4)
+   - [Video Tutorial](#-video-tutorial)
 
 ***   
-### ♨️Phase 0
+# ♨️Phase 0
 ***
  
 
@@ -118,7 +118,7 @@ It is important to note that through this link, access will be granted to the wo
 -  **PDF integration**: allow users to download a PDF holding event information upon sign-up.
 
 ***
-### ♨️Phase 1
+# ♨️Phase 1
 ***
 
 ## 🖥️Screens
@@ -223,11 +223,11 @@ Upon entering the application, all users are presented with the Home screen.
    - Access their Admin Profile by clicking on 'My Profile' in the navigation bar from the Home screen, which allows them to manage active events, registered users, and the various available categories.
    - Navigate to the Category screen to create new categories.
 
-##### img: Screens flow
+### img: Screens flow
 ![*Login Screen*](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/Phase1/layout%20design/readmeimg/screenflow.png)
 
 ***   
-### ♨️Phase 2  - Web with server-generated HTML and AJAX
+# ♨️Phase 2  - Web with server-generated HTML and AJAX
 ***
 
 ## 🔣Execution instructions
@@ -266,7 +266,7 @@ Upon entering the application, all users are presented with the Home screen.
 ![diagram](Phase2/diagrams/bbdd.png)
 *DataBase Diagram*
 
-### 🏠Clases and templates diagram
+## 🏠Clases and templates diagram
 ![diagram](Phase2/diagrams/classTemplates.svg)
 *Clases and templates Diagram*
 
@@ -455,7 +455,7 @@ An event recommendation algorithm has been implemented. It consists of two main 
 - password: pass
 
 ***   
-### :whale2: Phase 3 - Add a REST API to the web application and package with Docker
+# :whale2: Phase 3 - Add a REST API to the web application and package with Docker
 ***   
 
 ## 🌐 API REST documentation
@@ -690,7 +690,7 @@ Below are the credentials for example users, including an administrator user, to
 | [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/Phase2/EventCrafters/docker/create_image.sh) | .sh Files |
 
 ***
-### 🅰️ Phase 4 - SPA Implementation with Angular
+# 🅰️ Phase 4 - SPA Implementation with Angular
 ***
 
 ## 🛠️ Development Environment Setup
