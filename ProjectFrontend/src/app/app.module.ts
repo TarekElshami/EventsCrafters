@@ -21,6 +21,7 @@ import {RecoverPasswordComponent} from "./templates/password-recovery/recoverPas
 import { ProfileEventCardComponent } from './templates/profile-event-card/profile-event-card.component';
 import { ReviewFormComponent } from './templates/review-form/review-form.component';
 import { TicketComponent } from './templates/ticket/ticket.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TicketComponent } from './templates/ticket/ticket.component';
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
+    FontAwesomeModule,
     BrowserAnimationsModule,
     NgxChartsModule,
     ReactiveFormsModule

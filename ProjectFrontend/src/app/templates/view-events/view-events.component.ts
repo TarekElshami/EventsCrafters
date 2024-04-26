@@ -9,7 +9,8 @@ import { CategoryService } from '../../services/category.service';
 import { UserService } from '../../services/user.service';
 import { User } from "../../models/user.model";
 import { EventStats } from "../../models/eventLiveStats.model";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { faUsers, faMapMarkerAlt, faEuroSign, faClock, faHourglassHalf, faInfoCircle, faTrashAlt, faEdit, faTicketAlt, faClipboardList, faStar, faSave, faChartPie, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-events',
@@ -17,6 +18,22 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
   styleUrls: ['./view-events.component.css']
 })
 export class ViewEventsComponent {
+
+  // Icons
+  faUsers = faUsers;
+  faMapMarkerAlt = faMapMarkerAlt;
+  faEuroSign = faEuroSign;
+  faClock = faClock;
+  faHourglassHalf = faHourglassHalf;
+  faInfoCircle = faInfoCircle;
+  faTrashAlt = faTrashAlt;
+  faEdit = faEdit;
+  faTicketAlt = faTicketAlt;
+  faClipboardList = faClipboardList;
+  faStar = faStar;
+  faSave = faSave;
+  faChartPie = faChartPie;
+  faStarHalfAlt = faStarHalfAlt;
 
   //Miscellaneous
   isLoading: boolean = false;
@@ -29,14 +46,14 @@ export class ViewEventsComponent {
   gradient: boolean = false;
   colorScheme = 'vivid';
   chartData: any[] = [];
-  attendeesCountSet : boolean = false;
+  attendeesCountSet: boolean = false;
 
   //Event
   requestedEventId: number = 0;
   event!: Event;
-  category: Category = {id : -1, name : '', color : '', eventIdInCategories: []};
-  creator! : User;
-  stats: EventStats = {eventFinished: false, hasUserJoined: false, hasUserReviewed: false};
+  category: Category = { id: -1, name: '', color: '', eventIdInCategories: [] };
+  creator!: User;
+  stats: EventStats = { eventFinished: false, hasUserJoined: false, hasUserReviewed: false };
 
   //User
   currentUserId: number = 0;
@@ -109,7 +126,7 @@ export class ViewEventsComponent {
     });
   }
 
-  findCategory(){
+  findCategory() {
     this.categoryService.getCategoryById(this.event.categoryId).subscribe({
       next: (data) => {
         this.category = data;
@@ -153,7 +170,7 @@ export class ViewEventsComponent {
     }
   }
 
-  getCreatorData(){
+  getCreatorData() {
     this.userService.getUser(this.event.creatorId).subscribe({
       next: (creator) => {
         this.creator = creator;
@@ -166,7 +183,7 @@ export class ViewEventsComponent {
   }
 
 
-  getLoggedUserData(){
+  getLoggedUserData() {
     this.userService.getCurrentUser().subscribe({
       next: (currentUser) => {
         this.isUserLogged = true;
@@ -236,7 +253,7 @@ export class ViewEventsComponent {
     });
   }
 
-  joinEventNotLogged(){
+  joinEventNotLogged() {
     this.router.navigate([`/`]);
   }
 

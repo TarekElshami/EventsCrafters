@@ -22,6 +22,7 @@ import { PageCategory } from '../../models/pageCategory.model';
 import { ProfileGraphData } from '../../models/profile-graph-data.model';
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import { faUserSlash, faUser, faCamera } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +30,10 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  //Icons
+  faUserSlash = faUserSlash;
+  faUser = faUser;
+  faCamera = faCamera;
 
   isLoading: boolean = false;
   isAdmin: boolean = false;

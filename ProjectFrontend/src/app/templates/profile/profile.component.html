@@ -63,7 +63,7 @@
                     <div class="row justify-content-center">
                         <div class="col col-lg-2 container-delete-account">
                             <label for="pfp" class="custom-file-upload" >
-                                <i class="fas fa-camera"></i>
+                                <fa-icon [icon]="faCamera"></fa-icon>
                                 Cambiar foto de perfil
                             </label>
                             <input type="file" accept="image/png, image/jpeg, image/jpg"  (change)="sendProfileImage($event)" class="btn btn-primary" placeholder="Editar foto de perfil" id="pfp">
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="col text-center profile" *ngIf="isAdmin">
-                            <button (click)="this.banFormOpen = !this.banFormOpen" class="btn btn-warning"><i class="fas fa-user-slash"></i>Banear</button>
+                            <button (click)="this.banFormOpen = !this.banFormOpen" class="btn btn-warning"><fa-icon [icon]="faUserSlash"></fa-icon>Banear</button>
 
                             <!-- Hidden div for the ban pop-up -->
                             <div  *ngIf="banFormOpen">
@@ -117,12 +117,12 @@
                                         <label for="username">Nombre de Usuario:</label>
                                         <input type="text" formControlName="banUser" class="form-control"  name="usernameBan" required>
                                     </div>
-                                    <button type="submit" (click) ="warnBan()" class="btn btn-primary"><i class="fas fa-user-slash"></i>Banear Usuario</button>
+                                    <button type="submit" (click) ="warnBan()" class="btn btn-primary"><fa-icon [icon]="faUserSlash"></fa-icon>Banear Usuario</button>
                                 </form>
                             </div>
                         </div>
                         <div class="col text-right profile" *ngIf="isAdmin">
-                            <button (click)="this.unbanFormOpen = !this.unbanFormOpen" class="btn btn-success"><i class="fas fa-user"></i>Desbanear</button>
+                            <button (click)="this.unbanFormOpen = !this.unbanFormOpen" class="btn btn-success"><fa-icon [icon]="faUser"></fa-icon>Desbanear</button>
 
                             <!-- Hidden div for the unban pop-up -->
                             <div  *ngIf="unbanFormOpen">
@@ -131,7 +131,7 @@
                                         <label for="username">Nombre de Usuario:</label>
                                         <input formControlName="unbanUser" type="text" class="form-control"  name="usernameUnBan" required>
                                     </div>
-                                    <button type="submit" (click)="warnUnBan()" class="btn btn-primary"><i class="fas fa-user"></i>
+                                    <button type="submit" (click)="warnUnBan()" class="btn btn-primary"><fa-icon [icon]="faUser"></fa-icon>
                                         Desbanear Usuario</button>
                                 </form>
                             </div>
