@@ -57,7 +57,8 @@
                   <div *ngIf=stats.hasUserJoined>
                     <div class="m-2">
                       <button (click)="leaveEvent()" class="btn btn-warning">Desapuntarte de {{event.name}}</button>
-                      <br>
+                    </div>
+                    <div class="m-2">
                       <button (click)="eventTicket()" class="btn btn-primary"><i class="fas fa-ticket-alt"></i>Ver entrada a {{event.name}}</button>
                     </div>
                   </div>

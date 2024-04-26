@@ -81,7 +81,7 @@ export class ViewEventsComponent {
   }
 
   getEventLiveStats() {
-    this.eventService.getEventLiveStats(this.requestedEventId, this.currentUserId).subscribe({
+    this.eventService.getEventLiveStats(this.requestedEventId).subscribe({
       next: (eventStats) => {
         this.stats = eventStats;
         this.isLoading = false;
@@ -167,7 +167,7 @@ export class ViewEventsComponent {
         this.isUserCreator = (this.event.creatorId == currentUser.id);
         if (this.isUserAdmin || this.isUserCreator) {
           this.attendeeForm = this.formBuilder.group({
-            attendees: ['', [Validators.required, Validators.min(0)]] 
+            attendees: ['', [Validators.required, Validators.min(0)]]
           });
           this.loadGraphData();
         }
@@ -214,7 +214,7 @@ export class ViewEventsComponent {
   }
 
   makeReview() {
-
+    this.router.navigate([`/review/${this.event.id}`]);
   }
 
 

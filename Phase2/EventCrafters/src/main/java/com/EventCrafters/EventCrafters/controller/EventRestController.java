@@ -152,7 +152,7 @@ public class EventRestController {
 
         //Check if event has not finished yet
         boolean eventFinished = LocalDateTime.now().isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        if(eventFinished){
+        if (eventFinished) {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }
 
@@ -160,7 +160,7 @@ public class EventRestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUsername = authentication.getName();
         Optional<User> userOpt = userService.findByUserName(currentUsername);
-        if(!userOpt.isPresent() || !isUserAdminOrCreator(currentUsername,eventOptional.get())){
+        if (!userOpt.isPresent() || !isUserAdminOrCreator(currentUsername, eventOptional.get())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
@@ -203,17 +203,16 @@ public class EventRestController {
 
         //Check if event has not finished yet
         boolean eventFinished = LocalDateTime.now().isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        if(eventFinished){
+        if (eventFinished) {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }
 
         //Check if user is registered
         Principal principal = request.getUserPrincipal();
         User userPrincipal;
-        if(principal == null){
+        if (principal == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        else {
+        } else {
             Optional<User> userPrincipalOptional = userService.findByUserName(principal.getName());
             if (!userPrincipalOptional.isPresent()) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -221,8 +220,11 @@ public class EventRestController {
             userPrincipal = userPrincipalOptional.get();
         }
 
+        boolean userAlreadyRegistered = existingEvent.getRegisteredUsers().contains(userPrincipal);
+        boolean userIsCreator = existingEvent.getCreator().equals(userPrincipal);
+        boolean eventNotFull = existingEvent.getRegisteredUsers().size() >= existingEvent.getMaxCapacity();
         //Check if user is not registered in the event yet, is not the event creator and event is not full
-        if (existingEvent.getRegisteredUsers().contains(userPrincipal) || existingEvent.getCreator().equals(userPrincipal) || existingEvent.getRegisteredUsers().size() >= existingEvent.getMaxCapacity()) {
+        if (userAlreadyRegistered || userIsCreator || eventNotFull) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
@@ -252,17 +254,16 @@ public class EventRestController {
 
         //Check if event has not finished yet
         boolean eventFinished = LocalDateTime.now().isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        if(eventFinished){
+        if (eventFinished) {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }
 
         //Check if user is registered
         Principal principal = request.getUserPrincipal();
         User userPrincipal;
-        if(principal == null){
+        if (principal == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        else {
+        } else {
             Optional<User> userPrincipalOptional = userService.findByUserName(principal.getName());
             if (!userPrincipalOptional.isPresent()) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -290,7 +291,7 @@ public class EventRestController {
             @ApiResponse(responseCode = "405", description = "Event has already finished", content = @Content),
             @ApiResponse(responseCode = "500", description = "User is not registered", content = @Content)
     })
-    public ResponseEntity<TicketDTO> getEventTicket(@PathVariable Long eventId){
+    public ResponseEntity<TicketDTO> getEventTicket(HttpServletRequest request, @PathVariable Long eventId) {
         //Check if event exists
         Optional<Event> eventOptional = eventService.findById(eventId);
         if (!eventOptional.isPresent()) {
@@ -300,21 +301,25 @@ public class EventRestController {
 
         //Check if event has not finished yet
         boolean eventFinished = LocalDateTime.now().isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        if(eventFinished){
+        if (eventFinished) {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }
 
         //Check if user is registered
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUsername = authentication.getName();
-        Optional<User> userOpt = userService.findByUserName(currentUsername);
-        if (!userOpt.isPresent()) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        Principal principal = request.getUserPrincipal();
+        User userPrincipal;
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            Optional<User> userPrincipalOptional = userService.findByUserName(principal.getName());
+            if (!userPrincipalOptional.isPresent()) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            }
+            userPrincipal = userPrincipalOptional.get();
         }
-        User currentUser = userOpt.get();
 
         //Check if user is registered in the event
-        if (!existingEvent.getRegisteredUsers().contains(currentUser)) {
+        if (!existingEvent.getRegisteredUsers().contains(userPrincipal)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
@@ -328,7 +333,7 @@ public class EventRestController {
         long minutes = duration.minusHours(hours).toMinutes();
         String durationFormatted = String.format("%d horas y %d minutos", hours, minutes);
 
-        TicketDTO ticketDTO = new TicketDTO(existingEvent.getName(), currentUser.getName(), currentUser.getUsername(), currentUser.getEmail(), eventCreator.getName(), eventCreator.getUsername(), eventCreator.getEmail(), existingEvent.getMaxCapacity(), existingEvent.getLocation(), startDateFormatted, endDateFormatted, durationFormatted, existingEvent.getAdditionalInfo(), priceDisplay);
+        TicketDTO ticketDTO = new TicketDTO(existingEvent.getName(), userPrincipal.getName(), userPrincipal.getUsername(), userPrincipal.getEmail(), eventCreator.getName(), eventCreator.getUsername(), eventCreator.getEmail(), existingEvent.getMaxCapacity(), existingEvent.getLocation(), startDateFormatted, endDateFormatted, durationFormatted, existingEvent.getAdditionalInfo(), priceDisplay);
 
         return ResponseEntity.accepted().body(ticketDTO);
     }
@@ -453,7 +458,6 @@ public class EventRestController {
     }
 
 
-
     @GetMapping("/graph/{eventId}")
     @Operation(summary = "Gets graph data of the event")
     @ApiResponses(value = {
@@ -506,10 +510,10 @@ public class EventRestController {
         List<String> labels = categoryService.findAllNames();
         List<Integer> data = categoryService.categoriesNumbers();
         List<String> aux = new ArrayList<>();
-        for (int i = 0; i< data.size();i++){
+        for (int i = 0; i < data.size(); i++) {
             aux.add(String.valueOf(data.get(i)));
         }
-        graphData.put("data",aux);
+        graphData.put("data", aux);
         graphData.put("labels", labels);
 
 
@@ -535,7 +539,7 @@ public class EventRestController {
 
         //Check if event has not finished yet
         boolean eventFinished = LocalDateTime.now().isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        if(eventFinished){
+        if (eventFinished) {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }
 
@@ -555,12 +559,12 @@ public class EventRestController {
     }
 
 
-    @GetMapping("/{eventId}/stats/{currentUserId}")
-    @Operation(summary = "Retrieves event basic stats for properly visualization")
+    @GetMapping("/stats/{eventId}")
+    @Operation(summary = "Retrieves event basic stats for properly visualization, taking into account the currently authenticated user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Event not found"),
     })
-    public ResponseEntity<EventLiveStatsDTO> getEventLiveStats(@PathVariable long eventId, @PathVariable long currentUserId) {
+    public ResponseEntity<EventLiveStatsDTO> getEventLiveStats(HttpServletRequest request, @PathVariable long eventId) {
         //Check if event exists
         Optional<Event> eventOptional = eventService.findById(eventId);
         if (!eventOptional.isPresent()) {
@@ -570,18 +574,22 @@ public class EventRestController {
 
         EventLiveStatsDTO stats = new EventLiveStatsDTO();
 
-        if(currentUserId != 0){
-            Optional<User> currentUser = userService.findById(currentUserId);
-            if (!currentUser.isPresent()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
-
-            boolean isUserRegistered = existingEvent.getRegisteredUsers().contains(currentUser.get());
-            boolean hasUserReviewed = reviewService.hasUserReviewedEvent(eventId, currentUser.get().getId());
-
-            stats.setHasUserJoined(isUserRegistered);
-            stats.setHasUserReviewed(hasUserReviewed);
+        //Check if user is registered
+        Principal principal = request.getUserPrincipal();
+        User userPrincipal;
+        boolean isUserRegistered;
+        boolean hasUserReviewed = false;
+        if (principal == null || !userService.findByUserName(principal.getName()).isPresent()) {
+            isUserRegistered = false;
+        } else {
+            userPrincipal = userService.findByUserName(principal.getName()).get();
+            isUserRegistered = existingEvent.getRegisteredUsers().contains(userPrincipal);
+            hasUserReviewed = reviewService.hasUserReviewedEvent(eventId, userPrincipal.getId());
         }
+
+        stats.setHasUserJoined(isUserRegistered);
+        stats.setHasUserReviewed(hasUserReviewed);
+
 
         LocalDateTime now = LocalDateTime.now();
         boolean eventFinished = now.isAfter(existingEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
@@ -623,7 +631,7 @@ public class EventRestController {
                 if (principal != null) {
                     Optional<User> userOp = userService.findByUserName(principal.getName());
                     if (userOp.isPresent()) {
-                        if (userOp.get().hasRole("USER")){
+                        if (userOp.get().hasRole("USER")) {
                             User user = userOp.get();
                             events = userService.getUserCategoryPreferences(user.getId(), page, pageSize);
 
@@ -634,7 +642,7 @@ public class EventRestController {
                 } else {
                     adminOrUnregistered = true;
                 }
-                if (adminOrUnregistered){
+                if (adminOrUnregistered) {
                     events = eventService.eventsOrderedByPopularity(page, pageSize);
                 }
                 break;
@@ -660,8 +668,8 @@ public class EventRestController {
 
     })
     public ResponseEntity<PageEventDTO> userEvents(@RequestParam("page") int page, Principal principal,
-                                                     @RequestParam(value = "time", required = false) String time,
-                                                     @RequestParam(value = "type", required = false) String type) {
+                                                   @RequestParam(value = "time", required = false) String time,
+                                                   @RequestParam(value = "type", required = false) String type) {
         int pageSize = 3;
         List<EventDTO> eventDTOS = new ArrayList<>();
         Page<Event> events;
@@ -713,7 +721,7 @@ public class EventRestController {
 
         return ResponseEntity.ok(pageEventDTO);
     }
-    
+
     private EventDTO transformDTO(Event event) {
         if (event.getEndDate().before(new Date())) {
             return new EventFinishedDTO(event.getId(), event.getName(), event.getDescription(), event.getMaxCapacity(), event.getPrice(), event.getLocation(), event.getMap(), event.getStartDate(), event.getEndDate(), event.getAdditionalInfo(), event.getCreator().getId(), event.getNumRegisteredUsers(), event.getCategory().getId(), event.getAttendeesCount(), reviewService.calculateAverageRatingForEvent(event.getId()), reviewService.countReviewsForEvent(event.getId()));
@@ -745,7 +753,7 @@ public class EventRestController {
 
     public Event transformEvent(EventManipulationDTO dto) {
         Event event = new Event(dto.getName(), null, dto.getDescription(), dto.getMaxCapacity(),
-                dto.getPrice(), dto.getLocation(), dto.getMap(),dto.getStartDate(), dto.getEndDate(), dto.getAdditionalInfo());
+                dto.getPrice(), dto.getLocation(), dto.getMap(), dto.getStartDate(), dto.getEndDate(), dto.getAdditionalInfo());
         return event;
     }
 }
