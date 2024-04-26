@@ -138,10 +138,17 @@ export class ViewEventsComponent {
 
   updateAttendees() {
     if (this.attendeeForm.valid) {
+      this.isLoading = true;
       const attendees = this.attendeeForm.get('attendees')?.value;
       this.eventService.updateEventAttendees(this.event.id, attendees).subscribe({
-        next: () => this.loadGraphData(),
-        error: () => this.router.navigate(['/error'])
+        next: () => {
+          this.loadGraphData();
+          this.isLoading = false;
+        },
+        error: () => {
+          this.isLoading = false;
+          this.router.navigate(['/error']);
+        }
       });
     }
   }

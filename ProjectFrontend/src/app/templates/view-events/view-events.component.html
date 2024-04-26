@@ -102,7 +102,15 @@
                       <form [formGroup]="attendeeForm" (ngSubmit)="updateAttendees()">
                         <div class="form-group mb-2">
                           <label class="sr-only"> Número de asistentes</label> <!--for="attendeesCount"-->
-                          <input formControlName="attendees" type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes" min="0" max="{{event.numRegisteredUsers}}" required>
+                          <input formControlName="attendees" type="number" class="form-control" name="attendeesCount" placeholder="Número de asistentes" min="0" max="{{event.numRegisteredUsers}}" required>                        </div>
+                        <div *ngIf="attendeeForm.get('attendees')?.errors?.['required']">
+                          <small class="text-danger">Este campo es obligatorio.</small>
+                        </div>
+                        <div *ngIf="attendeeForm.get('attendees')?.errors?.['min']">
+                          <small class="text-danger">El número mínimo de asistentes es 0.</small>
+                        </div>
+                        <div *ngIf="attendeeForm.get('attendees')?.errors?.['max']">
+                          <small class="text-danger">El número máximo de asistentes no puede exceder el número de usuarios registrados.</small>
                         </div>
                         <button type="submit" [disabled]="!attendeeForm.valid" class="btn btn-info mb-2 ml-2"><i class="fas fa-save"></i> Guardar</button>
                       </form>
