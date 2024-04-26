@@ -16,8 +16,6 @@ import { jsPDF } from 'jspdf';
 export class TicketComponent {
 
   isLoading: boolean = false;
-  showDownloadButton: boolean = true;
-
   isUserLogged: boolean = false;
   event!: Event;
   user!: User;
@@ -88,7 +86,6 @@ export class TicketComponent {
 
   downloadTicket(){
     this.isLoading = true;
-    this.showDownloadButton = false;
     const data = document.getElementById('ticket-content'); 
     if (data) {
       html2canvas(data).then(canvas => {
