@@ -167,7 +167,7 @@ export class ViewEventsComponent {
         this.isUserCreator = (this.event.creatorId == currentUser.id);
         if (this.isUserAdmin || this.isUserCreator) {
           this.attendeeForm = this.formBuilder.group({
-            attendees: ['', [Validators.required, Validators.min(0)]]
+            attendees: ['', [Validators.required, Validators.min(0), Validators.max(this.event.numRegisteredUsers)]]
           });
           this.loadGraphData();
         }
@@ -197,14 +197,20 @@ export class ViewEventsComponent {
 
   joinEvent() {
     this.eventService.joinToEvent(this.event.id).subscribe({
-      next: () => this.stats.hasUserJoined = true,
+      next: () => {
+        this.stats.hasUserJoined = true;
+        this.event.numRegisteredUsers++;
+      },
       error: () => this.router.navigate(['/error'])
     });
   }
 
   leaveEvent() {
     this.eventService.leaveAnEvent(this.event.id).subscribe({
-      next: () => this.stats.hasUserJoined = false,
+      next: () => {
+        this.stats.hasUserJoined = false;
+        this.event.numRegisteredUsers--;
+      },
       error: () => this.router.navigate(['/error'])
     });
   }
