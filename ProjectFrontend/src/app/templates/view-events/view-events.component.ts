@@ -188,14 +188,20 @@ export class ViewEventsComponent {
   }
 
   onDeleteClick(): void {
-    this.isLoading = true;
-    this.eventService.deleteEvent(this.event.id).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-        this.isLoading = false;
-      },
-      error: () => this.router.navigate(['/error'])
-    });
+    const confirmation = window.confirm('¿Estás seguro de que deseas borrar este evento?');
+    if (confirmation) {
+      this.isLoading = true;
+      this.eventService.deleteEvent(this.event.id).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+          this.isLoading = false;
+        },
+        error: () => {
+          this.router.navigate(['/error']);
+          this.isLoading = false;
+        }
+      });
+    }
   }
 
   onEditClick() {
