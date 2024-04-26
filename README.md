@@ -786,8 +786,8 @@ To access the SPA with docker or with the virtual machine you must follow the in
 | [1º](ProjectFrontend/src/app/templates/event-form/event-form.component.ts) | event-form.component.ts |
 | [2º](ProjectFrontend/src/app/services/event.service.ts) | event.service.ts |
 | [3º](ProjectFrontend/src/app/templates/view-events/view-events.component.ts) | view-events.component.ts |
-| [4º](ProjectFrontend/src/app/templates/event-form/event-form.component.html) | event-form.component.html |
-| [5º](ProjectFrontend/src/app/app-routing.module.ts) | app-routing.module.ts |
+| [4º](ProjectFrontend/src/app/templates/review-form/review-form.component.ts) | review-form.component.ts |
+| [5º](ProjectFrontend/src/app/app.module.ts) | app.module.ts |
 
 ### 👨‍🔧 Álvaro Serrano Rodrigo
 
