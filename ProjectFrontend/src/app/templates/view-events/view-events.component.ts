@@ -166,6 +166,9 @@ export class ViewEventsComponent {
         this.isUserAdmin = currentUser.roles.includes("ADMIN");
         this.isUserCreator = (this.event.creatorId == currentUser.id);
         if (this.isUserAdmin || this.isUserCreator) {
+          this.attendeeForm = this.formBuilder.group({
+            attendees: ['', [Validators.required, Validators.min(0)]] 
+          });
           this.loadGraphData();
         }
         this.getEventLiveStats();
