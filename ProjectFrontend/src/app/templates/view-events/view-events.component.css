@@ -283,10 +283,3 @@ iframe {
   align-items: center;
   z-index: 9999;
 }
-
-
-.has-error input,
-.has-error textarea,
-.has-error select {
-    border-color: red;
-}

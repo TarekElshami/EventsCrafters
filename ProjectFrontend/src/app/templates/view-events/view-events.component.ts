@@ -188,8 +188,12 @@ export class ViewEventsComponent {
   }
 
   onDeleteClick(): void {
+    this.isLoading = true;
     this.eventService.deleteEvent(this.event.id).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => {
+        this.router.navigate(['/']);
+        this.isLoading = false;
+      },
       error: () => this.router.navigate(['/error'])
     });
   }
@@ -203,20 +207,24 @@ export class ViewEventsComponent {
   }
 
   joinEvent() {
+    this.isLoading = true;
     this.eventService.joinToEvent(this.event.id).subscribe({
       next: () => {
         this.stats.hasUserJoined = true;
         this.event.numRegisteredUsers++;
+        this.isLoading = false;
       },
       error: () => this.router.navigate(['/error'])
     });
   }
 
   leaveEvent() {
+    this.isLoading = true;
     this.eventService.leaveAnEvent(this.event.id).subscribe({
       next: () => {
         this.stats.hasUserJoined = false;
         this.event.numRegisteredUsers--;
+        this.isLoading = false;
       },
       error: () => this.router.navigate(['/error'])
     });
