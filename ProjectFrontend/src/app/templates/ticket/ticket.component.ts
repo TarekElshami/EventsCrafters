@@ -87,6 +87,7 @@ export class TicketComponent {
   }
 
   downloadTicket(){
+    this.isLoading = true;
     this.showDownloadButton = false;
     const data = document.getElementById('ticket-content'); 
     if (data) {
@@ -99,11 +100,10 @@ export class TicketComponent {
         const position = 0;
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         pdf.save(this.event.name+' ticket.pdf');
+        //this.router.navigate(['/event', this.event.id]); 
+        this.isLoading = false;
       });
     }
-    setTimeout(() => {
-      this.showDownloadButton = true;
-    }, 1000); 
   }
   
 }
