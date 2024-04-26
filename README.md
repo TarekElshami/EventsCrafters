@@ -812,20 +812,20 @@ To access the SPA with docker or with the virtual machine you must follow the in
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/384c024ca80b876a68b2d12757d91114c8788863#diff-7df7ea61a52dee675a8cd78553d5352d884a76941d0b210ce8253c5066b72c8d) | Event Info Screen component main implementation (corrected view and implemented main logic, several commits) |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/0514a995d06507548885d5d5ce4e767812424c92) | Added current event stats request for conditional data display |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/3c3ee8af18078e7b43fc89450ddcdedc519c3680#diff-597435294fad95dd10e83890fb7d2d21edda9ff8d7d5de3ad4b783b9fc0a1173) | Ticket component implementation (view and logic) |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/3037a2bb3ae7a9496b4d0b91f673f76f519aa0bf#diff-3c688c1760b5bac49136eb594cb4b294593ea67881ddb5205eaf40a1d17d6d68) | Event Info Screen view implementation |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/f1158689d71579c2dd21fc4a6481913baf966941) | Updated .sh command files, changed built image version to 2.0 |
 
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/view-events/view-events.component.ts) | view-events.component.ts |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/ticket/ticket.component.ts) | ticket.component.ts |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/view-events/view-events.component.html) | view-events.component.html |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/ticket/ticket.component.html) | ticket.component.html |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/docker/create_image.sh) | .sh files |
 
 ## 🎥 Video Tutorial
 
