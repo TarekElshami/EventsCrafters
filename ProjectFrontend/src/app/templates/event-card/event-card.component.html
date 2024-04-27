@@ -1,4 +1,3 @@
-
     <div class="activity">
         <img [src]="eventCard.imageUrl" alt="imagen actividad" class="img-fluid">
         <h5>{{eventCard.name}}</h5>
@@ -7,7 +6,7 @@
             <span class="event-capacity etiqueta-aforoMucho">Aforo: {{eventCard.numRegisteredUsers}}/{{eventCard.maxCapacity}}</span>
         </div>
         <div class="mt-1">
-            <span  class="arrow">{{eventCard.location}}</span>
+            <fa-icon [icon]="faMapMarkerAlt" style="margin-left: 10px;"></fa-icon> {{eventCard.location}}
         </div>
         <div class="mx-3 my-2">
             <p class="description">{{description}}</p>
