@@ -707,7 +707,7 @@ To set up the development environment for the SPA application using Angular, fol
    ```bash
    https://github.com/CodeURJC-DAW-2023-24/webapp11.git
    ```
-2. **Make sure the backend is running**: Following the instructions 🔣`Execution instructions` of the phase 2 documentation
+2. **Make sure the backend is running**: Following the instructions `🔣Execution instructions` of the phase 2 documentation
 3. **Redirect to the ProjectFrontend directory**
    ```bash
    cd webapp11/ProjectFrontend
