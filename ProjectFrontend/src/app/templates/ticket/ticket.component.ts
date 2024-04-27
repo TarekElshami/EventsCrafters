@@ -54,7 +54,7 @@ export class TicketComponent {
         this.getUserData();
       },
       error: () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       }
     });
   }
