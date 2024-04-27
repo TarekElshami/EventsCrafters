@@ -262,6 +262,12 @@ export class ViewEventsComponent {
   }
 
 
+  scrollToLocation(): void {
+    const locationElement = document.getElementById('map');
+    if (locationElement) {
+      locationElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
 }
 
