@@ -728,6 +728,9 @@ The SPA will be ready at [http://localhost:4200/](http://localhost:4200/)
 To access the SPA with docker or with the virtual machine you must follow the instructions in `🐳 Docker Application Execution Instructions` or `🖥️ Deployment on Virtual Machine` respectively, but accessing the path [https://localhost:8443/new] (https://localhost:8443/new) in docker or [https://10.100.139.249:8443/new](https://10.100.139.249:8443/new) in virtual machine
 
 ## 📊 Angular Component Diagrams & Templates
+![Angular Component Diagrams & Templates](Angular%20Component%20Diagram%20%26%20Templates.svg)
+
+*Angular Component Diagrams & Templates*
 
 ## 👥 Members Participation Phase 4
 
