@@ -54,7 +54,7 @@ export class UserService {
   }
 
   logout(){
-    this.http.post("api/auth/logout",{}).subscribe({
+    this.http.post("/api/auth/logout",{}).subscribe({
       next: value => {console.log(value)},
       error: err => {console.log(err)}
     });
