@@ -738,13 +738,11 @@ To access the SPA with docker or with the virtual machine you must follow the in
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/0aa1b99191c17ba32db5711d36dad2b8a93abf95) | 
-Implemented register webpage and functionality |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/0aa1b99191c17ba32db5711d36dad2b8a93abf95) | Implemented register webpage and functionality |
 | [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/5f307691d5d0d6f01573542c39362d1789c6c7f7) | Changing Profile Picture |
 | [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/4720031004278a69dc8d86df098723a734e2b43e) | Profile Editing |
 | [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/71a27707ebd16df030ea2de50686fba9059c33f8) | Login functionality |
-| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/877586453bd69eef5cc6663ee164313c833620c3) | 
-Initializated templates and styles for login and register |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/877586453bd69eef5cc6663ee164313c833620c3) | Initializated templates and styles for login and register |
 
 
 | File | Description |
