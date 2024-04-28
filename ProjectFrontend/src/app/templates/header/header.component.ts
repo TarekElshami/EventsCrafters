@@ -18,6 +18,7 @@ export class HeaderComponent {
 
     @Input() logged!: boolean;
     @Input() isIndex!: boolean;
+    @Input() isProfile!: boolean;
 
     @Output() searchBarInfo = new EventEmitter<string>();
     @Output() categoryFilter = new EventEmitter<number>();
