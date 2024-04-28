@@ -78,6 +78,10 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/users/*").hasAnyRole("USER", "ADMIN");
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/*/recoverPassword").permitAll();
 
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/auth/login").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/auth/logout").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/auth/refresh").permitAll();
+
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
 
