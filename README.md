@@ -759,20 +759,20 @@ Initializated templates and styles for login and register |
 
 | Commit | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/877586453bd69eef5cc6663ee164313c833620c3) | Initializated templates and styles for login and register |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/71a27707ebd16df030ea2de50686fba9059c33f8) | Implemented Login functionality |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/45e97cd6e55f0ce2d81627d7b23f0f831199fb45) | Added password recovery |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/0aa1b99191c17ba32db5711d36dad2b8a93abf95) | Implemented register webpage and functionality |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/commit/b388ec92439cad5dfb3885881fe9f47766c72c28) | Ban and Unban implemented |
 
 
 | File | Description |
 | :----: | :---------: |
-| [1º]() |  |
-| [2º]() |  |
-| [3º]() |  |
-| [4º]() |  |
-| [5º]() |  |
+| [1º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/profile/profile.component.ts) | profile.component.ts |
+| [2º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/register/register.component.ts) | register.component.ts |
+| [3º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/templates/login/login.component.ts) | login.component.ts |
+| [4º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/ProjectFrontend/src/app/services/user.service.ts) | user.service.ts |
+| [5º](https://github.com/CodeURJC-DAW-2023-24/webapp11/blob/main/Phase2/EventCrafters/src/main/java/com/EventCrafters/EventCrafters/controller/UserRestController.java) | UserRestController.java |
 
 ### 👨‍🔧 Tarek Elshami Ahmed
 
