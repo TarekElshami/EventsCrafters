@@ -834,4 +834,8 @@ Initializated templates and styles for login and register |
 
 ## 🎥 Video Tutorial
 
+-  [EventCrafters Youtube channel](https://www.youtube.com/channel/UCbIdXeLInqwMAbhkB7y6uOw)
+-  [EventCrafters Video Turorial](https://youtu.be/FqbEqajLLTE?si=pBe6nE3H0BGNRRl6)
+
+
 ***
